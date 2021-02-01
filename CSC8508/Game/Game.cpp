@@ -718,7 +718,7 @@ void Game::MoveSelectedObject() {
 	}
 
 	if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::LEFT)) {
-		selectionObject->GetPhysicsObject()->AddForce(Vector3(-1, 0, 0) * forceMagnitude);
+		selectionObject->GetPhysicsObject()->AddForce(Vector3(-1, 0, 0) * forceMagnitude); 
 	}
 
 	if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::RIGHT)) {
