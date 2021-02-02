@@ -576,26 +576,6 @@ GameObject* Game::AddBonusToWorld(const Vector3& position) {
 	return apple;
 }
 
-StateGameObject* Game::AddStateObjectToWorld(const Vector3& position) {
-	StateGameObject* stateobj = new StateGameObject();
-
-	SphereVolume* volume = new SphereVolume(0.25f);
-	stateobj->SetBoundingVolume((CollisionVolume*)volume);
-	stateobj->GetTransform()
-		.SetScale(Vector3(0.25, 0.25, 0.25))
-		.SetPosition(position);
-
-	stateobj->SetRenderObject(new RenderObject(&stateobj->GetTransform(), sphereMesh, nullptr, basicShader));
-	stateobj->SetPhysicsObject(new PhysicsObject(&stateobj->GetTransform(), stateobj->GetBoundingVolume()));
-
-	stateobj->GetPhysicsObject()->SetInverseMass(1.0f);
-	stateobj->GetPhysicsObject()->InitSphereInertia();
-
-	world->AddGameObject(stateobj);
-
-	return stateobj;
-}
-
 /*
 
 Every frame, this code will let you perform a raycast, to see if there's an object

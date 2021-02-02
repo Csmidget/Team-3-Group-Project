@@ -143,15 +143,13 @@
   <ItemGroup>
     <ClCompile Include="GameTechRenderer.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="RespawningObject.cpp" />
-    <ClCompile Include="StateGameObject.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="RespawningObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h" />
-    <ClInclude Include="RespawningObject.h" />
-    <ClInclude Include="StateGameObject.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="RespawningObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
