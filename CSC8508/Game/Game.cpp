@@ -270,7 +270,8 @@ void Game::InitWorld() {
 	AddOBBCubeToWorld(Vector3(10, 104.5f, -150), Vector3(1, 1, 1), 10.0f,false,true)->GetTransform().SetOrientation(Matrix4::Rotation(0, Vector3(0, 0, 1)));
 	AddOBBCubeToWorld(Vector3(-4.5f, 0, -3.5f), Vector3(1, 1, 5));
 	AddOBBCubeToWorld(Vector3(-4.5f, 5, -5), Vector3(1, 1, 1));
-	AddOBBCubeToWorld(Vector3(0, 5, -5), Vector3(1,1,1));
+	AddOBBCubeToWorld(Vector3(0, 5, -5), Vector3(1, 1, 1));
+	AddOBBCubeToWorld(Vector3(20, 20, -20), Vector3(10,10,10));
 //	AddSphereToWorld(Vector3(-1, 15, -6), 1.0f);
 //	AddStateObjectToWorld(Vector3(0, 10, -15));
 	AddSphereToWorld(Vector3(5, 10, 10), 1.0f);
