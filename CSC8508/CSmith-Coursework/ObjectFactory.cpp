@@ -22,7 +22,7 @@
 
 using namespace NCL;
 using namespace CSC8508;
-
+//hello
 ObjectFactory::ObjectFactory() {
 	auto loadFunc = [](const string& name, OGLMesh** into) {
 		*into = new OGLMesh(name);
