@@ -147,7 +147,6 @@
     <ClInclude Include="OGLComputeShader.h" />
     <ClInclude Include="OGLMesh.h" />
     <ClInclude Include="OGLRenderer.h" />
-    <ClInclude Include="OGLResourceManager.h" />
     <ClInclude Include="OGLShader.h" />
     <ClInclude Include="OGLTexture.h" />
   </ItemGroup>
@@ -156,7 +155,6 @@
     <ClCompile Include="OGLComputeShader.cpp" />
     <ClCompile Include="OGLMesh.cpp" />
     <ClCompile Include="OGLRenderer.cpp" />
-    <ClCompile Include="OGLResourceManager.cpp" />
     <ClCompile Include="OGLShader.cpp" />
     <ClCompile Include="OGLTexture.cpp" />
   </ItemGroup>
