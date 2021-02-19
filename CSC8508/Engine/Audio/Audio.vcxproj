@@ -24,6 +24,7 @@
     <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core.h" />
     <ClInclude Include="SoundInstance.h" />
     <ClInclude Include="SoundManager.h" />
   </ItemGroup>

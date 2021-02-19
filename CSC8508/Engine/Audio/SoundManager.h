@@ -1,9 +1,7 @@
 #pragma once
-#include"External/inc/fmod.hpp"
-#include<map>
-#include<vector>
 #include"../../../Common/Vector3.h"
-
+#include"Core.h"
+#include"SoundInstance.h"
 
 
 namespace NCL {
@@ -25,7 +23,6 @@ namespace NCL {
 				void CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce);
 				void SetListener();
 
-				void AddChannel(FMOD::Channel* channel);
 				void PauseAllInstances();
 			}			
 		}

@@ -5,10 +5,10 @@ using namespace NCL::CSC8508::Audio;
 
 int SoundInstance::Play()
 {
-	//int ChannelID = SoundManager::GetFreeChannel();
+	int ChannelID = audioCore->coreNextChannelID++;
 	FMOD::Channel* channel = nullptr;
 
-	SoundManager::ErrorCheck(system->playSound(sound, 0, true, &channel));
+	SoundManager::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
 	if (channel)
 	{
 		FMOD_MODE mode;
@@ -20,7 +20,8 @@ int SoundInstance::Play()
 		SoundManager::ErrorCheck(channel->setPaused(false));
 		SoundManager::ErrorCheck(channel->setPitch(pitch));*/
 		SoundManager::ErrorCheck(channel->setPaused(false));
-		SoundManager::AddChannel(channel);
+
+		audioCore->coreChannels[ChannelID] = channel;
 	}
-	return 0;
+	return ChannelID;
 }

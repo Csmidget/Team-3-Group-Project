@@ -1,5 +1,5 @@
 #include"../Audio/External/inc/fmod.hpp"
-#include"SoundInstance.h";
+#include"SoundManager.h";
 
 using namespace NCL::CSC8508;
 int main()
@@ -19,6 +19,12 @@ int main()
 	Audio::SoundInstance test;
 	Audio::SoundManager::CreateInstance("res/Dogs_bark_long.wav", &test);
 	test.Play();
+	Audio::SoundInstance test1;
+	Audio::SoundManager::CreateInstance("res/River.mp3", &test1);
+	test1.Play();
+	Audio::SoundInstance test2;
+	Audio::SoundManager::CreateInstance("res/Dogs_bark_long.wav", &test2);
+	test2.Play();
     Audio::SoundManager::Update();
 	while (true);
  }
