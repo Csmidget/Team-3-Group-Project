@@ -1,8 +1,6 @@
 #include "Game.h"
 #include "../Engine/GameWorld.h"
-#include "../../Plugins/OpenGLRendering/OGLMesh.h"
-#include "../../Plugins/OpenGLRendering/OGLShader.h"
-#include "../../Plugins/OpenGLRendering/OGLTexture.h"
+#include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "../../Common/TextureLoader.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
@@ -14,8 +12,9 @@ using namespace NCL;
 using namespace CSC8508;
 
 Game::Game()	{
+	resourceManager = new OGLResourceManager();
 	world		= new GameWorld();
-	renderer	= new GameTechRenderer(*world);
+	renderer	= new GameTechRenderer(*world, *resourceManager);
 	physics		= new PhysicsSystem(*world);
 
 	forceMagnitude	= 10.0f;
@@ -35,38 +34,28 @@ for this module, even in the coursework, but you can add it if you like!
 
 */
 void Game::InitialiseAssets() {
-	auto loadFunc = [](const string& name, OGLMesh** into) {
-		*into = new OGLMesh(name);
-		(*into)->SetPrimitiveType(GeometryPrimitive::Triangles);
-		(*into)->UploadToGPU();
-	};
 
-	loadFunc("cube.msh"		 , &cubeMesh);
-	loadFunc("sphere.msh"	 , &sphereMesh);
-	loadFunc("Male1.msh"	 , &charMeshA);
-	loadFunc("courier.msh"	 , &charMeshB);
-	loadFunc("security.msh"	 , &enemyMesh);
-	loadFunc("coin.msh"		 , &bonusMesh);
-	loadFunc("capsule.msh"	 , &capsuleMesh);
+	cubeMesh	= resourceManager->LoadMesh("cube.msh");
+	sphereMesh	= resourceManager->LoadMesh("sphere.msh");
+	charMeshA	= resourceManager->LoadMesh("Male1.msh");
+	charMeshB	= resourceManager->LoadMesh("courier.msh");
+	enemyMesh	= resourceManager->LoadMesh("security.msh");
+	bonusMesh	= resourceManager->LoadMesh("coin.msh");
+	capsuleMesh = resourceManager->LoadMesh("capsule.msh");
 
-	basicTex	= (OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
-	basicShader = new OGLShader("GameTechVert.glsl", "GameTechFrag.glsl");
+	basicTex	= resourceManager->LoadTexture("checkerboard.png"); //(OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
+	basicShader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");
 
 	InitCamera();
 	InitWorld();
 }
 
 Game::~Game()	{
-	delete cubeMesh;
-	delete sphereMesh;
-	delete charMeshA;
-	delete charMeshB;
-	delete enemyMesh;
-	delete bonusMesh;
 
 	delete basicTex;
 	delete basicShader;
 
+	delete resourceManager;
 	delete physics;
 	delete renderer;
 	delete world;
