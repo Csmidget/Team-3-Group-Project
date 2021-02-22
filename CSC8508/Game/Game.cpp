@@ -1,8 +1,8 @@
 #include "Game.h"
 #include "../Engine/GameWorld.h"
-#include "../../Plugins/OpenGLRendering/OGLMesh.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include "../../Plugins/OpenGLRendering/OGLTexture.h"
+#include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "../../Common/TextureLoader.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
@@ -15,6 +15,7 @@ Game::Game()	{
 	world		= new GameWorld();
 	renderer	= new GameTechRenderer(*world);
 	physics		= new PhysicsSystem(*world);
+	resourceManager = new OGLResourceManager();
 
 	forceMagnitude	= 10.0f;
 	useGravity		= false;
@@ -33,19 +34,14 @@ for this module, even in the coursework, but you can add it if you like!
 
 */
 void Game::InitialiseAssets() {
-	auto loadFunc = [](const string& name, OGLMesh** into) {
-		*into = new OGLMesh(name);
-		(*into)->SetPrimitiveType(GeometryPrimitive::Triangles);
-		(*into)->UploadToGPU();
-	};
 
-	loadFunc("cube.msh"		 , &cubeMesh);
-	loadFunc("sphere.msh"	 , &sphereMesh);
-	loadFunc("Male1.msh"	 , &charMeshA);
-	loadFunc("courier.msh"	 , &charMeshB);
-	loadFunc("security.msh"	 , &enemyMesh);
-	loadFunc("coin.msh"		 , &bonusMesh);
-	loadFunc("capsule.msh"	 , &capsuleMesh);
+	cubeMesh	= resourceManager->LoadMesh("cube.msh");
+	sphereMesh	= resourceManager->LoadMesh("sphere.msh");
+	charMeshA	= resourceManager->LoadMesh("Male1.msh");
+	charMeshB	= resourceManager->LoadMesh("courier.msh");
+	enemyMesh	= resourceManager->LoadMesh("security.msh");
+	bonusMesh	= resourceManager->LoadMesh("coin.msh");
+	capsuleMesh = resourceManager->LoadMesh("capsule.msh");
 
 	basicTex	= (OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
 	basicShader = new OGLShader("GameTechVert.glsl", "GameTechFrag.glsl");
@@ -65,6 +61,7 @@ Game::~Game()	{
 	delete basicTex;
 	delete basicShader;
 
+	delete resourceManager;
 	delete physics;
 	delete renderer;
 	delete world;
