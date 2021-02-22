@@ -8,22 +8,24 @@ namespace NCL {
 
 			namespace SoundManager {
 				void CreateInstance(const std::string& path, SoundInstance* soundInstnce);
+				void DeleteInstance(SoundInstance* soundInstance);
 			}
-			struct FMOD_3DAttributes {
+			struct Audio_3DAttributes {
 
 				FMOD_VECTOR pos;
 				FMOD_VECTOR vel;
 			};
 			
+	
 			
 			class SoundInstance {
 			public:
 
-				SoundInstance() {}
-				~SoundInstance() {} //release
+				SoundInstance();
+				~SoundInstance(); //release
 
 				int Play();
-				int Stop();
+				void Stop();
 				int isPlaying();
 				
 				void SetPaused();
@@ -35,6 +37,8 @@ namespace NCL {
 				float GetPith();
 
 				void Set3DAtribbutes();
+				void SetMode();
+				void SetAudiabledistance(float max, float min);
 
 				static FMOD_VECTOR ToFMODVECTOR(const Maths::Vector3& v);
 				static float FloatTodB(float volume);
@@ -44,13 +48,15 @@ namespace NCL {
 
 				FMOD::Sound* sound;
 				Core* audioCore;
+				std::string path;
 				FMOD_VECTOR position;
-				FMOD_3DAttributes attributes3D;
+				Audio_3DAttributes attributes3D;
 				float volume;
 				float pitch;
+				int channelID;
 
 				friend void SoundManager::CreateInstance(const std::string& path, SoundInstance* soundInstnce);
-			
+				friend void SoundManager::DeleteInstance(SoundInstance* soundInstance);
 			};
 		}
 	}

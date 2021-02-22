@@ -34,13 +34,27 @@ void SoundManager::CreateInstance(const std::string& soundFile, SoundInstance* s
 	{
 		soundInstnce->sound = (*foundSound).second.at(0)->sound;
 		soundInstnce->audioCore = (*foundSound).second.at(0)->audioCore;
+		soundInstnce->path = (*foundSound).second.at(0)->path;
 		(*foundSound).second.emplace_back(soundInstnce);
 		return;
 	}
 	
 	ErrorCheck(audioCore->coreSystem->createSound(soundFile.c_str(), FMOD_3D | FMOD_LOOP_OFF, 0, &soundInstnce->sound));
 	soundInstnce->audioCore = audioCore;
+	soundInstnce->path = soundFile;
 	audioCore->coreSounds[soundFile].emplace_back(soundInstnce);
+}
+
+void SoundManager::DeleteInstance(SoundInstance* soundInstance)
+{
+	auto foundSound = audioCore->coreSounds.find(soundInstance->path);
+	auto& foundSoundVector = (*foundSound).second;
+	auto foundSoundInstance = std::find(foundSoundVector.begin(), foundSoundVector.end(), soundInstance);
+
+	if (foundSoundVector.size() == 1)
+		(*foundSoundInstance)->sound->release();
+
+	foundSoundVector.erase(foundSoundInstance);
 }
 
 int SoundManager::ErrorCheck(FMOD_RESULT result)

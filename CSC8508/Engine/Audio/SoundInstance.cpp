@@ -3,6 +3,21 @@
 
 using namespace NCL::CSC8508::Audio;
 
+SoundInstance::SoundInstance():
+	sound(nullptr), audioCore(nullptr), channelID(-1), volume(1), pitch(1), path("")
+{
+	attributes3D.pos = ToFMODVECTOR(Maths::Vector3(0,0,0));
+	attributes3D.vel = ToFMODVECTOR(Maths::Vector3(0,0,0));
+}
+
+SoundInstance::~SoundInstance()
+{
+	//this->Stop();
+	SoundManager::DeleteInstance(this);
+}
+
+
+
 int SoundInstance::Play()
 {
 	int ChannelID = audioCore->coreNextChannelID++;
@@ -23,5 +38,34 @@ int SoundInstance::Play()
 
 		audioCore->coreChannels[ChannelID] = channel;
 	}
+	channelID = ChannelID;
 	return ChannelID;
+}
+
+void SoundInstance::Stop()
+{
+	if (!this->isPlaying())
+		return;
+
+	auto foundChannel = audioCore->coreChannels.find(channelID);
+	SoundManager::ErrorCheck((*foundChannel).second->stop());
+}
+
+int SoundInstance::isPlaying()
+{
+	auto foundChannel = audioCore->coreChannels.find(channelID);
+	if (foundChannel == audioCore->coreChannels.end())
+		return false;
+	bool playingState;
+	SoundManager::ErrorCheck((*foundChannel).second->isPlaying(&playingState));
+	return playingState;
+}
+
+FMOD_VECTOR SoundInstance::ToFMODVECTOR(const Maths::Vector3& v)
+{
+	FMOD_VECTOR vec;
+	vec.x = v.x;
+	vec.y = v.y;
+	vec.z = v.z;
+	return vec;
 }

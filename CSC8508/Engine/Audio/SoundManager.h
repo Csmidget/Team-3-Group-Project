@@ -21,8 +21,9 @@ namespace NCL {
 
 				void PlayOneShot(const std::string& soundFile, const Maths::Vector3& position);
 				void CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce);
-				void SetListener();
+				void DeleteInstance(SoundInstance* soundInstance);
 
+				void SetListener();
 				void PauseAllInstances();
 			}			
 		}

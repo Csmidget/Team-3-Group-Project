@@ -20,7 +20,7 @@ namespace NCL {
 				int coreNextChannelID;
 
 				typedef std::map<std::string, std::vector<SoundInstance*>> SoundMap;
-				typedef std::map<int, FMOD::Channel*> ChannelMap;
+				typedef std::map<unsigned int, FMOD::Channel*> ChannelMap;
 
 				SoundMap coreSounds;
 				ChannelMap coreChannels;
@@ -39,6 +39,7 @@ namespace NCL {
 				void Update()
 				{
 					std::vector<ChannelMap::iterator> stoppedChannels;
+					
 					for (auto it = coreChannels.begin(); it != coreChannels.end(); ++it)
 					{
 						bool isChannelPlaying = false;
@@ -46,15 +47,19 @@ namespace NCL {
 						if (!isChannelPlaying)
 							stoppedChannels.push_back(it);
 					}
-
+					//Clears stopped channel vector
 					for (auto& it : stoppedChannels)
 						coreChannels.erase(it);
 
-					//Clears coreSound if no instances -  optional
-					for (auto it = coreSounds.begin(); it != coreSounds.end(); ++it)
+					//Clears deleted SoundInstances
+					auto it = coreSounds.begin();
+					while (it != coreSounds.end())
+					{
 						if ((*it).second.size() == 0)
-							coreSounds.erase(it);
-
+							it = coreSounds.erase(it);
+						else
+							it++;
+					}
 					SoundManager::ErrorCheck(coreSystem->update());
 				}
 			};
