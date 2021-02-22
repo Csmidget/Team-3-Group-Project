@@ -1,7 +1,5 @@
 #include "Game.h"
 #include "../Engine/GameWorld.h"
-#include "../../Plugins/OpenGLRendering/OGLShader.h"
-#include "../../Plugins/OpenGLRendering/OGLTexture.h"
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "../../Common/TextureLoader.h"
 #include "../Engine/PositionConstraint.h"
@@ -12,10 +10,10 @@ using namespace NCL;
 using namespace CSC8508;
 
 Game::Game()	{
-	world		= new GameWorld();
-	renderer	= new GameTechRenderer(*world);
-	physics		= new PhysicsSystem(*world);
 	resourceManager = new OGLResourceManager();
+	world		= new GameWorld();
+	renderer	= new GameTechRenderer(*world, *resourceManager);
+	physics		= new PhysicsSystem(*world);
 
 	forceMagnitude	= 10.0f;
 	useGravity		= false;
@@ -43,20 +41,14 @@ void Game::InitialiseAssets() {
 	bonusMesh	= resourceManager->LoadMesh("coin.msh");
 	capsuleMesh = resourceManager->LoadMesh("capsule.msh");
 
-	basicTex	= (OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
-	basicShader = new OGLShader("GameTechVert.glsl", "GameTechFrag.glsl");
+	basicTex	= resourceManager->LoadTexture("checkerboard.png"); //(OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
+	basicShader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");
 
 	InitCamera();
 	InitWorld();
 }
 
 Game::~Game()	{
-	delete cubeMesh;
-	delete sphereMesh;
-	delete charMeshA;
-	delete charMeshB;
-	delete enemyMesh;
-	delete bonusMesh;
 
 	delete basicTex;
 	delete basicShader;

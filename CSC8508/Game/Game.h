@@ -66,8 +66,8 @@ namespace NCL {
 			MeshGeometry*	capsuleMesh = nullptr;
 			MeshGeometry*	cubeMesh	= nullptr;
 			MeshGeometry*	sphereMesh	= nullptr;
-			OGLTexture* basicTex	= nullptr;
-			OGLShader*	basicShader = nullptr;
+			TextureBase*	basicTex	= nullptr;
+			ShaderBase*		basicShader = nullptr;
 
 			//Coursework Meshes
 			MeshGeometry*	charMeshA	= nullptr;

@@ -3,6 +3,8 @@
 #include "OGLShader.h"
 #include "OGLTexture.h"
 
+#include "../../Common/TextureLoader.h"
+
 using namespace NCL::Rendering;
 
 OGLResourceManager::~OGLResourceManager() {
@@ -41,11 +43,30 @@ NCL::MeshGeometry* OGLResourceManager::LoadMesh(std::string fileName) {
 }
 
 ShaderBase* OGLResourceManager::LoadShader(std::string shaderVert, std::string shaderFrag, std::string shaderGeom) {
-	return nullptr;
+
+	std::string combinedName = shaderVert + shaderFrag + shaderGeom;
+
+	if (loadedShaders.find(combinedName) != loadedShaders.end())
+		return loadedShaders[combinedName];
+
+	ShaderBase* shader = new OGLShader(shaderVert, shaderFrag, shaderGeom);
+
+	loadedShaders.emplace(combinedName, shader);
+
+	return shader;
 }
 
 TextureBase* OGLResourceManager::LoadTexture(std::string textureName, unsigned int flags, bool linearFilter, bool aniso) {
-	return nullptr;
+
+	//If we have loaded this texture in the past, just return it again.
+	if (loadedTextures.find(textureName) != loadedTextures.end())
+		return loadedTextures[textureName];
+
+	TextureBase* tex = TextureLoader::LoadAPITexture(textureName);
+
+	loadedTextures.emplace(textureName, tex);
+
+	return tex;
 }
 
 TextureBase* OGLResourceManager::LoadCubemap(std::string xPos, std::string xNeg, std::string yPos, std::string yNeg, std::string zPos, std::string zNeg, unsigned int flags) {
