@@ -33,6 +33,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSmithCoursework", "CSC8508
 		{124740DA-B6CB-4D9B-8C79-B8358B2A1D9F} = {124740DA-B6CB-4D9B-8C79-B8358B2A1D9F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "CSC8508\Engine\Physics\PhysicsEngine\PhysicsEngine.vcxproj", "{BD969495-48C5-40FB-9208-9E52A76C7247}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ORBIS = Debug|ORBIS
@@ -114,6 +116,16 @@ Global
 		{76A9BD60-B3EE-47BF-9C51-E66816A2339C}.Release|Win32.Build.0 = Release|Win32
 		{76A9BD60-B3EE-47BF-9C51-E66816A2339C}.Release|x64.ActiveCfg = Release|x64
 		{76A9BD60-B3EE-47BF-9C51-E66816A2339C}.Release|x64.Build.0 = Release|x64
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Debug|ORBIS.ActiveCfg = Debug|Win32
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Debug|Win32.Build.0 = Debug|Win32
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Debug|x64.ActiveCfg = Debug|x64
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Debug|x64.Build.0 = Debug|x64
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|ORBIS.ActiveCfg = Release|Win32
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|Win32.ActiveCfg = Release|Win32
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|Win32.Build.0 = Release|Win32
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|x64.ActiveCfg = Release|x64
+		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
