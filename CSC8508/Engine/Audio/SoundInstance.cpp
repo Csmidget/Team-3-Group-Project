@@ -14,7 +14,7 @@ SoundInstance::SoundInstance():
 
 SoundInstance::~SoundInstance()
 {
-	//this->Stop();
+	this->Stop();
 	SoundManager::DeleteInstance(this);
 }
 
@@ -22,7 +22,7 @@ SoundInstance::~SoundInstance()
 
 int SoundInstance::Play()
 {
-	int ChannelID = audioCore->coreNextChannelID++;
+	int channelID = audioCore->coreNextChannelID++;
 	FMOD::Channel* channel = nullptr;
 
 	SoundManager::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
@@ -35,10 +35,9 @@ int SoundInstance::Play()
 			SoundManager::ErrorCheck(channel->setPitch(pitch));
 		}
 		SoundManager::ErrorCheck(channel->setPaused(false));
-		audioCore->coreChannels[ChannelID] = channel;
+		audioCore->coreChannels[channelID] = channel;
 	}
-	channelID = ChannelID;
-	return ChannelID;
+	return channelID;
 }
 
 void SoundInstance::Stop()

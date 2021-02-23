@@ -11,6 +11,8 @@ using namespace NCL::CSC8508::Audio;
 
 void SoundManager::Init()
 {
+	if (audioCore != nullptr)
+		return;
 	audioCore = new Core();
 }
 
@@ -26,8 +28,11 @@ void SoundManager::Release()
 
 void SoundManager::CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce)
 {
+	if (audioCore == nullptr)
+		return;
 	if (soundInstnce == nullptr)
 		soundInstnce = new SoundInstance();
+
 	auto foundSound = audioCore->coreSounds.find(soundFile);
 
 	if (foundSound != audioCore->coreSounds.end())
@@ -57,6 +62,21 @@ void SoundManager::DeleteInstance(SoundInstance* soundInstance)
 	foundSoundVector.erase(foundSoundInstance);
 }
 
+void SoundManager::SetListenerParameters(const Maths::Vector3& pos, const Maths::Vector3& vel)
+{
+	FMOD_VECTOR fPos = SoundInstance::ToFMODVECTOR(pos);
+	FMOD_VECTOR fVel = SoundInstance::ToFMODVECTOR(vel);
+
+	ErrorCheck(audioCore->coreSystem->set3DListenerAttributes(0, &fPos, &fVel, nullptr, nullptr));
+}
+
+void SoundManager::StopAllInstances()
+{
+	for (auto channel : audioCore->coreChannels)
+		ErrorCheck(channel.second->stop());
+	
+}
+
 int SoundManager::ErrorCheck(FMOD_RESULT result)
 {
 	if (result == FMOD_OK)
@@ -64,4 +84,9 @@ int SoundManager::ErrorCheck(FMOD_RESULT result)
 
 	std::cout << "FMOD ERROR: " << result << std::endl;
 	return 1;
+}
+
+bool SoundManager::IsInit()
+{
+	return audioCore == nullptr ? false : true;
 }

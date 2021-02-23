@@ -15,16 +15,15 @@ namespace NCL {
 				void Init();
 				void Update();
 				void Release();
-				int ErrorCheck(FMOD_RESULT result);
+				int  ErrorCheck(FMOD_RESULT result);
 				bool IsInit();
-				bool HasListener();
 
 				void PlayOneShot(const std::string& soundFile, const Maths::Vector3& position);
 				void CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce);
 				void DeleteInstance(SoundInstance* soundInstance);
 
-				void SetListener();
-				void PauseAllInstances();
+				void SetListenerParameters(const Maths::Vector3& pos, const Maths::Vector3& vel = Maths::Vector3(0,0,0));
+				void StopAllInstances();
 			}			
 		}
 	}
