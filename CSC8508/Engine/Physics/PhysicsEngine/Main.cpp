@@ -15,7 +15,6 @@ subject to the following restrictions:
 
 ///-----includes_start-----
 #include "btBulletDynamicsCommon.h"
-
 #include <stdio.h>
 
 /// This is a Hello World program for running a basic Bullet physics simulation
