@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "JsonReader.h"
 #include "../Engine/GameWorld.h"
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "../../Common/TextureLoader.h"
@@ -24,6 +25,8 @@ Game::Game()	{
 	Debug::SetRenderer(renderer);
 
 	InitialiseAssets();
+
+	std::cout << test << "\n";
 }
 
 /*
@@ -239,6 +242,11 @@ void Game::Clear() {
 	physics->Clear();
 }
 
+void Game::InitFromJSON(std::string fileName) {
+	Clear();
+	JsonReader::ReadLevelFromJson(fileName, this);
+}
+
 void Game::InitWorld() {
 	Clear();
 
@@ -342,6 +350,11 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 	world->AddGameObject(floor);
 
 	return floor;
+}
+
+void Game::AddGameObject(GameObject* go)
+{
+	world->AddGameObject(go);
 }
 
 /*
