@@ -47,8 +47,7 @@ namespace NCL {
 				inline float GetPith() const { return pitch; }
 
 				void Set3DAttributes(Maths::Vector3 pos, Maths::Vector3 vel = Maths::Vector3(0,0,0));
-				inline void Set3DAttributes(Audio_3DAttributes att) { attributes3D = att; }
-
+				
 				void SetMode(Audio_Mode m); //To change it hhas to be uploaded before play sound, Mode should be store in FMOD_MODE type
 				void SetMode(int m); // To change it hhas to be uploaded before play sound, Mode should be store in FMOD_MODE type
 				inline int GetMode() const { return mode; }

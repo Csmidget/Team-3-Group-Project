@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core.cpp" />
     <ClCompile Include="SoundInstance.cpp" />
     <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>

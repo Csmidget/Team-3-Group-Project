@@ -25,16 +25,16 @@ int SoundInstance::Play()
 	int channelID = audioCore->coreNextChannelID++;
 	FMOD::Channel* channel = nullptr;
 
-	SoundManager::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
+	Audio::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
 	if (channel)
 	{
 		if (mode & MODE_3D)
 		{
-			SoundManager::ErrorCheck(channel->set3DAttributes(&attributes3D.pos, &attributes3D.vel));
-			SoundManager::ErrorCheck(channel->setVolume(volume));
-			SoundManager::ErrorCheck(channel->setPitch(pitch));
+			Audio::ErrorCheck(channel->set3DAttributes(&attributes3D.pos, &attributes3D.vel));
+			Audio::ErrorCheck(channel->setVolume(volume));
+			Audio::ErrorCheck(channel->setPitch(pitch));
 		}
-		SoundManager::ErrorCheck(channel->setPaused(false));
+		Audio::ErrorCheck(channel->setPaused(false));
 		audioCore->coreChannels[channelID] = channel;
 	}
 	return channelID;
@@ -46,7 +46,7 @@ void SoundInstance::Stop()
 		return;
 
 	auto foundChannel = audioCore->coreChannels.find(channelID);
-	SoundManager::ErrorCheck((*foundChannel).second->stop());
+	Audio::ErrorCheck((*foundChannel).second->stop());
 }
 
 int SoundInstance::isPlaying()
@@ -55,7 +55,7 @@ int SoundInstance::isPlaying()
 	if (foundChannel == audioCore->coreChannels.end())
 		return false;
 	bool playingState;
-	SoundManager::ErrorCheck((*foundChannel).second->isPlaying(&playingState));
+	Audio::ErrorCheck((*foundChannel).second->isPlaying(&playingState));
 	return playingState;
 }
 
@@ -65,7 +65,7 @@ void SoundInstance::SetPaused(bool paused)
 		return;
 
 	auto foundChannel = audioCore->coreChannels.find(channelID);
-	SoundManager::ErrorCheck(foundChannel->second->setPaused(paused));
+	Audio::ErrorCheck(foundChannel->second->setPaused(paused));
 }
 
 bool SoundInstance::isPaused()
@@ -75,7 +75,7 @@ bool SoundInstance::isPaused()
 
 	bool pauseState;
 	auto foundChannel = audioCore->coreChannels.find(channelID);
-	SoundManager::ErrorCheck(foundChannel->second->getPaused(&pauseState));
+	Audio::ErrorCheck(foundChannel->second->getPaused(&pauseState));
 	return pauseState;
 }
 
@@ -92,7 +92,7 @@ void SoundInstance::SetMode(Audio_Mode m)
 	if (m & Audio_Mode::MODE_LOOP_OFF) fmodMode |= FMOD_LOOP_OFF;
 	if (m & Audio_Mode::MODE_3D) fmodMode |= FMOD_3D;
 	if (m & Audio_Mode::MODE_2D) fmodMode |= FMOD_2D;
-	SoundManager::ErrorCheck(sound->setMode(fmodMode));
+	Audio::ErrorCheck(sound->setMode(fmodMode));
 	mode = (int)m;
 }
 
@@ -103,7 +103,7 @@ void SoundInstance::SetMode(int m)
 	if (m & Audio_Mode::MODE_LOOP_OFF) fmodMode |= FMOD_LOOP_OFF;
 	if (m & Audio_Mode::MODE_3D) fmodMode |= FMOD_3D;
 	if (m & Audio_Mode::MODE_2D) fmodMode |= FMOD_2D;
-	SoundManager::ErrorCheck(sound->setMode(fmodMode));
+	Audio::ErrorCheck(sound->setMode(fmodMode));
 	mode = m;
 }
 
@@ -111,7 +111,7 @@ void SoundInstance::SetMaxMinDistance(float max, float min)
 {
 	distances.max = max;
 	distances.min = min;
-	SoundManager::ErrorCheck(sound->set3DMinMaxDistance(min, max));
+	Audio::ErrorCheck(sound->set3DMinMaxDistance(min, max));
 }
 
 FMOD_VECTOR SoundInstance::ToFMODVECTOR(const Maths::Vector3& v)

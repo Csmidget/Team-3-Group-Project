@@ -1,7 +1,5 @@
 #pragma once
 #include"../../Common/Vector3.h"
-#include"Core.h"
-
 
 namespace NCL {
 	namespace CSC8508 {
@@ -14,7 +12,6 @@ namespace NCL {
 				void Init();
 				void Update();
 				void Release();
-				int  ErrorCheck(FMOD_RESULT result);
 				bool IsInit();
 
 				void PlayOneShot(const std::string& soundFile, const Maths::Vector3& position);

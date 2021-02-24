@@ -1,4 +1,5 @@
 #pragma once
+#include"Core.h"
 #include"SoundManager.h"
 #include"SoundInstance.h"
 
@@ -75,15 +76,6 @@ void SoundManager::StopAllInstances()
 	for (auto channel : audioCore->coreChannels)
 		ErrorCheck(channel.second->stop());
 	
-}
-
-int SoundManager::ErrorCheck(FMOD_RESULT result)
-{
-	if (result == FMOD_OK)
-		return 0;
-
-	std::cout << "FMOD ERROR: " << result << std::endl;
-	return 1;
 }
 
 bool SoundManager::IsInit()
