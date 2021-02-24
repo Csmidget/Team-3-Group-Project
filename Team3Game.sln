@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSmithCoursework", "CSC8508
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "CSC8508\Engine\Physics\PhysicsEngine\PhysicsEngine.vcxproj", "{BD969495-48C5-40FB-9208-9E52A76C7247}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Audio", "CSC8508\Audio\Audio.vcxproj", "{93EBC887-7BA8-4921-B0DA-51DDA8739847}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ORBIS = Debug|ORBIS
@@ -126,6 +128,16 @@ Global
 		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|Win32.Build.0 = Release|Win32
 		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|x64.ActiveCfg = Release|x64
 		{BD969495-48C5-40FB-9208-9E52A76C7247}.Release|x64.Build.0 = Release|x64
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Debug|ORBIS.ActiveCfg = Debug|Win32
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Debug|Win32.ActiveCfg = Debug|Win32
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Debug|Win32.Build.0 = Debug|Win32
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Debug|x64.ActiveCfg = Debug|x64
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Debug|x64.Build.0 = Debug|x64
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Release|ORBIS.ActiveCfg = Release|Win32
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Release|Win32.ActiveCfg = Release|Win32
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Release|Win32.Build.0 = Release|Win32
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Release|x64.ActiveCfg = Release|x64
+		{93EBC887-7BA8-4921-B0DA-51DDA8739847}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
