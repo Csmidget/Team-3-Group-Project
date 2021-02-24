@@ -8,8 +8,8 @@ SoundInstance::SoundInstance():
 {
 	attributes3D.pos = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
 	attributes3D.vel = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
-	distances.min = 0;
-	distances.max = 0;
+	distances.min = 1;
+	distances.max = 10000;
 }
 
 SoundInstance::~SoundInstance()
@@ -24,6 +24,8 @@ int SoundInstance::Play()
 {
 	int channelID = audioCore->coreNextChannelID++;
 	FMOD::Channel* channel = nullptr;
+
+	Audio::ErrorCheck(sound->setMode(mode));
 
 	Audio::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
 	if (channel)
@@ -93,8 +95,7 @@ void SoundInstance::SetMode(Audio_Mode m)
 	if (m & Audio_Mode::MODE_LOOP_OFF) fmodMode |= FMOD_LOOP_OFF;
 	if (m & Audio_Mode::MODE_3D) fmodMode |= FMOD_3D;
 	if (m & Audio_Mode::MODE_2D) fmodMode |= FMOD_2D;
-	Audio::ErrorCheck(sound->setMode(fmodMode));
-	mode = (int)m;
+	mode = fmodMode;
 }
 
 void SoundInstance::SetMode(int m)
@@ -104,8 +105,7 @@ void SoundInstance::SetMode(int m)
 	if (m & Audio_Mode::MODE_LOOP_OFF) fmodMode |= FMOD_LOOP_OFF;
 	if (m & Audio_Mode::MODE_3D) fmodMode |= FMOD_3D;
 	if (m & Audio_Mode::MODE_2D) fmodMode |= FMOD_2D;
-	Audio::ErrorCheck(sound->setMode(fmodMode));
-	mode = m;
+	mode = fmodMode;
 }
 
 void SoundInstance::SetMaxMinDistance(float max, float min)
