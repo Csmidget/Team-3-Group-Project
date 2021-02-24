@@ -3,6 +3,7 @@
 #include "../Engine/GameObject.h"
 #include "../Engine/CollisionDetection.h"
 #include "../../Plugins/json/json.hpp"
+#include "../../Common/Assets.h"
 
 #include <fstream>
 
@@ -31,18 +32,26 @@ void SetTransformFromJson(Transform& transform, json transformJson)
 void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game* game)
 {
 	ResourceManager* resourceManager = game->GetResourceManager();
+
 	MeshGeometry* mesh = resourceManager->LoadMesh(renderObjectJson["mesh"]);
 	TextureBase* tex = resourceManager->LoadTexture(renderObjectJson["texture"]);
-	ShaderBase* shader = resourceManager->LoadShader(renderObjectJson["vertexShader"],renderObjectJson["fragmentShader"]);
+	ShaderBase* shader = resourceManager->LoadShader(renderObjectJson["vertex"],renderObjectJson["fragment"]);
+	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * renderObjectJson["renderScale"]);
 
-	gameObject->SetRenderObject(new RenderObject(gameObject->GetTransform(), mesh, tex, shader));
+	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, tex, shader));
 }
 
 void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 {
 	PhysicsObject* po = new PhysicsObject(&gameObject->GetTransform(), gameObject->GetBoundingVolume());
-	po->SetInverseMass(1 / physicsObjectJson["mass"]);
+	po->SetInverseMass(physicsObjectJson["invMass"]);
 
+	if (physicsObjectJson["inertia"] == "sphere")
+		po->InitSphereInertia();
+	else if (physicsObjectJson["inertia"] == "cube")
+		po->InitCubeInertia();
+
+	gameObject->SetPhysicsObject(po);
 }
 
 GameObject* CreateObjectFromJson(json objectJson, Game* game)
@@ -51,29 +60,26 @@ GameObject* CreateObjectFromJson(json objectJson, Game* game)
 	Transform& transform = go->GetTransform();
 	SetTransformFromJson(transform, objectJson["transform"]);
 
-	if		(objectJson["collider"] == "AABB")		go->SetBoundingVolume(new AABBVolume(transform.GetScale()));
-	else if (objectJson["collider"] == "OBB")		go->SetBoundingVolume(new OBBVolume(transform.GetScale()));
-	else if (objectJson["collider"] == "Sphere")	go->SetBoundingVolume(new SphereVolume(transform.GetScale().x));
+	if		(objectJson["collider"] == "AABB")		
+		go->SetBoundingVolume(new AABBVolume(transform.GetScale()));
+	else if (objectJson["collider"] == "OBB")		
+		go->SetBoundingVolume(new OBBVolume(transform.GetScale()));
+	else if (objectJson["collider"] == "Sphere")	
+		go->SetBoundingVolume(new SphereVolume(transform.GetScale().x));
 
-	SetRenderObjectFromJson(go, objectJson["renderObject"], game);
+	SetRenderObjectFromJson(go, objectJson["render"], game);
 
-	go->SetPhysicsObject(new PhysicsObject(&transform, go->GetBoundingVolume()));
+	SetPhysicsObjectFromJson(go, objectJson["physics"]);
 
-//	floor->GetPhysicsObject()->SetInverseMass(0);
-//	floor->GetPhysicsObject()->InitCubeInertia();
-//
-//	floor->SetIsStatic(true);
-//
-//	world->AddGameObject(floor);
+	go->SetIsStatic(objectJson["static"]);
 
-
-	return nullptr;
+	return go;
 }
 
 
 void JsonReader::ReadLevelFromJson(std::string fileName, Game* game)
 {
-	std::ifstream input{ fileName };
+	std::ifstream input{ Assets::LEVELSDIR + fileName };
 
 	json level {};
 
@@ -81,8 +87,6 @@ void JsonReader::ReadLevelFromJson(std::string fileName, Game* game)
 
 	for (auto obj : level["objects"])
 	{
-		game->AddGameObject(CreateObjectFromJson(obj));
+		game->AddGameObject(CreateObjectFromJson(obj,game));
 	}
-
-
 }
