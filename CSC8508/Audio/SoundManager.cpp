@@ -65,8 +65,8 @@ void SoundManager::DeleteInstance(SoundInstance* soundInstance)
 
 void SoundManager::SetListenerParameters(const Maths::Vector3& pos, const Maths::Vector3& vel)
 {
-	FMOD_VECTOR fPos = SoundInstance::ToFMODVECTOR(pos);
-	FMOD_VECTOR fVel = SoundInstance::ToFMODVECTOR(vel);
+	FMOD_VECTOR fPos = Audio::ToFMODVECTOR(pos);
+	FMOD_VECTOR fVel = Audio::ToFMODVECTOR(vel);
 
 	ErrorCheck(audioCore->coreSystem->set3DListenerAttributes(0, &fPos, &fVel, nullptr, nullptr));
 }

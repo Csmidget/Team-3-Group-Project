@@ -14,7 +14,7 @@ namespace NCL {
 				void Release();
 				bool IsInit();
 
-				void PlayOneShot(const std::string& soundFile, const Maths::Vector3& position);
+				void PlayOneShot(const std::string& soundFile, const Maths::Vector3& position); //To implement
 				void CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce);
 				void DeleteInstance(SoundInstance* soundInstance);
 

@@ -6,8 +6,8 @@ using namespace NCL::CSC8508::Audio;
 SoundInstance::SoundInstance():
 	sound(nullptr), audioCore(nullptr), mode(FMOD_3D), channelID(-1), volume(1), pitch(1), path("")
 {
-	attributes3D.pos = ToFMODVECTOR(Maths::Vector3(0,0,0));
-	attributes3D.vel = ToFMODVECTOR(Maths::Vector3(0,0,0));
+	attributes3D.pos = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
+	attributes3D.vel = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
 	distances.min = 0;
 	distances.max = 0;
 }
@@ -30,6 +30,7 @@ int SoundInstance::Play()
 	{
 		if (mode & MODE_3D)
 		{
+			Audio::ErrorCheck(sound->set3DMinMaxDistance(distances.min, distances.max));
 			Audio::ErrorCheck(channel->set3DAttributes(&attributes3D.pos, &attributes3D.vel));
 			Audio::ErrorCheck(channel->setVolume(volume));
 			Audio::ErrorCheck(channel->setPitch(pitch));
@@ -81,8 +82,8 @@ bool SoundInstance::isPaused()
 
 void SoundInstance::Set3DAttributes(Maths::Vector3 pos, Maths::Vector3 vel)
 {
-	attributes3D.pos = ToFMODVECTOR(pos);
-	attributes3D.vel = ToFMODVECTOR(vel);
+	attributes3D.pos = Audio::ToFMODVECTOR(pos);
+	attributes3D.vel = Audio::ToFMODVECTOR(vel);
 }
 
 void SoundInstance::SetMode(Audio_Mode m)
@@ -111,15 +112,7 @@ void SoundInstance::SetMaxMinDistance(float max, float min)
 {
 	distances.max = max;
 	distances.min = min;
-	Audio::ErrorCheck(sound->set3DMinMaxDistance(min, max));
 }
 
-FMOD_VECTOR SoundInstance::ToFMODVECTOR(const Maths::Vector3& v)
-{
-	FMOD_VECTOR vec;
-	vec.x = v.x;
-	vec.y = v.y;
-	vec.z = v.z;
-	return vec;
-}
+
 

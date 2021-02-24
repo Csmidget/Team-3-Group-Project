@@ -1,6 +1,5 @@
 #pragma once
 #include"Core.h"
-#include"../../Common/Vector3.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -48,12 +47,12 @@ namespace NCL {
 
 				void Set3DAttributes(Maths::Vector3 pos, Maths::Vector3 vel = Maths::Vector3(0,0,0));
 				
-				void SetMode(Audio_Mode m); //To change it hhas to be uploaded before play sound, Mode should be store in FMOD_MODE type
-				void SetMode(int m); // To change it hhas to be uploaded before play sound, Mode should be store in FMOD_MODE type
+				void SetMode(Audio_Mode m); //To change, it has to be uploaded before play sound, Mode should be store in FMOD_MODE type
+				void SetMode(int m); // To change, it has to be uploaded before play sound, Mode should be store in FMOD_MODE type
 				inline int GetMode() const { return mode; }
-				void SetMaxMinDistance(float max, float min); //To change it has to be uploaded before sound play
+				void SetMaxMinDistance(float max, float min);
 
-				static FMOD_VECTOR ToFMODVECTOR(const Maths::Vector3& v);
+				
 
 			protected:
 
