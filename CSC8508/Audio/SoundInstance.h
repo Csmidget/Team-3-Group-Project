@@ -1,6 +1,6 @@
 #pragma once
 #include"Core.h"
-#include"../../../Common/Vector3.h"
+#include"../../Common/Vector3.h"
 
 namespace NCL {
 	namespace CSC8508 {

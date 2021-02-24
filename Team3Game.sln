@@ -33,7 +33,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSmithCoursework", "CSC8508
 		{124740DA-B6CB-4D9B-8C79-B8358B2A1D9F} = {124740DA-B6CB-4D9B-8C79-B8358B2A1D9F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Audio", "CSC8508\Engine\Audio\Audio.vcxproj", "{93EBC887-7BA8-4921-B0DA-51DDA8739847}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Audio", "CSC8508\Audio\Audio.vcxproj", "{93EBC887-7BA8-4921-B0DA-51DDA8739847}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

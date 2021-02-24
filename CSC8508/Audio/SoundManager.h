@@ -1,7 +1,6 @@
 #pragma once
-#include"../../../Common/Vector3.h"
+#include"../../Common/Vector3.h"
 #include"Core.h"
-#include"SoundInstance.h"
 
 
 namespace NCL {

@@ -106,7 +106,7 @@
       <PreprocessorDefinitions>_WINSOCKAPI_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib;Audio.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
