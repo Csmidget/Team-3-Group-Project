@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{b096e6d2-7fc1-4520-a5eb-c98d5093bb2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JSON">
+      <UniqueIdentifier>{9e202e83-4377-4918-be81-da740b27802f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -27,8 +33,23 @@
     <ClCompile Include="RespawningObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="JsonReader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MoveRightComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveLeftComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONLevelFactory.cpp">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONComponentFactory.cpp">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONShared.cpp">
+      <Filter>JSON</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,8 +62,23 @@
     <ClInclude Include="RespawningObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="JsonReader.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MoveLeftComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveRightComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONShared.h">
+      <Filter>JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONLevelFactory.h">
+      <Filter>JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONComponentFactory.h">
+      <Filter>JSON</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

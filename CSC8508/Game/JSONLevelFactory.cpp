@@ -1,5 +1,8 @@
-#include "JsonReader.h"
+#include "JSONLevelFactory.h"
+#include "JSONComponentFactory.h"
+#include "JSONShared.h"
 #include "Game.h"
+
 #include "../Engine/GameObject.h"
 #include "../Engine/CollisionDetection.h"
 #include "../../Plugins/json/json.hpp"
@@ -12,25 +15,21 @@ using namespace CSC8508;
 
 using json = nlohmann::json;
 
-Vector3 JsonToVector3(json vectorJson)
-{
-	return { vectorJson["x"],vectorJson["y"],vectorJson["z"] };
-}
-
-Quaternion JsonToQuaternion(json quatJson)
-{
-	return { quatJson["x"],quatJson["y"],quatJson["z"],quatJson["w"] };
-}
-
 void SetTransformFromJson(Transform& transform, json transformJson)
 {
-	transform.SetPosition(JsonToVector3(transformJson["position"]));
-	transform.SetOrientation(JsonToQuaternion(transformJson["orientation"]));
-	transform.SetScale(JsonToVector3(transformJson["scale"]));
+	if (transformJson.empty())
+		return;
+
+	transform.SetPosition(JSONShared::JsonToVector3(transformJson["position"]));
+	transform.SetOrientation(JSONShared::JsonToQuaternion(transformJson["orientation"]));
+	transform.SetScale(JSONShared::JsonToVector3(transformJson["scale"]));
 }
 
 void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game* game)
 {
+	if (renderObjectJson.empty())
+		return;
+
 	ResourceManager* resourceManager = game->GetResourceManager();
 
 	MeshGeometry* mesh = resourceManager->LoadMesh(renderObjectJson["mesh"]);
@@ -43,6 +42,9 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 
 void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 {
+	if (physicsObjectJson.empty())
+		return;
+
 	PhysicsObject* po = new PhysicsObject(&gameObject->GetTransform(), gameObject->GetBoundingVolume());
 	po->SetInverseMass(physicsObjectJson["invMass"]);
 
@@ -73,11 +75,13 @@ GameObject* CreateObjectFromJson(json objectJson, Game* game)
 
 	go->SetIsStatic(objectJson["static"]);
 
+	for (auto component : objectJson["components"])
+	  JSONComponentFactory::AddComponentFromJson(component, go, game);
+
 	return go;
 }
 
-
-void JsonReader::ReadLevelFromJson(std::string fileName, Game* game)
+void JSONLevelFactory::ReadLevelFromJson(std::string fileName, Game* game)
 {
 	std::ifstream input{ Assets::LEVELSDIR + fileName };
 
@@ -86,7 +90,5 @@ void JsonReader::ReadLevelFromJson(std::string fileName, Game* game)
 	input >> level;
 
 	for (auto obj : level["objects"])
-	{
 		game->AddGameObject(CreateObjectFromJson(obj,game));
-	}
 }
