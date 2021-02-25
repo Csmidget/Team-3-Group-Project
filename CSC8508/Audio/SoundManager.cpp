@@ -3,6 +3,7 @@
 #include"SoundManager.h"
 #include"SoundInstance.h"
 #include"../Engine/Transform.h"
+#include"../../Common/Assets.h"
 
 
 namespace NCL { namespace CSC8508{ namespace Audio{ namespace SoundManager{ namespace {
@@ -47,7 +48,7 @@ void SoundManager::CreateInstance(const std::string& soundFile, SoundInstance* s
 		return;
 	}
 	
-	ErrorCheck(audioCore->coreSystem->createSound(soundFile.c_str(), FMOD_3D | FMOD_LOOP_OFF| FMOD_3D_LINEARSQUAREROLLOFF, 0, &soundInstnce->sound));
+	ErrorCheck(audioCore->coreSystem->createSound((Assets::AUDIODIR + soundFile).c_str(), FMOD_3D | FMOD_LOOP_OFF| FMOD_3D_LINEARSQUAREROLLOFF, 0, &soundInstnce->sound));
 	soundInstnce->audioCore = audioCore;
 	soundInstnce->path = soundFile;
 	audioCore->coreSounds[soundFile].emplace_back(soundInstnce);

@@ -7,6 +7,7 @@
 #include "../Engine/OrientationConstraint.h"
 #include "RespawningObject.h"
 #include"../Audio/SoundManager.h"
+#include"../Audio/SoundInstance.h"
 
 //JENKINS TEST 3
 
@@ -26,6 +27,9 @@ Game::Game() {
 	Debug::SetRenderer(renderer);
 	Audio::SoundManager::Init();
 	InitialiseAssets();
+	Audio::SoundInstance* test = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("River.mp3", test);
+	test->Play();
 }
 
 /*
