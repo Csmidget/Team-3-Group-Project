@@ -23,6 +23,8 @@ Game::Game() {
 	inSelectionMode = false;
 
 	Debug::SetRenderer(renderer);
+
+	InitialiseAssets();
 }
 
 /*
