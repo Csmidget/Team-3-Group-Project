@@ -12,7 +12,7 @@ namespace NCL {
 		namespace Audio {
 
 			class SoundInstance;
-			class SoundListener;
+			struct SoundListener;
 
 			namespace SoundManager {
 
