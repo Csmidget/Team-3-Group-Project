@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "JsonReader.h"
+#include "JSONLevelFactory.h"
 #include "../Engine/GameWorld.h"
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "../../Common/TextureLoader.h"
@@ -240,7 +240,7 @@ void Game::Clear() {
 
 void Game::InitFromJSON(std::string fileName) {
 	Clear();
-	JsonReader::ReadLevelFromJson(fileName, this);
+	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
 void Game::InitWorld() {

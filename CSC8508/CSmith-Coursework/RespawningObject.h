@@ -15,7 +15,7 @@ namespace NCL {
 		public:
 			virtual void Respawn();
 			virtual void OnRespawn() {};
-			virtual void Update(float dt) override;
+			virtual void OnUpdate(float dt) override;
 			virtual void ObjectSpecificDebugInfo(int& currLine, float lineSpacing) const override;
 
 			void SetRespawnPosition(Vector3 val) { spawnPosition = val; }
