@@ -33,9 +33,9 @@ namespace NCL {
 				SoundInstance();
 				~SoundInstance(); //release
 
-				int Play();
+				void Play();
 				void Stop();
-				int isPlaying();
+				bool isPlaying();
 				
 				void SetPaused(bool paused);
 				bool isPaused();
@@ -48,8 +48,8 @@ namespace NCL {
 				void Set3DAttributes(Maths::Vector3 pos, Maths::Vector3 vel = Maths::Vector3(0,0,0));
 				void SetMaxMinDistance(float max, float min);
 
-				void SetMode(Audio_Mode m); 
-				void SetMode(int m);
+				void SetLoop(bool loop) { isLoop = loop; }
+				void Set3D(bool _3D) { _3D = is3D; }
 
 			protected:
 
@@ -57,9 +57,10 @@ namespace NCL {
 				Core* audioCore;
 				std::string path;
 				FMOD_VECTOR position;
-				FMOD_MODE mode;
 				Audio_3DAttributes attributes3D;
 				Audio_MaxMinDistance distances;
+				bool isLoop;
+				bool is3D;
 				float volume;
 				float pitch;
 				int channelID;
