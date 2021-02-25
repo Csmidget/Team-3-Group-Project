@@ -6,6 +6,7 @@
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
 #include "RespawningObject.h"
+#include"../Audio/SoundManager.h"
 
 //JENKINS TEST 3
 
@@ -23,6 +24,7 @@ Game::Game() {
 	inSelectionMode = false;
 
 	Debug::SetRenderer(renderer);
+	Audio::SoundManager::Init();
 }
 
 /*
@@ -101,6 +103,7 @@ void Game::UpdateGame(float dt) {
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();
+	Audio::SoundManager::Update();
 }
 
 void Game::UpdateKeys() {
