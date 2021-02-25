@@ -3,13 +3,13 @@
 
 using namespace NCL::CSC8508::Audio;
 
-SoundInstance::SoundInstance():
-	sound(nullptr), audioCore(nullptr), mode(FMOD_3D), channelID(-1), volume(1), pitch(1), path("")
+SoundInstance::SoundInstance() :
+	sound(nullptr), audioCore(nullptr), isLoop(false), is3D(true), channelID(-1), volume(1), pitch(1), path("")
 {
 	attributes3D.pos = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
 	attributes3D.vel = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
-	distances.min = 0;
-	distances.max = 0;
+	distances.min = 1;
+	distances.max = 1000;
 }
 
 SoundInstance::~SoundInstance()
@@ -20,17 +20,22 @@ SoundInstance::~SoundInstance()
 
 
 
-int SoundInstance::Play()
+void SoundInstance::Play()
 {
-	int channelID = audioCore->coreNextChannelID++;
+	channelID = audioCore->coreNextChannelID++;
 	FMOD::Channel* channel = nullptr;
 
+	FMOD_MODE mode = FMOD_DEFAULT;
+	is3D ? mode |= FMOD_3D : mode |= FMOD_2D;
+	isLoop ? mode |= FMOD_LOOP_NORMAL : mode |= FMOD_LOOP_OFF;
+
+	Audio::ErrorCheck(sound->setMode(mode));
+	Audio::ErrorCheck(sound->set3DMinMaxDistance(distances.min, distances.max));
 	Audio::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
 	if (channel)
 	{
-		if (mode & MODE_3D)
+		if (is3D)
 		{
-			Audio::ErrorCheck(sound->set3DMinMaxDistance(distances.min, distances.max));
 			Audio::ErrorCheck(channel->set3DAttributes(&attributes3D.pos, &attributes3D.vel));
 			Audio::ErrorCheck(channel->setVolume(volume));
 			Audio::ErrorCheck(channel->setPitch(pitch));
@@ -38,7 +43,6 @@ int SoundInstance::Play()
 		Audio::ErrorCheck(channel->setPaused(false));
 		audioCore->coreChannels[channelID] = channel;
 	}
-	return channelID;
 }
 
 void SoundInstance::Stop()
@@ -50,7 +54,7 @@ void SoundInstance::Stop()
 	Audio::ErrorCheck((*foundChannel).second->stop());
 }
 
-int SoundInstance::isPlaying()
+bool SoundInstance::isPlaying()
 {
 	auto foundChannel = audioCore->coreChannels.find(channelID);
 	if (foundChannel == audioCore->coreChannels.end())
@@ -84,28 +88,11 @@ void SoundInstance::Set3DAttributes(Maths::Vector3 pos, Maths::Vector3 vel)
 {
 	attributes3D.pos = Audio::ToFMODVECTOR(pos);
 	attributes3D.vel = Audio::ToFMODVECTOR(vel);
-}
 
-void SoundInstance::SetMode(Audio_Mode m)
-{
-	FMOD_MODE fmodMode = FMOD_DEFAULT;
-	if (m & Audio_Mode::MODE_LOOP_ON) fmodMode |= FMOD_LOOP_NORMAL;
-	if (m & Audio_Mode::MODE_LOOP_OFF) fmodMode |= FMOD_LOOP_OFF;
-	if (m & Audio_Mode::MODE_3D) fmodMode |= FMOD_3D;
-	if (m & Audio_Mode::MODE_2D) fmodMode |= FMOD_2D;
-	Audio::ErrorCheck(sound->setMode(fmodMode));
-	mode = (int)m;
-}
-
-void SoundInstance::SetMode(int m)
-{
-	FMOD_MODE fmodMode = FMOD_DEFAULT;
-	if (m & Audio_Mode::MODE_LOOP_ON) fmodMode |= FMOD_LOOP_NORMAL;
-	if (m & Audio_Mode::MODE_LOOP_OFF) fmodMode |= FMOD_LOOP_OFF;
-	if (m & Audio_Mode::MODE_3D) fmodMode |= FMOD_3D;
-	if (m & Audio_Mode::MODE_2D) fmodMode |= FMOD_2D;
-	Audio::ErrorCheck(sound->setMode(fmodMode));
-	mode = m;
+	if (!isPlaying())
+		return;
+	auto foundChannel = audioCore->coreChannels.find(channelID);
+	Audio::ErrorCheck(foundChannel->second->set3DAttributes(&attributes3D.pos, &attributes3D.vel));
 }
 
 void SoundInstance::SetMaxMinDistance(float max, float min)
