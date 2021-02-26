@@ -10,6 +10,8 @@
 
 #include <list>
 
+//congrats you found Jake's comment.
+
 using namespace NCL;
 
 Vector3 CollisionDetection::ProjectPointOntoLineSegment(Vector3 lineStart, Vector3 lineEnd, Vector3 point) {
