@@ -6,11 +6,14 @@
 #include "RenderObject.h"
 
 #include <vector>
+#include <algorithm>
 
 using std::vector;
 
 namespace NCL {
 	namespace CSC8508 {
+
+		class Component;
 
 		class GameObject	{
 		public:
@@ -24,7 +27,9 @@ namespace NCL {
 				collisionLayer = val;
 			}
 
-			virtual void Update(float dt) {};
+			void Update(float dt);
+
+			virtual void OnUpdate(float dt) {};
 
 			void PrintDebugInfo() const;
 			
@@ -105,8 +110,35 @@ namespace NCL {
 				worldID = newID;
 			}
 
-			int		GetWorldID() const {
+			int	GetWorldID() const {
 				return worldID;
+			}
+
+			template<typename T, typename... Params>
+			T* AddComponent(Params... vals) {
+				T* component = new T(this, vals...);
+				components.push_back(component);
+				component->Start();
+				return component;
+			}
+
+			template<typename T>
+			T* GetComponent() const {
+				for (auto component : components) {
+					T* t = dynamic_cast<T*>(component);
+		
+					if (t != nullptr) {
+						return t;
+					}
+				}
+		
+				return nullptr;
+			}
+
+			template<typename T>
+			void RemoveComponent() {
+				//erase-remove idiom
+				components.erase(std::remove_if(components.begin(), components.end(), [](Component* c) {return dynamic_cast<T*>(c) != nullptr; }));
 			}
 
 		protected:
@@ -123,6 +155,7 @@ namespace NCL {
 			string	name;
 			Vector3 broadphaseAABB;
 			std::vector<std::string> tags;
+			std::vector<Component*> components;
 		};
 	}
 }

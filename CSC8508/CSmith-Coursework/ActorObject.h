@@ -16,10 +16,10 @@ namespace NCL {
 			friend class ObjectFactory;
 
 		public:
-		    void Update(float dt) override;
+		    void OnUpdate(float dt) override;
 
 			//Using OnUpdate() for children to 'force' the ActorObject Update function to be called first.
-			virtual void OnUpdate(float dt) = 0;
+			virtual void ActorUpdate(float dt) = 0;
 			virtual void Respawn();
 			virtual void OnCollisionBegin(GameObject* otherObject) override;
 

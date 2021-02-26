@@ -16,7 +16,7 @@ namespace NCL {
 		public:
 			~BoidObject();
 
-			void Update(float dt) override;
+			void OnUpdate(float dt) override;
 			void OnCollisionBegin(GameObject* otherObject) override;
 
 		protected:

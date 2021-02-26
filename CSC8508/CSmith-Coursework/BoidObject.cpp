@@ -26,7 +26,7 @@ BoidObject::~BoidObject() {
 		(*swarm)->RemoveBoid(this);
 }
 
-void BoidObject::Update(float dt) {
+void BoidObject::OnUpdate(float dt) {
 
 	const float speed = 0.8f;
 
