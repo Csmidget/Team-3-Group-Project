@@ -1,6 +1,7 @@
 #pragma once
 #include"SoundInstance.h"
 
+using namespace NCL;
 using namespace NCL::CSC8508::Audio;
 
 SoundInstance::SoundInstance() :

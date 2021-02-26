@@ -5,6 +5,7 @@
 #include"../Engine/Transform.h"
 #include"../../Common/Assets.h"
 
+using namespace NCL;
 
 namespace NCL { namespace CSC8508{ namespace Audio{ namespace SoundManager{ namespace {
 	Core* audioCore = nullptr;
