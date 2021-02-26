@@ -30,6 +30,12 @@ namespace NCL
 
 				btRigidBody* returnBody() { return body; };
 
+				NCL::Maths::Quaternion returnRotation();
+				NCL::Maths::Vector3 returnPosition();
+
+				void addForce();
+				void addTorque();
+
 			private:
 
 				btRigidBody* body;

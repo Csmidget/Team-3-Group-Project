@@ -2,6 +2,8 @@
 #include "GameTechRenderer.h"
 #include "../Engine/PhysicsSystem.h"
 
+#include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
+
 namespace NCL {
 	namespace CSC8508 {
 		class Game		{

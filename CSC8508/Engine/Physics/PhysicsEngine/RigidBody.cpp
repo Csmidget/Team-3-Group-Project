@@ -73,5 +73,5 @@ void RigidBody::createBody(	NCL::Maths::Vector3 SetPosition,
 
 	body = new btRigidBody(bodyInfo);
 	body->setUserPointer(this);
-
+	
 }

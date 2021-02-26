@@ -26,6 +26,11 @@ BulletWorld::~BulletWorld()
 	delete collisionConfiguration;
 }
 
+void BulletWorld::addRigidBody(btRigidBody* body)
+{
+	dynamicsWorld->addRigidBody(body);
+}
+
 void BulletWorld::Update(float dt)
 {
 	dynamicsWorld->stepSimulation(1.f / 60.f);
