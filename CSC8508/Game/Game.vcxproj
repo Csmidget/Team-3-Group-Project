@@ -106,8 +106,11 @@
       <PreprocessorDefinitions>_WINSOCKAPI_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib;Audio.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)dll\*.*" "$(TargetDir)" /Y /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -139,16 +142,31 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)dll\*.*" "$(TargetDir)" /Y /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameTechRenderer.cpp" />
+    <ClCompile Include="JSONComponentFactory.cpp" />
+    <ClCompile Include="JSONLevelFactory.cpp" />
+    <ClCompile Include="JSONShared.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="MoveLeftComponent.cpp" />
+    <ClCompile Include="MoveRightComponent.cpp" />
     <ClCompile Include="RespawningObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="JSONComponentFactory.h" />
+    <ClInclude Include="JSONLevelFactory.h" />
+    <ClInclude Include="JSONShared.h" />
+    <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="MoveLeftComponent.h" />
+    <ClInclude Include="MoveRightComponent.h" />
     <ClInclude Include="RespawningObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

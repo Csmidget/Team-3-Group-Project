@@ -127,7 +127,8 @@ void GameTechRenderer::BuildObjectList() {
 }
 
 void GameTechRenderer::SortObjectList() {
-	//Who cares!
+	//std::sort(activeObjects.begin())
+	
 }
 
 void GameTechRenderer::RenderShadowMap() {

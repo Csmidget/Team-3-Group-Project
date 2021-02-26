@@ -3,6 +3,8 @@
 #include "../Engine/PhysicsSystem.h"
 #include "../../Common/ResourceManager.h"
 
+#include <string>
+
 namespace NCL {
 	namespace CSC8508 {
 		class Game		{
@@ -11,6 +13,10 @@ namespace NCL {
 			~Game();
 
 			virtual void UpdateGame(float dt);
+
+			void AddGameObject(GameObject* go);
+
+			ResourceManager* GetResourceManager() { return resourceManager; }
 
 		protected:
 
@@ -22,6 +28,8 @@ namespace NCL {
 			void UpdateKeys();
 
 			void InitWorld();
+			
+			void InitFromJSON(std::string fileName);
 
 			void InitGameExamples();
 
