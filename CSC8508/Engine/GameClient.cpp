@@ -3,7 +3,7 @@
 #include <string>
 
 using namespace NCL;
-using namespace CSC8503;
+using namespace CSC8508;
 
 GameClient::GameClient()	{
 	netHandle = enet_host_create(nullptr, 1, 1, 0, 0);
