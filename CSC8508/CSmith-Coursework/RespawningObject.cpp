@@ -40,7 +40,7 @@ void RespawningObject::Respawn() {
 	OnRespawn();
 }
 
-void RespawningObject::OnUpdate(float dt) {
+void RespawningObject::Update(float dt) {
 
 	float posOffset = (prevPos - transform.GetPosition()).Length();
 

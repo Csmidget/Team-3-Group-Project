@@ -1,9 +1,6 @@
 #pragma once
 #include "GameTechRenderer.h"
 #include "../Engine/PhysicsSystem.h"
-#include "../../Common/ResourceManager.h"
-
-#include <string>
 
 namespace NCL {
 	namespace CSC8508 {
@@ -13,10 +10,6 @@ namespace NCL {
 			~Game();
 
 			virtual void UpdateGame(float dt);
-
-			void AddGameObject(GameObject* go);
-
-			ResourceManager* GetResourceManager() { return resourceManager; }
 
 		protected:
 
@@ -28,8 +21,6 @@ namespace NCL {
 			void UpdateKeys();
 
 			void InitWorld();
-			
-			void InitFromJSON(std::string fileName);
 
 			void InitGameExamples();
 
@@ -61,7 +52,6 @@ namespace NCL {
 			GameTechRenderer*	renderer;
 			PhysicsSystem*		physics;
 			GameWorld*			world;
-			ResourceManager*	resourceManager;
 
 			bool useGravity;
 			bool inSelectionMode;
@@ -71,17 +61,17 @@ namespace NCL {
 			GameObject* selectionObject = nullptr;
 			GameObject* forwardObject = nullptr;
 
-			MeshGeometry*	capsuleMesh = nullptr;
-			MeshGeometry*	cubeMesh	= nullptr;
-			MeshGeometry*	sphereMesh	= nullptr;
-			TextureBase*	basicTex	= nullptr;
-			ShaderBase*		basicShader = nullptr;
+			OGLMesh*	capsuleMesh = nullptr;
+			OGLMesh*	cubeMesh	= nullptr;
+			OGLMesh*	sphereMesh	= nullptr;
+			OGLTexture* basicTex	= nullptr;
+			OGLShader*	basicShader = nullptr;
 
 			//Coursework Meshes
-			MeshGeometry*	charMeshA	= nullptr;
-			MeshGeometry*	charMeshB	= nullptr;
-			MeshGeometry*	enemyMesh	= nullptr;
-			MeshGeometry*	bonusMesh	= nullptr;
+			OGLMesh*	charMeshA	= nullptr;
+			OGLMesh*	charMeshB	= nullptr;
+			OGLMesh*	enemyMesh	= nullptr;
+			OGLMesh*	bonusMesh	= nullptr;
 
 			//Coursework Additional functionality	
 			GameObject* lockedObject	= nullptr;

@@ -11,7 +11,7 @@
 
 using namespace NCL::CSC8508;
 
-void ActorObject::OnUpdate(float dt) {
+void ActorObject::Update(float dt) {
 	for (auto timedConstraint : timedConstraints) {
 
 		timedConstraint.second -= dt;

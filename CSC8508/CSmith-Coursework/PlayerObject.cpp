@@ -21,7 +21,7 @@ PlayerObject::~PlayerObject() {
 
 }
 
-void PlayerObject::ActorUpdate(float dt) {
+void PlayerObject::OnUpdate(float dt) {
 	physicsObject->SetAngularVelocity(Vector3(0, 0, 0));
 
 	//Update player object, lock orientation.
