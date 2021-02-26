@@ -1,13 +1,10 @@
 #pragma once
-#include "../Engine/GameWorld.h"
-
 #include "../../Plugins/OpenGLRendering/OGLRenderer.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include "../../Plugins/OpenGLRendering/OGLTexture.h"
 #include "../../Plugins/OpenGLRendering/OGLMesh.h"
 
-#include "../../Common/ResourceManager.h"
-
+#include "../Engine/GameWorld.h"
 
 namespace NCL {
 	class Maths::Vector3;
@@ -17,7 +14,7 @@ namespace NCL {
 
 		class GameTechRenderer : public OGLRenderer	{
 		public:
-			GameTechRenderer(GameWorld& world, ResourceManager& resourceManager);
+			GameTechRenderer(GameWorld& world);
 			~GameTechRenderer();
 
 		protected:
@@ -26,7 +23,7 @@ namespace NCL {
 			Matrix4 SetupDebugLineMatrix()	const override;
 			Matrix4 SetupDebugStringMatrix()const override;
 
-			OGLShader*	defaultShader;
+			OGLShader*		defaultShader;
 
 			GameWorld&	gameWorld;
 

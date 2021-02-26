@@ -16,7 +16,7 @@ namespace NCL {
 		public:
 			~PlayerObject();
 
-			void ActorUpdate(float dt) override;
+			void OnUpdate(float dt) override;
 			void UpdateControls(Camera* camera);
 
 		protected:

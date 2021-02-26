@@ -12,10 +12,10 @@ using namespace CSC8508;
 
 Matrix4 biasMatrix = Matrix4::Translation(Vector3(0.5, 0.5, 0.5)) * Matrix4::Scale(Vector3(0.5, 0.5, 0.5));
 
-GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceManager) : OGLRenderer(*Window::GetWindow()), gameWorld(world)	{
+GameTechRenderer::GameTechRenderer(GameWorld& world) : OGLRenderer(*Window::GetWindow()), gameWorld(world)	{
 	glEnable(GL_DEPTH_TEST);
 
-	shadowShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl");
+	shadowShader = new OGLShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl");
 
 	glGenTextures(1, &shadowTex);
 	glBindTexture(GL_TEXTURE_2D, shadowTex);
@@ -43,7 +43,7 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 	lightPosition = Vector3(-200.0f, 60.0f, -200.0f);
 
 	//Skybox!
-	skyboxShader = (OGLShader*)resourceManager.LoadShader("skyboxVertex.glsl", "skyboxFragment.glsl");
+	skyboxShader = new OGLShader("skyboxVertex.glsl", "skyboxFragment.glsl");
 	skyboxMesh = new OGLMesh();
 	skyboxMesh->SetVertexPositions({Vector3(-1, 1,-1), Vector3(-1,-1,-1) , Vector3(1,-1,-1) , Vector3(1,1,-1) });
 	skyboxMesh->SetVertexIndices({ 0,1,2,2,3,0 });
@@ -53,9 +53,6 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 }
 
 GameTechRenderer::~GameTechRenderer()	{
-
-	delete skyboxMesh;
-
 	glDeleteTextures(1, &shadowTex);
 	glDeleteFramebuffers(1, &shadowFBO);
 }
@@ -127,8 +124,7 @@ void GameTechRenderer::BuildObjectList() {
 }
 
 void GameTechRenderer::SortObjectList() {
-	//std::sort(activeObjects.begin())
-	
+	//Who cares!
 }
 
 void GameTechRenderer::RenderShadowMap() {

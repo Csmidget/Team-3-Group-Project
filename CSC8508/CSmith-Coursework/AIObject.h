@@ -19,7 +19,7 @@ namespace NCL {
 		public:
 			~AIObject();
 
-			void ActorUpdate(float dt) override;
+			void OnUpdate(float dt) override;
 			bool SetGoal(Vector3 newGoal, float maxCost = INFINITY, bool force = false);
 
 			float GetCoinDetectRange() const { return cointDetectRange; }

@@ -2,7 +2,7 @@
 #include "CollisionVolume.h"
 
 namespace NCL {
-	class SphereVolume : public CollisionVolume
+	class SphereVolume : CollisionVolume
 	{
 	public:
 		SphereVolume(float sphereRadius = 1.0f) {

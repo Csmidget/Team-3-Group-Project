@@ -1,7 +1,6 @@
 #include "GameObject.h"
 #include "CollisionDetection.h"
 #include "Debug.h"
-#include "Component.h"
 #include <sstream>
 
 using namespace NCL::CSC8508;
@@ -21,21 +20,6 @@ GameObject::~GameObject()	{
 	delete boundingVolume;
 	delete physicsObject;
 	delete renderObject;
-
-	for (auto component : components)
-		delete component;
-	
-	components.clear();
-
-}
-
-void GameObject::Update(float dt)
-{
-	for (auto component : components) {
-		component->Update(dt);
-	}
-
-	OnUpdate(dt);
 }
 
 bool GameObject::GetBroadphaseAABB(Vector3&outSize) const {

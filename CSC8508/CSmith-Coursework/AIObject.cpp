@@ -110,7 +110,7 @@ bool AIObject::SetGoal(Vector3 newGoal, float maxCost, bool force) {
 	return true;
 }
 
-void AIObject::ActorUpdate(float dt) {
+void AIObject::OnUpdate(float dt) {
 
 	//Don't update behaviour every frame.
 	behaviourUpdateCooldown -= dt;
