@@ -4,6 +4,7 @@
 #include "MoveLeftComponent.h"
 #include "MoveRightComponent.h"
 #include "MoveComponent.h"
+#include "PlayerComponent.h"
 #include "../Engine/GameObject.h"
 
 using namespace NCL;
@@ -16,9 +17,10 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	
 	std::string name = componentJson["name"];
 
-	if (name == "Move") return gameObject->AddComponent<MoveComponent>(JsonToVector3(componentJson["force"]));
-	if (name == "MoveLeft") return gameObject->AddComponent<MoveLeftComponent>();
-	if (name == "MoveRight") return gameObject->AddComponent<MoveRightComponent>();
+	if (name == "Move")			return gameObject->AddComponent<MoveComponent>(JsonToVector3(componentJson["force"]));
+	if (name == "MoveLeft")		return gameObject->AddComponent<MoveLeftComponent>();
+	if (name == "MoveRight")	return gameObject->AddComponent<MoveRightComponent>();
+	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
 
 	return nullptr;
 }

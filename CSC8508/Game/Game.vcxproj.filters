@@ -51,6 +51,9 @@
     <ClCompile Include="JSONShared.cpp">
       <Filter>JSON</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="JSONComponentFactory.h">
       <Filter>JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
