@@ -13,7 +13,7 @@ namespace NCL {
 			friend class ObjectFactory;
 
 		public:
-			void Update(float dt) override;
+			void OnUpdate(float dt) override;
 
 			void OnCollisionBegin(GameObject* otherObject);
 

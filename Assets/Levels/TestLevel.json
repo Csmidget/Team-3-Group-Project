@@ -1,0 +1,81 @@
+{
+    "objects" : [ 
+        {   
+            "name": "floor",
+            "collider":"AABB",
+            "static": true,
+            "transform" : {
+                "position":     {"x": 0, "y": 0, "z":  0},
+                "orientation":  {"x": 0, "y": 0, "z":  0, "w": 0},
+                "scale":        {"x": 50,"y": 1, "z": 50}
+            },
+            "render" : {
+                "mesh":"cube.msh",
+                "texture":"checkerboard.png",
+                "vertex": "GameTechVert.glsl",
+                "fragment":"GameTechFrag.glsl",
+                "renderScale": 2
+            },
+            "physics": {
+                "invMass": 0
+            }
+        },
+        {   
+            "name": "cube",
+            "collider":"AABB",
+            "static": false,
+            "transform" : {
+                "position":     {"x": 0, "y": 10, "z":  0},
+                "orientation":  {"x": 0, "y": 0, "z":  0, "w": 0},
+                "scale":        {"x": 1,"y": 1, "z": 1}
+            },
+            "render" : {
+                "mesh":"cube.msh",
+                "texture":"checkerboard.png",
+                "vertex": "GameTechVert.glsl",
+                "fragment":"GameTechFrag.glsl",
+                "renderScale":2
+            },
+            "physics": {
+                "invMass": 1,
+                "inertia": "cube"
+            },
+            "components": [
+                {
+                    "name": "Move",
+                    "force": {
+                        "x": 0,
+                        "y": 10,
+                        "z": 0
+                    }
+                }
+            ]
+        },
+        {   
+            "name": "sphere",
+            "collider":"Sphere",
+            "static": false,
+            "transform" : {
+                "position":     {"x": 0, "y": 20, "z":  0},
+                "orientation":  {"x": 0, "y": 0, "z":  0, "w": 0},
+                "scale":        {"x": 1,"y": 1, "z": 1}
+            },
+            "render" : {
+                "mesh":"sphere.msh",
+                "texture":"checkerboard.png",
+                "vertex": "GameTechVert.glsl",
+                "fragment":"GameTechFrag.glsl",
+                "renderScale":1
+            },
+            "physics": {
+                "invMass": 1,
+                "inertia": "sphere"
+            },
+            "components": [
+                {
+                    "name": "MoveLeft"
+                }
+            ]
+        }
+    ]
+}

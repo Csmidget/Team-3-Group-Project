@@ -3,7 +3,7 @@
 
 using namespace NCL::CSC8508;
 
-void BonusObject::Update(float dt) {
+void BonusObject::OnUpdate(float dt) {
 	if (popped) {
 		respawnTimer -= dt;
 
