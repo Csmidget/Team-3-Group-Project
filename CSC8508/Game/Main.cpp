@@ -1,6 +1,5 @@
 #include "../../Common/Window.h"
 
-//#include "Game.h"
 #include "NetworkedGame.h"
 
 #include "../Engine/GameServer.h"
