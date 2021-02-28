@@ -26,12 +26,17 @@ BulletWorld::~BulletWorld()
 	delete collisionConfiguration;
 }
 
-void BulletWorld::addRigidBody(btRigidBody* body)
+void BulletWorld::addRigidBody(RigidBody* body)
 {
-	dynamicsWorld->addRigidBody(body);
+	dynamicsWorld->addRigidBody(body->returnBody());
+	rigidList.push_back(body);
 }
 
 void BulletWorld::Update(float dt)
 {
 	dynamicsWorld->stepSimulation(1.f / 60.f);
+	for (auto i : rigidList)
+	{
+		i->updateTransform();
+	}
 }

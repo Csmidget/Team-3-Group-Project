@@ -17,7 +17,7 @@ Game::Game()	{
 	world		= new GameWorld();
 	renderer	= new GameTechRenderer(*world);
 	//physics		= new PhysicsSystem(*world);
-	physics = new physics::BulletWorld();
+	physics		= new physics::BulletWorld();
 
 
 	forceMagnitude	= 10.0f;
@@ -254,9 +254,11 @@ void Game::Clear() {
 
 void Game::InitWorld() {
 	Clear();
-	AddCubeToWorld(Vector3(0, 0, 0), Vector3(10, 1, 10), 0);
-	AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 0);
-
+	AddCubeToWorld(Vector3(0, 0, 0), Vector3(100, 1, 100), 0);
+	AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 1);
+	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
+	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
+	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
 }
 
 void Game::DoorConstraintTest() {
@@ -346,8 +348,18 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 	sphere->SetRenderObject(new RenderObject(&sphere->GetTransform(), sphereMesh, basicTex, basicShader));
 	sphere->SetPhysicsObject(new PhysicsObject(&sphere->GetTransform(), sphere->GetBoundingVolume()));
 
-	sphere->GetPhysicsObject()->SetInverseMass(inverseMass);
-	sphere->GetPhysicsObject()->InitHollowSphereInertia();
+	//testing adding bullet physics object
+	sphere->GetPhysicsObject()->body->addSphereShape(radius);
+	sphere->GetPhysicsObject()->body->createBody(position,
+										sphere->GetTransform().GetOrientation(),
+										inverseMass,
+										0.4,
+										0.4);
+
+	physics->addRigidBody(sphere->GetPhysicsObject()->body);
+
+	/*sphere->GetPhysicsObject()->SetInverseMass(inverseMass);
+	sphere->GetPhysicsObject()->InitHollowSphereInertia();*/
 
 	world->AddGameObject(sphere);
 
@@ -368,8 +380,18 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), capsuleMesh, basicTex, basicShader));
 	capsule->SetPhysicsObject(new PhysicsObject(&capsule->GetTransform(), capsule->GetBoundingVolume()));
 
-	capsule->GetPhysicsObject()->SetInverseMass(inverseMass);
-	capsule->GetPhysicsObject()->InitCapsuleInertia(halfHeight,radius);
+	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
+
+	capsule->GetPhysicsObject()->body->createBody(position,
+		capsule->GetTransform().GetOrientation(),
+		inverseMass,
+		0.4,
+		0.4);
+
+	physics->addRigidBody(capsule->GetPhysicsObject()->body);
+
+	//capsule->GetPhysicsObject()->SetInverseMass(inverseMass);
+	//capsule->GetPhysicsObject()->InitCapsuleInertia(halfHeight,radius);
 
 	world->AddGameObject(capsule);
 
@@ -397,42 +419,20 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 												cube->GetTransform().GetOrientation(), 
 												inverseMass,
 												0.4,
-												0.4);
+												1.0);
 
-	physics->addRigidBody(cube->GetPhysicsObject()->body->returnBody());
+	physics->addRigidBody(cube->GetPhysicsObject()->body);
 
 
-	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
-	cube->GetPhysicsObject()->InitCubeInertia();
-	cube->SetIsStatic(isStatic);
-
-	world->AddGameObject(cube);
-
-	return cube;
-}
-
-GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic, bool respawning) {
-	GameObject* cube = respawning ? new RespawningObject(position,true,"respawning cube") : new GameObject("cube");
-
-	OBBVolume* volume = new OBBVolume(dimensions);
-
-	cube->SetBoundingVolume((CollisionVolume*)volume);
-
-	cube->GetTransform()
-		.SetPosition(position)
-		.SetScale(dimensions * 2);
-
-	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), cubeMesh, basicTex, basicShader));
-	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
-
-	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
-	cube->GetPhysicsObject()->InitCubeInertia();
-	cube->SetIsStatic(isStatic);
+	//cube->GetPhysicsObject()->SetInverseMass(inverseMass);
+	//cube->GetPhysicsObject()->InitCubeInertia();
+	//cube->SetIsStatic(isStatic);
 
 	world->AddGameObject(cube);
 
 	return cube;
 }
+
 
 void Game::InitSphereGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, float radius) {
 	for (int x = 0; x < numCols; ++x) {

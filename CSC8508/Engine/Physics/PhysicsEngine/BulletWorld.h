@@ -1,5 +1,7 @@
 #pragma once
 #include "btBulletDynamicsCommon.h"
+#include "RigidBody.h"
+#include <vector>
 
 namespace NCL
 {
@@ -7,6 +9,8 @@ namespace NCL
 	{
 		namespace physics
 		{
+			class RigidBody;
+
 			class BulletWorld
 			{
 			public:
@@ -14,7 +18,7 @@ namespace NCL
 				~BulletWorld();
 
 				//void setGravity();
-				void addRigidBody(btRigidBody* body);
+				void addRigidBody(RigidBody* body);
 
 				void Update(float dt);
 			private:
@@ -24,6 +28,8 @@ namespace NCL
 				btSequentialImpulseConstraintSolver* solver;
 
 				btDiscreteDynamicsWorld* dynamicsWorld;
+
+				std::vector<RigidBody*> rigidList;
 			};
 		}
 	}

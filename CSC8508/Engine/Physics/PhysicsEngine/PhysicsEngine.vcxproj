@@ -121,6 +121,8 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <CompileAsManaged>
+      </CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

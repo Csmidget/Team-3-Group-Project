@@ -68,7 +68,6 @@ namespace NCL {
 
 			void AddTorque(const Vector3& torque);
 
-
 			void ClearForces();
 
 			void SetLinearVelocity(const Vector3& v) {
@@ -93,9 +92,11 @@ namespace NCL {
 			//bullet physics body
 			physics::RigidBody* body;
 
+			Transform*		transform;
+
 		protected:
 			const CollisionVolume* volume;
-			Transform*		transform;
+
 
 			float inverseMass;
 			float elasticity;

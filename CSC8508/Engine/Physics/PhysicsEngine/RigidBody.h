@@ -1,11 +1,12 @@
 #pragma once
 #include "btBulletDynamicsCommon.h"
-#include "BulletWorld.h"
+//#include "BulletWorld.h"
 
 #include "../../Common/Vector3.h"
 #include "../../Common/Quaternion.h"
 #include "../../CSC8508/Engine/Transform.h"
-#include "../../CSC8508/Engine/PhysicsObject.h"
+
+//#include "../../CSC8508/Engine/PhysicsObject.h"
 
 namespace NCL 
 {
@@ -13,10 +14,12 @@ namespace NCL
 	{
 		namespace physics
 		{
+			//class Transform;
+
 			class RigidBody
 			{
 			public:
-				RigidBody(PhysicsObject* parentObj);
+				RigidBody(Transform* parentTransform);//PhysicsObject* parentObj);
 				~RigidBody();
 
 				void addBoxShape(NCL::Maths::Vector3 halfExtents);
@@ -33,7 +36,7 @@ namespace NCL
 
 				btRigidBody* returnBody() { return body; };
 
-				NCL::CSC8508::Transform returnNCLTrans();
+				void updateTransform();
 				
 				void addForce(NCL::Maths::Vector3 force);
 				void addTorque(NCL::Maths::Vector3 torque);
@@ -41,7 +44,8 @@ namespace NCL
 
 			private:
 
-				PhysicsObject* parent;
+				//PhysicsObject* parent;
+				Transform* transform;
 				btRigidBody* body;
 				btCollisionShape* colShape;
 

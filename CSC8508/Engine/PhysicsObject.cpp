@@ -17,7 +17,7 @@ PhysicsObject::PhysicsObject(Transform* parentTransform, const CollisionVolume* 
 	elasticity	= 0.4f;
 	friction	= 0.4f;
 
-	body = new physics::RigidBody(this);
+	body = new physics::RigidBody(parentTransform);
 }
 
 PhysicsObject::~PhysicsObject()	{
@@ -52,7 +52,9 @@ void PhysicsObject::AddForceAtPosition(const Vector3& addedForce, const Vector3&
 
 void PhysicsObject::AddTorque(const Vector3& addedTorque) {
 	torque += addedTorque;
+
 }
+
 
 void PhysicsObject::ClearForces() {
 	force				= Vector3();
