@@ -13,7 +13,7 @@ namespace NCL
 				BulletWorld();
 				~BulletWorld();
 
-				void setGravity();
+				//void setGravity();
 				void addRigidBody(btRigidBody* body);
 
 				void Update(float dt);

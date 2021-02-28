@@ -16,7 +16,9 @@ using namespace CSC8508;
 Game::Game()	{
 	world		= new GameWorld();
 	renderer	= new GameTechRenderer(*world);
-	physics		= new PhysicsSystem(*world);
+	//physics		= new PhysicsSystem(*world);
+	physics = new physics::BulletWorld();
+
 
 	forceMagnitude	= 10.0f;
 	useGravity		= false;
@@ -128,7 +130,7 @@ void Game::UpdateKeys() {
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
 		useGravity = !useGravity; //Toggle gravity!
-		physics->UseGravity(useGravity);
+		//physics->UseGravity(useGravity);
 	}
 	//Running certain physics updates in a consistent order might cause some
 	//bias in the calculations - the same objects might keep 'winning' the constraint
@@ -247,46 +249,14 @@ void Game::InitCamera() {
 
 void Game::Clear() {
 	world->ClearAndErase();
-	physics->Clear();
+	//physics->Clear();
 }
 
 void Game::InitWorld() {
 	Clear();
+	AddCubeToWorld(Vector3(0, 0, 0), Vector3(10, 1, 10), 0);
+	AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 0);
 
-	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0,-100,0)));
-	world->AddKillPlane(new Plane(Vector3(0, 0, -1), Vector3(0,0,100)));
-
-//	InitMixedGridWorld(5, 5, 3.5f, 3.5f);
-//	InitGameExamples();
-
-	//GameObject* capsule = AddCapsuleToWorld(Vector3(0, 10, 0), 1.0f, 0.5f); 
-	//capsule->GetTransform().SetOrientation(Matrix4::Rotation(45, Vector3(0, 0, 1)));
-	//AddCubeToWorld(Vector3(-1.5, 8, 0), Vector3(1, 1, 1), 0.0f, true);
-
-	AddCapsuleToWorld(Vector3(4.5f, 100, -150), 1.0f, 0.5f,10.0f,true);
-	AddCapsuleToWorld(Vector3(0, 100, -150), 1.0f, 0.5f,10.0f,true)->GetTransform().SetOrientation(Matrix3::Rotation(90,Vector3(0,0,1)));
-//	AddCapsuleToWorld(Vector3(5, 10, -10), 1.0f, 0.5f);
-	AddSphereToWorld(Vector3(-4.5f, 10, -7.4f), 1.0f);
-	AddSphereToWorld(Vector3(-4.5f, 100, -150),1.0f,10.0f,true);
-	//
-	AddOBBCubeToWorld(Vector3(10, 104.5f, -150), Vector3(1, 1, 1), 10.0f,false,true)->GetTransform().SetOrientation(Matrix4::Rotation(0, Vector3(0, 0, 1)));
-	AddOBBCubeToWorld(Vector3(-4.5f, 0, -3.5f), Vector3(1, 1, 5));
-	AddOBBCubeToWorld(Vector3(-4.5f, 5, -5), Vector3(1, 1, 1));
-	AddOBBCubeToWorld(Vector3(0, 5, -5), Vector3(1, 1, 1));
-	AddOBBCubeToWorld(Vector3(20, 20, -20), Vector3(10,10,10));
-//	AddSphereToWorld(Vector3(-1, 15, -6), 1.0f);
-//	AddStateObjectToWorld(Vector3(0, 10, -15));
-	AddSphereToWorld(Vector3(5, 10, 10), 1.0f);
-	AddSphereToWorld(Vector3(5, 10, 5), 1.0f);
-	AddSphereToWorld(Vector3(5, 10, 0), 1.0f);
-	//AddSphereToWorld(Vector3(5, 10, -5), 1.0f);
-//	BridgeConstraintTest();
-	DoorConstraintTest();
-	InitDefaultFloor();
-
-	//Slope
-	GameObject* slope = AddOBBCubeToWorld(Vector3(0, 50, -150), Vector3(50, 2, 50), 0.0f, true);
-	slope->GetTransform().SetOrientation(Matrix4::Rotation(45, Vector3(1, 0, 0)));
 }
 
 void Game::DoorConstraintTest() {
@@ -420,6 +390,17 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 
 	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), cubeMesh, basicTex, basicShader));
 	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
+
+	//testing adding bullet physics object
+	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
+	cube->GetPhysicsObject()->body->createBody(	position,
+												cube->GetTransform().GetOrientation(), 
+												inverseMass,
+												0.4,
+												0.4);
+
+	physics->addRigidBody(cube->GetPhysicsObject()->body->returnBody());
+
 
 	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
 	cube->GetPhysicsObject()->InitCubeInertia();
@@ -591,7 +572,7 @@ bool Game::SelectObject() {
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::P)) {
 		world->ClearAndErase();
-		physics->Clear();
+		//physics->Clear();
 	}
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {

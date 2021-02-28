@@ -2,6 +2,8 @@
 #include "../../Common/Vector3.h"
 #include "../../Common/Matrix3.h"
 
+#include "../Engine/Physics/PhysicsEngine/RigidBody.h"
+
 using namespace NCL::Maths;
 
 namespace NCL {
@@ -88,6 +90,9 @@ namespace NCL {
 				return inverseInteriaTensor;
 			}
 
+			//bullet physics body
+			physics::RigidBody* body;
+
 		protected:
 			const CollisionVolume* volume;
 			Transform*		transform;
@@ -106,6 +111,9 @@ namespace NCL {
 			Vector3 torque;
 			Vector3 inverseInertia;
 			Matrix3 inverseInteriaTensor;
+
+			
+
 		};
 	}
 }

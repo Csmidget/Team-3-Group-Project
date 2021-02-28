@@ -4,10 +4,11 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace physics;
 
-RigidBody::RigidBody()
+RigidBody::RigidBody(PhysicsObject* parentObj)
 {
 	body = nullptr;
 	colShape = nullptr;
+	parent = parentObj;
 }
 
 RigidBody::~RigidBody()

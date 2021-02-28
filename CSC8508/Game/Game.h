@@ -1,7 +1,6 @@
 #pragma once
 #include "GameTechRenderer.h"
 #include "../Engine/PhysicsSystem.h"
-
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 
 namespace NCL {
@@ -52,8 +51,10 @@ namespace NCL {
 			GameObject* AddBonusToWorld(const Vector3& position);
 
 			GameTechRenderer*	renderer;
-			PhysicsSystem*		physics;
+			//PhysicsSystem*		physics;
 			GameWorld*			world;
+			physics::BulletWorld* physics;
+
 
 			bool useGravity;
 			bool inSelectionMode;
