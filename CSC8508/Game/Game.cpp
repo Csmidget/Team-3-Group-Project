@@ -317,8 +317,19 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 	floor->SetRenderObject(new RenderObject(&floor->GetTransform(), cubeMesh, basicTex, basicShader));
 	floor->SetPhysicsObject(new PhysicsObject(&floor->GetTransform(), floor->GetBoundingVolume()));
 
-	floor->GetPhysicsObject()->SetInverseMass(0);
-	floor->GetPhysicsObject()->InitCubeInertia();
+	//testing adding bullet physics object
+	floor->GetPhysicsObject()->body->addBoxShape(floorSize);
+	floor->GetPhysicsObject()->body->createBody(position,
+												floor->GetTransform().GetOrientation(),
+												0,
+												0.4,
+												1.0);
+
+	physics->addRigidBody(floor->GetPhysicsObject()->body);
+
+
+	//floor->GetPhysicsObject()->SetInverseMass(0);
+	//floor->GetPhysicsObject()->InitCubeInertia();
 
 	floor->SetIsStatic(true);
 
@@ -433,6 +444,40 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 	return cube;
 }
 
+GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass , bool isStatic, bool respawning)
+{
+	GameObject* cube = respawning ? new RespawningObject(position, true, "respawning cube") : new GameObject("cube");
+
+	OBBVolume* volume = new OBBVolume(dimensions);
+
+	cube->SetBoundingVolume((CollisionVolume*)volume);
+
+	cube->GetTransform()
+		.SetPosition(position)
+		.SetScale(dimensions * 2);
+
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), cubeMesh, basicTex, basicShader));
+	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
+
+	//testing adding bullet physics object
+	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
+	cube->GetPhysicsObject()->body->createBody(position,
+		cube->GetTransform().GetOrientation(),
+		inverseMass,
+		0.4,
+		1.0);
+
+	physics->addRigidBody(cube->GetPhysicsObject()->body);
+
+
+	//cube->GetPhysicsObject()->SetInverseMass(inverseMass);
+	//cube->GetPhysicsObject()->InitCubeInertia();
+	//cube->SetIsStatic(isStatic);
+
+	world->AddGameObject(cube);
+
+	return cube;
+}
 
 void Game::InitSphereGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, float radius) {
 	for (int x = 0; x < numCols; ++x) {

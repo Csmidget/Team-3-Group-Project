@@ -24,6 +24,8 @@ BulletWorld::~BulletWorld()
 	delete overlappingPairCache;
 	delete dispatcher;
 	delete collisionConfiguration;
+
+	rigidList.clear();
 }
 
 void BulletWorld::addRigidBody(RigidBody* body)

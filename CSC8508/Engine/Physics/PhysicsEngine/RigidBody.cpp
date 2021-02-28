@@ -5,11 +5,10 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace physics;
 
-RigidBody::RigidBody(Transform* parentTransform)//PhysicsObject* parentObj)
+RigidBody::RigidBody(Transform* parentTransform)
 {
 	body = nullptr;
 	colShape = nullptr;
-	//parent = parentObj;
 	transform = parentTransform;
 }
 
@@ -25,36 +24,47 @@ RigidBody::~RigidBody()
 }
 
 
-void RigidBody::addBoxShape(NCL::Maths::Vector3 halfExtents)
+void RigidBody::addBoxShape(NCL::Maths::Vector3& halfExtents)
 {
 	colShape = new btBoxShape(btVector3(halfExtents.x, halfExtents.y, halfExtents.z));
 }
 
-void RigidBody::addSphereShape(float radius)
+void RigidBody::addSphereShape(float& radius)
 {
 	colShape = new btSphereShape(radius);
 }
 
-void RigidBody::addCapsuleShape(float radius, float height)
+void RigidBody::addCapsuleShape(float& radius, float& height)
 {
 	colShape = new btCapsuleShape(radius, height);
 }
 
-void RigidBody::addCylinderShape(NCL::Maths::Vector3 halfExtents)
+void RigidBody::addCylinderShape(NCL::Maths::Vector3& halfExtents)
 {
 	colShape = new btCylinderShape(btVector3(halfExtents.x, halfExtents.y, halfExtents.z));
 }
 
-void RigidBody::addConeShape(float radius, float height)
+void RigidBody::addConeShape(float& radius, float& height)
 {
 	colShape = new btConeShape(radius, height);
 }
 
 
+void RigidBody::addForce(NCL::Maths::Vector3& force)
+{
+
+	btVector3 pushForce;
+	pushForce.setValue(force.x, force.y, force.y);
+
+	body->applyCentralForce(pushForce);
+
+}
+
 void RigidBody::updateTransform()
 {
 	//Transform temp;
 	//temp = parent->transform;
+
 	btVector3 pos = body->getCenterOfMassTransform().getOrigin();
 	btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
 
