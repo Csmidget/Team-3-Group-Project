@@ -16,6 +16,8 @@ PhysicsObject::PhysicsObject(Transform* parentTransform, const CollisionVolume* 
 	inverseMass = 1.0f;
 	elasticity	= 0.4f;
 	friction	= 0.4f;
+
+	body = new physics::RigidBody(parentTransform);
 }
 
 PhysicsObject::~PhysicsObject()	{
@@ -36,6 +38,7 @@ void PhysicsObject::ApplyLinearImpulse(const Vector3& force) {
 
 void PhysicsObject::AddForce(const Vector3& addedForce) {
 	force += addedForce;
+	//body->addForce(addedForce);
 }
 
 void PhysicsObject::AddForceAtPosition(const Vector3& addedForce, const Vector3& position) {
@@ -50,7 +53,9 @@ void PhysicsObject::AddForceAtPosition(const Vector3& addedForce, const Vector3&
 
 void PhysicsObject::AddTorque(const Vector3& addedTorque) {
 	torque += addedTorque;
+
 }
+
 
 void PhysicsObject::ClearForces() {
 	force				= Vector3();
