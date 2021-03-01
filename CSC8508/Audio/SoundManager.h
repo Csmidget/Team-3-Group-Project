@@ -22,7 +22,7 @@ namespace NCL {
 				bool IsInit();
 				void Set3DSetting(float distanceFactor, float rollofscale = 1.0f, float dopplerScale = 1.0f);
 
-				void PlayOneShot(const std::string& soundFile, const Maths::Vector3& position); //To implement
+				void PlayOneShot(const std::string& soundFile, const Maths::Vector3& position = Maths::Vector3(0,0,0)); //To implement
 				void CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce);
 				void DeleteInstance(SoundInstance* soundInstance);
 
