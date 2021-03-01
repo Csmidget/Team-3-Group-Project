@@ -285,7 +285,7 @@ void Game::InitWorld() {
 //	DoorConstraintTest();
 //	InitDefaultFloor();
 
-	InitFromJSON("TestLevel.json");
+	InitFromJSON("NetworkTest.json");
 
 	//Slope
 //	GameObject* slope = AddOBBCubeToWorld(Vector3(0, 50, -150), Vector3(50, 2, 50), 0.0f, true);
