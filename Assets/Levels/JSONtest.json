@@ -1,0 +1,40 @@
+{
+    "objects" : [ 
+        {   
+            "name": "floor",
+            "static": false,
+            "tag": "test",
+            "collider": {
+                "type": "box",
+                "size": {"x": 1, "y": 1, "z": 1},
+                "isTrigger": false
+            },
+            "transform" : {
+                "position":     {"x": 0, "y": 0, "z":  0},
+                "orientation":  {"x": 0, "y": 0, "z":  0, "w": 0},
+                "scale":        {"x": 50,"y": 1, "z": 50}
+            },
+            "render" : {
+                "mesh":"cube.msh",
+                "material": "cube.mat",
+                "renderScale": 2
+            },
+            "physics": {
+                "invMass": 0,
+                "drag": 0,
+                "isKinematic": 0
+            },
+            "components": [
+                {
+                    "name": "moveComponent",
+                    "force": {"x": 1, "y": 1, "z": 1},
+                    "size": {},
+                    
+                },
+                {
+                    "name": "Player",
+                    "camera": 1
+                }
+            ]
+        }
+}
