@@ -29,6 +29,42 @@ public:
 	}
 	string name;
 };
+void TestNetworkingClient() {
+	NetworkBase::Initialise();
+	TestPacketReceiver clientReceiver("Client1");
+	int port = NetworkBase::GetDefaultPort();
+	GameClient* client = new GameClient();
+	client->RegisterPacketHandler(String_Message, &clientReceiver);
+	bool canConnect = client->Connect(80, 5, 123, 22, port);
+
+	int i = 0;
+	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
+		client->SendPacket(StringPacket("Client1 says hello! " + std::to_string(i)));
+		i++;
+		client->UpdateClient();
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+	}
+
+	NetworkBase::Destroy();
+
+}
+
+void TestNetworkingServer() {
+	NetworkBase::Initialise();
+	TestPacketReceiver serverReceiver("Server");
+	int port = NetworkBase::GetDefaultPort();
+	GameServer* server = new GameServer(port, 2);
+	server->RegisterPacketHandler(String_Message, &serverReceiver);
+
+	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
+		server->SendGlobalPacket(StringPacket("Server says hello! "));
+		server->UpdateServer();
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
+	}
+	NetworkBase::Destroy();
+
+}
 
 void TestNetworking() {
 	NetworkBase::Initialise();
@@ -85,7 +121,10 @@ int main() {
 	if (!w->HasInitialised()) {
 		return -1;
 	}
-	TestNetworking();
+	//TestNetworking();
+	TestNetworkingClient();
+	TestNetworkingServer();
+
 
 	srand((unsigned int)time(0));
 	w->ShowOSPointer(false);
