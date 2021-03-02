@@ -11,6 +11,7 @@ namespace NCL
 	{
 		namespace physics
 		{
+			class BulletWorld;
 			class RigidBody
 			{
 			public:
@@ -27,13 +28,16 @@ namespace NCL
 								NCL::Maths::Quaternion SetRotation,
 								float mass,
 								float restitution,
-								float friction);
+								float friction,
+								BulletWorld* physicsWorld);
 
 				btRigidBody* returnBody() { return body; };
 
 				void updateTransform();
 				
-				void addForce(NCL::Maths::Vector3& force);
+				void addForce(NCL::Maths::Vector3 force);
+				void setLinearVelocity(NCL::Maths::Vector3 vel);
+
 				void addTorque(NCL::Maths::Vector3& torque);
 
 

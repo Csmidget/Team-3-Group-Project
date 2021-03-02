@@ -176,27 +176,27 @@ void Game::LockedObjectMovement() {
 	Vector3 charForward2 = lockedObject->GetTransform().GetOrientation() * Vector3(0, 0, 1);
 
 	float force = 100.0f;
-
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::LEFT)) {
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::A)) {
 		lockedObject->GetPhysicsObject()->AddForce(-rightAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::RIGHT)) {
-		Vector3 worldPos = selectionObject->GetTransform().GetPosition();
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::D)) {
 		lockedObject->GetPhysicsObject()->AddForce(rightAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::UP)) {
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::W)) {
 		lockedObject->GetPhysicsObject()->AddForce(fwdAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::DOWN)) {
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::S)) {
 		lockedObject->GetPhysicsObject()->AddForce(-fwdAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::NEXT)) {
-		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,-10,0));
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::SPACE)) {
+		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,1,0));
 	}
+
+	//lockedObject->GetPhysicsObject()->AddForce(Vector3(0, 0, 0));
 }
 
 void Game::DebugObjectMovement() {
@@ -255,7 +255,7 @@ void Game::Clear() {
 void Game::InitWorld() {
 	Clear();
 	AddCubeToWorld(Vector3(0, 0, 0), Vector3(100, 1, 100), 0);
-	AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 1);
+	AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 10);
 	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
 	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
 	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
@@ -323,9 +323,11 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 												floor->GetTransform().GetOrientation(),
 												0,
 												0.4,
-												1.0);
+												0.4,
+												physics);
 
-	physics->addRigidBody(floor->GetPhysicsObject()->body);
+	//floor->GetPhysicsObject()->body->returnBody()->setAng
+	//physics->addRigidBody(floor->GetPhysicsObject()->body);
 
 
 	//floor->GetPhysicsObject()->SetInverseMass(0);
@@ -361,13 +363,14 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 
 	//testing adding bullet physics object
 	sphere->GetPhysicsObject()->body->addSphereShape(radius);
-	sphere->GetPhysicsObject()->body->createBody(position,
-										sphere->GetTransform().GetOrientation(),
-										inverseMass,
-										0.4,
-										0.4);
+	sphere->GetPhysicsObject()->body->createBody(	position,
+													sphere->GetTransform().GetOrientation(),
+													inverseMass,
+													0.4,
+													0.4,
+													physics);
 
-	physics->addRigidBody(sphere->GetPhysicsObject()->body);
+	//physics->addRigidBody(sphere->GetPhysicsObject()->body);
 
 	/*sphere->GetPhysicsObject()->SetInverseMass(inverseMass);
 	sphere->GetPhysicsObject()->InitHollowSphereInertia();*/
@@ -393,13 +396,15 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 
 	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
 
-	capsule->GetPhysicsObject()->body->createBody(position,
-		capsule->GetTransform().GetOrientation(),
-		inverseMass,
-		0.4,
-		0.4);
+	capsule->GetPhysicsObject()->body->createBody(	position,
+													capsule->GetTransform().GetOrientation(),
+													inverseMass,
+													0.4,
+													0.4,
+													physics);
+	//capsule->GetPhysicsObject()->body->returnBody()->setDamping(0.1, 100.0);
 
-	physics->addRigidBody(capsule->GetPhysicsObject()->body);
+	//physics->addRigidBody(capsule->GetPhysicsObject()->body);
 
 	//capsule->GetPhysicsObject()->SetInverseMass(inverseMass);
 	//capsule->GetPhysicsObject()->InitCapsuleInertia(halfHeight,radius);
@@ -430,9 +435,10 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 												cube->GetTransform().GetOrientation(), 
 												inverseMass,
 												0.4,
-												1.0);
+												0.4,
+												physics);
 
-	physics->addRigidBody(cube->GetPhysicsObject()->body);
+	//physics->addRigidBody(cube->GetPhysicsObject()->body);
 
 
 	//cube->GetPhysicsObject()->SetInverseMass(inverseMass);
@@ -462,12 +468,13 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 	//testing adding bullet physics object
 	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
 	cube->GetPhysicsObject()->body->createBody(position,
-		cube->GetTransform().GetOrientation(),
-		inverseMass,
-		0.4,
-		1.0);
+												cube->GetTransform().GetOrientation(),
+												inverseMass,
+												0.4,
+												1.0,
+												physics);
 
-	physics->addRigidBody(cube->GetPhysicsObject()->body);
+	//physics->addRigidBody(cube->GetPhysicsObject()->body);
 
 
 	//cube->GetPhysicsObject()->SetInverseMass(inverseMass);

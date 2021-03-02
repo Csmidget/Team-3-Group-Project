@@ -38,7 +38,8 @@ void PhysicsObject::ApplyLinearImpulse(const Vector3& force) {
 
 void PhysicsObject::AddForce(const Vector3& addedForce) {
 	force += addedForce;
-	//body->addForce(addedForce);
+	body->addForce(addedForce);
+	//body->setLinearVelocity(force);
 }
 
 void PhysicsObject::AddForceAtPosition(const Vector3& addedForce, const Vector3& position) {
