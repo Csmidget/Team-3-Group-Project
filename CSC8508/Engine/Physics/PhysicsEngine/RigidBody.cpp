@@ -100,13 +100,12 @@ void RigidBody::createBody(	NCL::Maths::Vector3 SetPosition,
 
 	bodyInfo.m_restitution = restitution;
 	bodyInfo.m_friction = friction;
-	body->setDamping(0.1, 0.85);
+	
 
 	body = new btRigidBody(bodyInfo);
 	body->setUserPointer(this);
-	
 
-
+	body->setDamping(0.1, 0.85);
 	physicsWorld->addRigidBody(this);
 	
 }
