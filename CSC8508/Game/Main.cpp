@@ -40,26 +40,25 @@ void TestNetworking() {
 
 	int port = NetworkBase::GetDefaultPort();
 
-	GameServer* server = new GameServer(port, 2);
+	//GameServer* server = new GameServer(port, 1);
 	GameClient* client = new GameClient();
-	GameClient* client2 = new GameClient();
 
-	server->RegisterPacketHandler(String_Message, &serverReceiver);
+
+	//server->RegisterPacketHandler(String_Message, &serverReceiver);
 	client->RegisterPacketHandler(String_Message, &clientReceiver);
-	client2->RegisterPacketHandler(String_Message, &clientReceiver2);
 
 	bool canConnect = client->Connect(127, 0, 0, 1, port);
-	bool canConnect2 = client2->Connect(127, 0, 0, 1, port);
 
-	for (int i = 0; i < 100; ++i) {
-		server->SendGlobalPacket(StringPacket("Server says hello! " + std::to_string(i)));
-		client->SendPacket(StringPacket("Client1 says hello! " + std::to_string(i)));
-		client2->SendPacket(StringPacket("Client2 says hello! " + std::to_string(i)));
-		server->UpdateServer();
-		client->UpdateClient();
-		client2->UpdateClient();
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+	if (canConnect)
+	{
+		for (int i = 0; i < 100; ++i) {
+			client->SendPacket(StringPacket("Jake says hello! " + std::to_string(i)));
+			client->UpdateClient();
+			//client2->UpdateClient();
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		}
 	}
+
 
 	NetworkBase::Destroy();
 }
