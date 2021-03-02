@@ -32,6 +32,7 @@ Game::Game() {
 	Audio::SoundManager::Init();
 	InitialiseAssets();
 	Audio::SoundInstance* test = new Audio::SoundInstance();
+	test->SetVolume(0.1f);
 	Audio::SoundManager::CreateInstance("River.mp3", test);
 	test->Play();
 }
@@ -249,6 +250,8 @@ void Game::InitWorld() {
 	Clear();
 
 	InitFromJSON("TestLevel.json");
+
+	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 }
 
 void Game::DoorConstraintTest() {
@@ -317,7 +320,8 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 
 void Game::AddGameObject(GameObject* go)
 {
-	world->AddGameObject(go);
+	if (go != nullptr)
+		world->AddGameObject(go);
 }
 
 /*
@@ -559,55 +563,55 @@ bool Game::SelectObject() {
 		physics->Clear();
 	}
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
-		inSelectionMode = !inSelectionMode;
-		if (inSelectionMode) {
-			Window::GetWindow()->ShowOSPointer(true);
-			Window::GetWindow()->LockMouseToWindow(false);
-		}
-		else {
-			Window::GetWindow()->ShowOSPointer(false);
-			Window::GetWindow()->LockMouseToWindow(true);
-		}
-	}
-	if (inSelectionMode) {
-		renderer->DrawString("Press Q to change to camera mode!", Vector2(5, 85));
-
-		if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
-			if (selectionObject) {	//set colour to deselected;
-				selectionObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
-
-				if(forwardObject)
-					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
-
-				selectionObject = nullptr;
-				forwardObject = nullptr;
-				lockedObject	= nullptr;
-			}
-
-			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
-			RayCollision closestCollision;
-			if (world->Raycast(ray, closestCollision, true)) {
-				Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(0, 1, 0, 1), 10.0f);
-				selectionObject = (GameObject*)closestCollision.node;
-				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
-				
-				ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
-				if (world->Raycast(ray, closestCollision, true)) {
-					Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(1, 1, 0, 1), 10.0f);
-					forwardObject = (GameObject*)closestCollision.node;
-					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 0, 1));
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-	}
-	else {
-		renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
-	}
+//	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
+//		inSelectionMode = !inSelectionMode;
+//		if (inSelectionMode) {
+//			Window::GetWindow()->ShowOSPointer(true);
+//			Window::GetWindow()->LockMouseToWindow(false);
+//		}
+//		else {
+//			Window::GetWindow()->ShowOSPointer(false);
+//			Window::GetWindow()->LockMouseToWindow(true);
+//		}
+//	}
+//	if (inSelectionMode) {
+//		renderer->DrawString("Press Q to change to camera mode!", Vector2(5, 85));
+//
+//		if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
+//			if (selectionObject) {	//set colour to deselected;
+//				selectionObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
+//
+//				if(forwardObject)
+//					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
+//
+//				selectionObject = nullptr;
+//				forwardObject = nullptr;
+//				lockedObject	= nullptr;
+//			}
+//
+//			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
+//			RayCollision closestCollision;
+//			if (world->Raycast(ray, closestCollision, true)) {
+//				Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(0, 1, 0, 1), 10.0f);
+//				selectionObject = (GameObject*)closestCollision.node;
+//				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
+//				
+//				ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
+//				if (world->Raycast(ray, closestCollision, true)) {
+//					Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(1, 1, 0, 1), 10.0f);
+//					forwardObject = (GameObject*)closestCollision.node;
+//					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 0, 1));
+//				}
+//				return true;
+//			}
+//			else {
+//				return false;
+//			}
+//		}
+//	}
+//	else {
+//		renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
+//	}
 
 	if (lockedObject) {
 		renderer->DrawString("Press L to unlock object!", Vector2(5, 80));
@@ -639,7 +643,7 @@ added linear motion into our physics system. After the second tutorial, objects 
 line - after the third, they'll be able to twist under torque aswell.
 */
 void Game::MoveSelectedObject() {
-	renderer->DrawString("Click Force: " + std::to_string(forceMagnitude), Vector2(10, 20));
+//	renderer->DrawString("Click Force: " + std::to_string(forceMagnitude), Vector2(10, 20));
 	forceMagnitude += Window::GetMouse()->GetWheelMovement() * 1.0f;
 
 	if (!selectionObject) {

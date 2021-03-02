@@ -45,6 +45,13 @@ void GameObject::OnCollisionBegin(GameObject* otherObject)
 	}
 }
 
+void GameObject::OnKill() {
+	isActive = false;
+	for (auto component : components) {
+		component->OnKill();
+	}
+}
+
 bool GameObject::GetBroadphaseAABB(Vector3&outSize) const {
 	if (!boundingVolume) {
 		return false;
