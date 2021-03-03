@@ -1,35 +1,29 @@
 #include "Game.h"
-#include "JSONLevelFactory.h"
 #include "../Engine/GameWorld.h"
-#include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
+#include "../../Plugins/OpenGLRendering/OGLMesh.h"
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
+#include "../../Plugins/OpenGLRendering/OGLTexture.h"
 #include "../../Common/TextureLoader.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
 #include "RespawningObject.h"
-#include"../Audio/SoundManager.h"
-#include"../Audio/SoundInstance.h"
-
-//JENKINS TEST 3
+#include "../../Common/Maths.h"
 
 using namespace NCL;
 using namespace CSC8508;
 
-Game::Game() {
-	resourceManager = new OGLResourceManager();
-	world = new GameWorld();
-	renderer = new GameTechRenderer(*world, *resourceManager);
-	physics = new PhysicsSystem(*world);
+Game::Game()	{
+	world		= new GameWorld();
+	renderer	= new GameTechRenderer(*world);
+	physics		= new PhysicsSystem(*world);
 
-	forceMagnitude = 10.0f;
-	useGravity = false;
+	forceMagnitude	= 10.0f;
+	useGravity		= false;
 	inSelectionMode = false;
 
 	Debug::SetRenderer(renderer);
-	Audio::SoundManager::Init();
+
 	InitialiseAssets();
-	Audio::SoundInstance* test = new Audio::SoundInstance();
-	Audio::SoundManager::CreateInstance("River.mp3", test);
-	test->Play();
 }
 
 /*
@@ -40,28 +34,39 @@ for this module, even in the coursework, but you can add it if you like!
 
 */
 void Game::InitialiseAssets() {
+	auto loadFunc = [](const string& name, OGLMesh** into) {
+		*into = new OGLMesh(name);
+		(*into)->SetPrimitiveType(GeometryPrimitive::Triangles);
+		(*into)->UploadToGPU();
+	};
 
-	cubeMesh	= resourceManager->LoadMesh("cube.msh");
-	sphereMesh	= resourceManager->LoadMesh("sphere.msh");
-	charMeshA	= resourceManager->LoadMesh("Male1.msh");
-	charMeshB	= resourceManager->LoadMesh("courier.msh");
-	enemyMesh	= resourceManager->LoadMesh("security.msh");
-	bonusMesh	= resourceManager->LoadMesh("coin.msh");
-	capsuleMesh = resourceManager->LoadMesh("capsule.msh");
+	loadFunc("cube.msh"		 , &cubeMesh);
+	loadFunc("sphere.msh"	 , &sphereMesh);
+	loadFunc("Male1.msh"	 , &charMeshA);
+	loadFunc("courier.msh"	 , &charMeshB);
+	loadFunc("security.msh"	 , &enemyMesh);
+	loadFunc("coin.msh"		 , &bonusMesh);
+	loadFunc("capsule.msh"	 , &capsuleMesh);
 
-	basicTex	= resourceManager->LoadTexture("checkerboard.png"); //(OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
-	basicShader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");
+	basicTex	= (OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
+	basicShader = new OGLShader("GameTechVert.glsl", "GameTechFrag.glsl");
 
+	InitLight();
 	InitCamera();
 	InitWorld();
 }
 
 Game::~Game()	{
+	delete cubeMesh;
+	delete sphereMesh;
+	delete charMeshA;
+	delete charMeshB;
+	delete enemyMesh;
+	delete bonusMesh;
 
 	delete basicTex;
 	delete basicShader;
 
-	delete resourceManager;
 	delete physics;
 	delete renderer;
 	delete world;
@@ -108,7 +113,6 @@ void Game::UpdateGame(float dt) {
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();
-	Audio::SoundManager::Update();
 }
 
 void Game::UpdateKeys() {
@@ -246,16 +250,11 @@ void Game::Clear() {
 	physics->Clear();
 }
 
-void Game::InitFromJSON(std::string fileName) {
-	Clear();
-	JSONLevelFactory::ReadLevelFromJson(fileName, this);
-}
-
 void Game::InitWorld() {
 	Clear();
 
-//	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0,-100,0)));
-//	world->AddKillPlane(new Plane(Vector3(0, 0, -1), Vector3(0,0,100)));
+	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0,-100,0)));
+	world->AddKillPlane(new Plane(Vector3(0, 0, -1), Vector3(0,0,100)));
 
 //	InitMixedGridWorld(5, 5, 3.5f, 3.5f);
 //	InitGameExamples();
@@ -264,32 +263,30 @@ void Game::InitWorld() {
 	//capsule->GetTransform().SetOrientation(Matrix4::Rotation(45, Vector3(0, 0, 1)));
 	//AddCubeToWorld(Vector3(-1.5, 8, 0), Vector3(1, 1, 1), 0.0f, true);
 
-//	AddCapsuleToWorld(Vector3(4.5f, 100, -150), 1.0f, 0.5f,10.0f,true);
-//	AddCapsuleToWorld(Vector3(0, 100, -150), 1.0f, 0.5f,10.0f,true)->GetTransform().SetOrientation(Matrix3::Rotation(90,Vector3(0,0,1)));
+	AddCapsuleToWorld(Vector3(4.5f, 100, -150), 1.0f, 0.5f,10.0f,true);
+	AddCapsuleToWorld(Vector3(0, 100, -150), 1.0f, 0.5f,10.0f,true)->GetTransform().SetOrientation(Matrix3::Rotation(90,Vector3(0,0,1)));
 //	AddCapsuleToWorld(Vector3(5, 10, -10), 1.0f, 0.5f);
-//	AddSphereToWorld(Vector3(-4.5f, 10, -7.4f), 1.0f);
-//	AddSphereToWorld(Vector3(-4.5f, 100, -150),1.0f,10.0f,true);
+	AddSphereToWorld(Vector3(-4.5f, 10, -7.4f), 1.0f);
+	AddSphereToWorld(Vector3(-4.5f, 100, -150),1.0f,10.0f,true);
 	//
-//	AddOBBCubeToWorld(Vector3(10, 104.5f, -150), Vector3(1, 1, 1), 10.0f,false,true)->GetTransform().SetOrientation(Matrix4::Rotation(0, Vector3(0, 0, 1)));
-//	AddOBBCubeToWorld(Vector3(-4.5f, 0, -3.5f), Vector3(1, 1, 5));
-//	AddOBBCubeToWorld(Vector3(-4.5f, 5, -5), Vector3(1, 1, 1));
-//	AddOBBCubeToWorld(Vector3(0, 5, -5), Vector3(1, 1, 1));
-//	AddOBBCubeToWorld(Vector3(20, 20, -20), Vector3(10,10,10));
+	AddOBBCubeToWorld(Vector3(10, 104.5f, -150), Vector3(1, 1, 1), 10.0f,false,true)->GetTransform().SetOrientation(Matrix4::Rotation(0, Vector3(0, 0, 1)));
+	AddOBBCubeToWorld(Vector3(-4.5f, 0, -3.5f), Vector3(1, 1, 5));
+	AddOBBCubeToWorld(Vector3(-4.5f, 5, -5), Vector3(1, 1, 1));
+	AddOBBCubeToWorld(Vector3(0, 5, -5), Vector3(1, 1, 1));
+	AddOBBCubeToWorld(Vector3(20, 20, -20), Vector3(10,10,10));
 //	AddSphereToWorld(Vector3(-1, 15, -6), 1.0f);
 //	AddStateObjectToWorld(Vector3(0, 10, -15));
-//	AddSphereToWorld(Vector3(5, 10, 10), 1.0f);
-//	AddSphereToWorld(Vector3(5, 10, 5), 1.0f);
-//	AddSphereToWorld(Vector3(5, 10, 0), 1.0f);
+	AddSphereToWorld(Vector3(5, 10, 10), 1.0f);
+	AddSphereToWorld(Vector3(5, 10, 5), 1.0f);
+	AddSphereToWorld(Vector3(5, 10, 0), 1.0f);
 	//AddSphereToWorld(Vector3(5, 10, -5), 1.0f);
 //	BridgeConstraintTest();
-//	DoorConstraintTest();
-//	InitDefaultFloor();
-
-	InitFromJSON("TestLevel.json");
+	DoorConstraintTest();
+	InitDefaultFloor();
 
 	//Slope
-//	GameObject* slope = AddOBBCubeToWorld(Vector3(0, 50, -150), Vector3(50, 2, 50), 0.0f, true);
-//	slope->GetTransform().SetOrientation(Matrix4::Rotation(45, Vector3(1, 0, 0)));
+	GameObject* slope = AddOBBCubeToWorld(Vector3(0, 50, -150), Vector3(50, 2, 50), 0.0f, true);
+	slope->GetTransform().SetOrientation(Matrix4::Rotation(45, Vector3(1, 0, 0)));
 }
 
 void Game::DoorConstraintTest() {
@@ -356,11 +353,6 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 	world->AddGameObject(floor);
 
 	return floor;
-}
-
-void Game::AddGameObject(GameObject* go)
-{
-	world->AddGameObject(go);
 }
 
 /*
@@ -460,6 +452,68 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 
 	return cube;
 }
+
+
+void Game::InitLight()
+{
+	float pointLightPositions[3] = { 0.0, 10.0, 0.0 };
+	float pointAmbient[3] = { 0.5, 0.5,0.5 };
+	float pointDiffuse[3] = { 0.8, 0.8, 0.8 };
+	float pointSpecular[3] = { 0.4, 0.4, 0.4 };
+
+	//float dirLightPos[] = { -0.2f, -1.0f, -0.3f };
+	//float dirAmbient[] = { 0.05f, 0.05f, 0.05f };
+	//float dirDiffuse[] = { 0.4f, 0.4f, 0.4f };
+	//float dirSpecular[] = { 0.5f, 0.5f, 0.5f };
+
+	float spotLightPositions[3] = { 0.0, 30.0, 0.0 };
+	float spotLightDirection[3] = { 0.0, 0.0, -1.0 };
+	float spotAmbient[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
+	float spotDiffuse[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
+	float spotSpecular[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
+
+	glUseProgram(basicShader->GetProgramID());
+
+
+
+
+	// 控制是使用阴影还是光源
+	glUniform1i(glGetUniformLocation(basicShader->GetProgramID(), "bshadermap"), (int)false);
+	glUniform1i(glGetUniformLocation(basicShader->GetProgramID(), "material.diffuse"), 0);
+	glUniform1i(glGetUniformLocation(basicShader->GetProgramID(), "material.specular"), 1);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "viewPos"), 1, &(world->GetMainCamera()->GetPosition())[0]);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "material.shininess"), 32.0f);
+
+	// 设置(太阳)，为方便观察效果，已在shader中注释掉
+	//(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.direction"), 1, &dirLightPos[0]);
+	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.ambient"), 1, &dirAmbient[0]);
+	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.diffuse"), 1, &dirDiffuse[0]);
+	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.specular"), 1, &dirSpecular[0]);
+
+	// 设置点光源
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.position"), 1, &pointLightPositions[0]);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.ambient"), 1, &pointAmbient[0]);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.diffuse"), 1, &pointDiffuse[0]);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.specular"), 1, &pointSpecular[0]);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.constant"), 1.0f);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.linear"), 0.09f);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.quadratic"), 0.032f);
+
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.position"), 1, &spotLightPositions[0]);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.direction"), 1, &spotLightDirection[0]);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.ambient"), 1, &spotAmbient[0]);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.diffuse"), 1, &spotDiffuse[0]);
+	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.specular"), 1, &spotSpecular[0]);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.constant"), 1.0f);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.linear"), 0.09f);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.quadratic"), 0.032f);
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.cutOff"), cos(Maths::DegreesToRadians(12.5)));
+	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.outerCutOff"), cos(Maths::DegreesToRadians(15.0)));
+}
+
+
+
+
 
 void Game::InitSphereGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, float radius) {
 	for (int x = 0; x < numCols; ++x) {
