@@ -8,6 +8,8 @@ namespace NCL {
 	using namespace NCL::Rendering;
 
 	class MeshGeometry;
+	class MeshMaterial;
+
 	namespace CSC8508 {
 		class Transform;
 		using namespace Maths;
@@ -15,7 +17,7 @@ namespace NCL {
 		class RenderObject
 		{
 		public:
-			RenderObject(Transform* parentTransform, MeshGeometry* mesh, TextureBase* tex, ShaderBase* shader);
+			RenderObject(Transform* parentTransform, MeshGeometry* mesh, MeshMaterial* mat, TextureBase* tex, ShaderBase* shader);
 			~RenderObject();
 
 			void SetDefaultTexture(TextureBase* t) {
@@ -28,6 +30,10 @@ namespace NCL {
 
 			MeshGeometry*	GetMesh() const {
 				return mesh;
+			}
+
+			MeshMaterial* GetMaterial() const {
+				return material;
 			}
 
 			Transform*		GetTransform() const {
@@ -48,6 +54,7 @@ namespace NCL {
 
 		protected:
 			MeshGeometry*	mesh;
+			MeshMaterial*	material;
 			TextureBase*	texture;
 			ShaderBase*		shader;
 			Transform*		transform;

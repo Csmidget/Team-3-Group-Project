@@ -17,7 +17,7 @@ namespace NCL {
 			~BoidObject();
 
 			void OnUpdate(float dt) override;
-			void OnCollisionBegin(GameObject* otherObject) override;
+			//void OnCollisionBegin(GameObject* otherObject) override;
 
 		protected:
 			BoidObject(Game* game, BoidSwarm** swarm, Vector3 respawnPosition);

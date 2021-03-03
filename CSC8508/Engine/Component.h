@@ -13,6 +13,8 @@ namespace NCL {
 			Component(GameObject* object);
 			virtual void Start() {};
 			virtual void Update(float dt) {};
+			virtual void OnCollisionBegin(GameObject* otherObject) {};
+			virtual void OnKill() {};
 
 		protected:
 			GameObject* gameObject;

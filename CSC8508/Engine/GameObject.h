@@ -36,7 +36,7 @@ namespace NCL {
 			//Override to add debug info
 			virtual void ObjectSpecificDebugInfo(int& currLine, float lineSpacing) const {};
 
-			virtual void OnKill() { isActive = false; }
+			virtual void OnKill();
 
 			void SetBoundingVolume(CollisionVolume* vol) {
 				boundingVolume = vol;
@@ -94,9 +94,7 @@ namespace NCL {
 				return name;
 			}
 
-			virtual void OnCollisionBegin(GameObject* otherObject) {
-				//std::cout << "OnCollisionBegin event occured!\n";
-			}
+			void OnCollisionBegin(GameObject* otherObject);
 
 			virtual void OnCollisionEnd(GameObject* otherObject) {
 				//std::cout << "OnCollisionEnd event occured!\n";

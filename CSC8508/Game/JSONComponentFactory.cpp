@@ -1,9 +1,10 @@
 #include "JsonComponentFactory.h"
 #include "JSONShared.h"
 
-#include "MoveLeftComponent.h"
-#include "MoveRightComponent.h"
 #include "MoveComponent.h"
+#include "PlayerComponent.h"
+#include "RespawnComponent.h"
+
 #include "../Engine/GameObject.h"
 
 using namespace NCL;
@@ -16,9 +17,9 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	
 	std::string name = componentJson["name"];
 
-	if (name == "Move") return gameObject->AddComponent<MoveComponent>(JsonToVector3(componentJson["force"]));
-	if (name == "MoveLeft") return gameObject->AddComponent<MoveLeftComponent>();
-	if (name == "MoveRight") return gameObject->AddComponent<MoveRightComponent>();
+	if (name == "Move")			return gameObject->AddComponent<MoveComponent>(JsonToVector3(componentJson["force"]), componentJson["time"]);
+	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
+	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
 
 	return nullptr;
 }
