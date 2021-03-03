@@ -117,6 +117,7 @@ hide or show the
 //wort wort wort
 */
 int main() {
+	NetworkBase::Initialise();
 	Window* w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
 
 	if (!w->HasInitialised()) {
@@ -155,5 +156,7 @@ int main() {
 
 		g->UpdateGame(dt);
 	}
+	NetworkBase::Destroy();
+
 	Window::DestroyGameWindow();
 }
