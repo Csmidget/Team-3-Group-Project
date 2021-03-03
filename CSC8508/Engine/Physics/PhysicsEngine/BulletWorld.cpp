@@ -40,5 +40,6 @@ void BulletWorld::Update(float dt)
 	for (auto i : rigidList)
 	{
 		i->updateTransform();
+		i->returnBody()->applyDamping(1.f / 60.f);
 	}
 }
