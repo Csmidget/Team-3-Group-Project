@@ -175,7 +175,7 @@ void Game::LockedObjectMovement() {
 	Vector3 charForward  = lockedObject->GetTransform().GetOrientation() * Vector3(0, 0, 1);
 	Vector3 charForward2 = lockedObject->GetTransform().GetOrientation() * Vector3(0, 0, 1);
 
-	float force = 10.0f;
+	float force = 100.0f;
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::A)) {
 		lockedObject->GetPhysicsObject()->AddForce(-rightAxis * force);
 	}
@@ -193,7 +193,15 @@ void Game::LockedObjectMovement() {
 	}
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::SPACE)) {
-		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,1,0));
+		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,100.0f,0));
+	}
+
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) {
+		selectionObject->GetPhysicsObject()->AddTorque(Vector3(0, -100, 0));
+	}
+
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::E)) {
+		selectionObject->GetPhysicsObject()->AddTorque(Vector3(0, 100, 0));
 	}
 
 }

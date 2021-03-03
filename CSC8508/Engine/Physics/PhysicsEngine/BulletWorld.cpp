@@ -15,6 +15,7 @@ BulletWorld::BulletWorld()
 
 	//sets gravity need to add member variable
 	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	
 }
 
 BulletWorld::~BulletWorld()
