@@ -29,32 +29,35 @@ void PhysicsObject::ApplyAngularImpulse(const Vector3& force) {
 	//if (volume->type == VolumeType::AABB)
 	//	return;
 
- 	angularVelocity += inverseInteriaTensor * force;
+ 	//angularVelocity += inverseInteriaTensor * force;
+	body->addTorqueImpulse(force);
 }
 
 void PhysicsObject::ApplyLinearImpulse(const Vector3& force) {
-	linearVelocity += force * inverseMass;
+	//linearVelocity += force * inverseMass;
+	body->addImpulse(force);
 }
 
 void PhysicsObject::AddForce(const Vector3& addedForce) {
-	force += addedForce;
+	//force += addedForce;
 	body->addForce(addedForce);
 	//body->setLinearVelocity(force);
 }
 
 void PhysicsObject::AddForceAtPosition(const Vector3& addedForce, const Vector3& position) {
 	Vector3 localPos = position - transform->GetPosition();
+	body->addForceAtPos(addedForce, position);
 
-	if (volume->type == VolumeType::AABB)
-		localPos = Vector3();
+	//if (volume->type == VolumeType::AABB)
+	//	localPos = Vector3();
 
-	force  += addedForce;
-	torque += Vector3::Cross(localPos, addedForce);
+	//force  += addedForce;
+	//torque += Vector3::Cross(localPos, addedForce);
 }
 
 void PhysicsObject::AddTorque(const Vector3& addedTorque) {
-	torque += addedTorque;
-
+	//torque += addedTorque;
+	body->addTorque(addedTorque);
 }
 
 

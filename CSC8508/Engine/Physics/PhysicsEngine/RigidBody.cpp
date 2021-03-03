@@ -66,6 +66,41 @@ void RigidBody::setLinearVelocity(NCL::Maths::Vector3 vel)
 	body->activate();
 }
 
+void RigidBody::addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos)
+{
+	btVector3 pushForce;
+	pushForce.setValue(force.x, force.y, force.z);
+
+	btVector3 relPos;
+	relPos.setValue(pos.x, pos.y, pos.z);
+
+	body->applyForce(pushForce, relPos);
+}
+
+void RigidBody::addTorque(NCL::Maths::Vector3 torque)
+{
+	btVector3 addedTorque;
+	addedTorque.setValue(torque.x, torque.y, torque.z);
+	body->applyTorque(addedTorque);
+	body->activate();
+}
+
+void RigidBody::addImpulse(NCL::Maths::Vector3 force)
+{
+	btVector3 pushForce;
+	pushForce.setValue(force.x, force.y, force.z);
+	body->applyCentralPushImpulse(pushForce);
+	body->activate();
+}
+
+void RigidBody::addTorqueImpulse(NCL::Maths::Vector3 torque)
+{
+	btVector3 addedTorque;
+	addedTorque.setValue(torque.x, torque.y, torque.z);
+	body->applyTorqueTurnImpulse(addedTorque);
+	body->activate();
+}
+
 void RigidBody::updateTransform()
 {
 	btVector3 pos = body->getCenterOfMassTransform().getOrigin();
@@ -105,7 +140,7 @@ void RigidBody::createBody(	NCL::Maths::Vector3 SetPosition,
 	body = new btRigidBody(bodyInfo);
 	body->setUserPointer(this);
 
-	body->setDamping(0.1, 0.85);
+	body->setDamping(0.1, 0.7);
 	physicsWorld->addRigidBody(this);
 	
 }

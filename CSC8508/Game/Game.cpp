@@ -175,7 +175,7 @@ void Game::LockedObjectMovement() {
 	Vector3 charForward  = lockedObject->GetTransform().GetOrientation() * Vector3(0, 0, 1);
 	Vector3 charForward2 = lockedObject->GetTransform().GetOrientation() * Vector3(0, 0, 1);
 
-	float force = 100.0f;
+	float force = 10.0f;
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::A)) {
 		lockedObject->GetPhysicsObject()->AddForce(-rightAxis * force);
 	}
@@ -196,7 +196,6 @@ void Game::LockedObjectMovement() {
 		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,1,0));
 	}
 
-	//lockedObject->GetPhysicsObject()->AddForce(Vector3(0, 0, 0));
 }
 
 void Game::DebugObjectMovement() {
@@ -325,14 +324,6 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 												0.4,
 												0.4,
 												physics);
-
-	//floor->GetPhysicsObject()->body->returnBody()->setAng
-	//physics->addRigidBody(floor->GetPhysicsObject()->body);
-
-
-	//floor->GetPhysicsObject()->SetInverseMass(0);
-	//floor->GetPhysicsObject()->InitCubeInertia();
-
 	floor->SetIsStatic(true);
 
 	world->AddGameObject(floor);
@@ -369,12 +360,6 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 													0.4,
 													0.4,
 													physics);
-
-	//physics->addRigidBody(sphere->GetPhysicsObject()->body);
-
-	/*sphere->GetPhysicsObject()->SetInverseMass(inverseMass);
-	sphere->GetPhysicsObject()->InitHollowSphereInertia();*/
-
 	world->AddGameObject(sphere);
 
 	return sphere;
@@ -402,12 +387,6 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 													0.4,
 													0.4,
 													physics);
-	//capsule->GetPhysicsObject()->body->returnBody()->setDamping(0.1, 100.0);
-
-	//physics->addRigidBody(capsule->GetPhysicsObject()->body);
-
-	//capsule->GetPhysicsObject()->SetInverseMass(inverseMass);
-	//capsule->GetPhysicsObject()->InitCapsuleInertia(halfHeight,radius);
 
 	world->AddGameObject(capsule);
 
@@ -438,13 +417,6 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 												0.4,
 												physics);
 
-	//physics->addRigidBody(cube->GetPhysicsObject()->body);
-
-
-	//cube->GetPhysicsObject()->SetInverseMass(inverseMass);
-	//cube->GetPhysicsObject()->InitCubeInertia();
-	//cube->SetIsStatic(isStatic);
-
 	world->AddGameObject(cube);
 
 	return cube;
@@ -473,14 +445,6 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 												0.4,
 												1.0,
 												physics);
-
-	//physics->addRigidBody(cube->GetPhysicsObject()->body);
-
-
-	//cube->GetPhysicsObject()->SetInverseMass(inverseMass);
-	//cube->GetPhysicsObject()->InitCubeInertia();
-	//cube->SetIsStatic(isStatic);
-
 	world->AddGameObject(cube);
 
 	return cube;
