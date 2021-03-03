@@ -10,12 +10,12 @@ using namespace physics;
 
 BulletWorld::BulletWorld()
 {
-	collisionConfiguration = new btDefaultCollisionConfiguration();
-	dispatcher = new btCollisionDispatcher(collisionConfiguration);
-	overlappingPairCache = new btDbvtBroadphase();
-	solver = new btSequentialImpulseConstraintSolver;
+	collisionConfiguration	=	new btDefaultCollisionConfiguration();
+	dispatcher				=	new btCollisionDispatcher(collisionConfiguration);
+	overlappingPairCache	=	new btDbvtBroadphase();
+	solver					=	new btSequentialImpulseConstraintSolver;
 
-	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
+	dynamicsWorld			=	new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
 	//sets gravity need to add member variable
 	dynamicsWorld->setGravity(btVector3(0, -10, 0));
@@ -42,7 +42,11 @@ void BulletWorld::addRigidBody(RigidBody* body)
 void BulletWorld::removeRigidBody(RigidBody* body)
 {
 	dynamicsWorld->removeRigidBody(body->returnBody());
-	rigidList.erase(std::remove(rigidList.begin(), rigidList.end(), body->returnBody()), rigidList.end());
+	//rigidList.erase(std::remove(rigidList.begin(), rigidList.end(), body->returnBody()), rigidList.end());
+	for (auto i : rigidList)
+	{
+
+	}
 }
 
 void BulletWorld::Update(float dt)
@@ -65,6 +69,13 @@ void BulletWorld::checkCollisions()
 		btPersistentManifold* contactManifold = dynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
 		const btCollisionObject* obA = contactManifold->getBody0();
 		const btCollisionObject* obB = contactManifold->getBody1();
+
+		//if(contactManifold->getNumContacts() <= 0)
+		//{
+		//	((GameObject*)obA->getUserPointer())->OnCollisionEnd(((GameObject*)obB->getUserPointer()));
+		//	((GameObject*)obB->getUserPointer())->OnCollisionEnd(((GameObject*)obA->getUserPointer()));
+		//}
+
 
 		((GameObject*)obA->getUserPointer())->OnCollisionBegin(((GameObject*)obB->getUserPointer()));
 		((GameObject*)obB->getUserPointer())->OnCollisionBegin(((GameObject*)obA->getUserPointer()));
