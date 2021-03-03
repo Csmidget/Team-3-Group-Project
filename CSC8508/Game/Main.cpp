@@ -35,7 +35,8 @@ void TestNetworkingClient() {
 	int port = NetworkBase::GetDefaultPort();
 	GameClient* client = new GameClient();
 	client->RegisterPacketHandler(String_Message, &clientReceiver);
-	bool canConnect = client->Connect(80, 5, 123, 22, port);
+	bool canConnect = LocalHost::IsLocalHostMode() ? client->Connect(LocalHost::GetA(), LocalHost::GetB(), LocalHost::GetC(), LocalHost::GetD(), LocalHost::GetPort()) :
+		client->Connect(0, 0, 0, 0, NetworkBase::GetDefaultPort());
 
 	int i = 0;
 	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
@@ -52,8 +53,8 @@ void TestNetworkingClient() {
 void TestNetworkingServer() {
 	NetworkBase::Initialise();
 	TestPacketReceiver serverReceiver("Server");
-	int port = NetworkBase::GetDefaultPort();
-	GameServer* server = new GameServer(port, 2);
+	//int port = NetworkBase::GetDefaultPort();
+	GameServer* server = new GameServer(LocalHost::GetPort(), 2);
 	server->RegisterPacketHandler(String_Message, &serverReceiver);
 
 	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
