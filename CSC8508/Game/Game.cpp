@@ -262,10 +262,10 @@ void Game::Clear() {
 void Game::InitWorld() {
 	Clear();
 	AddCubeToWorld(Vector3(0, 0, 0), Vector3(100, 1, 100), 0);
-	AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 10);
-	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
-	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
-	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
+	AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
+	//AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
+	//AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
+	//AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
 }
 
 void Game::DoorConstraintTest() {
@@ -332,6 +332,9 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 												0.4,
 												0.4,
 												physics);
+
+	floor->GetPhysicsObject()->body->setUserPointer(floor);
+
 	floor->SetIsStatic(true);
 
 	world->AddGameObject(floor);
@@ -368,6 +371,8 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 													0.4,
 													0.4,
 													physics);
+	sphere->GetPhysicsObject()->body->setUserPointer(sphere);
+
 	world->AddGameObject(sphere);
 
 	return sphere;
@@ -395,7 +400,8 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 													0.4,
 													0.4,
 													physics);
-
+	capsule->GetPhysicsObject()->body->setUserPointer(capsule);
+	
 	world->AddGameObject(capsule);
 
 	return capsule;
@@ -424,6 +430,7 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 												0.4,
 												0.4,
 												physics);
+	cube->GetPhysicsObject()->body->setUserPointer(cube);
 
 	world->AddGameObject(cube);
 
@@ -453,6 +460,8 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 												0.4,
 												1.0,
 												physics);
+	cube->GetPhysicsObject()->body->setUserPointer(cube);
+
 	world->AddGameObject(cube);
 
 	return cube;

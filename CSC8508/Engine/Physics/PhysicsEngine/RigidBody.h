@@ -30,18 +30,19 @@ namespace NCL
 								float restitution,
 								float friction,
 								BulletWorld* physicsWorld);
+				void setUserPointer(void* object);
+
 
 				btRigidBody* returnBody() { return body; };
 
 				void updateTransform();
 				
+
+
 				void addForce(NCL::Maths::Vector3 force);
 				void addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos);
-
 				void setLinearVelocity(NCL::Maths::Vector3 vel);
-
 				void addTorque(NCL::Maths::Vector3 torque);
-
 				void addImpulse(NCL::Maths::Vector3 force);
 				void addTorqueImpulse(NCL::Maths::Vector3 force);
 

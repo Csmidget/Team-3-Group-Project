@@ -138,9 +138,14 @@ void RigidBody::createBody(	NCL::Maths::Vector3 SetPosition,
 	
 
 	body = new btRigidBody(bodyInfo);
-	body->setUserPointer(this);
-
+	
 	body->setDamping(0.1, 0.7);
 	physicsWorld->addRigidBody(this);
 	
+}
+
+void RigidBody::setUserPointer(void* object)
+{
+	if(body)
+		body->setUserPointer(object);
 }

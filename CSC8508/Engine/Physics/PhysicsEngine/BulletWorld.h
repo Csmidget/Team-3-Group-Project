@@ -19,8 +19,12 @@ namespace NCL
 
 				//void setGravity();
 				void addRigidBody(RigidBody* body);
+				void removeRigidBody(RigidBody* body);
+
 
 				void Update(float dt);
+				void checkCollisions();
+
 			private:
 				btDefaultCollisionConfiguration* collisionConfiguration;
 				btCollisionDispatcher* dispatcher;
@@ -30,6 +34,7 @@ namespace NCL
 				btDiscreteDynamicsWorld* dynamicsWorld;
 
 				std::vector<RigidBody*> rigidList;
+				std::vector< btPersistentManifold*> contactList;
 			};
 		}
 	}
