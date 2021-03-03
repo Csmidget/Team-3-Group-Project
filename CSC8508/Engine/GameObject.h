@@ -7,7 +7,6 @@
 
 #include <vector>
 #include <algorithm>
-#include "NetworkObject.h"
 
 using std::vector;
 
@@ -115,15 +114,6 @@ namespace NCL {
 				return worldID;
 			}
 
-			void InitNetworkObject() {
-				if (networkObject) delete networkObject;
-				networkObject = new NetworkObject(*this, worldID);
-			}
-
-			NetworkObject* GetNetworkObject() const {
-				return networkObject;
-			}
-
 			template<typename T, typename... Params>
 			T* AddComponent(Params... vals) {
 				T* component = new T(this, vals...);
@@ -157,7 +147,6 @@ namespace NCL {
 			CollisionVolume*	boundingVolume;
 			PhysicsObject*		physicsObject;
 			RenderObject*		renderObject;
-			NetworkObject*	 networkObject;
 
 			bool	isActive;
 			bool	isStatic;

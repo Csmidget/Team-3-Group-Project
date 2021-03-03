@@ -124,8 +124,8 @@ int main() {
 		return -1;
 	}
 	//TestNetworking();
-	//TestNetworkingClient();
-	//TestNetworkingServer();
+	TestNetworkingClient();
+	TestNetworkingServer();
 
 
 	srand((unsigned int)time(0));
