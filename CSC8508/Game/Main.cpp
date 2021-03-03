@@ -6,6 +6,8 @@
 using namespace NCL;
 using namespace CSC8508;
 
+//Charles comment
+
 /*
 
 The main function should look pretty familar to you!
