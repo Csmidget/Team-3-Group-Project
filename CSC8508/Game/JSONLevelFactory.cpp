@@ -33,11 +33,22 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 	ResourceManager* resourceManager = game->GetResourceManager();
 
 	MeshGeometry* mesh = resourceManager->LoadMesh(renderObjectJson["mesh"]);
-	TextureBase* tex = resourceManager->LoadTexture("checkerboard.png");//renderObjectJson["texture"]);
+
+	MeshMaterial* meshMat = nullptr;
+	if (renderObjectJson["material"].is_string())
+		meshMat = resourceManager->LoadMaterial(renderObjectJson["material"]);
+
+	TextureBase* tex = nullptr;
+
+	if (renderObjectJson["texture"].is_string())
+		tex = resourceManager->LoadTexture(renderObjectJson["texture"]);
+	else
+		tex = resourceManager->LoadTexture("checkerboard.png");
+
 	ShaderBase* shader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");//renderObjectJson["vertex"],renderObjectJson["fragment"]);
 	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * renderObjectJson["renderScale"]);
 
-	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, tex, shader));
+	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, meshMat, tex, shader));
 }
 
 void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)

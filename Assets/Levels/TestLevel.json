@@ -35,12 +35,13 @@
             },
             "collider": {
                 "type": "capsule",
-                "halfHeight": 1,
+                "halfHeight": 0.6,
                 "radius": 0.5,
                 "isTrigger": false
             },
             "render": {
-                "mesh":"capsule.msh",
+                "mesh":"role_t.msh",
+                "material":"role_t.mat",
                 "renderScale":1
             },
             "physics": {
@@ -71,8 +72,9 @@
                 "isTrigger": false
             },
             "render": {
-                "mesh":"cube.msh",
-                "renderScale":2
+                "mesh":"Barrel_1.msh",
+                "texture":"/Sci-fi/Barrels/Free/Barrel_1/Standard/Textures/New/Barrel_1_mBarrel_1_AlbedoTransparency.png",
+                "renderScale":1
             },
             "physics": {
                 "invMass": 1,

@@ -3,6 +3,7 @@
 #include "OGLShader.h"
 #include "OGLTexture.h"
 
+#include "../../Common/MeshMaterial.h"
 #include "../../Common/TextureLoader.h"
 
 using namespace NCL::Rendering;
@@ -17,6 +18,11 @@ OGLResourceManager::~OGLResourceManager() {
 		delete m.second;
 	}
 	loadedShaders.clear();
+
+	for (auto m : loadedMaterials) {
+		delete m.second;
+	}
+	loadedMaterials.clear();
 
 	for (auto m : loadedTextures) {
 		delete m.second;
@@ -40,6 +46,20 @@ NCL::MeshGeometry* OGLResourceManager::LoadMesh(std::string fileName) {
 	loadedMeshes.emplace(fileName, mesh);
 
 	return mesh;
+}
+
+NCL::MeshMaterial* OGLResourceManager::LoadMaterial(std::string fileName) {
+	 
+	if (loadedMaterials.find(fileName) != loadedMaterials.end())
+		return loadedMaterials[fileName];
+
+	MeshMaterial* material = new MeshMaterial(fileName);
+
+	material->LoadTextures(this);
+
+	loadedMaterials.emplace(fileName, material);
+
+	return material;
 }
 
 ShaderBase* OGLResourceManager::LoadShader(std::string shaderVert, std::string shaderFrag, std::string shaderGeom) {
