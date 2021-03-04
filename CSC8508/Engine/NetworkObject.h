@@ -28,7 +28,7 @@ namespace NCL {
 
 		struct ClientPacket : public GamePacket {
 			int		lastID;
-			char	buttonstates[8];
+			char	buttonstates[10];
 
 			ClientPacket() {
 				size = sizeof(ClientPacket);

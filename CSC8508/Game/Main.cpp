@@ -1,7 +1,7 @@
 
 #include "../../Common/Window.h"
 
-#include "NetworkedGame.h"
+#include "Game.h"
 
 #include "../Engine/GameServer.h"
 #include "../Engine/GameClient.h"
@@ -12,94 +12,6 @@ using namespace CSC8508;
 #include <chrono>
 #include <thread>
 
-
-class TestPacketReceiver : public PacketReceiver {
-public:
-	TestPacketReceiver(string name) {
-		this->name = name;
-	}
-	void ReceivePacket(int type, GamePacket* payload, int source) {
-		if (type == String_Message) {
-			StringPacket* realPacket = (StringPacket*)payload;
-
-			string msg = realPacket->GetStringFromData();
-
-			std::cout << name << " received message: " << msg << std::endl;
-		}
-	}
-	string name;
-};
-void TestNetworkingClient() {
-	NetworkBase::Initialise();
-	TestPacketReceiver clientReceiver("Client1");
-	int port = NetworkBase::GetDefaultPort();
-	GameClient* client = new GameClient();
-	client->RegisterPacketHandler(String_Message, &clientReceiver);
-	bool canConnect = LocalHost::IsLocalHostMode() ? client->Connect(LocalHost::GetA(), LocalHost::GetB(), LocalHost::GetC(), LocalHost::GetD(), LocalHost::GetPort()) :
-		client->Connect(80,5,123,22, NetworkBase::GetDefaultPort());
-
-	int i = 0;
-	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
-		client->SendPacket(StringPacket("Client1 says hello! " + std::to_string(i)));
-		i++;
-		client->UpdateClient();
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-	}
-
-	NetworkBase::Destroy();
-
-}
-
-void TestNetworkingServer() {
-	NetworkBase::Initialise();
-	TestPacketReceiver serverReceiver("Server");
-	//int port = NetworkBase::GetDefaultPort();
-	GameServer* server = new GameServer(LocalHost::GetPort(), 2);
-	server->RegisterPacketHandler(String_Message, &serverReceiver);
-
-	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
-		server->SendGlobalPacket(StringPacket("Server says hello! "));
-		server->UpdateServer();
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-	}
-	NetworkBase::Destroy();
-
-}
-
-void TestNetworking() {
-	NetworkBase::Initialise();
-
-	TestPacketReceiver serverReceiver("Server");
-	TestPacketReceiver clientReceiver("Client1");
-
-	TestPacketReceiver clientReceiver2("Client2");
-
-	int port = NetworkBase::GetDefaultPort();
-
-	GameServer* server = new GameServer(port, 2);
-	GameClient* client = new GameClient();
-	GameClient* client2 = new GameClient();
-
-	server->RegisterPacketHandler(String_Message, &serverReceiver);
-	client->RegisterPacketHandler(String_Message, &clientReceiver);
-	client2->RegisterPacketHandler(String_Message, &clientReceiver2);
-
-	bool canConnect = client->Connect(127, 0, 0, 1, port);
-	bool canConnect2 = client2->Connect(127, 0, 0, 1, port);
-
-	for (int i = 0; i < 100; ++i) {
-		server->SendGlobalPacket(StringPacket("Server says hello! " + std::to_string(i)));
-		client->SendPacket(StringPacket("Client1 says hello! " + std::to_string(i)));
-		client2->SendPacket(StringPacket("Client2 says hello! " + std::to_string(i)));
-		server->UpdateServer();
-		client->UpdateClient();
-		client2->UpdateClient();
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-	}
-
-	NetworkBase::Destroy();
-}
 
 
 
@@ -123,16 +35,13 @@ int main() {
 	if (!w->HasInitialised()) {
 		return -1;
 	}
-	//TestNetworking();
-	TestNetworkingClient();
-	TestNetworkingServer();
 
 
 	srand((unsigned int)time(0));
 	w->ShowOSPointer(false);
 	w->LockMouseToWindow(true);
 
-	NetworkedGame* g = new NetworkedGame();
+	Game* g = new Game();
 	w->GetTimer()->GetTimeDeltaSeconds(); //Clear the timer so we don't get a larget first dt!
 	while (w->UpdateWindow() && !Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
 

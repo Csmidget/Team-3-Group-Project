@@ -159,6 +159,9 @@
     <ClInclude Include="NetworkState.h">
       <Filter>Networking</Filter>
     </ClInclude>
+    <ClInclude Include="NetworkManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWorld.cpp">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="NetworkState.cpp">
       <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
