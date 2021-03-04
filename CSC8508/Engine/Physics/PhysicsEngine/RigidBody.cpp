@@ -125,13 +125,15 @@ void RigidBody::setTransform()
 	body->setCenterOfMassTransform(btTransform(rotation, position));
 }
 
-void RigidBody::createBody(	NCL::Maths::Vector3 SetPosition,
-							NCL::Maths::Quaternion SetRotation,
-							float mass,
+void RigidBody::createBody(	float mass,
 							float restitution,
 							float friction,
 							BulletWorld* physicsWorld)
 {
+
+	NCL::Maths::Vector3 SetPosition = transform->GetPosition();
+	NCL::Maths::Quaternion SetRotation = transform->GetOrientation();
+
 	NCL::Maths::Vector3 eulerAngles = SetRotation.ToEuler();
 
 	btQuaternion rotation;
@@ -149,7 +151,6 @@ void RigidBody::createBody(	NCL::Maths::Vector3 SetPosition,
 	bodyInfo.m_restitution = restitution;
 	bodyInfo.m_friction = friction;
 	
-
 	body = new btRigidBody(bodyInfo);
 	
 	body->setDamping(0.1, 0.7);

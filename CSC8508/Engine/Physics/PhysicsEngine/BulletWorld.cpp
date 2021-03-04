@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "../../CSC8508/Engine/GameObject.h";
+#include "../../CSC8508/Engine/GameObject.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -31,6 +31,7 @@ BulletWorld::~BulletWorld()
 	delete collisionConfiguration;
 
 	rigidList.clear();
+	contactList.clear();
 }
 
 void BulletWorld::addRigidBody(RigidBody* body)
@@ -42,11 +43,7 @@ void BulletWorld::addRigidBody(RigidBody* body)
 void BulletWorld::removeRigidBody(RigidBody* body)
 {
 	dynamicsWorld->removeRigidBody(body->returnBody());
-	//rigidList.erase(std::remove(rigidList.begin(), rigidList.end(), body->returnBody()), rigidList.end());
-	for (auto i : rigidList)
-	{
-
-	}
+	rigidList.erase(std::remove(rigidList.begin(), rigidList.end(), body), rigidList.end());
 }
 
 void BulletWorld::Update(float dt)
@@ -64,21 +61,47 @@ void BulletWorld::Update(float dt)
 void BulletWorld::checkCollisions()
 {
 	int numManifolds = dynamicsWorld->getDispatcher()->getNumManifolds();
-	std::cout << numManifolds << std::endl;;
 	for (int i = 0; i < numManifolds; i++)
 	{
 		btPersistentManifold* contactManifold = dynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
 		const btCollisionObject* obA = contactManifold->getBody0();
 		const btCollisionObject* obB = contactManifold->getBody1();
 
-		if(contactManifold->getNumContacts() <= 0)
+		bool inList = false;
+		collisionPair compare = std::make_pair(obA, obB);
+
+		for (auto const& j : contactList)
+			if (j == compare)
+				inList = true;
+
+		if (!inList)
 		{
-			//((GameObject*)obA->getUserPointer())->OnCollisionEnd(((GameObject*)obB->getUserPointer()));
-			//((GameObject*)obB->getUserPointer())->OnCollisionEnd(((GameObject*)obA->getUserPointer()));
+			contactList.push_back(compare);
+			((GameObject*)obA->getUserPointer())->OnCollisionBegin(((GameObject*)obB->getUserPointer()));
+			((GameObject*)obB->getUserPointer())->OnCollisionBegin(((GameObject*)obA->getUserPointer()));
 		}
-
-
-		//((GameObject*)obA->getUserPointer())->OnCollisionBegin(((GameObject*)obB->getUserPointer()));
-		//((GameObject*)obB->getUserPointer())->OnCollisionBegin(((GameObject*)obA->getUserPointer()));
 	}
+	for (int j = 0; j < contactList.size(); j++)
+	{
+		bool inList = false;
+		for (int i = 0; i < numManifolds; i++)
+		{
+			btPersistentManifold* contactManifold = dynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
+			const btCollisionObject* obA = contactManifold->getBody0();
+			const btCollisionObject* obB = contactManifold->getBody1();
+			collisionPair compare = std::make_pair(obA, obB);
+
+			if (contactList[j] == compare)
+				inList = true;
+		}
+		if (!inList)
+		{
+			const btCollisionObject* obA = contactList[j].first;
+			const btCollisionObject* obB = contactList[j].second;
+			((GameObject*)obA->getUserPointer())->OnCollisionEnd(((GameObject*)obB->getUserPointer()));
+			((GameObject*)obB->getUserPointer())->OnCollisionEnd(((GameObject*)obA->getUserPointer()));
+			contactList.erase(contactList.begin() + j);
+		}
+	}
+
 }

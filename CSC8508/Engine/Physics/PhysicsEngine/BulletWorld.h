@@ -2,6 +2,7 @@
 #include "btBulletDynamicsCommon.h"
 #include "RigidBody.h"
 #include <vector>
+#include <map>
 
 namespace NCL
 {
@@ -9,6 +10,8 @@ namespace NCL
 	{
 		namespace physics
 		{
+
+			typedef std::pair<const btCollisionObject*, const btCollisionObject*> collisionPair;
 			class RigidBody;
 
 			class BulletWorld
@@ -33,8 +36,15 @@ namespace NCL
 
 				btDiscreteDynamicsWorld* dynamicsWorld;
 
+				int frameNumber = 0;
+
 				std::vector<RigidBody*> rigidList;
-				//std::vector< btPersistentManifold*> contactList;
+
+
+				//std::vector<btPersistentManifold> contactList;
+				std::vector<collisionPair> contactList;
+
+				//std::map<int,collisionPair> contactList;
 			};
 		}
 	}

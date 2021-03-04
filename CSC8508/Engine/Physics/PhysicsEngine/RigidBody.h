@@ -24,9 +24,7 @@ namespace NCL
 				void addCylinderShape(NCL::Maths::Vector3& halfExtents);
 				void addConeShape(float& radius, float& height);
 
-				void createBody(NCL::Maths::Vector3 SetPosition,
-								NCL::Maths::Quaternion SetRotation,
-								float mass,
+				void createBody(float mass,
 								float restitution,
 								float friction,
 								BulletWorld* physicsWorld);

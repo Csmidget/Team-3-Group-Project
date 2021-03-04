@@ -326,9 +326,7 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 
 	//testing adding bullet physics object
 	floor->GetPhysicsObject()->body->addBoxShape(floorSize);
-	floor->GetPhysicsObject()->body->createBody(position,
-												floor->GetTransform().GetOrientation(),
-												0,
+	floor->GetPhysicsObject()->body->createBody(0,
 												0.4,
 												0.4,
 												physics);
@@ -365,9 +363,7 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 
 	//testing adding bullet physics object
 	sphere->GetPhysicsObject()->body->addSphereShape(radius);
-	sphere->GetPhysicsObject()->body->createBody(	position,
-													sphere->GetTransform().GetOrientation(),
-													inverseMass,
+	sphere->GetPhysicsObject()->body->createBody(	inverseMass,
 													0.4,
 													0.4,
 													physics);
@@ -394,9 +390,7 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 
 	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
 
-	capsule->GetPhysicsObject()->body->createBody(	position,
-													capsule->GetTransform().GetOrientation(),
-													inverseMass,
+	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
 													0.4,
 													0.4,
 													physics);
@@ -424,9 +418,7 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 
 	//testing adding bullet physics object
 	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
-	cube->GetPhysicsObject()->body->createBody(	position,
-												cube->GetTransform().GetOrientation(), 
-												inverseMass,
+	cube->GetPhysicsObject()->body->createBody(	inverseMass,
 												0.4,
 												0.4,
 												physics);
@@ -454,9 +446,7 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 
 	//testing adding bullet physics object
 	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
-	cube->GetPhysicsObject()->body->createBody(position,
-												cube->GetTransform().GetOrientation(),
-												inverseMass,
+	cube->GetPhysicsObject()->body->createBody(	inverseMass,
 												0.4,
 												1.0,
 												physics);
