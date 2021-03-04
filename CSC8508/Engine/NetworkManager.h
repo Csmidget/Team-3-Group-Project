@@ -41,7 +41,7 @@ class NetworkManager
 		void TestClient();
 		void TestServer();
 
-		bool const OFFLINE_MODE = true;
-		bool isClient = true;
+		bool const OFFLINE_MODE = false;
+		bool isClient = false;
 };
 

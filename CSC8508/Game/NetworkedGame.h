@@ -8,17 +8,7 @@ namespace NCL {
 		class GameClient;
 		class NetworkPlayer;
 
-		static class LocalHost {
-			public:
-				static bool IsLocalHostMode() { return false; }
-				static int GetA() { return 192; }
-				static int GetB() { return 168; }
-				static int GetC() { return 0; }
-				static int GetD() { return 15; }
-				static int GetPort() { return 80; }
-
-
-		};
+	
 
 		class NetworkedGame : public Game, public PacketReceiver {
 		public:

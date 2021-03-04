@@ -240,7 +240,7 @@
       <Filter>Networking</Filter>
     </ClCompile>
     <ClCompile Include="NetworkManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Networking</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

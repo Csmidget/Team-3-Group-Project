@@ -32,8 +32,7 @@ NetworkedGame::~NetworkedGame() {
 
 void NetworkedGame::StartAsServer() {
 
-	//thisServer = new GameServer(NetworkBase::GetDefaultPort(), 4);
-	thisServer = new GameServer(LocalHost::GetPort(), 4);
+	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 4);
 	
 	thisServer->RegisterPacketHandler(Received_State, this);
 
@@ -43,7 +42,6 @@ void NetworkedGame::StartAsServer() {
 void NetworkedGame::StartAsClient(char a, char b, char c, char d) {
 	thisClient = new GameClient();
 	
-	LocalHost::IsLocalHostMode() ? thisClient->Connect(LocalHost::GetA(), LocalHost::GetB(), LocalHost::GetC(), LocalHost::GetD(), LocalHost::GetPort()) :
 	thisClient->Connect(a, b, c, d, NetworkBase::GetDefaultPort());
 
 	thisClient->RegisterPacketHandler(Delta_State, this);
