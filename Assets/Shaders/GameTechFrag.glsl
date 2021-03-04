@@ -1,5 +1,6 @@
 #version 400 core
 out vec4 FragColor;
+
 uniform vec4 		objectColour;
 uniform sampler2D 	mainTex;
 uniform sampler2DShadow shadowTex;
@@ -219,19 +220,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-out vec4 fragColor;
+/*out vec4 fragColor;
 
 void main(void)
 {
@@ -275,7 +264,4 @@ void main(void)
 	//fragColor.xy = IN.texCoord.xy;
 	
 	//fragColor = IN.colour;
-}
-
-
-*/
+}*/
