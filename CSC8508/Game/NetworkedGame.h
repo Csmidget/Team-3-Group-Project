@@ -10,7 +10,7 @@ namespace NCL {
 
 		static class LocalHost {
 			public:
-				static bool IsLocalHostMode() { return true; }
+				static bool IsLocalHostMode() { return false; }
 				static int GetA() { return 192; }
 				static int GetB() { return 168; }
 				static int GetC() { return 0; }

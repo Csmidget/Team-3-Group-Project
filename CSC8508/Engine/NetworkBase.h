@@ -81,7 +81,7 @@ public:
 	static void Destroy();
 
 	static int GetDefaultPort() {
-		return 1234;
+		return 80;
 	}
 
 	void RegisterPacketHandler(int msgID, PacketReceiver* receiver) {
