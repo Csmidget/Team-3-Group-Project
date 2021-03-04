@@ -426,7 +426,7 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 }
 
 
-/*
+
 void Game::InitLight()
 {
 	float pointLightPositions[3] = { 0.0, 10.0, 0.0 };
@@ -482,7 +482,7 @@ void Game::InitLight()
 	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.quadratic"), 0.032f);
 	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.cutOff"), cos(Maths::DegreesToRadians(12.5)));
 	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.outerCutOff"), cos(Maths::DegreesToRadians(15.0)));
-}*/
+}
 
 
 
