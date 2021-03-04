@@ -42,7 +42,9 @@ void SoundManager::PlayOneShot(const std::string& soundFile, const Maths::Vector
 	Audio::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
 	if (channel)
 	{
-		Audio::ErrorCheck(channel->set3DAttributes(&Audio::ToFMODVECTOR(position), &Audio::ToFMODVECTOR(Maths::Vector3(0,0,0))));
+		FMOD_VECTOR pos = Audio::ToFMODVECTOR(position);
+		FMOD_VECTOR vel = Audio::ToFMODVECTOR(Maths::Vector3(0, 0, 0));
+		Audio::ErrorCheck(channel->set3DAttributes(&pos, &vel));
 		Audio::ErrorCheck(channel->setPaused(false));
 	}
 	channelID = audioCore->coreNextChannelID++;
