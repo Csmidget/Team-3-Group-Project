@@ -142,6 +142,7 @@
     <ClInclude Include="BehaviourSelector.h" />
     <ClInclude Include="BehaviourSequence.h" />
     <ClInclude Include="CapsuleVolume.h" />
+    <ClInclude Include="ClientPlayer.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameClient.h" />
     <ClInclude Include="GameServer.h" />
@@ -179,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AngularImpulseConstraint.cpp" />
+    <ClCompile Include="ClientPlayer.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="CollisionVolumeDebug.cpp" />
     <ClCompile Include="Component.cpp" />

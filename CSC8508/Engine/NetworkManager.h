@@ -3,7 +3,7 @@
 #include "../Engine/GameClient.h"
 #include "../Engine/NetworkObject.h"
 #include "../Engine/NetworkBase.h"
-
+#include "../Engine/ClientPlayer.h"
 
 using namespace std;
 
@@ -56,6 +56,7 @@ namespace NCL {
 			void BroadcastSnapshot(bool deltaFrame);
 			void UpdateMinimumState();
 
+			void UpdateOtherPlayers();
 
 
 			bool const OFFLINE_MODE = true;
@@ -69,7 +70,7 @@ namespace NCL {
 
 			std::vector<NetworkObject*> networkObjects;
 
-			std::map<int, GameObject*> serverPlayers;
+			std::map<int, ClientPlayer*> serverPlayers;
 			GameObject* localPlayer;
 		};
 

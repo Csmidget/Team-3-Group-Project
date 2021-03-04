@@ -130,6 +130,11 @@ bool NetworkObject::GetNetworkState(int stateID, NetworkState& state) {
 	return false;
 }
 
+void NCL::CSC8508::NetworkObject::Update(GamePacket& p)
+{
+	ReadPacket(p);
+}
+
 void NetworkObject::UpdateStateHistory(int minID) {
 	for (auto i = stateHistory.begin(); i < stateHistory.end(); ) {
 		if ((*i).stateID < minID) {

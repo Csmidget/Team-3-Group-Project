@@ -66,6 +66,18 @@ void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, 
 			networkObjects[realPacket->objectID]->ReadPacket(*realPacket);
 		}
 	}
+	else if (type == Player_Delta_State) {
+		PlayerDeltaPacket* realPacket = (PlayerDeltaPacket*)payload;
+		if (realPacket->playerID < (int)serverPlayers.size()) {
+			serverPlayers[realPacket->playerID]->ReadPacket(*realPacket);
+		}
+	}
+	else if (type == Player_Full_State) {
+		PlayerFullPacket* realPacket = (PlayerFullPacket*)payload;
+		if (realPacket->playerID < (int)serverPlayers.size()) {
+			serverPlayers[realPacket->playerID]->ReadPacket(*realPacket);
+		}
+	}
 	else if (type == Message) {
 		MessagePacket* realPacket = (MessagePacket*)payload;
 

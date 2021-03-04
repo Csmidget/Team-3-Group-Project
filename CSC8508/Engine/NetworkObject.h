@@ -26,6 +26,27 @@ namespace NCL {
 			}
 		};
 
+		struct PlayerFullPacket : public FullPacket {
+			int		playerID = -1;
+			//NetworkState fullState;
+
+			PlayerFullPacket() {
+				type = Player_Full_State;
+				size = sizeof(PlayerFullPacket) - sizeof(GamePacket);
+			}
+		};
+
+		struct PlayerDeltaPacket : public DeltaPacket {
+			//int		fullID = -1;
+			int		playerID = -1;
+			//char	pos[3];
+			//char	orientation[4];
+
+			PlayerDeltaPacket() {
+				type = Player_Delta_State;
+				size = sizeof(PlayerDeltaPacket) - sizeof(GamePacket);
+			}
+		};
 		struct ClientPacket : public GamePacket {
 			int		lastID;
 			char	buttonstates[10];
@@ -34,6 +55,8 @@ namespace NCL {
 				size = sizeof(ClientPacket);
 			}
 		};
+
+
 
 		class NetworkObject
 		{
@@ -46,6 +69,7 @@ namespace NCL {
 			//Called by servers
 			virtual bool WritePacket(GamePacket** p, bool deltaFrame, int stateID);
 
+			virtual void Update(GamePacket& p);
 			void UpdateStateHistory(int minID);
 
 		protected:
