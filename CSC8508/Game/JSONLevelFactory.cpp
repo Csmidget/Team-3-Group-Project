@@ -17,7 +17,7 @@ using json = nlohmann::json;
 
 void SetTransformFromJson(Transform& transform, json transformJson)
 {
-	if (transformJson.empty())
+	if (!transformJson.is_object())
 		return;
 
 	transform.SetPosition(JSONShared::JsonToVector3(transformJson["position"]));
@@ -27,22 +27,33 @@ void SetTransformFromJson(Transform& transform, json transformJson)
 
 void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game* game)
 {
-	if (renderObjectJson.empty())
+	if (!renderObjectJson.is_object())
 		return;
 
 	ResourceManager* resourceManager = game->GetResourceManager();
 
 	MeshGeometry* mesh = resourceManager->LoadMesh(renderObjectJson["mesh"]);
-	TextureBase* tex = resourceManager->LoadTexture(renderObjectJson["texture"]);
-	ShaderBase* shader = resourceManager->LoadShader(renderObjectJson["vertex"],renderObjectJson["fragment"]);
+
+	MeshMaterial* meshMat = nullptr;
+	if (renderObjectJson["material"].is_string())
+		meshMat = resourceManager->LoadMaterial(renderObjectJson["material"]);
+
+	TextureBase* tex = nullptr;
+
+	if (renderObjectJson["texture"].is_string())
+		tex = resourceManager->LoadTexture(renderObjectJson["texture"]);
+	else
+		tex = resourceManager->LoadTexture("checkerboard.png");
+
+	ShaderBase* shader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");//renderObjectJson["vertex"],renderObjectJson["fragment"]);
 	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * renderObjectJson["renderScale"]);
 
-	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, tex, shader));
+	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, meshMat, tex, shader));
 }
 
 void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 {
-	if (physicsObjectJson.empty())
+	if (!physicsObjectJson.is_object())
 		return;
 
 	PhysicsObject* po = new PhysicsObject(&gameObject->GetTransform(), gameObject->GetBoundingVolume());
@@ -52,28 +63,49 @@ void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 		po->InitSphereInertia();
 	else if (physicsObjectJson["inertia"] == "cube")
 		po->InitCubeInertia();
+	else
+		po->InitCubeInertia();
 
 	gameObject->SetPhysicsObject(po);
 }
 
+void SetColliderFromJson(GameObject* gameObject, json colliderJson)
+{
+	if (!colliderJson.is_object())
+		return;
+
+	CollisionVolume* volume = nullptr;
+	Transform& transform = gameObject->GetTransform();
+
+	if (colliderJson["type"] == "box")
+		volume = new AABBVolume(transform.GetScale());
+	else if (colliderJson["type"] == "obbbox")
+		volume = new OBBVolume(transform.GetScale());
+	else if (colliderJson["type"] == "sphere")
+		volume = new SphereVolume(transform.GetScale().x);
+	else if (colliderJson["type"] == "capsule")
+		volume = new CapsuleVolume(colliderJson["halfHeight"],colliderJson["radius"]);
+
+	gameObject->SetBoundingVolume(volume);
+}
+
 GameObject* CreateObjectFromJson(json objectJson, Game* game)
 {
-	GameObject* go = new GameObject(objectJson["name"]);
+	if (!objectJson.is_object())
+		return nullptr;
+	
+	GameObject* go = (objectJson["name"].is_string() ? new GameObject(objectJson["name"]) : new GameObject("unnamed"));
 	Transform& transform = go->GetTransform();
+
 	SetTransformFromJson(transform, objectJson["transform"]);
 
-	if		(objectJson["collider"] == "AABB")		
-		go->SetBoundingVolume(new AABBVolume(transform.GetScale()));
-	else if (objectJson["collider"] == "OBB")		
-		go->SetBoundingVolume(new OBBVolume(transform.GetScale()));
-	else if (objectJson["collider"] == "Sphere")	
-		go->SetBoundingVolume(new SphereVolume(transform.GetScale().x));
+	SetColliderFromJson(go, objectJson["collider"]);
 
 	SetRenderObjectFromJson(go, objectJson["render"], game);
 
 	SetPhysicsObjectFromJson(go, objectJson["physics"]);
 
-	go->SetIsStatic(objectJson["static"]);
+	go->SetIsStatic(objectJson["static"].is_boolean() ? objectJson["static"] : false);
 
 	for (auto component : objectJson["components"])
 	  JSONComponentFactory::AddComponentFromJson(component, go, game);
@@ -88,6 +120,9 @@ void JSONLevelFactory::ReadLevelFromJson(std::string fileName, Game* game)
 	json level {};
 
 	input >> level;
+
+	if (!level.is_object())
+		throw std::exception("Unable to read level json");
 
 	for (auto obj : level["objects"])
 		game->AddGameObject(CreateObjectFromJson(obj,game));

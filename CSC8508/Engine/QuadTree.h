@@ -2,8 +2,10 @@
 #include "../../Common/Vector2.h"
 #include "CollisionDetection.h"
 #include "Debug.h"
+
 #include <list>
 #include <set>
+
 #include <functional>
 
 namespace NCL {

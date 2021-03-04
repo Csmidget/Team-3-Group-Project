@@ -6,6 +6,7 @@ Use as you see fit!
 Comments and queries to: richard-gordon.davison AT ncl.ac.uk
 https://research.ncl.ac.uk/game/
 */
+
 #include "TextureLoader.h"
 #include <iostream>
 #define STB_IMAGE_IMPLEMENTATION
@@ -39,6 +40,9 @@ bool TextureLoader::LoadTexture(const std::string& filename, char*& outData, int
 		//There's a custom handler function for this, just use that
 		return it->second(realPath, outData, width, height, channels, flags);
 	}
+
+	int res = stbi_info(realPath.c_str(), &width, &height, &channels);
+
 	//By default, attempt to use stb image to get this texture
 	stbi_uc *texData = stbi_load(realPath.c_str(), &width, &height, &channels, 4); //4 forces this to always be rgba!
 

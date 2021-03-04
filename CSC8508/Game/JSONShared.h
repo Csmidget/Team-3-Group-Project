@@ -4,10 +4,8 @@
 #include "../../Common/Vector3.h"
 #include "../../Common/Quaternion.h"
 
-namespace NCL
-{
+namespace NCL {
 	namespace CSC8508 {
-		
 		namespace JSONShared {
 
 			Maths::Vector3 JsonToVector3(nlohmann::json vectorJson);

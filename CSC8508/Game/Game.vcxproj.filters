@@ -33,12 +33,6 @@
     <ClCompile Include="RespawningObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveRightComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveLeftComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="MoveComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -51,6 +45,12 @@
     <ClCompile Include="JSONShared.cpp">
       <Filter>JSON</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RespawnComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -61,12 +61,6 @@
     </ClInclude>
     <ClInclude Include="RespawningObject.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveLeftComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveRightComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="MoveComponent.h">
       <Filter>Components</Filter>
@@ -79,6 +73,12 @@
     </ClInclude>
     <ClInclude Include="JSONComponentFactory.h">
       <Filter>JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RespawnComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
