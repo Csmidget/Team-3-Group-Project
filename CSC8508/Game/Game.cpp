@@ -475,20 +475,20 @@ void Game::InitLight()
 
 
 
-	// 控制是使用阴影还是光源
+	// 控制是使用阴影还是光源  Controls whether to use a shadow or light source
 	glUniform1i(glGetUniformLocation(basicShader->GetProgramID(), "bshadermap"), (int)false);
 	glUniform1i(glGetUniformLocation(basicShader->GetProgramID(), "material.diffuse"), 0);
 	glUniform1i(glGetUniformLocation(basicShader->GetProgramID(), "material.specular"), 1);
 	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "viewPos"), 1, &(world->GetMainCamera()->GetPosition())[0]);
 	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "material.shininess"), 32.0f);
 
-	// 设置(太阳)，为方便观察效果，已在shader中注释掉
+	// 设置(太阳)，为方便观察效果，已在shader中注释掉   The setting (sun) has been commented out in the shader for easy viewing
 	//(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.direction"), 1, &dirLightPos[0]);
 	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.ambient"), 1, &dirAmbient[0]);
 	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.diffuse"), 1, &dirDiffuse[0]);
 	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.specular"), 1, &dirSpecular[0]);
 
-	// 设置点光源
+	// 设置点光源 set point light
 	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.position"), 1, &pointLightPositions[0]);
 	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.ambient"), 1, &pointAmbient[0]);
 	glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "pointLights.diffuse"), 1, &pointDiffuse[0]);
