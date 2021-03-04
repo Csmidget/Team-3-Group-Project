@@ -28,14 +28,15 @@ namespace NCL {
 
 		struct ClientPacket : public GamePacket {
 			int		lastID;
-			char	buttonstates[8];
+			char	buttonstates[10];
 
 			ClientPacket() {
 				size = sizeof(ClientPacket);
 			}
 		};
 
-		class NetworkObject		{
+		class NetworkObject
+		{
 		public:
 			NetworkObject(GameObject& o, int id);
 			virtual ~NetworkObject();
@@ -59,7 +60,6 @@ namespace NCL {
 			virtual bool WriteDeltaPacket(GamePacket**p, int stateID);
 			virtual bool WriteFullPacket(GamePacket**p);
 
-			GameObject& object;
 
 			NetworkState lastFullState;
 
@@ -67,6 +67,8 @@ namespace NCL {
 
 			int deltaErrors;
 			int fullErrors;
+
+			GameObject& object;
 
 			int networkID;
 		};

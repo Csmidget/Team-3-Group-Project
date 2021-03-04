@@ -29,18 +29,56 @@ public:
 	}
 	string name;
 };
-void TestNetworkingClient() {
+void TestNetworkingClient(Window* w) {
 	NetworkBase::Initialise();
-	TestPacketReceiver clientReceiver("Client1");
+	TestPacketReceiver clientReceiver("JakeClient");
 	int port = NetworkBase::GetDefaultPort();
 	GameClient* client = new GameClient();
 	client->RegisterPacketHandler(String_Message, &clientReceiver);
-	bool canConnect = client->Connect(80, 5, 123, 22, port);
+	bool canConnect = client->Connect(80,5,123,22, port);
 
+
+	
 	int i = 0;
-	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
-		client->SendPacket(StringPacket("Client1 says hello! " + std::to_string(i)));
+
+	bool keyPressed;
+
+	while (w->UpdateWindow() && !Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
+
+		char inputs[5] = "0000";
+		keyPressed = false;
+
+		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::W))
+		{
+			inputs[0] = '1';
+			keyPressed = true;
+		}
+		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::A))
+		{
+			inputs[1] = '1';
+			keyPressed = true;
+		}
+		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::S))
+		{
+			inputs[2] = '1';
+			keyPressed = true;
+		}
+		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::D))
+		{
+			inputs[3] = '1';
+			keyPressed = true;
+		}
+
+
+		//inputs[4] = '/0';
+
+
+		if (keyPressed)
+		{
+					client->SendPacket(StringPacket("JakeClient inputs " + std::string(inputs) + std::to_string(i)));
 		i++;
+		}
+
 		client->UpdateClient();
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
@@ -115,43 +153,51 @@ hide or show the
 //wort wort wort
 */
 int main() {
-	Window* w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
+	Window* w1 = Window::CreateGameWindow("CSC8508 Server!", 1280, 720);
+	//Window* w2 = Window::CreateGameWindow("CSC8508 Client!", 1280, 720);
 
-	if (!w->HasInitialised()) {
+	if (!w1->HasInitialised()) {
 		return -1;
 	}
 	//TestNetworking();
 	//TestNetworkingClient();
-	//TestNetworkingServer();
 
 
+	//NetworkBase::Initialise();
+	
 	srand((unsigned int)time(0));
-	w->ShowOSPointer(false);
-	w->LockMouseToWindow(true);
+	w1->ShowOSPointer(false);
+	w1->LockMouseToWindow(true);
 
 	NetworkedGame* g = new NetworkedGame();
-	w->GetTimer()->GetTimeDeltaSeconds(); //Clear the timer so we don't get a larget first dt!
-	while (w->UpdateWindow() && !Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
 
-		float dt = w->GetTimer()->GetTimeDeltaSeconds();
+	w1->GetTimer()->GetTimeDeltaSeconds(); //Clear the timer so we don't get a larget first dt!
+
+	TestNetworkingClient(w1);
+	while (w1->UpdateWindow() && !Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
+
+		float dt = w1->GetTimer()->GetTimeDeltaSeconds();
 		if (dt > 0.1f) {
 			std::cout << "Skipping large time delta" << std::endl;
 			continue; //must have hit a breakpoint or something to have a 1 second frame time!
 		}
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::PRIOR)) {
-			w->ShowConsole(true);
+			w1->ShowConsole(true);
 		}
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::NEXT)) {
-			w->ShowConsole(false);
+			w1->ShowConsole(false);
 		}
 
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {
-			w->SetWindowPosition(0, 0);
+			w1->SetWindowPosition(0, 0);
 		}
 
-		w->SetTitle("Gametech frame time:" + std::to_string(1000.0f * dt));
+		w1->SetTitle("Gametech frame time:" + std::to_string(1000.0f * dt));
 
 		g->UpdateGame(dt);
+
 	}
+
+	//NetworkBase::Destroy();
 	Window::DestroyGameWindow();
 }
