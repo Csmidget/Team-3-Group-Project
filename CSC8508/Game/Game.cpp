@@ -14,7 +14,7 @@ using namespace CSC8508;
 
 Game::Game()	{
 	world		= new GameWorld();
-	renderer	= new GameTechRenderer(*world, *resourceManager);
+	renderer	= new GameTechRenderer(*world, *resourceManager);      //Lighting staff ¡û
 	physics		= new PhysicsSystem(*world);
 
 	forceMagnitude	= 10.0f;
@@ -34,6 +34,7 @@ for this module, even in the coursework, but you can add it if you like!
 
 */
 
+//Call-mesh function¡ý
 
 void Game::InitialiseAssets() {
 	auto loadFunc = [](const string& name, OGLMesh** into) {
@@ -455,6 +456,8 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 	return cube;
 }
 
+
+//Lighting function¡ý
 
 void Game::InitLight()
 {
