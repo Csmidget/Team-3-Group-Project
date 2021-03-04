@@ -45,7 +45,6 @@ namespace NCL {
 	class MeshGeometry
 	{
 	public:		
-
 		virtual ~MeshGeometry();
 
 		GeometryPrimitive GetPrimitiveType() const {

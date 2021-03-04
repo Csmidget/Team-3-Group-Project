@@ -12,7 +12,7 @@ namespace NCL {
 		class GameWorld;
 		class GameObject;
 
-		class Game {
+		class Game		{
 		public:
 			Game();
 			~Game();
@@ -34,7 +34,7 @@ namespace NCL {
 			void UpdateKeys();
 
 			void InitWorld();
-
+			
 			void InitFromJSON(std::string fileName);
 
 			void InitGameExamples();
@@ -47,7 +47,7 @@ namespace NCL {
 			void InitDefaultFloor();
 			void BridgeConstraintTest();
 			void DoorConstraintTest();
-
+	
 			bool SelectObject();
 			void MoveSelectedObject();
 			void DebugObjectMovement();
@@ -57,16 +57,16 @@ namespace NCL {
 			GameObject* AddSphereToWorld(const Maths::Vector3& position, float radius, float inverseMass = 10.0f, bool respawning = false);
 			GameObject* AddCubeToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
 			GameObject* AddOBBCubeToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
-
+			
 			GameObject* AddCapsuleToWorld(const Maths::Vector3& position, float halfHeight, float radius, float inverseMass = 10.0f, bool respawning = false);
 
 			GameObject* AddPlayerToWorld(const Maths::Vector3& position);
 			GameObject* AddEnemyToWorld(const Maths::Vector3& position);
 			GameObject* AddBonusToWorld(const Maths::Vector3& position);
 
-			GameTechRenderer* renderer;
-			PhysicsSystem* physics;
-			GameWorld* world;
+			GameTechRenderer*	renderer;
+			PhysicsSystem*		physics;
+			GameWorld*			world;
 			NCL::Rendering::ResourceManager* resourceManager;
 
 			bool useGravity;
@@ -78,8 +78,8 @@ namespace NCL {
 			GameObject* forwardObject = nullptr;
 
 			//Coursework Additional functionality	
-			GameObject* lockedObject = nullptr;
-			Maths::Vector3 lockedOffset = Maths::Vector3(0, 14, 20);
+			GameObject* lockedObject	= nullptr;
+			Maths::Vector3 lockedOffset		= Maths::Vector3(0, 14, 20);
 			void LockCameraToObject(GameObject* o) {
 				lockedObject = o;
 			}
