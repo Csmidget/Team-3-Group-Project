@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "../Plugins/OpenGLRendering/glad/glad.h"
 using std::string;
 namespace NCL {
 	namespace Rendering {
@@ -18,6 +19,8 @@ namespace NCL {
 			}
 			ShaderBase(const string& vertex, const string& fragment, const string& geometry = "", const string& domain = "", const string& hull = "");
 			virtual ~ShaderBase();
+
+		
 
 			virtual void ReloadShader() = 0;
 		protected:
