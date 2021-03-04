@@ -1,200 +1,299 @@
-{
-    "objects" : [ 
-        {   
-            "name": "floor",
-            "static": true,
-            "tag": "test",
-            "collider": {
-                "type": "box",
-                "size": {"x": 1, "y": 1, "z": 1},
-                "isTrigger": false
+[
+    {
+        "name": "floor",
+        "static": true,
+        "tag": "test",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
             },
-            "transform" : {
-                "position":     {"x": 0, "y": 0, "z":  0},
-                "orientation":  {"x": 0, "y": 0, "z":  0, "w": 0},
-                "scale":        {"x": 50,"y": 1, "z": 50}
-            },
-            "render" : {
-                "mesh":"cube.msh",
-                "renderScale": 2
-            },
-            "physics": {
-                "invMass": 0,
-                "drag": 0,
-                "isKinematic": false
-            },
-            "components": [
-            ]
+            "isTrigger": false
         },
-        {
-            "name": "player",
-            "transform" : {
-                "position":     {"x": 0, "y": 10, "z":  0},
-                "orientation":  {"x": 2, "y": 0, "z":  0, "w": 0},
-                "scale":        {"x": 1,"y": 1, "z": 1}
+        "transform": {
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
             },
-            "collider": {
-                "type": "capsule",
-                "halfHeight": 0.6,
-                "radius": 0.5,
-                "isTrigger": false
+            "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 0
             },
-            "render": {
-                "mesh":"role_t.msh",
-                "material":"role_t.mat",
-                "renderScale":1
+            "scale": {
+                "x": 50,
+                "y": 1,
+                "z": 50
+            }
+        },
+        "render": {
+            "mesh": "cube.msh",
+            "renderScale": 2
+        },
+        "physics": {
+            "invMass": 0,
+            "drag": 0,
+            "isKinematic": false
+        },
+        "components": []
+    },
+    {
+        "name": "player",
+        "transform": {
+            "position": {
+                "x": 0,
+                "y": 10,
+                "z": 0
             },
-            "physics": {
-                "invMass": 10,
-                "drag": 0,
-                "isKinematic": false
+            "orientation": {
+                "x": 2,
+                "y": 0,
+                "z": 0,
+                "w": 0
             },
-            "components": [
-                {
-                    "name": "Player"
+            "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            }
+        },
+        "collider": {
+            "type": "capsule",
+            "halfHeight": 0.6,
+            "radius": 0.5,
+            "isTrigger": false
+        },
+        "render": {
+            "mesh": "role_t.msh",
+            "material": "role_t.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "invMass": 10,
+            "drag": 0,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Player"
+            },
+            {
+                "name": "Respawn"
+            }
+        ]
+    },
+    {
+        "name": "cube1",
+        "transform": {
+            "position": {
+                "x": -20,
+                "y": 2,
+                "z": 20
+            },
+            "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 0
+            },
+            "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            }
+        },
+        "collider": {
+            "type": "box",
+            "halfHeight": 1,
+            "radius": 0.5,
+            "isTrigger": false
+        },
+        "render": {
+            "mesh": "Barrel_1.msh",
+            "texture": "/Sci-fi/Barrels/Free/Barrel_1/Standard/Textures/New/Barrel_1_mBarrel_1_AlbedoTransparency.png",
+            "renderScale": 1
+        },
+        "physics": {
+            "invMass": 1,
+            "drag": 0,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Move",
+                "force": {
+                    "x": 40,
+                    "y": 0,
+                    "z": 0
                 },
-                {
-                    "name": "Respawn"
-                }
-            ]
+                "time": 5.0
+            }
+        ]
+    },
+    {
+        "name": "cube2",
+        "transform": {
+            "position": {
+                "x": 20,
+                "y": 2,
+                "z": -20
+            },
+            "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 0
+            },
+            "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            }
         },
-        {
-            "name": "cube1",
-            "transform" : {
-                "position":     {"x": -20, "y": 2, "z":  20},
-                "orientation":  {"x": 0, "y": 0, "z":  0, "w": 0},
-                "scale":        {"x": 1,"y": 1, "z": 1}
-            },
-            "collider": {
-                "type": "box",
-                "halfHeight": 1,
-                "radius": 0.5,
-                "isTrigger": false
-            },
-            "render": {
-                "mesh":"Barrel_1.msh",
-                "texture":"/Sci-fi/Barrels/Free/Barrel_1/Standard/Textures/New/Barrel_1_mBarrel_1_AlbedoTransparency.png",
-                "renderScale":1
-            },
-            "physics": {
-                "invMass": 1,
-                "drag": 0,
-                "isKinematic": false
-            },
-            "components": [
-                {
-                    "name": "Move",
-                    "force": {"x":40, "y": 0, "z": 0},
-                    "time": 5.0
-                }
-            ]
+        "collider": {
+            "type": "box",
+            "halfHeight": 1,
+            "radius": 0.5,
+            "isTrigger": false
         },
-        {
-            "name": "cube2",
-            "transform" : {
-                "position":     {"x": 20, "y": 2, "z":  -20},
-                "orientation":  {"x": 0, "y": 0, "z":  0, "w": 0},
-                "scale":        {"x": 1,"y": 1, "z": 1}
-            },
-            "collider": {
-                "type": "box",
-                "halfHeight": 1,
-                "radius": 0.5,
-                "isTrigger": false
-            },
-            "render": {
-                "mesh":"cube.msh",
-                "renderScale":2
-            },
-            "physics": {
-                "invMass": 1,
-                "drag": 0,
-                "isKinematic": false
-            },
-            "components": [
-                {
-                    "name": "Move",
-                    "force": {"x":0, "y": 0, "z": 40},
-                    "time": 5.0
-                }
-            ]
+        "render": {
+            "mesh": "cube.msh",
+            "renderScale": 2
         },
-        {
-            "name": "respawningCube",
-            "transform" : {
-                "position":     {"x": 60, "y": 30, "z":  0},
-                "orientation":  {"x": 0.1, "y": 0, "z":  0, "w": 0},
-                "scale":        {"x": 1,"y": 1, "z": 1}
-            },
-            "collider": {
-                "type": "box",
-                "halfHeight": 1,
-                "radius": 0.5,
-                "isTrigger": false
-            },
-            "render": {
-                "mesh":"cube.msh",
-                "renderScale":2
-            },
-            "physics": {
-                "invMass": 1,
-                "drag": 0,
-                "isKinematic": false
-            },
-            "components": [
-                {
-                    "name": "Respawn"
-                }
-            ]
+        "physics": {
+            "invMass": 1,
+            "drag": 0,
+            "isKinematic": false
         },
-        {
-            "name": "respawningsphere",
-            "transform" : {
-                "position":     {"x": 48, "y": 2, "z":  0},
-                "orientation":  {"x": 0.1, "y": 0, "z":  0, "w": 0},
-                "scale":        {"x": 0.5,"y": 0.5, "z": 0.5}
+        "components": [
+            {
+                "name": "Move",
+                "force": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 40
+                },
+                "time": 5.0
+            }
+        ]
+    },
+    {
+        "name": "respawningCube",
+        "transform": {
+            "position": {
+                "x": 60,
+                "y": 30,
+                "z": 0
             },
-            "collider": {
-                "type": "sphere",
-                "isTrigger": false
+            "orientation": {
+                "x": 0.1,
+                "y": 0,
+                "z": 0,
+                "w": 0
             },
-            "render": {
-                "mesh":"sphere.msh",
-                "renderScale":1
-            },
-            "physics": {
-                "invMass": 10,
-                "drag": 0,
-                "isKinematic": false
-            },
-            "components": [
-                {
-                    "name": "Respawn"
-                }
-            ]
+            "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            }
         },
-        {
-            "name": "normalsphere",
-            "transform" : {
-                "position":     {"x": 48, "y": 2, "z":  20},
-                "orientation":  {"x": 0.1, "y": 0, "z":  0, "w": 0},
-                "scale":        {"x": 0.5,"y": 0.5, "z": 0.5}
+        "collider": {
+            "type": "box",
+            "halfHeight": 1,
+            "radius": 0.5,
+            "isTrigger": false
+        },
+        "render": {
+            "mesh": "cube.msh",
+            "renderScale": 2
+        },
+        "physics": {
+            "invMass": 1,
+            "drag": 0,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Respawn"
+            }
+        ]
+    },
+    {
+        "name": "respawningsphere",
+        "transform": {
+            "position": {
+                "x": 48,
+                "y": 2,
+                "z": 0
             },
-            "collider": {
-                "type": "sphere",
-                "isTrigger": false
+            "orientation": {
+                "x": 0.1,
+                "y": 0,
+                "z": 0,
+                "w": 0
             },
-            "render": {
-                "mesh":"sphere.msh",
-                "renderScale":1
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "collider": {
+            "type": "sphere",
+            "isTrigger": false
+        },
+        "render": {
+            "mesh": "sphere.msh",
+            "renderScale": 1
+        },
+        "physics": {
+            "invMass": 10,
+            "drag": 0,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Respawn"
+            }
+        ]
+    },
+    {
+        "name": "normalsphere",
+        "transform": {
+            "position": {
+                "x": 48,
+                "y": 2,
+                "z": 20
             },
-            "physics": {
-                "invMass": 10,
-                "drag": 0,
-                "isKinematic": false
+            "orientation": {
+                "x": 0.1,
+                "y": 0,
+                "z": 0,
+                "w": 0
             },
-            "components": [
-            ]
-        }
-    ]
-}
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "collider": {
+            "type": "sphere",
+            "isTrigger": false
+        },
+        "render": {
+            "mesh": "sphere.msh",
+            "renderScale": 1
+        },
+        "physics": {
+            "invMass": 10,
+            "drag": 0,
+            "isKinematic": false
+        },
+        "components": []
+    }
+]

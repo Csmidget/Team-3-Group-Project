@@ -46,7 +46,7 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 		tex = resourceManager->LoadTexture("checkerboard.png");
 
 	ShaderBase* shader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");//renderObjectJson["vertex"],renderObjectJson["fragment"]);
-	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * renderObjectJson["renderScale"]);
+	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * (renderObjectJson["renderScale"].is_number() ?renderObjectJson["renderScale"] : 1));
 
 	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, meshMat, tex, shader));
 }
@@ -65,6 +65,9 @@ void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 		po->InitCubeInertia();
 	else
 		po->InitCubeInertia();
+
+	if (physicsObjectJson["isKinematic"] == true)
+		gameObject->SetIsStatic(true);
 
 	gameObject->SetPhysicsObject(po);
 }
@@ -105,7 +108,7 @@ GameObject* CreateObjectFromJson(json objectJson, Game* game)
 
 	SetPhysicsObjectFromJson(go, objectJson["physics"]);
 
-	go->SetIsStatic(objectJson["static"].is_boolean() ? objectJson["static"] : false);
+	go->SetIsStatic(objectJson["isStatic"].is_boolean() ? objectJson["isStatic"] : false);
 
 	for (auto component : objectJson["components"])
 	  JSONComponentFactory::AddComponentFromJson(component, go, game);
@@ -121,9 +124,9 @@ void JSONLevelFactory::ReadLevelFromJson(std::string fileName, Game* game)
 
 	input >> level;
 
-	if (!level.is_object())
+	if (!level.is_array())
 		throw std::exception("Unable to read level json");
 
-	for (auto obj : level["objects"])
+	for (auto obj : level)
 		game->AddGameObject(CreateObjectFromJson(obj,game));
 }
