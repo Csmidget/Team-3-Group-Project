@@ -5,6 +5,8 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace physics;
 
+
+
 RigidBody::RigidBody(Transform* parentTransform)
 {
 	body = nullptr;
@@ -19,7 +21,6 @@ RigidBody::~RigidBody()
 		delete body->getMotionState();
 		delete body;
 	}
-
 	delete colShape;
 }
 
@@ -52,77 +53,93 @@ void RigidBody::addConeShape(float& radius, float& height)
 
 void RigidBody::addForce(NCL::Maths::Vector3 force)
 {
-	btVector3 pushForce;
-	pushForce.setValue(force.x, force.y, force.z);
-	body->applyCentralForce(pushForce);
-	body->activate();
+	if (body)
+	{
+		btVector3 pushForce = convertVector3(force);
+		body->applyCentralForce(pushForce);
+		body->activate();
+	}
 }
 
 void RigidBody::setLinearVelocity(NCL::Maths::Vector3 vel)
 {
-	btVector3 velocity;
-	velocity.setValue(vel.x, vel.y, vel.z);
-	body->setLinearVelocity(velocity);
-	body->activate();
+	if (body)
+	{
+		btVector3 velocity = convertVector3(vel);
+		body->setLinearVelocity(velocity);
+		body->activate();
+	}
 }
 
 void RigidBody::addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos)
 {
-	btVector3 pushForce;
-	pushForce.setValue(force.x, force.y, force.z);
-
-	btVector3 relPos;
-	relPos.setValue(pos.x, pos.y, pos.z);
-
-	body->applyForce(pushForce, relPos);
+	if (body)
+	{
+		btVector3 pushForce = convertVector3(force);
+		btVector3 relPos = convertVector3(pos);
+		body->applyForce(pushForce, relPos);
+		body->activate();
+	}
 }
 
 void RigidBody::addTorque(NCL::Maths::Vector3 torque)
 {
-	btVector3 addedTorque;
-	addedTorque.setValue(torque.x, torque.y, torque.z);
-	body->applyTorque(addedTorque);
-	body->activate();
+	if (body)
+	{
+		btVector3 addedTorque = convertVector3(torque);
+		body->applyTorque(addedTorque);
+		body->activate();
+	}
 }
 
 void RigidBody::addImpulse(NCL::Maths::Vector3 force)
 {
-	btVector3 pushForce;
-	pushForce.setValue(force.x, force.y, force.z);
-	body->applyCentralPushImpulse(pushForce);
-	body->activate();
+	if (body)
+	{
+		btVector3 pushForce = convertVector3(force);
+		body->applyCentralPushImpulse(pushForce);
+		body->activate();
+	}
 }
 
 void RigidBody::addTorqueImpulse(NCL::Maths::Vector3 torque)
 {
-	btVector3 addedTorque;
-	addedTorque.setValue(torque.x, torque.y, torque.z);
-	body->applyTorqueTurnImpulse(addedTorque);
-	body->activate();
+	if (body)
+	{
+		btVector3 addedTorque = convertVector3(torque);
+		body->applyTorqueTurnImpulse(addedTorque);
+		body->activate();
+	}
 }
 
 void RigidBody::updateTransform()
 {
-	btVector3 pos = body->getCenterOfMassTransform().getOrigin();
-	btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
+	if (body)
+	{
+		btVector3 pos = body->getCenterOfMassTransform().getOrigin();
+		btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
 
-	Vector3 returnPos = Vector3(pos.x(), pos.y(), pos.z());
-	Quaternion returnRotation = Quaternion(rotation.x(), rotation.y(), rotation.z(), rotation.w());
-	transform->SetPosition(returnPos);
-	transform->SetOrientation(returnRotation);
+		Vector3 returnPos = Vector3(pos.x(), pos.y(), pos.z());
+		Quaternion returnRotation = Quaternion(rotation.x(), rotation.y(), rotation.z(), rotation.w());
+		transform->SetPosition(returnPos);
+		transform->SetOrientation(returnRotation);
+	}
 }
 
 void RigidBody::setTransform()
 {
-	NCL::Maths::Vector3 eulerAngles = transform->GetOrientation().ToEuler();
+	if (body)
+	{
+		NCL::Maths::Vector3 eulerAngles = transform->GetOrientation().ToEuler();
 
-	btQuaternion rotation;
-	rotation.setEulerZYX(eulerAngles.z, eulerAngles.y, eulerAngles.x);
+		btQuaternion rotation;
+		rotation.setEulerZYX(eulerAngles.z, eulerAngles.y, eulerAngles.x);
 
-	NCL::Maths::Vector3 SetPosition = transform->GetPosition();
-	btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
+		NCL::Maths::Vector3 SetPosition = transform->GetPosition();
+		btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
 
-	body->setCenterOfMassTransform(btTransform(rotation, position));
+		body->setCenterOfMassTransform(btTransform(rotation, position));
+	}
 }
 
 void RigidBody::createBody(	float mass,
@@ -130,16 +147,8 @@ void RigidBody::createBody(	float mass,
 							float friction,
 							BulletWorld* physicsWorld)
 {
-
-	NCL::Maths::Vector3 SetPosition = transform->GetPosition();
-	NCL::Maths::Quaternion SetRotation = transform->GetOrientation();
-
-	NCL::Maths::Vector3 eulerAngles = SetRotation.ToEuler();
-
-	btQuaternion rotation;
-	rotation.setEulerZYX(eulerAngles.z, eulerAngles.y, eulerAngles.x);
-
-	btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
+	btQuaternion rotation = convertQuaternion(transform->GetOrientation());
+	btVector3 position = convertVector3(transform->GetPosition());
 
 	btDefaultMotionState* motionState = new btDefaultMotionState(btTransform(rotation, position));
 	btScalar bodyMass = mass;
@@ -152,10 +161,9 @@ void RigidBody::createBody(	float mass,
 	bodyInfo.m_friction = friction;
 	
 	body = new btRigidBody(bodyInfo);
-	
-	body->setDamping(0.1, 0.7);
+
+	body->setDamping(linearDamping, angularDamping);
 	physicsWorld->addRigidBody(this);
-	
 }
 
 void RigidBody::setUserPointer(void* object)

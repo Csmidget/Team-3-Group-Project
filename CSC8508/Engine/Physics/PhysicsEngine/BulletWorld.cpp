@@ -1,7 +1,5 @@
 #include "BulletWorld.h"
-
 #include <algorithm>
-
 #include "../../CSC8508/Engine/GameObject.h"
 
 using namespace NCL;
@@ -14,12 +12,9 @@ BulletWorld::BulletWorld()
 	dispatcher				=	new btCollisionDispatcher(collisionConfiguration);
 	overlappingPairCache	=	new btDbvtBroadphase();
 	solver					=	new btSequentialImpulseConstraintSolver;
-
 	dynamicsWorld			=	new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
-	//sets gravity need to add member variable
 	dynamicsWorld->setGravity(btVector3(0, -10, 0));
-	
 }
 
 BulletWorld::~BulletWorld()
@@ -32,6 +27,11 @@ BulletWorld::~BulletWorld()
 
 	rigidList.clear();
 	contactList.clear();
+}
+
+void BulletWorld::setGravity(NCL::Maths::Vector3 force)
+{
+	dynamicsWorld->setGravity(convertVector3(force));
 }
 
 void BulletWorld::addRigidBody(RigidBody* body)

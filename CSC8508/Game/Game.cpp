@@ -263,9 +263,9 @@ void Game::InitWorld() {
 	Clear();
 	AddCubeToWorld(Vector3(0, 0, 0), Vector3(100, 1, 100), 0);
 	AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
-	//AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
-	//AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
-	//AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
+	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
+	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
+	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
 }
 
 void Game::DoorConstraintTest() {

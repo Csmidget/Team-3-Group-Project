@@ -48,6 +48,9 @@ namespace NCL
 
 			private:
 
+				float linearDamping = 0.1;
+				float angularDamping = 0.7;
+
 				//PhysicsObject* parent;
 				Transform* transform;
 				btRigidBody* body;

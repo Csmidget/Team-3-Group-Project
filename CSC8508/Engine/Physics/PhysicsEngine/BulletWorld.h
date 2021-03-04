@@ -1,6 +1,11 @@
 #pragma once
 #include "btBulletDynamicsCommon.h"
+
 #include "RigidBody.h"
+#include "../../Common/Vector3.h"
+#include "../../Common/Quaternion.h"
+#include "../../CSC8508/Engine/Transform.h"
+
 #include <vector>
 #include <map>
 
@@ -10,6 +15,15 @@ namespace NCL
 	{
 		namespace physics
 		{
+			btVector3 convertVector3(NCL::Maths::Vector3 vector)
+			{
+				return btVector3(vector.x, vector.y, vector.z);
+			}
+
+			btQuaternion convertQuaternion(NCL::Maths::Quaternion original)
+			{
+				return btQuaternion(original.x, original.y, original.z, original.w);
+			}
 
 			typedef std::pair<const btCollisionObject*, const btCollisionObject*> collisionPair;
 			class RigidBody;
@@ -20,10 +34,9 @@ namespace NCL
 				BulletWorld();
 				~BulletWorld();
 
-				//void setGravity();
+				void setGravity(NCL::Maths::Vector3 force);
 				void addRigidBody(RigidBody* body);
 				void removeRigidBody(RigidBody* body);
-
 
 				void Update(float dt);
 				void checkCollisions();
@@ -33,18 +46,10 @@ namespace NCL
 				btCollisionDispatcher* dispatcher;
 				btBroadphaseInterface* overlappingPairCache;
 				btSequentialImpulseConstraintSolver* solver;
-
 				btDiscreteDynamicsWorld* dynamicsWorld;
 
-				int frameNumber = 0;
-
 				std::vector<RigidBody*> rigidList;
-
-
-				//std::vector<btPersistentManifold> contactList;
 				std::vector<collisionPair> contactList;
-
-				//std::map<int,collisionPair> contactList;
 			};
 		}
 	}
