@@ -15,13 +15,10 @@ namespace NCL {
 			void Update(GamePacket& p) override;
 		protected:
 
-
 			bool WriteDeltaPacket(GamePacket** p, int stateID) override;
 			bool WriteFullPacket(GamePacket** p) override;
 
-
 			int playerID;
-
 			std::string clientName;
 		};
 	}
