@@ -3,6 +3,7 @@
 #include "../../Plugins/OpenGLRendering/OGLMesh.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include "../../Plugins/OpenGLRendering/OGLTexture.h"
+#include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "../../Common/TextureLoader.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
@@ -13,6 +14,7 @@ using namespace NCL;
 using namespace CSC8508;
 
 Game::Game()	{
+	resourceManager = new OGLResourceManager();
 	world		= new GameWorld();
 	renderer	= new GameTechRenderer(*world, *resourceManager);      //Lighting staff ¡û
 	physics		= new PhysicsSystem(*world);
@@ -37,22 +39,17 @@ for this module, even in the coursework, but you can add it if you like!
 //Call-mesh function¡ý
 
 void Game::InitialiseAssets() {
-	auto loadFunc = [](const string& name, OGLMesh** into) {
-		*into = new OGLMesh(name);
-		(*into)->SetPrimitiveType(GeometryPrimitive::Triangles);
-		(*into)->UploadToGPU();
-	};
 
-	loadFunc("cube.msh"		 , &cubeMesh);
-	loadFunc("sphere.msh"	 , &sphereMesh);
-	loadFunc("Male1.msh"	 , &charMeshA);
-	loadFunc("courier.msh"	 , &charMeshB);
-	loadFunc("security.msh"	 , &enemyMesh);
-	loadFunc("coin.msh"		 , &bonusMesh);
-	loadFunc("capsule.msh"	 , &capsuleMesh);
+	cubeMesh = resourceManager->LoadMesh("cube.msh");
+	sphereMesh = resourceManager->LoadMesh("sphere.msh");
+	charMeshA = resourceManager->LoadMesh("Male1.msh");
+	charMeshB = resourceManager->LoadMesh("courier.msh");
+	enemyMesh = resourceManager->LoadMesh("security.msh");
+	bonusMesh = resourceManager->LoadMesh("coin.msh");
+	capsuleMesh = resourceManager->LoadMesh("capsule.msh");
 
-	basicTex	= (OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
-	basicShader = new OGLShader("GameTechVert.glsl", "GameTechFrag.glsl");
+	basicTex = resourceManager->LoadTexture("checkerboard.png"); //(OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
+	basicShader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");
 
 	InitLight();
 	InitCamera();
@@ -60,16 +57,12 @@ void Game::InitialiseAssets() {
 }
 
 Game::~Game()	{
-	delete cubeMesh;
-	delete sphereMesh;
-	delete charMeshA;
-	delete charMeshB;
-	delete enemyMesh;
-	delete bonusMesh;
+
 
 	delete basicTex;
 	delete basicShader;
 
+	delete resourceManager;
 	delete physics;
 	delete renderer;
 	delete world;
@@ -458,7 +451,7 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 
 
 //Lighting function¡ý
-
+/*
 void Game::InitLight()
 {
 	float pointLightPositions[3] = { 0.0, 10.0, 0.0 };
@@ -514,7 +507,7 @@ void Game::InitLight()
 	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.quadratic"), 0.032f);
 	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.cutOff"), cos(Maths::DegreesToRadians(12.5)));
 	glUniform1f(glGetUniformLocation(basicShader->GetProgramID(), "spotLight.outerCutOff"), cos(Maths::DegreesToRadians(15.0)));
-}
+} */
 
 
 

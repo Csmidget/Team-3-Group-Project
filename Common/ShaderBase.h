@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "../Plugins/OpenGLRendering/glad/glad.h"
 using std::string;
 namespace NCL {
 	namespace Rendering {
