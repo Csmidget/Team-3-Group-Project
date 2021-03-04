@@ -34,7 +34,7 @@ namespace NCL
 				btDiscreteDynamicsWorld* dynamicsWorld;
 
 				std::vector<RigidBody*> rigidList;
-				std::vector< btPersistentManifold*> contactList;
+				//std::vector< btPersistentManifold*> contactList;
 			};
 		}
 	}

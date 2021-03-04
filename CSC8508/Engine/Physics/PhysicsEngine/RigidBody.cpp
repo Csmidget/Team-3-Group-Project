@@ -112,6 +112,19 @@ void RigidBody::updateTransform()
 	transform->SetOrientation(returnRotation);
 }
 
+void RigidBody::setTransform()
+{
+	NCL::Maths::Vector3 eulerAngles = transform->GetOrientation().ToEuler();
+
+	btQuaternion rotation;
+	rotation.setEulerZYX(eulerAngles.z, eulerAngles.y, eulerAngles.x);
+
+	NCL::Maths::Vector3 SetPosition = transform->GetPosition();
+	btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
+
+	body->setCenterOfMassTransform(btTransform(rotation, position));
+}
+
 void RigidBody::createBody(	NCL::Maths::Vector3 SetPosition,
 							NCL::Maths::Quaternion SetRotation,
 							float mass,

@@ -35,6 +35,8 @@ namespace NCL
 
 				btRigidBody* returnBody() { return body; };
 
+				void setTransform();
+
 				void updateTransform();
 				
 
