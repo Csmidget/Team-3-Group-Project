@@ -81,4 +81,8 @@
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
+    <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
+  </ItemGroup>
 </Project>
