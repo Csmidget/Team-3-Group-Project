@@ -1,6 +1,6 @@
 #include "BulletWorld.h"
 #include <algorithm>
-#include "../../CSC8508/Engine/GameObject.h"
+
 
 using namespace NCL;
 using namespace CSC8508;
@@ -34,6 +34,21 @@ void BulletWorld::setGravity(NCL::Maths::Vector3 force)
 	dynamicsWorld->setGravity(convertVector3(force));
 }
 
+GameObject* BulletWorld::rayIntersect(NCL::Maths::Vector3 from, NCL::Maths::Vector3 to)
+{
+	btVector3 btFrom = convertVector3(from);
+	btVector3 btTo = convertVector3(to);
+	btCollisionWorld::ClosestRayResultCallback res(btFrom, btTo);
+
+	dynamicsWorld->rayTest(btFrom, btTo, res);
+	if (res.hasHit())
+	{
+		return((GameObject*)res.m_collisionObject->getUserPointer());
+	}
+
+	return nullptr;
+}
+
 void BulletWorld::addRigidBody(RigidBody* body)
 {
 	dynamicsWorld->addRigidBody(body->returnBody());
@@ -48,6 +63,7 @@ void BulletWorld::removeRigidBody(RigidBody* body)
 
 void BulletWorld::Update(float dt)
 {
+	
 	dynamicsWorld->stepSimulation(1.f / 60.f);
 	checkCollisions();
 

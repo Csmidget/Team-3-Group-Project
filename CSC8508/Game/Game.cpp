@@ -261,7 +261,7 @@ void Game::Clear() {
 
 void Game::InitWorld() {
 	Clear();
-	AddCubeToWorld(Vector3(0, 0, 0), Vector3(100, 1, 100), 0);
+	AddFloorToWorld(Vector3(0, 0, 0));
 	AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
 	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
 	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
@@ -315,8 +315,7 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 	GameObject* floor = new GameObject("floor");
 
 	Vector3 floorSize	= Vector3(100, 2, 100);
-	AABBVolume* volume	= new AABBVolume(floorSize);
-	floor->SetBoundingVolume((CollisionVolume*)volume);
+
 	floor->GetTransform()
 		.SetScale(floorSize * 2)
 		.SetPosition(position);
@@ -328,7 +327,7 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 	floor->GetPhysicsObject()->body->addBoxShape(floorSize);
 	floor->GetPhysicsObject()->body->createBody(0,
 												0.4,
-												0.4,
+												0.9,
 												physics);
 
 	floor->GetPhysicsObject()->body->setUserPointer(floor);
@@ -351,8 +350,6 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 	GameObject* sphere = respawning ? new RespawningObject(position,true,"respawning sphere") : new GameObject("sphere");
 
 	Vector3 sphereSize = Vector3(radius, radius, radius);
-	SphereVolume* volume = new SphereVolume(radius);
-	sphere->SetBoundingVolume((CollisionVolume*)volume);
 
 	sphere->GetTransform()
 		.SetScale(sphereSize)
@@ -378,9 +375,6 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	
 	GameObject* capsule = respawning ? new RespawningObject(position,true,"respawning_capsule") : new GameObject("capsule");
 
-	CapsuleVolume* volume = new CapsuleVolume(halfHeight, radius);
-	capsule->SetBoundingVolume((CollisionVolume*)volume);
-
 	capsule->GetTransform()
 		.SetScale(Vector3(radius* 2, halfHeight, radius * 2))
 		.SetPosition(position);
@@ -405,10 +399,6 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic, bool respawning) {
 	GameObject* cube = respawning ? new RespawningObject(position,true,"respawning cube") : new GameObject("cube");
 
-	AABBVolume* volume = new AABBVolume(dimensions);
-
-	cube->SetBoundingVolume((CollisionVolume*)volume);
-
 	cube->GetTransform()
 		.SetPosition(position)
 		.SetScale(dimensions * 2);
@@ -432,10 +422,6 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass , bool isStatic, bool respawning)
 {
 	GameObject* cube = respawning ? new RespawningObject(position, true, "respawning cube") : new GameObject("cube");
-
-	OBBVolume* volume = new OBBVolume(dimensions);
-
-	cube->SetBoundingVolume((CollisionVolume*)volume);
 
 	cube->GetTransform()
 		.SetPosition(position)
@@ -625,16 +611,23 @@ bool Game::SelectObject() {
 			}
 
 			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
-			RayCollision closestCollision;
-			if (world->Raycast(ray, closestCollision, true)) {
-				Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(0, 1, 0, 1), 10.0f);
-				selectionObject = (GameObject*)closestCollision.node;
+			//RayCollision closestCollision;
+
+			GameObject* test = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+			if(test)
+				std::cout << test->GetName() << std::endl;
+
+			if (test) {
+				//need to think out where the debug line draws now
+				//Debug::DrawLine(ray.GetPosition(),test->GetTransform().GetPosition(), Vector4(0, 1, 0, 1), 10.0f);
+				selectionObject = test;
 				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
 				
 				ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
-				if (world->Raycast(ray, closestCollision, true)) {
-					Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(1, 1, 0, 1), 10.0f);
-					forwardObject = (GameObject*)closestCollision.node;
+				GameObject* test2 = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+				if (test2) {
+					//Debug::DrawLine(ray.GetPosition(), test2->GetTransform().GetPosition(), Vector4(1, 1, 0, 1), 10.0f);
+					forwardObject = test2;
 					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 0, 1));
 				}
 				return true;
@@ -713,3 +706,4 @@ void Game::MoveSelectedObject() {
 	}
 
 }
+

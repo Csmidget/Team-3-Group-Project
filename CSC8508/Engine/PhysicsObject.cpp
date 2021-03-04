@@ -20,8 +20,9 @@ PhysicsObject::PhysicsObject(Transform* parentTransform, const CollisionVolume* 
 	body = new physics::RigidBody(parentTransform);
 }
 
-PhysicsObject::~PhysicsObject()	{
-
+PhysicsObject::~PhysicsObject()	
+{
+	delete body;
 }
 
 void PhysicsObject::ApplyAngularImpulse(const Vector3& force) {

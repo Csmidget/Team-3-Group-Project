@@ -5,6 +5,7 @@
 #include "../../Common/Vector3.h"
 #include "../../Common/Quaternion.h"
 #include "../../CSC8508/Engine/Transform.h"
+#include "../../CSC8508/Engine/GameObject.h"
 
 #include <vector>
 #include <map>
@@ -15,18 +16,20 @@ namespace NCL
 	{
 		namespace physics
 		{
-			btVector3 convertVector3(NCL::Maths::Vector3 vector)
+			inline btVector3 convertVector3(NCL::Maths::Vector3 vector)
 			{
 				return btVector3(vector.x, vector.y, vector.z);
 			}
 
-			btQuaternion convertQuaternion(NCL::Maths::Quaternion original)
+			inline btQuaternion convertQuaternion(NCL::Maths::Quaternion original)
 			{
 				return btQuaternion(original.x, original.y, original.z, original.w);
 			}
 
 			typedef std::pair<const btCollisionObject*, const btCollisionObject*> collisionPair;
+
 			class RigidBody;
+			//class GameObject;
 
 			class BulletWorld
 			{
@@ -35,6 +38,8 @@ namespace NCL
 				~BulletWorld();
 
 				void setGravity(NCL::Maths::Vector3 force);
+				GameObject* rayIntersect(NCL::Maths::Vector3 from, NCL::Maths::Vector3 to);
+
 				void addRigidBody(RigidBody* body);
 				void removeRigidBody(RigidBody* body);
 
