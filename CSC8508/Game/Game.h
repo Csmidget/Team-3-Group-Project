@@ -77,6 +77,7 @@ namespace NCL {
 			TextureBase*	basicTex	= nullptr;
 			ShaderBase*		basicShader = nullptr;
 
+
 			//Coursework Meshes
 			MeshGeometry*	charMeshA	= nullptr;
 			MeshGeometry*	charMeshB	= nullptr;

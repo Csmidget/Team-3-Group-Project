@@ -14,7 +14,7 @@ using namespace CSC8508;
 
 Game::Game()	{
 	world		= new GameWorld();
-	renderer	= new GameTechRenderer(*world);
+	renderer	= new GameTechRenderer(*world, *resourceManager);
 	physics		= new PhysicsSystem(*world);
 
 	forceMagnitude	= 10.0f;
@@ -33,6 +33,8 @@ and the same texture and shader. There's no need to ever load in anything else
 for this module, even in the coursework, but you can add it if you like!
 
 */
+
+
 void Game::InitialiseAssets() {
 	auto loadFunc = [](const string& name, OGLMesh** into) {
 		*into = new OGLMesh(name);
