@@ -4,6 +4,7 @@
 #include "../../Common/ResourceManager.h"
 
 #include <string>
+#include "../Engine/NetworkManager.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -62,6 +63,7 @@ namespace NCL {
 			PhysicsSystem*		physics;
 			GameWorld*			world;
 			ResourceManager*	resourceManager;
+			NetworkManager* networkManager;
 
 			bool useGravity;
 			bool inSelectionMode;

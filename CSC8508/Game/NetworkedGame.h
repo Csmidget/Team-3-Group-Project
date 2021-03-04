@@ -8,6 +8,8 @@ namespace NCL {
 		class GameClient;
 		class NetworkPlayer;
 
+	
+
 		class NetworkedGame : public Game, public PacketReceiver {
 		public:
 			NetworkedGame();

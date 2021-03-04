@@ -19,6 +19,7 @@ Game::Game() {
 	world = new GameWorld();
 	renderer = new GameTechRenderer(*world, *resourceManager);
 	physics = new PhysicsSystem(*world);
+	networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
@@ -62,6 +63,7 @@ Game::~Game()	{
 	delete basicShader;
 
 	delete resourceManager;
+	delete networkManager;
 	delete physics;
 	delete renderer;
 	delete world;
@@ -105,6 +107,7 @@ void Game::UpdateGame(float dt) {
 
 	world->UpdateWorld(dt);
 	renderer->Update(dt);
+	networkManager->Update(dt);
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();

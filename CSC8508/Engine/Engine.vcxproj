@@ -151,6 +151,7 @@
     <ClInclude Include="NavigationMesh.h" />
     <ClInclude Include="NavigationPath.h" />
     <ClInclude Include="NetworkBase.h" />
+    <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="NetworkObject.h" />
     <ClInclude Include="NetworkState.h" />
     <ClInclude Include="OBBVolume.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="NavigationGrid.cpp" />
     <ClCompile Include="NavigationMesh.cpp" />
     <ClCompile Include="NetworkBase.cpp" />
+    <ClCompile Include="NetworkManager.cpp" />
     <ClCompile Include="NetworkObject.cpp" />
     <ClCompile Include="NetworkState.cpp" />
     <ClCompile Include="OrientationConstraint.cpp" />
