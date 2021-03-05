@@ -244,10 +244,10 @@ void Game::InitCamera() {
 
 void Game::Clear() {
 	world->ClearAndErase();
-	physics->Clear();
+	physics->clear();
 
 	useGravity = true;
-	physics->UseGravity(true);
+	//physics->UseGravity(true);
 }
 
 void Game::InitFromJSON(std::string fileName) {
