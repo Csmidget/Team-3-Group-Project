@@ -25,6 +25,7 @@ Game::Game() {
 	//physics		= new PhysicsSystem(*world);
 	physics		= new physics::BulletWorld();
 
+	networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
@@ -56,6 +57,7 @@ void Game::InitialiseAssets() {
 
 Game::~Game()	{
 	delete resourceManager;
+	delete networkManager;
 	delete physics;
 	delete renderer;
 	delete world;
@@ -99,6 +101,7 @@ void Game::UpdateGame(float dt) {
 
 	world->UpdateWorld(dt);
 	renderer->Update(dt);
+	networkManager->Update(dt);
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();

@@ -1,30 +1,39 @@
+
 #include "../../Common/Window.h"
 
 #include "Game.h"
 
 
+
 using namespace NCL;
 using namespace CSC8508;
 
-/*
 
+
+
+
+
+
+
+/*
 The main function should look pretty familar to you!
 We make a window, and then go into a while loop that repeatedly
 runs our 'game' until we press escape. Instead of making a 'renderer'
 and updating it, we instead make a whole game, and repeatedly update that,
-instead. 
-
+instead.
 This time, we've added some extra functionality to the window class - we can
-hide or show the 
+hide or show the
 // blarg
 //wort wort wort
 */
 int main() {
-	Window*w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
+	Window* w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
 
 	if (!w->HasInitialised()) {
 		return -1;
-	}	
+	}
+
+
 	srand((unsigned int)time(0));
 	w->ShowOSPointer(false);
 	w->LockMouseToWindow(true);
@@ -53,5 +62,6 @@ int main() {
 
 		g->UpdateGame(dt);
 	}
+
 	Window::DestroyGameWindow();
 }

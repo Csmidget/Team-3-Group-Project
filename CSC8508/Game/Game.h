@@ -4,6 +4,7 @@
 
 #include <string>
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
+#include "../Engine/NetworkManager.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -73,6 +74,7 @@ namespace NCL {
 			NCL::Rendering::ResourceManager* resourceManager;
 			physics::BulletWorld* physics;
 
+			NetworkManager* networkManager;
 
 			bool useGravity;
 			bool inSelectionMode;
