@@ -56,8 +56,6 @@ namespace NCL {
 			void BroadcastSnapshot(bool deltaFrame);
 			void UpdateMinimumState();
 
-			void UpdateOtherPlayers();
-
 
 			bool const OFFLINE_MODE = true;
 			bool const TEST_MODE = true;
