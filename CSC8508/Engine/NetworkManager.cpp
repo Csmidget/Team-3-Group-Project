@@ -95,19 +95,19 @@ void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, 
 	}
 }
 
-void NCL::CSC8508::NetworkManager::OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b)
-{
-	if (thisServer) { //detected a collision between players!
-		MessagePacket newPacket;
-		newPacket.messageID = COLLISION_MSG;
-		newPacket.playerID = a->GetPlayerNum();
-
-		thisClient->SendPacket(newPacket);
-
-		newPacket.playerID = b->GetPlayerNum();
-		thisClient->SendPacket(newPacket);
-	}
-}
+//void NCL::CSC8508::NetworkManager::OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b)
+//{
+//	if (thisServer) { //detected a collision between players!
+//		MessagePacket newPacket;
+//		newPacket.messageID = COLLISION_MSG;
+//		newPacket.playerID = a->GetPlayerNum();
+//
+//		thisClient->SendPacket(newPacket);
+//
+//		newPacket.playerID = b->GetPlayerNum();
+//		thisClient->SendPacket(newPacket);
+//	}
+//}
 
 void NetworkManager::TestClient()
 {

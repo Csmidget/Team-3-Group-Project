@@ -51,12 +51,6 @@
     <ClCompile Include="JSONShared.cpp">
       <Filter>JSON</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkedGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NetworkPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -85,12 +79,6 @@
     </ClInclude>
     <ClInclude Include="JSONComponentFactory.h">
       <Filter>JSON</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkedGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkPlayer.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ using namespace std;
 #include <thread>
 #include <string>
 #include <iostream>
-#include "../Game/NetworkPlayer.h"
+//#include "../Game/NetworkPlayer.h"
 
 class TestPacketReceiver : public PacketReceiver {
 public:
@@ -41,7 +41,7 @@ namespace NCL {
 			void Update(float dt);
 
 			void ReceivePacket(int type, GamePacket* payload, int source) override;
-			void OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b);
+			//void OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b);
 
 		private:
 			void TestClient();
