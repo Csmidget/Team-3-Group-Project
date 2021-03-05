@@ -23,6 +23,8 @@ namespace NCL {
 			void AddGameObject(GameObject* go);
 
 			GameWorld* GetWorld() const { return world; }
+			physics::BulletWorld* GetPhysics() const { return physics; }
+
 			NCL::Rendering::ResourceManager* GetResourceManager() { return resourceManager; }
 
 		protected:

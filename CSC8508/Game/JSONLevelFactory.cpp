@@ -51,13 +51,16 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, meshMat, tex, shader));
 }
 
-void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
+void SetPhysicsObjectFromJson(Game* game, GameObject* gameObject, json physicsObjectJson, json colliderObjectJson)
 {
 	if (!physicsObjectJson.is_object())
 		return;
 
+	Transform& transform = gameObject->GetTransform();
+
+
 	PhysicsObject* po = new PhysicsObject(&gameObject->GetTransform(), gameObject->GetBoundingVolume());
-	po->SetInverseMass(physicsObjectJson["invMass"]);
+	//po->b(physicsObjectJson["invMass"]);
 
 	if (physicsObjectJson["inertia"] == "sphere")
 		po->InitSphereInertia();
@@ -69,28 +72,33 @@ void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 	if (physicsObjectJson["isKinematic"] == true)
 		gameObject->SetIsStatic(true);
 
+	if (colliderObjectJson["type"] == "box")
+		po->body->addBoxShape(transform.GetScale());
+
+	po->body->createBody(physicsObjectJson["invMass"], 0.4f, 0.4f, game->GetPhysics());
+	po->body->setUserPointer(gameObject);
+
 	gameObject->SetPhysicsObject(po);
 }
 
-void SetColliderFromJson(GameObject* gameObject, json colliderJson)
-{
-	if (!colliderJson.is_object())
-		return;
-
-	CollisionVolume* volume = nullptr;
-	Transform& transform = gameObject->GetTransform();
-
-	if (colliderJson["type"] == "box")
-		volume = new AABBVolume(transform.GetScale());
-	else if (colliderJson["type"] == "obbbox")
-		volume = new OBBVolume(transform.GetScale());
-	else if (colliderJson["type"] == "sphere")
-		volume = new SphereVolume(transform.GetScale().x);
-	else if (colliderJson["type"] == "capsule")
-		volume = new CapsuleVolume(colliderJson["halfHeight"],colliderJson["radius"]);
-
-	gameObject->SetBoundingVolume(volume);
-}
+//void SetColliderFromJson(GameObject* gameObject, json colliderJson)
+//{
+//	if (!colliderJson.is_object())
+//		return;
+//
+//
+//	if (colliderJson["type"] == "box")
+//		gameObject->GetPhysicsObject()
+//
+//	//gameObject->GetPhysicsObject()->body->createBody()
+//
+//	//else if (colliderJson["type"] == "obbbox")
+//	//	volume = new OBBVolume(transform.GetScale());
+//	//else if (colliderJson["type"] == "sphere")
+//	//	volume = new SphereVolume(transform.GetScale().x);
+//	//else if (colliderJson["type"] == "capsule")
+//	//	volume = new CapsuleVolume(colliderJson["halfHeight"],colliderJson["radius"]);
+//}
 
 GameObject* CreateObjectFromJson(json objectJson, Game* game)
 {
@@ -102,11 +110,12 @@ GameObject* CreateObjectFromJson(json objectJson, Game* game)
 
 	SetTransformFromJson(transform, objectJson["transform"]);
 
-	SetColliderFromJson(go, objectJson["collider"]);
+	SetPhysicsObjectFromJson(game, go, objectJson["physics"], objectJson["collider"]);
+
+	//SetColliderFromJson(go, );
 
 	SetRenderObjectFromJson(go, objectJson["render"], game);
 
-	SetPhysicsObjectFromJson(go, objectJson["physics"]);
 
 	go->SetIsStatic(objectJson["isStatic"].is_boolean() ? objectJson["isStatic"] : false);
 

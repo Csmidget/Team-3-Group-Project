@@ -45,6 +45,20 @@ void GameObject::OnCollisionBegin(GameObject* otherObject)
 	}
 }
 
+void GameObject::OnCollisionStay(GameObject* otherObject)
+{
+	for (auto component : components) {
+		component->OnCollisionStay(otherObject);
+	}
+}
+
+void GameObject::OnCollisionEnd(GameObject* otherObject)
+{
+	for (auto component : components) {
+		component->OnCollisionEnd(otherObject);
+	}
+}
+
 void GameObject::OnKill() {
 	isActive = false;
 	for (auto component : components) {
