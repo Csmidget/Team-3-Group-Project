@@ -16,41 +16,38 @@ PhysicsObject::PhysicsObject(Transform* parentTransform, const CollisionVolume* 
 	inverseMass = 1.0f;
 	elasticity	= 0.4f;
 	friction	= 0.4f;
+
+	body = new physics::RigidBody(parentTransform);
 }
 
-PhysicsObject::~PhysicsObject()	{
-
+PhysicsObject::~PhysicsObject()	
+{
+	delete body;
 }
 
 void PhysicsObject::ApplyAngularImpulse(const Vector3& force) {
-	//We don't want to ever rotate AABBs
-	//if (volume->type == VolumeType::AABB)
-	//	return;
 
- 	angularVelocity += inverseInteriaTensor * force;
+	body->addTorqueImpulse(force);
+	
 }
 
 void PhysicsObject::ApplyLinearImpulse(const Vector3& force) {
-	linearVelocity += force * inverseMass;
+	body->addImpulse(force);
 }
 
 void PhysicsObject::AddForce(const Vector3& addedForce) {
-	force += addedForce;
+	body->addForce(addedForce);
 }
 
 void PhysicsObject::AddForceAtPosition(const Vector3& addedForce, const Vector3& position) {
 	Vector3 localPos = position - transform->GetPosition();
-
-	if (volume->type == VolumeType::AABB)
-		localPos = Vector3();
-
-	force  += addedForce;
-	torque += Vector3::Cross(localPos, addedForce);
+	body->addForceAtPos(addedForce, position);
 }
 
 void PhysicsObject::AddTorque(const Vector3& addedTorque) {
-	torque += addedTorque;
+	body->addTorque(addedTorque);
 }
+
 
 void PhysicsObject::ClearForces() {
 	force				= Vector3();

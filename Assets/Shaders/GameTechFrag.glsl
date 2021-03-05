@@ -25,7 +25,7 @@ in Vertex
 
 
 
-
+/*
 
 // π‚’’≤ƒ÷ 
 struct Material {
@@ -217,10 +217,10 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 }
 
 
+*/
 
 
-
-/*out vec4 fragColor;
+out vec4 fragColor;
 
 void main(void)
 {
@@ -264,4 +264,4 @@ void main(void)
 	//fragColor.xy = IN.texCoord.xy;
 	
 	//fragColor = IN.colour;
-}*/
+}

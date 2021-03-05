@@ -82,10 +82,10 @@
     <IncludePath>$(SolutionDir)\Plugins\Networking-ENet\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\Plugins\Networking-ENet\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)include\Bullet\;$(SolutionDir)\Plugins\Networking-ENet\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\Plugins\Networking-ENet\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)include\Bullet\;$(SolutionDir)\Plugins\Networking-ENet\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -101,7 +101,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <CompileAsManaged>
+      </CompileAsManaged>
     </ClCompile>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
