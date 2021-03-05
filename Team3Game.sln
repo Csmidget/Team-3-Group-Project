@@ -37,6 +37,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSmithCoursework", "CSC8508
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "CSC8508\Engine\Physics\PhysicsEngine\PhysicsEngine.vcxproj", "{BD969495-48C5-40FB-9208-9E52A76C7247}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A22CD41-A2EE-49F0-8B06-E01B4526CA41} = {7A22CD41-A2EE-49F0-8B06-E01B4526CA41}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Audio", "CSC8508\Audio\Audio.vcxproj", "{93EBC887-7BA8-4921-B0DA-51DDA8739847}"
 EndProject
