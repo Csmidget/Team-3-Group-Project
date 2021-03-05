@@ -3,6 +3,7 @@
 #include "../../Common/Vector3.h"
 
 #include <string>
+#include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -65,9 +66,11 @@ namespace NCL {
 			GameObject* AddBonusToWorld(const Maths::Vector3& position);
 
 			GameTechRenderer*	renderer;
-			PhysicsSystem*		physics;
+			//PhysicsSystem*		physics;
 			GameWorld*			world;
 			NCL::Rendering::ResourceManager* resourceManager;
+			physics::BulletWorld* physics;
+
 
 			bool useGravity;
 			bool inSelectionMode;
