@@ -27,6 +27,7 @@ namespace NCL {
 				collisionLayer = val;
 			}
 
+			void Start();
 			void Update(float dt);
 
 			virtual void OnUpdate(float dt) {};
@@ -115,7 +116,6 @@ namespace NCL {
 			T* AddComponent(Params... vals) {
 				T* component = new T(this, vals...);
 				components.push_back(component);
-				component->Start();
 				return component;
 			}
 

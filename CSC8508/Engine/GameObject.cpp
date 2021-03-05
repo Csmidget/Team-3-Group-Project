@@ -29,6 +29,12 @@ GameObject::~GameObject()	{
 
 }
 
+void GameObject::Start() {
+	for (auto component : components) {
+		component->Start();
+	}
+}
+
 void GameObject::Update(float dt)
 {
 	for (auto component : components) {
