@@ -122,8 +122,8 @@ void RigidBody::updateTransform()
 
 		Vector3 returnPos = Vector3(pos.x(), pos.y(), pos.z());
 		Quaternion returnRotation = Quaternion(rotation.x(), rotation.y(), rotation.z(), rotation.w());
-		transform->SetPosition(returnPos);
-		transform->SetOrientation(returnRotation);
+		transform->SetPosition(returnPos, false);
+		transform->SetOrientation(returnRotation, false);
 	}
 }
 

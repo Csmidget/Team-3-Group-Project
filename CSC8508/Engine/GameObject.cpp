@@ -6,7 +6,7 @@
 
 using namespace NCL::CSC8508;
 
-GameObject::GameObject(string objectName)	{
+GameObject::GameObject(string objectName) : transform(this)	{
 	name			= objectName;
 	worldID			= -1;
 	isActive		= true;
