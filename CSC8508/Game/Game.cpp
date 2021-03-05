@@ -325,8 +325,8 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 	//testing adding bullet physics object
 	floor->GetPhysicsObject()->body->addBoxShape(floorSize);
 	floor->GetPhysicsObject()->body->createBody(0,
-												0.4,
-												0.9,
+												0.4f,
+												0.9f,
 												physics);
 
 	floor->GetPhysicsObject()->body->setUserPointer(floor);
@@ -366,8 +366,8 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 	//testing adding bullet physics object
 	sphere->GetPhysicsObject()->body->addSphereShape(radius);
 	sphere->GetPhysicsObject()->body->createBody(	inverseMass,
-													0.4,
-													0.4,
+													0.4f,
+													0.4f,
 													physics);
 	sphere->GetPhysicsObject()->body->setUserPointer(sphere);
 
@@ -390,8 +390,8 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
 
 	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
-													0.4,
-													0.4,
+													0.4f,
+													0.4f,
 													physics);
 	capsule->GetPhysicsObject()->body->setUserPointer(capsule);
 	
@@ -414,8 +414,8 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 	//testing adding bullet physics object
 	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
 	cube->GetPhysicsObject()->body->createBody(	inverseMass,
-												0.4,
-												0.4,
+												0.4f,
+												0.4f,
 												physics);
 	cube->GetPhysicsObject()->body->setUserPointer(cube);
 
@@ -438,8 +438,8 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 	//testing adding bullet physics object
 	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
 	cube->GetPhysicsObject()->body->createBody(	inverseMass,
-												0.4,
-												1.0,
+												0.4f,
+												1.0f,
 												physics);
 	cube->GetPhysicsObject()->body->setUserPointer(cube);
 
