@@ -20,6 +20,8 @@ namespace NCL {
 			GameTechRenderer(GameWorld& world, ResourceManager& resourceManager);
 			~GameTechRenderer();
 
+			OGLShader* getTempShader() { return m_temp_shader; }
+
 		protected:
 			void RenderFrame()	override;
 
@@ -44,8 +46,10 @@ namespace NCL {
 			OGLMesh*	skyboxMesh;
 			GLuint		skyboxTex;
 
+			OGLShader* m_temp_shader = nullptr;
+
 			//shadow mapping things
-			OGLShader*	shadowShader;
+			NCL::Rendering::OGLShader*	shadowShader;
 			GLuint		shadowTex;
 			GLuint		shadowFBO;
 			Matrix4     shadowMatrix;

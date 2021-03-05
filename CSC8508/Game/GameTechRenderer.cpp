@@ -16,6 +16,8 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 	glEnable(GL_DEPTH_TEST);
 
 	shadowShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl");
+	m_temp_shader = (OGLShader*)resourceManager.LoadShader("gameTechVert.glsl", "gameTechFrag.glsl");
+	//shader->GetProgramID();
 
 	glGenTextures(1, &shadowTex);
 	glBindTexture(GL_TEXTURE_2D, shadowTex);
@@ -222,6 +224,7 @@ void GameTechRenderer::RenderCamera() {
 
 	for (const auto&i : activeObjects) {
 		OGLShader* shader = (OGLShader*)(*i).GetShader();
+		GLuint ttt = shader->GetProgramID();         //test variable J Xie
 		BindShader(shader);
 
 		BindTextureToShader((OGLTexture*)(*i).GetDefaultTexture(), "mainTex", 0);

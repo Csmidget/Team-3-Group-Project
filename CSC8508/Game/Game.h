@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Common/ResourceManager.h"
 #include "../../Common/Vector3.h"
-
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include <string>
 
 namespace NCL {
@@ -16,6 +16,8 @@ namespace NCL {
 		public:
 			Game();
 			~Game();
+
+			
 
 			virtual void UpdateGame(float dt);
 
@@ -76,6 +78,11 @@ namespace NCL {
 
 			GameObject* selectionObject = nullptr;
 			GameObject* forwardObject = nullptr;
+
+			// OGLShader * m_temp_shader = nullptr;
+			//GameObject* m_tempp;
+
+			
 
 			//Coursework Additional functionality	
 			GameObject* lockedObject	= nullptr;
