@@ -42,7 +42,7 @@ namespace NCL {
 			void InitGameExamples();
 
 			void InitSlopeLevel();
-			void InitLight();
+			
 			void InitSphereGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, float radius);
 			void InitMixedGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing);
 			void InitCubeGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, const Maths::Vector3& cubeDims);

@@ -50,7 +50,7 @@ for this module, even in the coursework, but you can add it if you like!
 void Game::InitialiseAssets() {
 
 	//Todo: These should be removed whenever we fully shift to json levels.
-	InitLight();
+
 	InitCamera();
 	InitWorld();
 }
@@ -427,63 +427,7 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 
 
 
-void Game::InitLight()
-{
-	glUseProgram(renderer->getTempShader()->GetProgramID());
-	float pointLightPositions[3] = { 0.0, 10.0, 0.0 };
-	float pointAmbient[3] = { 0.5, 0.5,0.5 };
-	float pointDiffuse[3] = { 0.8, 0.8, 0.8 };
-	float pointSpecular[3] = { 0.4, 0.4, 0.4 };
 
-	//float dirLightPos[] = { -0.2f, -1.0f, -0.3f };
-	//float dirAmbient[] = { 0.05f, 0.05f, 0.05f };
-	//float dirDiffuse[] = { 0.4f, 0.4f, 0.4f };
-	//float dirSpecular[] = { 0.5f, 0.5f, 0.5f };
-
-	float spotLightPositions[3] = { 0.0, 30.0, 0.0 };
-	float spotLightDirection[3] = { 0.0, 0.0, -1.0 };
-	float spotAmbient[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
-	float spotDiffuse[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
-	float spotSpecular[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
-
-	glUseProgram(renderer->getTempShader()->GetProgramID());
-
-
-	unsigned int temp = renderer->getTempShader()->GetProgramID();
-
-	// 控制是使用阴影还是光源
-	glUniform1i(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "bshadermap"), (int)false);
-	glUniform1i(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "material.diffuse"), 0);
-	glUniform1i(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "material.specular"), 1);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "viewPos"), 1, &(world->GetMainCamera()->GetPosition())[0]);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "material.shininess"), 32.0f);
-
-	// 设置(太阳)，为方便观察效果，已在shader中注释掉
-	//(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.direction"), 1, &dirLightPos[0]);
-	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.ambient"), 1, &dirAmbient[0]);
-	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.diffuse"), 1, &dirDiffuse[0]);
-	//glUniform3fv(glGetUniformLocation(basicShader->GetProgramID(), "dirLight.specular"), 1, &dirSpecular[0]);
-
-	// 设置点光源
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "pointLights.position"), 1, &pointLightPositions[0]);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "pointLights.ambient"), 1, &pointAmbient[0]);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "pointLights.diffuse"), 1, &pointDiffuse[0]);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "pointLights.specular"), 1, &pointSpecular[0]);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "pointLights.constant"), 1.0f);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "pointLights.linear"), 0.09f);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "pointLights.quadratic"), 0.032f);
-
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.position"), 1, &spotLightPositions[0]);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.direction"), 1, &spotLightDirection[0]);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.ambient"), 1, &spotAmbient[0]);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.diffuse"), 1, &spotDiffuse[0]);
-	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.specular"), 1, &spotSpecular[0]);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.constant"), 1.0f);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.linear"), 0.09f);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.quadratic"), 0.032f);
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.cutOff"), cos(Maths::DegreesToRadians(12.5)));
-	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "spotLight.outerCutOff"), cos(Maths::DegreesToRadians(15.0)));
-}
 
 
 
