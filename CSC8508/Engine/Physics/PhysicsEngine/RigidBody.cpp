@@ -24,6 +24,7 @@ RigidBody::~RigidBody()
 	delete colShape;
 }
 
+// collisoin shapes based on several primitives. Must be called before creating a body
 
 void RigidBody::addBoxShape(NCL::Maths::Vector3& halfExtents)
 {

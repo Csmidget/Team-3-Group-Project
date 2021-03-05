@@ -16,11 +16,12 @@ namespace NCL
 	{
 		namespace physics
 		{
+			//converts a vector3 to a btVector
 			inline btVector3 convertVector3(NCL::Maths::Vector3 vector)
 			{
 				return btVector3(vector.x, vector.y, vector.z);
 			}
-
+			//converts a quaternion to a bt quaternion
 			inline btQuaternion convertQuaternion(NCL::Maths::Quaternion original)
 			{
 				return btQuaternion(original.x, original.y, original.z, original.w);
@@ -45,6 +46,7 @@ namespace NCL
 
 				void Update(float dt);
 				void checkCollisions();
+				void clear();
 
 			private:
 				btDefaultCollisionConfiguration* collisionConfiguration;
