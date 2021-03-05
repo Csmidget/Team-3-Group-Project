@@ -18,7 +18,8 @@ namespace NCL {
 			PlayerComponent(GameObject* object, Game* game);
 			void Update(float dt);
 			void UpdateControls(float dt);
-			void OnCollisionBegin(GameObject* otherObject);
+			void OnCollisionBegin(GameObject* otherObject) override;
+			void OnCollisionStay(GameObject* otherObject) override;
 
 		private:
 			Maths::Vector3 dir;
@@ -29,11 +30,18 @@ namespace NCL {
 			float yaw;
 			float pitch;
 			float cameraDistance;
+
 			float speed;
+
+			float jump;
 			float lastCollisionTimer;
 
 			Game* game;
 			Camera* camera;
+
+			void CameraMovement();
+			void Movement();
+			void Jump();
 
 		};
 

@@ -11,6 +11,7 @@
 #include"../Audio/SoundManager.h"
 #include"../Audio/SoundInstance.h"
 #include "../../Common/ShaderBase.h"
+#include "PlayerComponent.h"
 
 //JENKINS TEST 3
 
@@ -262,6 +263,10 @@ void Game::InitWorld() {
 	Clear();
 
 	InitFromJSON("CScene.json");
+
+	auto player = AddCapsuleToWorld(Vector3(10, 10, 0), 1.0f, 0.5f, 10.f, true);
+	player->AddComponent<PlayerComponent>(this);
+	
 
 	world->Start();
 
