@@ -19,7 +19,8 @@ namespace NCL
 
 				//void setGravity();
 				void addRigidBody(RigidBody* body);
-
+				void addhingeconstraint(RigidBody* bodyA, RigidBody* bodyB);
+				
 				void Update(float dt);
 			private:
 				btDefaultCollisionConfiguration* collisionConfiguration;

@@ -7,6 +7,8 @@
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
 #include "RespawningObject.h"
+#include "../Engine/Physics/PhysicsEngine/BulletWorld.cpp"
+
 
 //JENKINS TEST 3
 
@@ -220,7 +222,7 @@ void Game::DebugObjectMovement() {
 		}
 
 		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::RIGHT)) {
-			selectionObject->GetPhysicsObject()->AddTorque(Vector3(10, 0, 0));
+			selectionObject->GetPhysicsObject()->AddTorque(Vector3(0, 0, 0));
 		}
 
 		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::UP)) {
@@ -255,10 +257,13 @@ void Game::Clear() {
 void Game::InitWorld() {
 	Clear();
 	AddCubeToWorld(Vector3(0, 0, 0), Vector3(100, 1, 100), 0);
-	AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 10);
+	//AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 10);
+	//AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 0);
 	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
 	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
 	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
+	//addhingeconstraint
+	
 }
 
 void Game::DoorConstraintTest() {
@@ -271,33 +276,9 @@ void Game::DoorConstraintTest() {
 	//world->AddConstraint(new PositionConstraint(hinge2, door, 10.0f));
 }
 
-void Game::BridgeConstraintTest() {
-	Vector3 cubeSize = Vector3(8, 8, 8);
 
-	float invCubeMass = 5;
-	int numLinks = 10;
-	float maxDistance = 30;
-	float cubeDistance = 20;
 
-	Vector3 startPos = Vector3(50, 20, 50);
 
-	GameObject* start = AddCubeToWorld(startPos + Vector3(0, 0, 0), cubeSize, 0,true);
-	GameObject* end = AddCubeToWorld(startPos + Vector3((numLinks + 2) * cubeDistance, 0, 0), cubeSize, 0,true);
-
-	GameObject* previous = start;
-
-	for (int i = 0; i < numLinks; ++i) {
-		GameObject* block = AddCubeToWorld(startPos + Vector3((i + 1) * cubeDistance, 0, 0), cubeSize, invCubeMass);
-		PositionConstraint* constraint = new PositionConstraint(previous, block, maxDistance);
-
-		world->AddConstraint(constraint);
-		previous = block;
-	}
-
-	PositionConstraint* constraint = new PositionConstraint(previous, end, maxDistance);
-
-	world->AddConstraint(constraint);
-}
 
 /*
 

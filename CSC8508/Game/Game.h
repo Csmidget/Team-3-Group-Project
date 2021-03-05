@@ -31,9 +31,10 @@ namespace NCL {
 			void InitMixedGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing);
 			void InitCubeGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, const Vector3& cubeDims);
 			void InitDefaultFloor();
-			void BridgeConstraintTest();
+		
 			void DoorConstraintTest();
 	
+			void BulletConstraintTest();
 			bool SelectObject();
 			void MoveSelectedObject();
 			void DebugObjectMovement();
@@ -52,6 +53,7 @@ namespace NCL {
 
 			GameTechRenderer*	renderer;
 			//PhysicsSystem*		physics;
+			btDiscreteDynamicsWorld* m_dynamicsWorld;
 			GameWorld*			world;
 			physics::BulletWorld* physics;
 

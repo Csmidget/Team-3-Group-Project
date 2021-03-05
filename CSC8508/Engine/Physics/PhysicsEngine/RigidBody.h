@@ -39,6 +39,7 @@ namespace NCL
 				void setLinearVelocity(NCL::Maths::Vector3 vel);
 
 				void addTorque(NCL::Maths::Vector3& torque);
+			
 
 
 			private:
