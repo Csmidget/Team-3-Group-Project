@@ -3,14 +3,12 @@
 
 #include "Game.h"
 
-#include "../Engine/GameServer.h"
-#include "../Engine/GameClient.h"
+
 
 using namespace NCL;
 using namespace CSC8508;
 
-#include <chrono>
-#include <thread>
+
 
 
 
@@ -29,7 +27,6 @@ hide or show the
 //wort wort wort
 */
 int main() {
-	NetworkBase::Initialise();
 	Window* w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
 
 	if (!w->HasInitialised()) {
@@ -65,7 +62,6 @@ int main() {
 
 		g->UpdateGame(dt);
 	}
-	NetworkBase::Destroy();
 
 	Window::DestroyGameWindow();
 }
