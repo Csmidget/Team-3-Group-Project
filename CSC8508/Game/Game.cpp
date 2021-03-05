@@ -249,7 +249,7 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	Clear();
 
-	InitFromJSON("TestLevel.json");
+	InitFromJSON("CScene.json");
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 }

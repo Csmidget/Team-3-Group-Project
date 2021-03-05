@@ -1,0 +1,70 @@
+[
+    {
+        "name": "Cube",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.3799999952316285,
+                "y": 7.710000038146973,
+                "z": -23.1299991607666
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Cube.mat"
+        },
+        "physics": {
+            "invMass": -1.0,
+            "drag": 0.0,
+            "angularDrag": 0.0,
+            "useGravity": false,
+            "isKinematic": false
+        },
+        "Components": [
+            {
+                "name": "MoveRight",
+                "force": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            {
+                "name": "MoveLeft",
+                "jumpForce": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            }
+        ]
+    }
+]
