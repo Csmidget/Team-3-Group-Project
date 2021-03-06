@@ -11,17 +11,23 @@ RigidBody::RigidBody(Transform* parentTransform)
 {
 	body = nullptr;
 	colShape = nullptr;
+	worldRef = nullptr;
 	transform = parentTransform;
 }
 
 RigidBody::~RigidBody()
 {
+	if (worldRef)
+		worldRef->removeRigidBody(this);
+
 	if (body)
 	{
 		delete body->getMotionState();
 		delete body;
 	}
-	delete colShape;
+
+	if (colShape)
+		delete colShape;
 }
 
 // collisoin shapes based on several primitives. Must be called before creating a body
@@ -117,8 +123,17 @@ void RigidBody::updateTransform()
 {
 	if (body)
 	{
-		btVector3 pos = body->getCenterOfMassTransform().getOrigin();
-		btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
+		btMotionState* shapeMotionTransform;
+		shapeMotionTransform = body->getMotionState();
+		btTransform worldTransform;
+		shapeMotionTransform->getWorldTransform(worldTransform);
+
+
+		//btVector3 pos = body->getCenterOfMassTransform().getOrigin();
+		//btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
+
+		btVector3 pos = worldTransform.getOrigin();
+		btQuaternion rotation = worldTransform.getRotation();
 
 		Vector3 returnPos = Vector3(pos.x(), pos.y(), pos.z());
 		Quaternion returnRotation = Quaternion(rotation.x(), rotation.y(), rotation.z(), rotation.w());
@@ -148,6 +163,8 @@ void RigidBody::createBody(	float mass,
 							float friction,
 							BulletWorld* physicsWorld)
 {
+	worldRef = physicsWorld;
+
 	btQuaternion rotation = convertQuaternion(transform->GetOrientation());
 	btVector3 position = convertVector3(transform->GetPosition());
 
@@ -164,7 +181,7 @@ void RigidBody::createBody(	float mass,
 	body = new btRigidBody(bodyInfo);
 
 	body->setDamping(linearDamping, angularDamping);
-	physicsWorld->addRigidBody(this);
+	worldRef->addRigidBody(this);
 }
 
 void RigidBody::setUserPointer(void* object)

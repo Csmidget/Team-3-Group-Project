@@ -26,6 +26,11 @@ namespace NCL
 			{
 				return btQuaternion(original.x, original.y, original.z, original.w);
 			}
+			//converts a btVector3 to a Vector3
+			inline NCL::Maths::Vector3 convertbtVector3(btVector3 original)
+			{
+				return NCL::Maths::Vector3(original.x(), original.y(), original.z());
+			}
 
 			typedef std::pair<const btCollisionObject*, const btCollisionObject*> collisionPair;
 

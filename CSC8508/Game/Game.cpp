@@ -184,7 +184,7 @@ void Game::LockedObjectMovement() {
 	}
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::SPACE)) {
-		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,100.0f,0));
+		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,600.0f,0));
 	}
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) {
@@ -261,17 +261,17 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	Clear();
 
-	InitFromJSON("CScene.json");
+	//InitFromJSON("CScene.json");
 
-	world->Start();
+	//world->Start();
 
-	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 
-	//AddFloorToWorld(Vector3(0, 0, 0));
-	//AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
-	//AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
-	//AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
-	//AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
+	AddFloorToWorld(Vector3(0, 0, 0));
+	AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
+	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
+	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
+	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
 }
 
 void Game::DoorConstraintTest() {
@@ -594,7 +594,7 @@ bool Game::SelectObject() {
 		//physics->Clear();
 	}
 	
-/*
+
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
 		inSelectionMode = !inSelectionMode;
 		if (inSelectionMode) {
@@ -623,18 +623,19 @@ bool Game::SelectObject() {
 
 			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
 			//RayCollision closestCollision;
-
+			//Vector3 testVector1;
 			GameObject* test = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
 			if(test)
 				std::cout << test->GetName() << std::endl;
 
 			if (test) {
 				//need to think out where the debug line draws now
-				//Debug::DrawLine(ray.GetPosition(),test->GetTransform().GetPosition(), Vector4(0, 1, 0, 1), 10.0f);
+				//Debug::DrawLine(ray.GetPosition(),testVector1, Vector4(0, 1, 0, 1), 10.0f);
 				selectionObject = test;
 				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
 				
 				ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
+				//Vector3 testVector2;
 				GameObject* test2 = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
 				if (test2) {
 					//Debug::DrawLine(ray.GetPosition(), test2->GetTransform().GetPosition(), Vector4(1, 1, 0, 1), 10.0f);
@@ -651,7 +652,7 @@ bool Game::SelectObject() {
 	else {
 		renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
 	}
-*/
+
 
 
 	if (lockedObject) {
