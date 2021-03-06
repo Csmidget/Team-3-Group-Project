@@ -53,9 +53,10 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 
 void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 {
-	if (!physicsObjectJson.is_object())
+	if (!physicsObjectJson.is_object() || physicsObjectJson["mass"] == -1)
 		return;
 
+<<<<<<< Updated upstream
 	PhysicsObject* po = new PhysicsObject(&gameObject->GetTransform(), gameObject->GetBoundingVolume());
 	po->SetInverseMass(physicsObjectJson["invMass"]);
 
@@ -68,6 +69,29 @@ void SetPhysicsObjectFromJson(GameObject* gameObject, json physicsObjectJson)
 
 	if (physicsObjectJson["isKinematic"] == true)
 		gameObject->SetIsStatic(true);
+=======
+	Transform& transform = gameObject->GetTransform();
+
+	PhysicsObject* po = new PhysicsObject(&gameObject->GetTransform(), gameObject->GetBoundingVolume());
+	
+	float scaleX = transform.GetScale().x;
+	float scaleY = transform.GetScale().x;
+	float scaleZ = transform.GetScale().z;
+	float capsuleheight = scaleY - scaleZ;
+	if (colliderObjectJson["type"] == "box")
+		po->body->addBoxShape(transform.GetScale());
+	else if (colliderObjectJson["type"] == "sphere")
+		po->body->addSphereShape(scaleX);
+	else if (colliderObjectJson["type"] == "capsule")
+		po->body->addCapsuleShape(scaleZ, capsuleheight);
+
+
+	float mass = physicsObjectJson["mass"];
+	if (abs(mass) < 0.001f || physicsObjectJson["isKinematic"]) mass = 0.0f;
+
+	po->body->createBody(mass, 0.4f, 0.4f, game->GetPhysics());
+	po->body->setUserPointer(gameObject);
+>>>>>>> Stashed changes
 
 	gameObject->SetPhysicsObject(po);
 }
