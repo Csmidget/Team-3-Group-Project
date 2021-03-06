@@ -6,7 +6,7 @@
 
 using namespace NCL::CSC8508;
 
-GameObject::GameObject(string objectName)	{
+GameObject::GameObject(string objectName) : transform(this)	{
 	name			= objectName;
 	worldID			= -1;
 	isActive		= true;
@@ -29,6 +29,12 @@ GameObject::~GameObject()	{
 
 }
 
+void GameObject::Start() {
+	for (auto component : components) {
+		component->Start();
+	}
+}
+
 void GameObject::Update(float dt)
 {
 	for (auto component : components) {
@@ -42,6 +48,20 @@ void GameObject::OnCollisionBegin(GameObject* otherObject)
 {
 	for (auto component : components) {
 		component->OnCollisionBegin(otherObject);
+	}
+}
+
+void GameObject::OnCollisionStay(GameObject* otherObject)
+{
+	for (auto component : components) {
+		component->OnCollisionStay(otherObject);
+	}
+}
+
+void GameObject::OnCollisionEnd(GameObject* otherObject)
+{
+	for (auto component : components) {
+		component->OnCollisionEnd(otherObject);
 	}
 }
 

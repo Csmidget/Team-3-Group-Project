@@ -27,6 +27,7 @@ namespace NCL {
 				collisionLayer = val;
 			}
 
+			void Start();
 			void Update(float dt);
 
 			virtual void OnUpdate(float dt) {};
@@ -95,10 +96,9 @@ namespace NCL {
 			}
 
 			void OnCollisionBegin(GameObject* otherObject);
-
-			virtual void OnCollisionEnd(GameObject* otherObject) {
-				//std::cout << "OnCollisionEnd event occured!\n";
-			}
+			void OnCollisionStay(GameObject* otherObject);
+			void OnCollisionEnd(GameObject* otherObject);
+		
 
 			bool GetBroadphaseAABB(Vector3&outsize) const;
 
@@ -116,7 +116,6 @@ namespace NCL {
 			T* AddComponent(Params... vals) {
 				T* component = new T(this, vals...);
 				components.push_back(component);
-				component->Start();
 				return component;
 			}
 

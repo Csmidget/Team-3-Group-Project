@@ -3,6 +3,8 @@
 #include "../../Common/Vector3.h"
 
 #include <string>
+#include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
+#include "../Engine/NetworkManager.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -22,6 +24,8 @@ namespace NCL {
 			void AddGameObject(GameObject* go);
 
 			GameWorld* GetWorld() const { return world; }
+			physics::BulletWorld* GetPhysics() const { return physics; }
+
 			NCL::Rendering::ResourceManager* GetResourceManager() { return resourceManager; }
 
 		protected:
@@ -65,9 +69,12 @@ namespace NCL {
 			GameObject* AddBonusToWorld(const Maths::Vector3& position);
 
 			GameTechRenderer*	renderer;
-			PhysicsSystem*		physics;
+			//PhysicsSystem*		physics;
 			GameWorld*			world;
 			NCL::Rendering::ResourceManager* resourceManager;
+			physics::BulletWorld* physics;
+
+			NetworkManager* networkManager;
 
 			bool useGravity;
 			bool inSelectionMode;

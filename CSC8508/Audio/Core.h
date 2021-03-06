@@ -21,6 +21,7 @@ namespace NCL {
 				typedef std::map<std::string, std::vector<SoundInstance*>> SoundMap;
 				typedef std::map<unsigned int, FMOD::Channel*> ChannelMap;
 
+				std::map<FMOD::Channel*, FMOD::Sound*> oneShots;
 				SoundMap coreSounds;
 				ChannelMap coreChannels;
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "GameWorld.h"
+
+
 #include <set>
 
 namespace NCL {
@@ -61,6 +63,9 @@ namespace NCL {
 
 			bool useBroadPhase		= true;
 			int numCollisionFrames	= 5;
+
+			//physics::BulletWorld* physicsWorld;
+
 		};
 	}
 }

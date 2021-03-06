@@ -46,6 +46,11 @@ void GameWorld::ClearAndErase() {
 	Clear();
 }
 
+void GameWorld::Start() {
+	for (auto go : gameObjects)
+		go->Start();
+}
+
 GameObject* GameWorld::AddGameObject(GameObject* o) {
 
 	//For debugging, we should not be adding duplicate objects to the world.

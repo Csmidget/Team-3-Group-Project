@@ -54,10 +54,25 @@ void Core::Update()
 	auto it = coreSounds.begin();
 	while (it != coreSounds.end())
 	{
-		if ((*it).second.size() == 0)
+		if (it->second.size() == 0)
 			it = coreSounds.erase(it);
 		else
 			it++;
+	}
+
+	//Clear release one shot sound
+	auto shotsIt = oneShots.begin();
+	while (shotsIt != oneShots.end())
+	{
+		auto playing = false;
+		shotsIt->first->isPlaying(&playing);
+		if (!playing)
+		{
+			shotsIt->second->release();
+			shotsIt = oneShots.erase(shotsIt);
+		}
+		else
+			shotsIt++;
 	}
 	Audio::ErrorCheck(coreSystem->update());
 }

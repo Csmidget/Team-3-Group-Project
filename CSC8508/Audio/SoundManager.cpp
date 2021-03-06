@@ -31,6 +31,27 @@ void SoundManager::Release()
 	delete audioCore;
 }
 
+void SoundManager::PlayOneShot(const std::string& soundFile, const Maths::Vector3& position)
+{
+	auto channelID = audioCore->coreNextChannelID++;
+	if (audioCore == nullptr)
+		return;
+	FMOD::Sound* sound;
+	FMOD::Channel* channel;
+	ErrorCheck(audioCore->coreSystem->createSound((Assets::AUDIODIR + soundFile).c_str(), FMOD_3D | FMOD_LOOP_OFF | FMOD_3D_LINEARSQUAREROLLOFF, 0, &sound));
+	Audio::ErrorCheck(audioCore->coreSystem->playSound(sound, 0, true, &channel));
+	if (channel)
+	{
+		FMOD_VECTOR pos = Audio::ToFMODVECTOR(position);
+		FMOD_VECTOR vel = Audio::ToFMODVECTOR(Maths::Vector3(0, 0, 0));
+		Audio::ErrorCheck(channel->set3DAttributes(&pos, &vel));
+		Audio::ErrorCheck(channel->setPaused(false));
+	}
+	channelID = audioCore->coreNextChannelID++;
+	audioCore->coreChannels[channelID] = channel;
+	audioCore->oneShots[channel] = sound;	
+}
+
 void SoundManager::CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce)
 {
 	if (audioCore == nullptr)
