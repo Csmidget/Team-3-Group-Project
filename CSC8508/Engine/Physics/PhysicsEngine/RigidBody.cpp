@@ -26,27 +26,27 @@ RigidBody::~RigidBody()
 
 // collisoin shapes based on several primitives. Must be called before creating a body
 
-void RigidBody::addBoxShape(NCL::Maths::Vector3& halfExtents)
+void RigidBody::addBoxShape(NCL::Maths::Vector3 halfExtents)
 {
 	colShape = new btBoxShape(btVector3(halfExtents.x, halfExtents.y, halfExtents.z));
 }
 
-void RigidBody::addSphereShape(float& radius)
+void RigidBody::addSphereShape(float radius)
 {
 	colShape = new btSphereShape(radius);
 }
 
-void RigidBody::addCapsuleShape(float& radius, float& height)
+void RigidBody::addCapsuleShape(float radius, float height)
 {
 	colShape = new btCapsuleShape(radius, height);
 }
 
-void RigidBody::addCylinderShape(NCL::Maths::Vector3& halfExtents)
+void RigidBody::addCylinderShape(NCL::Maths::Vector3 halfExtents)
 {
 	colShape = new btCylinderShape(btVector3(halfExtents.x, halfExtents.y, halfExtents.z));
 }
 
-void RigidBody::addConeShape(float& radius, float& height)
+void RigidBody::addConeShape(float radius, float height)
 {
 	colShape = new btConeShape(radius, height);
 }

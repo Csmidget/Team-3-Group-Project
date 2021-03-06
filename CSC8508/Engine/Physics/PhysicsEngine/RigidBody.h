@@ -18,11 +18,11 @@ namespace NCL
 				RigidBody(Transform* parentTransform);
 				~RigidBody();
 
-				void addBoxShape(NCL::Maths::Vector3& halfExtents);
-				void addSphereShape( float& radius);
-				void addCapsuleShape(float& radius, float& height);
-				void addCylinderShape(NCL::Maths::Vector3& halfExtents);
-				void addConeShape(float& radius, float& height);
+				void addBoxShape(NCL::Maths::Vector3 halfExtents);
+				void addSphereShape( float radius);
+				void addCapsuleShape(float radius, float height);
+				void addCylinderShape(NCL::Maths::Vector3 halfExtents);
+				void addConeShape(float radius, float height);
 
 				void createBody(float mass,
 								float restitution,
