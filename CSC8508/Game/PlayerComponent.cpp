@@ -10,7 +10,8 @@
 using namespace NCL;
 using namespace CSC8508;
 
-PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(object) {
+PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(object) 
+{
 
 	speed = 10.0f;
 	jump = 100.f;
@@ -23,10 +24,27 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 
 	camera = game->GetWorld()->GetMainCamera();
 	this->game = game;
-};
+}
+NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(object)
+{
+	speed = 10.0f;
+	jump = 100.f;
+	pitch = 20.0f;
+	yaw = 0.0f;
+	cameraDistance = 10.0f;
+	lastCollisionTimer = 0.0f;
+	lockOrientation = false;
+	physicsObject = object->GetPhysicsObject();
+
+	testTimer = 0.f;
+
+	camera = nullptr;
+	game = nullptr;
+}
+
 
 void PlayerComponent::Update(float dt) {
-	//lastCollisionTimer += dt;
+	lastCollisionTimer += dt;
 
 	physicsObject->SetAngularVelocity(Vector3(0, 0, 0));
 
@@ -111,9 +129,17 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 void PlayerComponent::UpdateControls(float dt) 
 {
-	CameraMovement();
-	Movement();
-	Jump();
+	if (camera != nullptr)
+	{
+		CameraMovement();
+		Movement();
+		Jump();
+	}
+	else
+	{
+
+	}
+
 }
 
 

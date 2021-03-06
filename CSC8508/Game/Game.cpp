@@ -265,7 +265,7 @@ void Game::InitWorld() {
 	InitFromJSON("CScene.json");
 
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 0), 1.0f, 0.5f, 10.f, true);
-	player->AddComponent<PlayerComponent>(this);
+	player->AddComponent<PlayerComponent>();
 	
 
 	world->Start();

@@ -16,6 +16,11 @@ namespace NCL {
 
 		public:
 			PlayerComponent(GameObject* object, Game* game);
+			
+			//Testing constructor
+			PlayerComponent(GameObject* object);
+			
+
 			void Update(float dt);
 			void UpdateControls(float dt);
 			void OnCollisionBegin(GameObject* otherObject) override;
@@ -36,6 +41,8 @@ namespace NCL {
 			float jump;
 			float lastCollisionTimer;
 
+			float testTimer;
+			
 			Game* game;
 			Camera* camera;
 
