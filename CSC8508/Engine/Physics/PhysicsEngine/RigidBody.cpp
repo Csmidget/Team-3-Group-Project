@@ -128,10 +128,6 @@ void RigidBody::updateTransform()
 		btTransform worldTransform;
 		shapeMotionTransform->getWorldTransform(worldTransform);
 
-
-		//btVector3 pos = body->getCenterOfMassTransform().getOrigin();
-		//btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
-
 		btVector3 pos = worldTransform.getOrigin();
 		btQuaternion rotation = worldTransform.getRotation();
 
@@ -196,4 +192,28 @@ void RigidBody::setDamping(float linear, float angular)
 	angularDamping = angular;
 
 	body->setDamping(linearDamping, angularDamping);
+}
+
+void RigidBody::makeTrigger()
+{
+	if (body)
+	{
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		if (body->getMass() > 0)
+		{
+			btScalar bodyMass = 0;
+			btVector3 bodyInertia;
+			colShape->calculateLocalInertia(bodyMass, bodyInertia);
+			body->setMassProps(0,bodyInertia);
+		}
+	}
+}
+
+void RigidBody::makeKinematic()
+{
+	if (body)
+	{
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+	}
+
 }

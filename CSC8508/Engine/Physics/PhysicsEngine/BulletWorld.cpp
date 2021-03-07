@@ -37,7 +37,8 @@ void BulletWorld::setGravity(NCL::Maths::Vector3 force)
 }
 
 //cast a ray between to points and returns the hit gameobject or nullptr if nothing is hit
-GameObject* BulletWorld::rayIntersect(NCL::Maths::Vector3 from, NCL::Maths::Vector3 to)
+GameObject* BulletWorld::rayIntersect(	NCL::Maths::Vector3 from, NCL::Maths::Vector3 to,
+								/*OUT*/ NCL::Maths::Vector3 pointHit)
 {
 	btVector3 btFrom = convertVector3(from);
 	btVector3 btTo = convertVector3(to);
@@ -45,7 +46,7 @@ GameObject* BulletWorld::rayIntersect(NCL::Maths::Vector3 from, NCL::Maths::Vect
 	dynamicsWorld->rayTest(btFrom, btTo, res);
 	if (res.hasHit())
 	{
-		//pointHit = convertbtVector3(res.m_hitPointWorld);
+		pointHit = convertbtVector3(res.m_hitPointWorld);
 		return((GameObject*)res.m_collisionObject->getUserPointer());
 	}
 	return nullptr;
