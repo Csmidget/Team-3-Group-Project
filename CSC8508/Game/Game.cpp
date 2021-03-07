@@ -29,7 +29,6 @@ Game::Game() {
 	physics		= new physics::BulletWorld();
 
 	networkManager = new NetworkManager();
-	gameStateManager = new GameStateManager(world);
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
@@ -271,9 +270,11 @@ void Game::InitWorld() {
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
 	player->AddComponent<PlayerComponent>(this);
 	player->AddComponent<RespawnComponent>();
+	player->AddTag("Player");
 	world->Start();
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	gameStateManager = new GameStateManager(world);
 
 	//AddFloorToWorld(Vector3(0, 0, 0));
 	//AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);

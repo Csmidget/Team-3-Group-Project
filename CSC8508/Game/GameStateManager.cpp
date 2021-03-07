@@ -8,6 +8,11 @@ NCL::CSC8508::GameStateManager::GameStateManager(GameWorld* gameWorld)
 
 void NCL::CSC8508::GameStateManager::Update(float dt)
 {
+
+	if (clientPlayerID < players.size() && clientPlayerID >= 0) 
+		Debug::Print("Score: " + std::to_string(players.at(clientPlayerID)->GetComponent<ScoreComponent>()->GetScore()), Vector2(75, 95));
+
+	
 	if (IsGameOver()) {
 		//Go to next scene
 	}
