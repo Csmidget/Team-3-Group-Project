@@ -265,7 +265,7 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	Clear();
 
-	InitFromJSON("CharlesTest.json");
+	InitFromJSON("GameStateManagerTest.json");
 
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
 	player->AddComponent<PlayerComponent>(this);

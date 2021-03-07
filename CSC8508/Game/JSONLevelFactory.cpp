@@ -120,6 +120,7 @@ GameObject* CreateObjectFromJson(json objectJson, Game* game)
 
 	SetRenderObjectFromJson(go, objectJson["render"], game);
 
+	go->AddTag(objectJson["tag"]);
 
 	go->SetIsStatic(objectJson["isStatic"].is_boolean() ? objectJson["isStatic"] : false);
 

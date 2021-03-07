@@ -10,6 +10,8 @@ NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component(obj
 
 void NCL::CSC8508::ScoreComponent::OnCollisionBegin(GameObject* otherObject)
 {
+	if (!otherObject->IsActive()) return;
+
 	if (otherObject->HasTag("Bonus")) {
 		score += otherObject->GetComponent<BonusComponent>()->GetBonus();
 		otherObject->OnKill();
