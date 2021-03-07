@@ -39,6 +39,29 @@ namespace NCL {
 			Vector4 GetColour() const { return colour; }
 			void SetColour(const Vector4& val) { colour = val; }
 
+
+			void UpdateLight(float dt)
+			{
+				Vector3 forward = Vector3(0, 0, -1);
+				Vector3 right = Vector3(1, 0, 0);
+
+				float speed = 20 * dt;
+
+				if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::I))
+					position += forward * speed;
+				if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::K))
+					position -= forward * speed;
+				if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::J))
+					position -= right * speed;
+				if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::L))
+					position += right * speed;
+				if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::O))
+					position.y += speed;
+				if (Window::GetKeyboard()->KeyPressed(NCL::KeyboardKeys::P))
+					position.y -= speed;
+
+			}
+
 		protected:
 			Vector3 position;
 			float radius;
