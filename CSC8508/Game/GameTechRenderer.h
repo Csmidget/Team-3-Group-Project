@@ -38,6 +38,7 @@ namespace NCL {
 			void RenderCamera(); 
 			void RenderSkybox();
 			void InitLight();
+			void LoadLight();
 			void LoadSkybox();
 			NCL::Rendering::ResourceManager* resourceManager;
 			vector<const RenderObject*> activeObjects;

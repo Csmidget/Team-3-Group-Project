@@ -21,9 +21,7 @@ Matrix4 biasMatrix = Matrix4::Translation(Vector3(0.5, 0.5, 0.5)) * Matrix4::Sca
 GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceManager) : OGLRenderer(*Window::GetWindow()), gameWorld(world)	{
 	glEnable(GL_DEPTH_TEST);
 
-	shadowShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl");
-	m_temp_shader = (OGLShader*)resourceManager.LoadShader("gameTechVert.glsl", "gameTechFrag.glsl");
-	//shader->GetProgramID();
+	
 
 	glGenTextures(1, &shadowTex);
 	glBindTexture(GL_TEXTURE_2D, shadowTex);
@@ -52,20 +50,32 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 
 	//Skybox!
 	skyboxShader = (OGLShader*)resourceManager.LoadShader("skyboxVertex.glsl", "skyboxFragment.glsl");
+	shadowShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl");
+	m_temp_shader = (OGLShader*)resourceManager.LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");
+
+	//shader->GetProgramID();
 	skyboxMesh = new OGLMesh();
 	skyboxMesh->SetVertexPositions({Vector3(-1, 1,-1), Vector3(-1,-1,-1) , Vector3(1,-1,-1) , Vector3(1,1,-1) });
 	skyboxMesh->SetVertexIndices({ 0,1,2,2,3,0 });
 	skyboxMesh->UploadToGPU();
 
 	LoadSkybox();
+	LoadLight();
 }
 
 GameTechRenderer::~GameTechRenderer()	{
 
 	delete skyboxMesh;
+	delete m_temp_shader;
 
 	glDeleteTextures(1, &shadowTex);
 	glDeleteFramebuffers(1, &shadowFBO);
+}
+
+void GameTechRenderer::LoadLight() {
+
+	
+	InitLight();
 }
 
 void GameTechRenderer::LoadSkybox() {
@@ -116,6 +126,7 @@ void GameTechRenderer::RenderFrame() {
 	RenderShadowMap();
 	RenderSkybox();
 	RenderCamera();
+	//InitLight();
 	glDisable(GL_CULL_FACE); //Todo - text indices are going the wrong way...
 }
 
@@ -178,7 +189,7 @@ void GameTechRenderer::RenderShadowMap() {
 
 void GameTechRenderer::InitLight()
 {
-	glUseProgram(renderer->getTempShader()->GetProgramID());
+	glUseProgram(this->renderer->getTempShader()->GetProgramID());
 	float pointLightPositions[3] = { 0.0, 10.0, 0.0 };
 	float pointAmbient[3] = { 0.5, 0.5,0.5 };
 	float pointDiffuse[3] = { 0.8, 0.8, 0.8 };
@@ -195,7 +206,7 @@ void GameTechRenderer::InitLight()
 	float spotDiffuse[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
 	float spotSpecular[] = { 1.0f * 10.0f, 1.0f * 10.0f, 1.0f * 10.0f };
 
-	glUseProgram(renderer->getTempShader()->GetProgramID());
+	//glUseProgram(renderer->getTempShader()->GetProgramID());
 
 
 	unsigned int temp = renderer->getTempShader()->GetProgramID();
@@ -204,7 +215,7 @@ void GameTechRenderer::InitLight()
 	glUniform1i(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "bshadermap"), (int)false);
 	glUniform1i(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "material.diffuse"), 0);
 	glUniform1i(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "material.specular"), 1);
-	//glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "viewPos"), 1, &(gameWorld->GetMainCamera()->GetPosition())[0]);
+	glUniform3fv(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "viewPos"), 1, &(gameWorld.GetMainCamera()->GetPosition())[0]);
 	glUniform1f(glGetUniformLocation(renderer->getTempShader()->GetProgramID(), "material.shininess"), 32.0f);
 
 	// 设置(太阳)，为方便观察效果，已在shader中注释掉
