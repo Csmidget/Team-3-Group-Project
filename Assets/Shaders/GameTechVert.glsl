@@ -33,21 +33,23 @@ void main(void)
 {
 	mat3 normalMatrix = transpose ( inverse ( mat3 ( modelMatrix )));
 //
-//	OUT.shadowProj 	=  shadowMatrix * vec4 ( position,1);
-//	OUT.worldPos 	= ( modelMatrix * vec4 ( position ,1)). xyz ;
-//	OUT.normal 		= normalize ( normalMatrix * normalize ( normal ));
-//	
-//	OUT.texCoord	= texCoord;
-//	OUT.colour		= objectColour;
-//
-//	if(hasVertexColours) {
-//		OUT.colour		= objectColour * colour;
-//	}
+	OUT.shadowProj 	=  shadowMatrix * vec4 ( position,1);
+	OUT.worldPos 	= ( modelMatrix * vec4 ( position ,1)). xyz ;
+	OUT.normal 		= normalize ( normalMatrix * normalize ( normal ));
+	
+	OUT.texCoord	= texCoord;
+	OUT.colour		= objectColour;
+
+	if(hasVertexColours) {
+		OUT.colour		= objectColour * colour;
+	}
 
 	// 改用光照来解决
 	FragPos = vec3(modelMatrix * vec4(position, 1.0));
 	Normal = mat3(transpose(inverse(modelMatrix))) * normal;
 	TexCoords = texCoord;
+
+
 
 	mat4 mvp = (projMatrix * viewMatrix * modelMatrix);
 
