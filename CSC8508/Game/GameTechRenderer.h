@@ -15,6 +15,8 @@ namespace NCL {
 	namespace CSC8508 {
 		class RenderObject;
 
+		class Light;
+
 		class GameTechRenderer : public OGLRenderer	{
 		public:
 			GameTechRenderer(GameWorld& world, ResourceManager& resourceManager);
