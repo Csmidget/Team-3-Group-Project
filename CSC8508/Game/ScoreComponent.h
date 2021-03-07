@@ -7,11 +7,13 @@ namespace NCL {
 		{
 			public:
 				ScoreComponent(GameObject* object);
-				int GetScore() const { return score; };
 				void OnCollisionBegin(GameObject* otherObject);
-
+				
+				int GetScore() const { return score; };
+				bool IsFinished() const { return hasFinished; }
 			private:
 				float score;
+				bool hasFinished = false;
 		};
 
 	}
