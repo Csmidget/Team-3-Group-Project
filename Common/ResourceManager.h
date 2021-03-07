@@ -13,7 +13,6 @@ namespace NCL {
 		class TextureBase;
 		class ShaderBase;
 
-
 		class ResourceManager {
 
 		public:

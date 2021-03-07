@@ -1,110 +1,5 @@
 [
     {
-        "name": "Floor",
-        "isStatic": false,
-        "tag": "Untagged",
-        "collider": {
-            "type": "box",
-            "size": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "center": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "radius": 0.0,
-            "height": 0.0,
-            "isTrigger": false
-        },
-        "transform": {
-            "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "orientation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0,
-                "w": 1.0
-            },
-            "scale": {
-                "x": 50.0,
-                "y": 0.20000000298023225,
-                "z": 50.0
-            }
-        },
-        "render": {
-            "mesh": "Cube.msh",
-            "material": "Checkerboard.mat",
-            "renderScale": 2
-        },
-        "physics": {
-            "mass": 1.0000000116860974e-7,
-            "drag": 0.0,
-            "angularDrag": 0.05000000074505806,
-            "useGravity": true,
-            "isKinematic": false
-        }
-    },
-    {
-        "name": "Sphere",
-        "isStatic": false,
-        "tag": "Untagged",
-        "collider": {
-            "type": "sphere",
-            "size": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "center": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "radius": 0.5,
-            "height": 0.0,
-            "isTrigger": false
-        },
-        "transform": {
-            "position": {
-                "x": 0.0,
-                "y": 20.0,
-                "z": 0.0
-            },
-            "orientation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0,
-                "w": 1.0
-            },
-            "scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            }
-        },
-        "render": {
-            "mesh": "Sphere.msh",
-            "material": "Checkerboard.mat",
-            "renderScale": 2
-        },
-        "physics": {
-            "mass": 5.0,
-            "drag": 0.0,
-            "angularDrag": 0.05000000074505806,
-            "useGravity": true,
-            "isKinematic": false
-        },
-        "Components": [
-            
-        ]
-    },
-    {
         "name": "Cube",
         "isStatic": false,
         "tag": "Untagged",
@@ -126,9 +21,9 @@
         },
         "transform": {
             "position": {
-                "x": 0.0,
-                "y": 10.0,
-                "z": 0.0
+                "x": 1.3799999952316285,
+                "y": 7.710000038146973,
+                "z": -23.1299991607666
             },
             "orientation": {
                 "x": 0.0,
@@ -144,15 +39,32 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Checkerboard.mat",
-            "renderScale": 2
+            "material": "Cube.mat"
         },
         "physics": {
-            "mass": 5.0,
+            "invMass": -1.0,
             "drag": 0.0,
-            "angularDrag": 0.05000000074505806,
-            "useGravity": true,
+            "angularDrag": 0.0,
+            "useGravity": false,
             "isKinematic": false
-        }
+        },
+        "Components": [
+            {
+                "name": "MoveRight",
+                "force": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            {
+                "name": "MoveLeft",
+                "jumpForce": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            }
+        ]
     }
 ]

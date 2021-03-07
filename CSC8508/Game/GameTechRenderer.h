@@ -20,8 +20,6 @@ namespace NCL {
 			GameTechRenderer(GameWorld& world, ResourceManager& resourceManager);
 			~GameTechRenderer();
 
-			OGLShader* getTempShader() { return m_temp_shader; }
-			//NCL::Rendering::ResourceManager* GetResourceManager() { return resourceManager; }
 		protected:
 			void RenderFrame()	override;
 
@@ -29,7 +27,7 @@ namespace NCL {
 			Matrix4 SetupDebugStringMatrix()const override;
 
 			OGLShader*	defaultShader;
-			//GameTechRenderer* renderer;
+
 			GameWorld&	gameWorld;
 
 			void BuildObjectList();
@@ -37,21 +35,17 @@ namespace NCL {
 			void RenderShadowMap();
 			void RenderCamera(); 
 			void RenderSkybox();
-			void InitLight();
-			//void LoadLight();
+
 			void LoadSkybox();
-			//NCL::Rendering::ResourceManager* resourceManager;
+
 			vector<const RenderObject*> activeObjects;
 
 			OGLShader*  skyboxShader;
 			OGLMesh*	skyboxMesh;
 			GLuint		skyboxTex;
 
-			OGLShader* m_temp_shader = nullptr;
-
 			//shadow mapping things
-			NCL::Rendering::OGLShader*	shadowShader;
-			NCL::Rendering::OGLShader* shader;
+			OGLShader*	shadowShader;
 			GLuint		shadowTex;
 			GLuint		shadowFBO;
 			Matrix4     shadowMatrix;

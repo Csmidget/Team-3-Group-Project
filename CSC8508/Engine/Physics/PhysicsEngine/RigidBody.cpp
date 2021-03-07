@@ -11,23 +11,17 @@ RigidBody::RigidBody(Transform* parentTransform)
 {
 	body = nullptr;
 	colShape = nullptr;
-	worldRef = nullptr;
 	transform = parentTransform;
 }
 
 RigidBody::~RigidBody()
 {
-	if (worldRef)
-		worldRef->removeRigidBody(this);
-
 	if (body)
 	{
 		delete body->getMotionState();
 		delete body;
 	}
-
-	if (colShape)
-		delete colShape;
+	delete colShape;
 }
 
 // collisoin shapes based on several primitives. Must be called before creating a body
@@ -123,17 +117,8 @@ void RigidBody::updateTransform()
 {
 	if (body)
 	{
-		btMotionState* shapeMotionTransform;
-		shapeMotionTransform = body->getMotionState();
-		btTransform worldTransform;
-		shapeMotionTransform->getWorldTransform(worldTransform);
-
-
-		//btVector3 pos = body->getCenterOfMassTransform().getOrigin();
-		//btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
-
-		btVector3 pos = worldTransform.getOrigin();
-		btQuaternion rotation = worldTransform.getRotation();
+		btVector3 pos = body->getCenterOfMassTransform().getOrigin();
+		btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
 
 		Vector3 returnPos = Vector3(pos.x(), pos.y(), pos.z());
 		Quaternion returnRotation = Quaternion(rotation.x(), rotation.y(), rotation.z(), rotation.w());
@@ -163,8 +148,6 @@ void RigidBody::createBody(	float mass,
 							float friction,
 							BulletWorld* physicsWorld)
 {
-	worldRef = physicsWorld;
-
 	btQuaternion rotation = convertQuaternion(transform->GetOrientation());
 	btVector3 position = convertVector3(transform->GetPosition());
 
@@ -181,19 +164,11 @@ void RigidBody::createBody(	float mass,
 	body = new btRigidBody(bodyInfo);
 
 	body->setDamping(linearDamping, angularDamping);
-	worldRef->addRigidBody(this);
+	physicsWorld->addRigidBody(this);
 }
 
 void RigidBody::setUserPointer(void* object)
 {
 	if(body)
 		body->setUserPointer(object);
-}
-
-void RigidBody::setDamping(float linear, float angular)
-{
-	linearDamping = linear;
-	angularDamping = angular;
-
-	body->setDamping(linearDamping, angularDamping);
 }

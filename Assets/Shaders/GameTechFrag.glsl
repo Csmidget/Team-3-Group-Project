@@ -1,5 +1,6 @@
 #version 400 core
 out vec4 FragColor;
+
 uniform vec4 		objectColour;
 uniform sampler2D 	mainTex;
 uniform sampler2DShadow shadowTex;
@@ -21,6 +22,10 @@ in Vertex
 	vec3 worldPos;
 } IN;
 
+
+
+
+/*
 
 // 光照材质
 struct Material {
@@ -75,7 +80,7 @@ uniform sampler2D texture_specular1;
 
 // 光源
 uniform DirLight dirLight;
-uniform PointLight pointLights[2];
+uniform PointLight pointLights;
 uniform SpotLight spotLight;
 uniform Material material;
 
@@ -102,7 +107,7 @@ void main()
 //			shadow = textureProj ( shadowTex , IN . shadowProj ) * 0.5f;
 //		}
 //
-//		vec3  incident = normalize ( pointLights[0].position - IN.worldPos );
+//		vec3  incident = normalize ( lightPos - IN.worldPos );
 //		float lambert  = max (0.0 , dot ( incident , IN.normal )) * 0.9; 
 //	
 //		vec3 viewDir = normalize ( cameraPos - IN . worldPos );
@@ -120,16 +125,11 @@ void main()
 //	
 //		albedo.rgb = pow(albedo.rgb, vec3(2.2));
 //		
-//
-//		vec3 norm = normalize(Normal);
-//		vec3 lightColor = CalcPointLight(pointLights[0], norm, FragPos, viewDir);
-//
 //		FragColor.rgb = albedo.rgb * 0.05f; //ambient
-//		FragColor.rgb += albedo.rgb * lightColor.rgb * lambert * shadow; //diffuse light
-//		FragColor.rgb += lightColor.rgb * sFactor * shadow; //specular light
+//		FragColor.rgb += albedo.rgb * lightColour.rgb * lambert * shadow; //diffuse light
+//		FragColor.rgb += lightColour.rgb * sFactor * shadow; //specular light
 //		FragColor.rgb = pow(FragColor.rgb, vec3(1.0 / 2.2f));
 //		FragColor.a = albedo.a;
-//
 
 	}
 	else
@@ -139,17 +139,14 @@ void main()
 
 		vec3 result = vec3(0.0);
 
-	//	result = CalcDirLight(dirLight, norm, viewDir);
+		//result = CalcDirLight(dirLight, norm, viewDir);
 
-		// 4个点光源
-		for (int i = 0; i < 2; i++) {
-			result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
-		}
+		result += CalcPointLight(pointLights, norm, FragPos, viewDir);   
 
-		// 聚光光源
-		//result = CalcSpotLight(spotLight, norm, FragPos, viewDir);  
+		result += CalcSpotLight(spotLight, norm, FragPos, viewDir);    
 		
-		FragColor = vec4(result, 1.0);
+		FragColor = vec4(result, 1.0)*objectColour;
+
 	}
 }
 
@@ -173,21 +170,21 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
 }
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
 
-		float distance = length(light.position - fragPos); // 距离光源的距离
+	float distance = length(light.position - fragPos); // 距离光源的距离
 	float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 
 	// 环境光
-	vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
+	vec3 ambient = light.ambient * vec3(texture(texture_diffuse1, TexCoords));
 
 	// 漫反射
 	vec3 lightDir = normalize(light.position - fragPos);
 	float diff = max(dot(normal, lightDir), 0.0);
-	vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));
+	vec3 diffuse = light.diffuse * diff * vec3(texture(texture_diffuse1, TexCoords));
 
 	// 镜面高光
 	vec3 reflectDir = reflect(-lightDir, normal);
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-	vec3 specular = light.specular * spec * vec3(texture(material.specular, TexCoords)); // 高光颜色值
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0),32.0f);
+	vec3 specular = light.specular * spec * vec3(texture(texture_specular1, TexCoords)); // 高光颜色值
 
 	ambient *= attenuation;
 	diffuse *= attenuation;
@@ -195,43 +192,34 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
 
 	return (ambient + diffuse + specular);
 }
-
-
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
-	vec3 lightDir = normalize(light.position - fragPos);
+    vec3 lightDir = normalize(light.position - fragPos);
 
-	float theta = dot(lightDir, normalize(-light.direction));
-	
-	float epsilon = light.cutOff - light.outerCutOff;
-	float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
-	
-	// 执行光照计算
-	float distance = length(light.position - fragPos); // 距离光源的距离
-	float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
+    float diff = max(dot(normal, lightDir), 0.0);
 
-	// 环境光
-	vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
+    vec3 reflectDir = reflect(-lightDir, normal);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 
-	// 漫反射
-	float diff = max(dot(normal, lightDir), 0.0);
-	vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));
+    float distance = length(light.position - fragPos);
+    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));    
+    float theta = dot(lightDir, normalize(-light.direction)); 
+    float epsilon = light.cutOff - light.outerCutOff;
+    float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
 
-	// 镜面高光
-	vec3 reflectDir = reflect(-lightDir, normal);
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-	vec3 specular = light.specular * spec * vec3(texture(material.specular, TexCoords)); // 高光颜色值
-
-	ambient *= attenuation;
-	diffuse *= intensity;
-	specular *= intensity;
-
-	return (ambient + diffuse + specular);
+    vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
+    vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));
+    vec3 specular = light.specular * spec * vec3(texture(material.specular, TexCoords));
+    ambient *= attenuation * intensity;
+    diffuse *= attenuation * intensity;
+    specular *= attenuation * intensity;
+    return (ambient + diffuse + specular);
 }
 
 
+*/
 
-/*
+
 out vec4 fragColor;
 
 void main(void)
@@ -277,5 +265,3 @@ void main(void)
 	
 	//fragColor = IN.colour;
 }
-
-*/

@@ -63,10 +63,6 @@ namespace NCL {
 				isStatic = val;
 			}
 
-			void AddTag(std::string tag) {
-				tags.emplace_back(tag);
-			}
-
 			bool HasTag(std::string tag) {
 				return std::find(tags.begin(), tags.end(), tag) != tags.end();			
 			}

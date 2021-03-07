@@ -6,7 +6,6 @@
 #include "RespawnComponent.h"
 
 #include "../Engine/GameObject.h"
-#include "BonusComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -21,8 +20,6 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Move")			return gameObject->AddComponent<MoveComponent>(JsonToVector3(componentJson["force"]), componentJson["time"]);
 	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
-	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
-
 
 	return nullptr;
 }

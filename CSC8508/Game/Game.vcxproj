@@ -149,8 +149,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BonusComponent.cpp" />
-    <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GameTechRenderer.cpp" />
     <ClCompile Include="JSONComponentFactory.cpp" />
     <ClCompile Include="JSONLevelFactory.cpp" />
@@ -161,11 +159,8 @@
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="RespawnComponent.cpp" />
     <ClCompile Include="RespawningObject.cpp" />
-    <ClCompile Include="ScoreComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BonusComponent.h" />
-    <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameTechRenderer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="JSONComponentFactory.h" />
@@ -175,7 +170,6 @@
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="RespawnComponent.h" />
     <ClInclude Include="RespawningObject.h" />
-    <ClInclude Include="ScoreComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />

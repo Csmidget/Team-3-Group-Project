@@ -159,10 +159,10 @@
     <ClInclude Include="NetworkState.h">
       <Filter>Networking</Filter>
     </ClInclude>
-    <ClInclude Include="ClientPlayer.h">
-      <Filter>Networking</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientPlayer.h">
       <Filter>Networking</Filter>
     </ClInclude>
   </ItemGroup>
