@@ -187,7 +187,7 @@ void Game::LockedObjectMovement() {
 	}
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::SPACE)) {
-		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,100.0f,0));
+		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,600.0f,0));
 	}
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) {
@@ -595,69 +595,70 @@ letting you move the camera around.
 */
 bool Game::SelectObject() {
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::P)) {
-		world->ClearAndErase();
-		//physics->Clear();
-	}
-	
-/*
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
-		inSelectionMode = !inSelectionMode;
-		if (inSelectionMode) {
-			Window::GetWindow()->ShowOSPointer(true);
-			Window::GetWindow()->LockMouseToWindow(false);
-		}
-		else {
-			Window::GetWindow()->ShowOSPointer(false);
-			Window::GetWindow()->LockMouseToWindow(true);
-		}
-	}
-	if (inSelectionMode) {
-		renderer->DrawString("Press Q to change to camera mode!", Vector2(5, 85));
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::P)) {
+	//	world->ClearAndErase();
+	//	//physics->Clear();
+	//}
+	//
 
-		if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
-			if (selectionObject) {	//set colour to deselected;
-				selectionObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
+	//	inSelectionMode = !inSelectionMode;
+	//	if (inSelectionMode) {
+	//		Window::GetWindow()->ShowOSPointer(true);
+	//		Window::GetWindow()->LockMouseToWindow(false);
+	//	}
+	//	else {
+	//		Window::GetWindow()->ShowOSPointer(false);
+	//		Window::GetWindow()->LockMouseToWindow(true);
+	//	}
+	//}
+	//if (inSelectionMode) {
+	//	renderer->DrawString("Press Q to change to camera mode!", Vector2(5, 85));
 
-				if(forwardObject)
-					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
+	//	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
+	//		if (selectionObject) {	//set colour to deselected;
+	//			selectionObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
 
-				selectionObject = nullptr;
-				forwardObject = nullptr;
-				lockedObject	= nullptr;
-			}
+	//			if(forwardObject)
+	//				forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
 
-			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
-			//RayCollision closestCollision;
+	//			selectionObject = nullptr;
+	//			forwardObject = nullptr;
+	//			lockedObject	= nullptr;
+	//		}
 
-			GameObject* test = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
-			if(test)
-				std::cout << test->GetName() << std::endl;
+	//		Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
+	//		//RayCollision closestCollision;
+	//		//Vector3 testVector1;
+	//		GameObject* test = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+	//		if(test)
+	//			std::cout << test->GetName() << std::endl;
 
-			if (test) {
-				//need to think out where the debug line draws now
-				//Debug::DrawLine(ray.GetPosition(),test->GetTransform().GetPosition(), Vector4(0, 1, 0, 1), 10.0f);
-				selectionObject = test;
-				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
-				
-				ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
-				GameObject* test2 = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
-				if (test2) {
-					//Debug::DrawLine(ray.GetPosition(), test2->GetTransform().GetPosition(), Vector4(1, 1, 0, 1), 10.0f);
-					forwardObject = test2;
-					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 0, 1));
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-	}
-	else {
-		renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
-	}
-*/
+	//		if (test) {
+	//			//need to think out where the debug line draws now
+	//			//Debug::DrawLine(ray.GetPosition(),testVector1, Vector4(0, 1, 0, 1), 10.0f);
+	//			selectionObject = test;
+	//			selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
+	//			
+	//			ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
+	//			//Vector3 testVector2;
+	//			GameObject* test2 = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+	//			if (test2) {
+	//				//Debug::DrawLine(ray.GetPosition(), test2->GetTransform().GetPosition(), Vector4(1, 1, 0, 1), 10.0f);
+	//				forwardObject = test2;
+	//				forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 0, 1));
+	//			}
+	//			return true;
+	//		}
+	//		else {
+	//			return false;
+	//		}
+	//	}
+	//}
+	//else {
+	//	renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
+	//}
+
 
 
 	if (lockedObject) {
