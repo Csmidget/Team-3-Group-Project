@@ -126,8 +126,8 @@ void GameTechRenderer::RenderFrame() {
 void GameTechRenderer::InitLight()
 {
 
-	float pointLightPositions[3] = { 0.0, 10.0, -30.0 };
-	float pointLightPositions02[3] = { 0.0, 10.0, 30.0 };
+	float pointLightPositions[3] = { 0.0, 10.0, -20.0 };
+	float pointLightPositions02[3] = { 0.0, 10.0, 35.0 };
 
 	float pointAmbient[3] = { 0.5 * 10, 0.5 * 10,0.5 * 10 };
 	float pointDiffuse[3] = { 0.8 * 10, 0.8 * 10, 0.8 * 10 };
