@@ -189,3 +189,11 @@ void RigidBody::setUserPointer(void* object)
 	if(body)
 		body->setUserPointer(object);
 }
+
+void RigidBody::setDamping(float linear, float angular)
+{
+	linearDamping = linear;
+	angularDamping = angular;
+
+	body->setDamping(linearDamping, angularDamping);
+}

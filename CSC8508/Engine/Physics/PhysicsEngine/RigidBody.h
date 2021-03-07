@@ -44,6 +44,8 @@ namespace NCL
 				void addImpulse(NCL::Maths::Vector3 force);
 				void addTorqueImpulse(NCL::Maths::Vector3 force);
 
+				void setDamping(float linear, float angular);
+
 			private:
 
 				float linearDamping = 0.05;
