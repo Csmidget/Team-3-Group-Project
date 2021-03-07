@@ -27,7 +27,7 @@ void SetTransformFromJson(Transform& transform, json transformJson)
 
 void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game* game)
 {
-	if (!renderObjectJson.is_object())
+	if (!renderObjectJson.is_object() || !renderObjectJson["mesh"].is_string() || (string)renderObjectJson["mesh"] == "")
 		return;
 
 	ResourceManager* resourceManager = game->GetResourceManager();
@@ -47,6 +47,9 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 
 
 	float renderScale = renderObjectJson["renderScale"].is_number() ? renderObjectJson["renderScale"] : 1;
+
+	if (renderObjectJson["mesh"] == "Cube.msh" || renderObjectJson["mesh"] == "Sphere.msh")
+		renderScale = 2.0f;
 
 	ShaderBase* shader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");//renderObjectJson["vertex"],renderObjectJson["fragment"]);
 	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * renderScale);
