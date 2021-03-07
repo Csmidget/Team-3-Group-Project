@@ -188,5 +188,24 @@ void RigidBody::setUserPointer(void* object)
 
 void RigidBody::makeTrigger()
 {
-	body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	if (body)
+	{
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		if (body->getMass() > 0)
+		{
+			btScalar bodyMass = 0;
+			btVector3 bodyInertia;
+			colShape->calculateLocalInertia(bodyMass, bodyInertia);
+			body->setMassProps(0,bodyInertia);
+		}
+	}
+}
+
+void RigidBody::makeKinematic()
+{
+	if (body)
+	{
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+	}
+
 }

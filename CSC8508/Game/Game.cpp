@@ -269,7 +269,7 @@ void Game::InitWorld() {
 
 	 AddFloorToWorld(Vector3(0, 0, 0));
 
-	GameObject* cube = AddCubeToWorld(Vector3(0, 5, 0), Vector3(1, 1, 1), 0);
+	GameObject* cube = AddCubeToWorld(Vector3(0, 5, 0), Vector3(1, 1, 1), 10);
 	cube->GetPhysicsObject()->body->makeTrigger();
 
 	AddCubeToWorld(Vector3(10, 30, 0), Vector3(1, 1, 1), 10);
@@ -635,7 +635,7 @@ bool Game::SelectObject() {
 
 			if (test) {
 				//need to think out where the debug line draws now
-				Debug::DrawLine(ray.GetPosition(),testVector1, Vector4(0, 1, 0, 1), 10.0f);
+				//Debug::DrawLine(ray.GetPosition(),testVector1, Vector4(0, 1, 0, 1), 10.0f);
 				selectionObject = test;
 				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
 				
