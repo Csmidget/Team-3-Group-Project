@@ -71,6 +71,7 @@ void Game::UpdateGame(float dt) {
 
 	UpdateKeys();
 
+
 	if (useGravity) {
 		Debug::Print("(G)ravity on", Vector2(5, 95));
 	}
@@ -262,11 +263,21 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	Clear();
 
-	InitFromJSON("CScene.json");
+	InitFromJSON("TestLevelPlayerMovement.json");
 
-	auto player = AddCapsuleToWorld(Vector3(10, 10, 0), 1.0f, 0.5f, 10.f, true);
-	player->AddComponent<PlayerComponent>();
+	//for (int i = 1; i < 2; i++)
+	//{
+	//	auto player = AddCapsuleToWorld(Vector3(-60 + 10 * i, 5, 0), 1.0f, 0.5f, 10, true);
+	//	player->AddComponent<PlayerComponent>();
+	//	player->GetComponent<PlayerComponent>()->SetSpeed(50,  0.01f);
+	//	player->GetComponent<PlayerComponent>()->SetJump(50 * i, 0.02f);		
+	//	//player->GetComponent<PlayerComponent>()->SetSpeed(40);
+	//	//player->GetComponent<PlayerComponent>()->SetJump(0);
+	//}
 	
+	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	player->AddComponent<PlayerComponent>(this);
+
 
 	world->Start();
 

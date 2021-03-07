@@ -12,6 +12,14 @@ namespace NCL {
 		class PhysicsObject;
 		class Game;
 
+		enum PlayerMovementState
+		{
+			WALKING,
+			JUMP_ONE,
+			JUMP_TWO
+		};
+
+
 		class PlayerComponent : public Component {
 
 		public:
@@ -25,8 +33,14 @@ namespace NCL {
 			void UpdateControls(float dt);
 			void OnCollisionBegin(GameObject* otherObject) override;
 			void OnCollisionStay(GameObject* otherObject) override;
+			void OnCollisionEnd(GameObject* otherObject) override;
 
+			void SetSpeed(float speed, float max) { this->speed = speed; this->MAX_WALKING_SPEED = max; }
+			void SetJump(float jump, float max) { this->jump = jump; this->MAX_AIR_SPEED = max;
+			}
 		private:
+
+			PlayerMovementState movementState;
 			Maths::Vector3 dir;
 			PhysicsObject* physicsObject;
 
@@ -35,21 +49,38 @@ namespace NCL {
 			float yaw;
 			float pitch;
 			float cameraDistance;
+			const float MAX_CAMERA_DISTANCE = 18.f;
+			const float MIN_CAMERA_DISTANCE = 13.f;
 
 			float speed;
+			float MAX_WALKING_SPEED;
 
 			float jump;
+			float MAX_AIR_SPEED;
+			int jumpCounter;
+			bool jumping;
 			float lastCollisionTimer;
 
+			bool testing;
 			float testTimer;
+			bool hasJumped;
 			
 			Game* game;
 			Camera* camera;
+			
 
 			void CameraMovement();
 			void Movement();
 			void Jump();
+			void ClampVelocity();
+			void Stop();
 
+			void Interact();
+
+			void Testing();
+			void TestMovement();
+			void TestStaticJumping();
+			void TestRunningJump();
 		};
 
 	}
