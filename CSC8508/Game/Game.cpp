@@ -267,8 +267,13 @@ void Game::InitWorld() {
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 
-	AddFloorToWorld(Vector3(0, 0, 0));
-	AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
+	 AddFloorToWorld(Vector3(0, 0, 0));
+
+	GameObject* cube = AddCubeToWorld(Vector3(0, 5, 0), Vector3(1, 1, 1), 0);
+	cube->GetPhysicsObject()->body->makeTrigger();
+
+	AddCubeToWorld(Vector3(10, 30, 0), Vector3(1, 1, 1), 10);
+
 	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
 	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
 	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
@@ -623,20 +628,20 @@ bool Game::SelectObject() {
 
 			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
 			//RayCollision closestCollision;
-			//Vector3 testVector1;
-			GameObject* test = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+			Vector3 testVector1;
+			GameObject* test = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f, testVector1);
 			if(test)
 				std::cout << test->GetName() << std::endl;
 
 			if (test) {
 				//need to think out where the debug line draws now
-				//Debug::DrawLine(ray.GetPosition(),testVector1, Vector4(0, 1, 0, 1), 10.0f);
+				Debug::DrawLine(ray.GetPosition(),testVector1, Vector4(0, 1, 0, 1), 10.0f);
 				selectionObject = test;
 				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
 				
 				ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
-				//Vector3 testVector2;
-				GameObject* test2 = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+				Vector3 testVector2;
+				GameObject* test2 = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f, testVector2);
 				if (test2) {
 					//Debug::DrawLine(ray.GetPosition(), test2->GetTransform().GetPosition(), Vector4(1, 1, 0, 1), 10.0f);
 					forwardObject = test2;

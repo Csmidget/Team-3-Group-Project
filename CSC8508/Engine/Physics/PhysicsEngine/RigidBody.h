@@ -34,8 +34,9 @@ namespace NCL
 				btRigidBody* returnBody() { return body; };
 
 				void setTransform();
-
 				void updateTransform();
+
+				void makeTrigger();
 				
 				void addForce(NCL::Maths::Vector3 force);
 				void addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos);

@@ -128,10 +128,6 @@ void RigidBody::updateTransform()
 		btTransform worldTransform;
 		shapeMotionTransform->getWorldTransform(worldTransform);
 
-
-		//btVector3 pos = body->getCenterOfMassTransform().getOrigin();
-		//btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
-
 		btVector3 pos = worldTransform.getOrigin();
 		btQuaternion rotation = worldTransform.getRotation();
 
@@ -188,4 +184,9 @@ void RigidBody::setUserPointer(void* object)
 {
 	if(body)
 		body->setUserPointer(object);
+}
+
+void RigidBody::makeTrigger()
+{
+	body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
