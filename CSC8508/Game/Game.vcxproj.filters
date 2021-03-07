@@ -60,6 +60,9 @@
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="BonusComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="GameStateManager.h">
       <Filter>Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

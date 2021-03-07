@@ -1,5 +1,5 @@
 #pragma once
-#include "D:\Github\Team-3-Group-Project\CSC8508\Engine\Component.h"
+#include "../Engine/Component.h"
 namespace NCL {
 
 	namespace CSC8508 {

@@ -1,5 +1,6 @@
 #include "ScoreComponent.h"
 #include "../Engine/GameObject.h"
+#include "BonusComponent.h"
 
 NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component(object)
 {
@@ -10,8 +11,9 @@ NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component(obj
 void NCL::CSC8508::ScoreComponent::OnCollisionBegin(GameObject* otherObject)
 {
 	if (otherObject->HasTag("Bonus")) {
-		//dynamic cast bonus type to get bonus
-		//score += otherObject.getcomponent<Bonus>.getbonus
+		score += otherObject->GetComponent<BonusComponent>()->GetBonus();
+		otherObject->OnKill();
+		return;
 	}
 
 	if (otherObject->HasTag("Goal")) hasFinished = true;
