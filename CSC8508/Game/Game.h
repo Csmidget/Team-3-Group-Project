@@ -1,10 +1,11 @@
 #pragma once
 #include "../../Common/ResourceManager.h"
 #include "../../Common/Vector3.h"
-
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include <string>
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 #include "../Engine/NetworkManager.h"
+#include "GameStateManager.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -18,6 +19,8 @@ namespace NCL {
 		public:
 			Game();
 			~Game();
+
+			
 
 			virtual void UpdateGame(float dt);
 
@@ -44,7 +47,7 @@ namespace NCL {
 			void InitGameExamples();
 
 			void InitSlopeLevel();
-
+			
 			void InitSphereGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, float radius);
 			void InitMixedGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing);
 			void InitCubeGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, const Maths::Vector3& cubeDims);
@@ -75,6 +78,7 @@ namespace NCL {
 			physics::BulletWorld* physics;
 
 			NetworkManager* networkManager;
+			GameStateManager* gameStateManager;
 
 			bool useGravity;
 			bool inSelectionMode;
@@ -83,6 +87,11 @@ namespace NCL {
 
 			GameObject* selectionObject = nullptr;
 			GameObject* forwardObject = nullptr;
+
+			// OGLShader * m_temp_shader = nullptr;
+			//GameObject* m_tempp;
+
+			
 
 			//Coursework Additional functionality	
 			GameObject* lockedObject	= nullptr;
