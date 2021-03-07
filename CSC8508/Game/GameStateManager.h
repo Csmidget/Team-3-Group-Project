@@ -16,7 +16,7 @@ namespace NCL {
 
 			private:
 				void RefreshPlayerList();
-
+				bool IsGameOver();
 
 				GameWorld* world;
 				std::vector<GameObject*> players;

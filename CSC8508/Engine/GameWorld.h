@@ -73,6 +73,8 @@ namespace NCL {
 
 			void FlipDisplayQuadTree() { displayQuadtree = !displayQuadtree; }
 
+			std::vector<GameObject*> GetObjectsWithTag(string tag);
+
 		protected:
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;
