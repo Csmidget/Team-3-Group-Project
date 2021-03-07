@@ -37,8 +37,6 @@ namespace NCL
 
 				void updateTransform();
 				
-
-
 				void addForce(NCL::Maths::Vector3 force);
 				void addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos);
 				void setLinearVelocity(NCL::Maths::Vector3 vel);
@@ -46,15 +44,19 @@ namespace NCL
 				void addImpulse(NCL::Maths::Vector3 force);
 				void addTorqueImpulse(NCL::Maths::Vector3 force);
 
+				void setDamping(float linear, float angular);
+
 			private:
 
-				float linearDamping = 0.1;
+				float linearDamping = 0.05;
 				float angularDamping = 0.7;
 
 				//PhysicsObject* parent;
 				Transform* transform;
 				btRigidBody* body;
 				btCollisionShape* colShape;
+
+				BulletWorld* worldRef;
 
 			};
 		}
