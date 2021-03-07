@@ -43,7 +43,7 @@
             "renderScale": 2
         },
         "physics": {
-            "invMass": 1.0,
+            "mass": 1.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
@@ -94,7 +94,7 @@
             "renderScale": 2
         },
         "physics": {
-            "invMass": 0.0,
+            "mass": 0.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,

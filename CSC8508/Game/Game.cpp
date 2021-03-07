@@ -12,6 +12,9 @@
 #include"../Audio/SoundInstance.h"
 #include "../../Common/ShaderBase.h"
 
+#include "PlayerComponent.h"
+#include "RespawnComponent.h"
+
 //JENKINS TEST 3
 
 using namespace NCL;
@@ -263,8 +266,11 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	Clear();
 
-	InitFromJSON("CScene.json");
+	InitFromJSON("CharlesTest.json");
 
+	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
+	player->AddComponent<PlayerComponent>(this);
+	player->AddComponent<RespawnComponent>();
 	world->Start();
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));

@@ -17,7 +17,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	yaw = 0.0f;
 	cameraDistance = 10.0f;
 	lastCollisionTimer = 0.0f;
-	lockOrientation = false;
+	//lockOrientation = false;
 	physicsObject = object->GetPhysicsObject();
 
 	camera = game->GetWorld()->GetMainCamera();
@@ -25,7 +25,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 };
 
 void PlayerComponent::Update(float dt) {
-	lastCollisionTimer += dt;
+	//lastCollisionTimer += dt;
 
 	physicsObject->SetAngularVelocity(Vector3(0, 0, 0));
 
@@ -37,7 +37,7 @@ void PlayerComponent::Update(float dt) {
 }
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject) {
-	lastCollisionTimer = 0.0f;
+	//lastCollisionTimer = 0.0f;
 }
 
 void PlayerComponent::UpdateControls(float dt) {
@@ -81,7 +81,7 @@ void PlayerComponent::UpdateControls(float dt) {
 			direction += Vector3(1, 0, 0);
 		}
 
-		physicsObject->AddForce(orientation * direction.Normalised() * speed);
+		physicsObject->body->addForce(orientation * direction.Normalised() * speed);
 	}
 
 }
