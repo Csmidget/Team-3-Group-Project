@@ -43,11 +43,11 @@
             "renderScale": 2
         },
         "physics": {
-            "mass": 1.0,
+            "mass": 0.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
-            "isKinematic": false
+            "isKinematic": true
         },
         "components": [
 
