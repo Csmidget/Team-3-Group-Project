@@ -17,21 +17,12 @@ namespace NCL {
 
 		class Game		{
 		public:
-			Game(string name = "");
+			Game();
 			~Game();
 
 			
 
 			virtual void UpdateGame(float dt);
-			virtual void UpdateIntroGame(float dt);
-			virtual void UpdatePauseGame(float dt);
-
-			int GetOpenOrExit() {
-				return OpenOrExit;
-			}
-			void SetOpenOrExit(int openorexit) {
-				OpenOrExit = openorexit;
-			}
 
 			void AddGameObject(GameObject* go);
 
@@ -50,19 +41,6 @@ namespace NCL {
 			void UpdateKeys();
 
 			void InitWorld();
-			void InitIntroWorld();
-			void InitOverWorld();
-			void InitPauseWorld();
-			void InitIntroCamera();
-			void InitOpenCube();
-			void InitExitCube();
-
-			bool IntroSelectObject();
-			GameObject* OpenCube = nullptr;
-			GameObject* ExitCube = nullptr;
-			GameObject* PauseCube = nullptr;
-			GameObject* restartsqhere = nullptr;
-			int OpenOrExit = 0;
 			
 			void InitFromJSON(std::string fileName);
 
@@ -108,7 +86,6 @@ namespace NCL {
 			float		forceMagnitude;
 
 			GameObject* selectionObject = nullptr;
-			GameObject* newselectionObject = nullptr;
 			GameObject* forwardObject = nullptr;
 
 			// OGLShader * m_temp_shader = nullptr;
@@ -122,8 +99,7 @@ namespace NCL {
 			void LockCameraToObject(GameObject* o) {
 				lockedObject = o;
 			}
-			string name;
-			Vector4 saveColor = Vector4(1, 1, 1, 1);
+
 		};
 	}
 }

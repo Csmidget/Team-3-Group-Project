@@ -30,11 +30,6 @@ Game::Game() {
 	//physics		= new PhysicsSystem(*world);
 	physics		= new physics::BulletWorld();
 
-Game::Game(string pagename) {
-	name = pagename;
-	world		= new GameWorld();
-	renderer	= new GameTechRenderer(*world);
-	physics		= new PhysicsSystem(*world);
 	networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
@@ -64,22 +59,8 @@ void Game::InitialiseAssets() {
 
 	//Todo: These should be removed whenever we fully shift to json levels.
 
-	if (name == "0") {
-		InitIntroCamera();
-		InitIntroWorld();
-	}
-	if (name == "1") {
-		InitCamera();
-		InitWorld();
-	}
-	if (name == "2") {
-		InitIntroCamera();
-		InitOverWorld();
-	}
-	if (name == "3") {
-		InitIntroCamera();
-		InitPauseWorld();
-	}
+	InitCamera();
+	InitWorld();
 }
 
 Game::~Game()	{
@@ -135,39 +116,6 @@ void Game::UpdateGame(float dt) {
 	renderer->Render();
 	Audio::SoundManager::Update();
 }
-
-void Game::UpdateIntroGame(float dt) {
-	if (!inSelectionMode) {
-		world->GetMainCamera()->UpdateCamera(dt);
-	}
-
-	IntroSelectObject();
-	physics->Update(dt);
-
-
-	world->UpdateWorld(dt);
-	renderer->Update(dt);
-
-	Debug::FlushRenderables(dt);
-	renderer->Render();
-}
-
-void Game::UpdatePauseGame(float dt) {
-	if (!inSelectionMode) {
-		world->GetMainCamera()->UpdateCamera(dt);
-	}
-
-	IntroSelectObject();
-	physics->Update(dt);
-
-
-	world->UpdateWorld(dt);
-	renderer->Update(dt);
-
-	Debug::FlushRenderables(dt);
-	renderer->Render();
-}
-
 
 void Game::UpdateKeys() {
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F1)) {
@@ -297,15 +245,6 @@ void Game::DebugObjectMovement() {
 
 }
 
-void Game::InitIntroCamera() {
-	world->GetMainCamera()->SetNearPlane(0.1f);
-	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(-15.0f);
-	world->GetMainCamera()->SetYaw(315.0f);
-	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
-	lockedObject = nullptr;
-}
-
 void Game::InitCamera() {
 	world->GetMainCamera()->SetNearPlane(0.1f);
 	world->GetMainCamera()->SetFarPlane(500.0f);
@@ -348,41 +287,6 @@ void Game::InitWorld() {
 	//AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
 	//AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
 	//AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
-}
-
-void Game::InitIntroWorld() {
-	world->ClearAndErase();
-	physics->Clear();
-	InitOpenCube();
-	InitDefaultFloor();
-}
-
-void Game::InitOpenCube() {
-	Vector3 cubeDims = Vector3(10, 10, 10);
-	Vector3 position = Vector3(-20, 40, 0);
-	OpenCube = AddCubeToWorld(position, cubeDims);
-	OpenCube->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
-	cubeDims = Vector3(10, 10, 10);
-	position = Vector3(0, 60, 0);
-}
-
-/*void Game::InitExitCube() {
-	Vector3 cubeDims = Vector3(10, 10, 10);
-	Vector3 position = Vector3(20, 40, 0);
-	ExitCube = AddCubeToWorld(position, cubeDims);
-	ExitCube->GetRenderObject()->SetColour(Vector4(1, 0, 0, 1));
-}*/
-
-void Game::InitPauseWorld() {
-	world->ClearAndErase();
-	physics->Clear();
-	InitDefaultFloor();
-}
-
-void Game::InitOverWorld() {
-	world->ClearAndErase();
-	physics->Clear();
-	InitDefaultFloor();
 }
 
 void Game::DoorConstraintTest() {
@@ -698,73 +602,6 @@ manipulated later. Pressing Q will let you toggle between this behaviour and ins
 letting you move the camera around. 
 
 */
-bool Game::IntroSelectObject() {
-
-		inSelectionMode = !inSelectionMode;
-		
-		Window::GetWindow()->ShowOSPointer(true);
-		Window::GetWindow()->LockMouseToWindow(false);
-
-		if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
-			if (selectionObject) {	//set colour to deselected;
-
-				selectionObject->GetRenderObject()->SetColour(saveColor);
-
-				newselectionObject = selectionObject;
-				if (selectionObject == OpenCube) {
-					OpenOrExit = 1;
-					return true;
-				}
-				if (selectionObject == ExitCube) {
-					OpenOrExit = 2;
-					return true;
-				}
-				if (selectionObject == PauseCube) {
-					OpenOrExit = 3;
-					return true;
-				}
-				if (selectionObject == restartsqhere) {
-					OpenOrExit = 4;
-					return true;
-				}
-			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
-
-				RayCollision closestCollision;
-				if (world->Raycast(ray, closestCollision, true)) {
-					selectionObject = (GameObject*)closestCollision.node;
-					saveColor = selectionObject->GetRenderObject()->GetColour();
-					selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
-
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
-				Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
-
-				RayCollision closestCollision;
-				if (world->Raycast(ray, closestCollision, true)) {
-					selectionObject = (GameObject*)closestCollision.node;
-					saveColor = selectionObject->GetRenderObject()->GetColour();
-					selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-
-		}
-	}
-/*	else {
-		renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
-	}*/
-
-/*	return false;
-}*/
-
 bool Game::SelectObject() {
 
 	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::P)) {
