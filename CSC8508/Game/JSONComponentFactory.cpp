@@ -23,6 +23,5 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
 	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
 
-
 	return nullptr;
 }
