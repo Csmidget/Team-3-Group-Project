@@ -159,9 +159,11 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="PlaySound.cpp" />
     <ClCompile Include="RespawnComponent.cpp" />
     <ClCompile Include="RespawningObject.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="SetListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BonusComponent.h" />
@@ -174,9 +176,11 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="PlaySound.h" />
     <ClInclude Include="RespawnComponent.h" />
     <ClInclude Include="RespawningObject.h" />
     <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="SetListener.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />

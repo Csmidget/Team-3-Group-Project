@@ -14,6 +14,8 @@
 
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
+#include"SetListener.h"
+#include"PlaySound.h"
 
 //JENKINS TEST 3
 
@@ -40,6 +42,9 @@ Game::Game() {
 	Audio::SoundInstance* test = new Audio::SoundInstance();
 	test->SetVolume(0.1f);
 	Audio::SoundManager::CreateInstance("River.mp3", test);
+	test->Set3DAttributes(Vector3(20, 3, 2));
+	test->SetLoop(true);
+	test->SetMaxMinDistance(100, 10);
 	test->Play();
 }
 
@@ -265,11 +270,13 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	Clear();
 
-	InitFromJSON("CharlesTest.json");
+	InitFromJSON("MaciejTest.json");
 
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
 	player->AddComponent<PlayerComponent>(this);
 	player->AddComponent<RespawnComponent>();
+	player->AddComponent<SetListener>(0);
+	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
 	player->AddTag("Player");
 	world->Start();
 

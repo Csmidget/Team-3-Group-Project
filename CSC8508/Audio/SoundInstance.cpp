@@ -9,8 +9,8 @@ SoundInstance::SoundInstance() :
 {
 	attributes3D.pos = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
 	attributes3D.vel = Audio::ToFMODVECTOR(Maths::Vector3(0,0,0));
-	distances.min = 1;
-	distances.max = 1000;
+	distances.min = 10;
+	distances.max = 200;
 }
 
 SoundInstance::~SoundInstance()
@@ -99,7 +99,14 @@ void SoundInstance::Set3DAttributes(Maths::Vector3 pos, Maths::Vector3 vel)
 void SoundInstance::SetMaxMinDistance(float max, float min)
 {
 	distances.max = max;
-	distances.min = min;
+	if (min == 0)
+		distances.min = min;
+}
+
+void SoundInstance::SetObjectMinDistance(const Maths::Vector3& scale)
+{
+	auto temMax = std::max(scale.x, scale.y);
+	distances.min = std::max(temMax, scale.z)*1.5f;
 }
 
 

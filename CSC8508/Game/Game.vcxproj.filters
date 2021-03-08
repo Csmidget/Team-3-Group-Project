@@ -57,6 +57,21 @@
     <ClCompile Include="Light.cpp">
       <Filter>Light</Filter>
     </ClCompile>
+    <ClCompile Include="BonusComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySound.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SetListener.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -88,6 +103,21 @@
     </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySound.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SetListener.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
