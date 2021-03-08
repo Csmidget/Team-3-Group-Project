@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Engine/PushdownState.h"
+#include "GameStateManagerComponent.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -17,6 +18,10 @@ namespace NCL {
 
 		protected:
 			Game* game;
+			int score = 0;
+			bool isGameFinished = false;
+
+			GameStateManagerComponent* GetGameStateManager() const;
 		};
 
 	}
