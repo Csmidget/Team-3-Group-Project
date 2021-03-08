@@ -57,21 +57,21 @@
     <ClCompile Include="Light.cpp">
       <Filter>Light</Filter>
     </ClCompile>
-    <ClCompile Include="BonusComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStateManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlaySound.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="SetListener.cpp">
     </ClCompile>
     <ClCompile Include="RingComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManagerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -106,12 +106,6 @@
     <ClInclude Include="Light.h">
       <Filter>Light</Filter>
     </ClInclude>
-    <ClInclude Include="BonusComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStateManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ScoreComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -119,8 +113,14 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="SetListener.h">
-     </ClInclude>
+    </ClInclude>
     <ClInclude Include="RingComponenet.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManagerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

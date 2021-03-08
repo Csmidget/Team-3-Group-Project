@@ -149,7 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BonusComponent.cpp" />
-    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="GameStateManagerComponent.cpp" />
     <ClCompile Include="GameTechRenderer.cpp" />
     <ClCompile Include="JSONComponentFactory.cpp" />
     <ClCompile Include="JSONLevelFactory.cpp" />
@@ -168,7 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BonusComponent.h" />
-    <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="GameStateManagerComponent.h" />
     <ClInclude Include="GameTechRenderer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="JSONComponentFactory.h" />

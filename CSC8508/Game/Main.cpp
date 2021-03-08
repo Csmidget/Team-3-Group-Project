@@ -9,6 +9,7 @@
 #include "../Engine/PushdownMachine.h"
 
 #include "Game.h"
+#include "../Engine/Debug.cpp"
 
 
 

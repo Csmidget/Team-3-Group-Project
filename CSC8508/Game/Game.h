@@ -5,7 +5,6 @@
 #include <string>
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 #include "../Engine/NetworkManager.h"
-#include "GameStateManager.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -101,7 +100,6 @@ namespace NCL {
 			physics::BulletWorld* physics;
 
 			NetworkManager* networkManager;
-			GameStateManager* gameStateManager;
 
 			bool useGravity;
 			bool inSelectionMode;

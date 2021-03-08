@@ -125,7 +125,6 @@ void Game::UpdateGame(float dt) {
 	world->UpdateWorld(dt);
 	renderer->Update(dt);
 	networkManager->Update(dt);
-	gameStateManager->Update(dt);
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();
@@ -335,7 +334,7 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	Clear();
 
-	InitFromJSON("MaciejTest.json");
+	InitFromJSON("GameStateManagerTest.json");
 
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
 	player->AddComponent<PlayerComponent>(this);
@@ -345,7 +344,6 @@ void Game::InitWorld() {
 	player->AddTag("Player");
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
-	gameStateManager = new GameStateManager(world);
 
 	//AddFloorToWorld(Vector3(0, 0, 0));
 	//AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
