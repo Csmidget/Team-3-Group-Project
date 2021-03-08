@@ -4,6 +4,7 @@
 #include "MoveComponent.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameObject.h"
 
@@ -20,6 +21,9 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Move")			return gameObject->AddComponent<MoveComponent>(JsonToVector3(componentJson["force"]), componentJson["time"]);
 	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
+
+	if (name == "Ring")			return gameObject->AddComponent<RingComponent>();
+
 
 	return nullptr;
 }

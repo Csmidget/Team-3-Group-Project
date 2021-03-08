@@ -48,10 +48,16 @@ namespace NCL
 
 				void setDamping(float linear, float angular);
 
+				NCL::Maths::Vector3 getForce();
+				void clearForces();
+				NCL::Maths::Vector3 getLinearVelocity();
+
 			private:
 
 				float linearDamping = 0.05;
 				float angularDamping = 0.7;
+
+				bool isKinemtic = false;
 
 				//PhysicsObject* parent;
 				Transform* transform;

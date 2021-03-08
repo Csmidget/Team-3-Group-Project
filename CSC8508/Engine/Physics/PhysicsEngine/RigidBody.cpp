@@ -188,10 +188,30 @@ void RigidBody::setUserPointer(void* object)
 
 void RigidBody::setDamping(float linear, float angular)
 {
-	linearDamping = linear;
-	angularDamping = angular;
+	if (body)
+	{
+		linearDamping = linear;
+		angularDamping = angular;
 
-	body->setDamping(linearDamping, angularDamping);
+		body->setDamping(linearDamping, angularDamping);
+	}
+	
+}
+
+
+NCL::Maths::Vector3 RigidBody::getForce()
+{
+	return convertbtVector3(body->getTotalForce());
+}
+
+void RigidBody::clearForces()
+{
+	body->clearForces();
+}
+
+NCL::Maths::Vector3 RigidBody::getLinearVelocity()
+{
+	return convertbtVector3(body->getLinearVelocity());
 }
 
 void RigidBody::makeTrigger()
@@ -213,6 +233,7 @@ void RigidBody::makeKinematic()
 {
 	if (body)
 	{
+		isKinemtic = true;
 		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	}
 
