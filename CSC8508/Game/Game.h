@@ -6,10 +6,19 @@ namespace NCL {
 	namespace CSC8508 {
 		class Game		{
 		public:
-			Game();
+			Game(string name = "");
 			~Game();
 
 			virtual void UpdateGame(float dt);
+			virtual void UpdateIntroGame(float dt);
+			virtual void UpdatePauseGame(float dt);
+
+			int GetOpenOrExit() {
+				return OpenOrExit;
+			}
+			void SetOpenOrExit(int openorexit) {
+				OpenOrExit = openorexit;
+			}
 
 		protected:
 
@@ -21,6 +30,19 @@ namespace NCL {
 			void UpdateKeys();
 
 			void InitWorld();
+			void InitIntroWorld();
+			void InitOverWorld();
+			void InitPauseWorld();
+			void InitIntroCamera();
+			void InitOpenCube();
+			void InitExitCube();
+
+			bool IntroSelectObject();
+			GameObject* OpenCube = nullptr;
+			GameObject* ExitCube = nullptr;
+			GameObject* PauseCube = nullptr;
+			GameObject* restartsqhere = nullptr;
+			int OpenOrExit = 0;
 
 			void InitGameExamples();
 
@@ -59,6 +81,7 @@ namespace NCL {
 			float		forceMagnitude;
 
 			GameObject* selectionObject = nullptr;
+			GameObject* newselectionObject = nullptr;
 			GameObject* forwardObject = nullptr;
 
 			OGLMesh*	capsuleMesh = nullptr;
@@ -79,7 +102,8 @@ namespace NCL {
 			void LockCameraToObject(GameObject* o) {
 				lockedObject = o;
 			}
-
+			string name;
+			Vector4 saveColor = Vector4(1, 1, 1, 1);
 		};
 	}
 }
