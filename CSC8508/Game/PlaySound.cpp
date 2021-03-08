@@ -26,6 +26,7 @@ PlaySound::PlaySound(GameObject* object, std::string path, std::string mode, flo
 	sound = new Audio::SoundInstance();
 	Audio::SoundManager::CreateInstance(soundPath, sound);
 	sound->SetVolume(soundVolume);
+	sound->SetMaxMinDistance(100, 10);
 }
 
 PlaySound::~PlaySound()

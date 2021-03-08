@@ -15,6 +15,7 @@
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 #include"SetListener.h"
+#include"PlaySound.h"
 
 //JENKINS TEST 3
 
@@ -275,6 +276,7 @@ void Game::InitWorld() {
 	player->AddComponent<PlayerComponent>(this);
 	player->AddComponent<RespawnComponent>();
 	player->AddComponent<SetListener>(0);
+	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f);
 	player->AddTag("Player");
 	world->Start();
 
