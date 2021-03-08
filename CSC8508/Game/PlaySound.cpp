@@ -1,6 +1,7 @@
 #pragma once
 #include"PlaySound.h"
 #include"../Audio/SoundManager.h"
+#include"../Engine/GameObject.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -26,7 +27,8 @@ PlaySound::PlaySound(GameObject* object, std::string path, std::string mode, flo
 	sound = new Audio::SoundInstance();
 	Audio::SoundManager::CreateInstance(soundPath, sound);
 	sound->SetVolume(soundVolume);
-	sound->SetMaxMinDistance(100, 10);
+	sound->SetMaxMinDistance(100, 20);
+	sound->Set3DAttributes(object->GetTransform().GetPosition());
 }
 
 PlaySound::~PlaySound()
