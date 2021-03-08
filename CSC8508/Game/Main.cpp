@@ -119,7 +119,10 @@ class GameScreen : public PushdownState {
 		std::cout << " Preparing to mine coins !\n";
 
 		GameObject* object = g1->GetWorld()->GetObjectWithTag("GameStateManager");
-		if(object) object->GetComponent<GameStateManagerComponent>()->SetIsGameFinished(&isGameFinished);
+		if (object) {
+			object->GetComponent<GameStateManagerComponent>()->SetIsGameFinished(&isGameFinished);
+			object->GetComponent<GameStateManagerComponent>()->SetClientScore(&gameScore);
+		}
 	}
 protected:
 	Game* g1 = new Game("1");
