@@ -37,7 +37,8 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	testTimer = 0.f;
 	hasJumped = false;
 
-	physicsObject->SetFriction(0.1f);
+	//physicsObject->SetFriction(0.9f);
+	physicsObject->body->setDamping(0.5, 0.f);
 	camera = game->GetWorld()->GetMainCamera();
 
 	this->game = game;
