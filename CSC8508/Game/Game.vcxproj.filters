@@ -57,10 +57,10 @@
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="GameStateManager.cpp">
-      <Filter>Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="BonusComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManagerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,10 +95,10 @@
     <ClInclude Include="ScoreComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameStateManager.h">
-      <Filter>Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="BonusComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManagerComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

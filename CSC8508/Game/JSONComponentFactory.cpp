@@ -6,7 +6,9 @@
 #include "RespawnComponent.h"
 
 #include "../Engine/GameObject.h"
+#include "Game.h"
 #include "BonusComponent.h"
+#include "GameStateManagerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -22,6 +24,9 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
 	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
+	if (name == "GameStateManager")		return gameObject->AddComponent<GameStateManagerComponent>(game->GetWorld());
+	
+
 
 
 	return nullptr;
