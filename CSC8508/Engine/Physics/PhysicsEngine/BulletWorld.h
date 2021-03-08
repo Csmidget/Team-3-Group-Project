@@ -19,7 +19,7 @@ namespace NCL
 
 				//void setGravity();
 				void addRigidBody(RigidBody* body);
-				void addhingeconstraint(RigidBody* bodyA, RigidBody* bodyB);
+				void addhingeconstraint(RigidBody* bodyA);
 				
 				void Update(float dt);
 			private:
@@ -27,6 +27,7 @@ namespace NCL
 				btCollisionDispatcher* dispatcher;
 				btBroadphaseInterface* overlappingPairCache;
 				btSequentialImpulseConstraintSolver* solver;
+				btDiscreteDynamicsWorld* m_dynamicsWorld;
 
 				btDiscreteDynamicsWorld* dynamicsWorld;
 

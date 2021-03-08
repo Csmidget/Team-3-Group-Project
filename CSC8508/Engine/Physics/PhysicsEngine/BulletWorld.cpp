@@ -1,4 +1,6 @@
 #include "BulletWorld.h"
+#include "btBulletDynamicsCommon.h"
+
 //#include "RigidBody.h"
 //#include "../../../Game/Game.h"
 //#include "../../../Game/Game.cpp"
@@ -32,14 +34,19 @@ BulletWorld::~BulletWorld()
 	rigidList.clear();
 }
 
-void BulletWorld::addhingeconstraint(RigidBody* bodyA, RigidBody* bodyB){
+void BulletWorld::addhingeconstraint(RigidBody* bodyA){
 	//GameObject* B = AddCubeToWorld(Vector3(0, 20, 0), Vector3(1, 1, 1), 10);
-	//GameObject* A = AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
+	//GameObject* bodyA = AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
 	//physics->addhingeconstraint(A->GetPhysicsObject()->body, B->GetPhysicsObject()->body);
-	
-	//rbA = AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1));
-	//btPoint2PointConstraint(btRigidBody & B, const btVector3 & pivotInA);
-	//btPoint2PointConstraint(btRigidBody & A, btRigidBody & B, const btVector3 & pivotInA, const btVector3 & pivotInB);
+	btVector3 pivot(1, 1, 1);
+	btTypedConstraint* p2p = new btPoint2PointConstraint(*bodyA ->returnBody(), pivot);
+	m_dynamicsWorld->addConstraint(p2p);
+	p2p->setBreakingImpulseThreshold(10.2);
+	p2p->setDbgDrawSize(btScalar(5.f));
+	//btVector3 pivot(1, 1, 1);
+	//btRigidBody* body0 = createRigidBody(1, 1, 1);	//rbA = AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1));
+	//btPoint2PointConstraint(RigidBody & B, const btVector3 & pivotInA);
+	//btPoint2PointConstraint(RigidBody & A, btRigidBody & B, const btVector3 & pivotInA, const btVector3 & pivotInB);
 	//btTransform trans;
 	//float mass = 1.f;
 	//btCollisionShape* shape = new btBoxShape(btVector3(1.0f, 1.0f, 1.0f));

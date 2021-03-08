@@ -262,7 +262,7 @@ void Game::InitWorld() {
 	AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
 	AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
 	AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
-	//addhingeconstraint
+	//addhingeconstraint;
 	
 }
 
@@ -360,6 +360,13 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 
 	return sphere;
 }
+	GameObject* hingeconstraint()
+	{
+		
+		
+		physics->addhingeconstraint()->bodyA;
+
+	}
 
 GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, float radius, float inverseMass, bool respawning) {
 	
