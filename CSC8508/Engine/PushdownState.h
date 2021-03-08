@@ -6,7 +6,7 @@ namespace NCL {
 		class PushdownState {
 		public:
 			enum class PushdownResult {
-				Push, Pop, NoChange, Replace
+				Push, Pop, NoChange, Over, Top, Replace
 			};
 			PushdownState() {};
 			virtual ~PushdownState() {};

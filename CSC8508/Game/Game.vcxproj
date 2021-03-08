@@ -155,13 +155,17 @@
     <ClCompile Include="JSONComponentFactory.cpp" />
     <ClCompile Include="JSONLevelFactory.cpp" />
     <ClCompile Include="JSONShared.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="PlaySound.cpp" />
     <ClCompile Include="RespawnComponent.cpp" />
     <ClCompile Include="RespawningObject.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="SetListener.cpp" />
+    <ClCompile Include="RingComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BonusComponent.h" />
@@ -171,11 +175,15 @@
     <ClInclude Include="JSONComponentFactory.h" />
     <ClInclude Include="JSONLevelFactory.h" />
     <ClInclude Include="JSONShared.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="PlaySound.h" />
     <ClInclude Include="RespawnComponent.h" />
     <ClInclude Include="RespawningObject.h" />
     <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="SetListener.h" />
+    <ClInclude Include="RingComponenet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />

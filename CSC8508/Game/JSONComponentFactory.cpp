@@ -4,6 +4,9 @@
 #include "MoveComponent.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
+#include"PlaySound.h"
+#include"SetListener.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameObject.h"
 #include "BonusComponent.h"
@@ -22,7 +25,11 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
 	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
+	if (name == "PlaySound")	return gameObject->AddComponent<PlaySound>(componentJson["path"], componentJson["mode"], componentJson["volume"], componentJson["min"]);
+	if (name == "SetListener")	return gameObject->AddComponent<SetListener>(componentJson["ID"]);
 
+
+	if (name == "Ring")			return gameObject->AddComponent<RingComponent>();
 
 	return nullptr;
 }

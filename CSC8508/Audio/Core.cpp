@@ -24,7 +24,7 @@ FMOD_VECTOR Audio::ToFMODVECTOR(const NCL::Maths::Vector3& v)
 
 using namespace NCL::CSC8508::Audio;
 Core::Core():
-	coreSystem(nullptr), coreNextChannelID(0)
+	coreSystem(nullptr), coreNextChannelID(0), listenersNumber(0)
 {
 	Audio::ErrorCheck(FMOD::System_Create(&coreSystem));
 	Audio::ErrorCheck(coreSystem->init(512, FMOD_INIT_NORMAL, NULL));
