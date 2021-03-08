@@ -17,7 +17,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 {
 	movementState = PlayerMovementState::WALKING;
 
-	speed = 50.0f;
+	speed = 100.0f;
 	jump = 150.f;
 
 	MAX_WALKING_SPEED = 1000.f;
@@ -37,8 +37,8 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	testTimer = 0.f;
 	hasJumped = false;
 
-	//physicsObject->SetFriction(0.9f);
-	physicsObject->body->setDamping(0.5, 0.f);
+	physicsObject->SetFriction(0.1f);
+	physicsObject->body->setDamping(0.05, 0.f);
 	camera = game->GetWorld()->GetMainCamera();
 
 	this->game = game;
@@ -164,9 +164,9 @@ void NCL::CSC8508::PlayerComponent::Movement()
 	}
 	
 	// ----------- MIGHT NEED TO CHANGE ---------------
-	lastCollisionTimer < 0.1f ? speed = 50 : speed = 10;
 
-	physicsObject->AddForce(transform->GetOrientation() * direction.Normalised() * speed);
+	physicsObject->AddForce(transform->GetOrientation() * direction.Normalised() * (lastCollisionTimer < 0.1f ? speed : speed / 5));
+	
 }
 
 void NCL::CSC8508::PlayerComponent::Jump()
