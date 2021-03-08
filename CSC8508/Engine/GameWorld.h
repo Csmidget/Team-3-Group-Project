@@ -76,6 +76,7 @@ namespace NCL {
 			std::vector<GameObject*> GetObjectsWithTag(string tag);
 
 		protected:
+			std::vector<GameObject*> newGameObjects;
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;
 			std::vector<Plane*>		 killPlanes;

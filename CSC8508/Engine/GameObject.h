@@ -16,6 +16,9 @@ namespace NCL {
 		class Component;
 
 		class GameObject	{
+
+			friend class GameWorld;
+
 		public:
 			GameObject(string name = "");
 			~GameObject();
@@ -70,6 +73,8 @@ namespace NCL {
 			bool HasTag(std::string tag) {
 				return std::find(tags.begin(), tags.end(), tag) != tags.end();			
 			}
+
+			GameWorld* GetWorld() { return world; }
 
 			Transform& GetTransform() {
 				return transform;
@@ -143,11 +148,15 @@ namespace NCL {
 			}
 
 		protected:
+
+			void SetGameWorld(GameWorld* world);
+
 			Transform			transform;
 
 			CollisionVolume*	boundingVolume;
 			PhysicsObject*		physicsObject;
 			RenderObject*		renderObject;
+			GameWorld*			world;
 
 			bool	isActive;
 			bool	isStatic;
