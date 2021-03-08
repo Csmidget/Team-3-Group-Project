@@ -1,7 +1,10 @@
 #include "PlayState.h"
 #include "PauseState.h"
+#include "GameOverState.h"
+
 #include "Game.h"
 #include "../Engine/Debug.h"
+#include "GameStateManagerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -26,6 +29,15 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 			*newState = new OverScreen();
 			return PushdownResult::Over;
 		}*/
+	if (isGameFinished) {
+	
+		GameOverState* gameOver = new GameOverState();
+		
+		gameOver->SetScore(score);
+		*newState = gameOver;
+		
+		return PushdownResult::Over;
+	}
 	else {
 		g1->UpdateGame(dt);
 	}
@@ -34,4 +46,9 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 
 void PlayState::OnAwake() {
 	g1 = new Game("1");
+	GameObject* object = g1->GetWorld()->GetObjectWithTag("GameStateManager");
+	if (object) {
+		object->GetComponent<GameStateManagerComponent>()->SetIsGameFinished(&isGameFinished);
+		object->GetComponent<GameStateManagerComponent>()->SetClientScore(&score);
+	}
 }

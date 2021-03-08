@@ -11,9 +11,11 @@ namespace NCL {
 			PushdownResult OnUpdate(float dt, PushdownState** newState) override;
 
 			void OnAwake() override;
+		public:
+			void SetScore(int score) { gameScore = score; };
 
 		protected:
-			Game* g2;
+			Game* g2 = nullptr;
 			int gameScore = 0;
 		};
 

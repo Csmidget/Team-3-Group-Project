@@ -12,6 +12,8 @@ namespace NCL {
 			void OnAwake() override;
 		protected:
 			Game* g1;
+			bool isGameFinished = false;
+			int score = 0;
 		};
 
 	}

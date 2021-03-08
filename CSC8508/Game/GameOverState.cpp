@@ -19,7 +19,13 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 		Debug::Print("Play again", Vector2(30, 10));
 		Debug::Print("Your score:" + std::to_string(gameScore), Vector2(30, 50));
 	}
-	return PushdownResult::Top;
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::SPACE)) {
+		return PushdownResult::Top;
+
+	}
+
+
+	return PushdownResult::NoChange;
 }
 
 void GameOverState::OnAwake() {
