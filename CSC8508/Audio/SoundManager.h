@@ -26,7 +26,9 @@ namespace NCL {
 				void CreateInstance(const std::string& soundFile, SoundInstance* soundInstnce);
 				void DeleteInstance(SoundInstance* soundInstance);
 
-				void UpdateListener(const SoundListener& listener);
+				void UpdateListener(const SoundListener* listener);
+				void AddListener();
+				void RemoveListener();
 				void StopAllInstances();
 			}	
 

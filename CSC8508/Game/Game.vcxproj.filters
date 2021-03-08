@@ -19,8 +19,8 @@
     <Filter Include="JSON">
       <UniqueIdentifier>{9e202e83-4377-4918-be81-da740b27802f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Gameplay">
-      <UniqueIdentifier>{da8746a6-2df2-440b-a816-0cdd2296b2d4}</UniqueIdentifier>
+    <Filter Include="Light">
+      <UniqueIdentifier>{754ef6fe-8430-46f3-b910-da5cd4d12991}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,10 +54,24 @@
     <ClCompile Include="RespawnComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="Light.cpp">
+      <Filter>Light</Filter>
     </ClCompile>
     <ClCompile Include="BonusComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySound.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SetListener.cpp">
+    </ClCompile>
+    <ClCompile Include="RingComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="GameStateManagerComponent.cpp">
@@ -92,10 +106,24 @@
     <ClInclude Include="RespawnComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="Light.h">
+      <Filter>Light</Filter>
     </ClInclude>
     <ClInclude Include="BonusComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySound.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SetListener.h">
+     </ClInclude>
+    <ClInclude Include="RingComponenet.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="GameStateManagerComponent.h">

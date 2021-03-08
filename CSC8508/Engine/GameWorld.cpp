@@ -46,17 +46,14 @@ void GameWorld::ClearAndErase() {
 	Clear();
 }
 
-void GameWorld::Start() {
-	for (auto go : gameObjects)
-		go->Start();
-}
-
 GameObject* GameWorld::AddGameObject(GameObject* o) {
 
 	//For debugging, we should not be adding duplicate objects to the world.
 	assert(std::find(gameObjects.begin(), gameObjects.end(), o) == gameObjects.end());
 
 	gameObjects.emplace_back(o);
+	newGameObjects.emplace_back(o);
+	o->SetGameWorld(this);
 	o->SetWorldID(worldIDCounter++);
 	
 	if (o->IsStatic()) {
@@ -102,6 +99,14 @@ void GameWorld::OperateOnContents(GameObjectFunc f) {
 }
 
 void GameWorld::UpdateWorld(float dt) {
+
+	if (newGameObjects.size() > 0) {
+		for (size_t i = 0; i < newGameObjects.size(); i++)
+		{
+			newGameObjects[i]->Start();
+		}
+		newGameObjects.clear();
+	}
 
 	objectTree->Clear();
 	
