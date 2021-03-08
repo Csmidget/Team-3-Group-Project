@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <vector>
 #include "Ray.h"
 #include "CollisionDetection.h"
@@ -24,6 +23,9 @@ namespace NCL {
 			void Clear();
 			void ClearAndErase();
 
+			std::vector<GameObject*> GetObjectsWithTag(std::string tag) const;
+			GameObject* GetObjectWithTag(std::string tag) const;
+
 			GameObject* AddGameObject(GameObject* o);
 			void RemoveGameObject(GameObject* o, bool andDelete = false);
 
@@ -33,7 +35,6 @@ namespace NCL {
 			void AddConstraint(Constraint* c);
 			void RemoveConstraint(Constraint* c, bool andDelete = false);
 
-			std::vector<GameObject*> GetObjectsWithTag(std::string tag) const;
 
 			Camera* GetMainCamera() const {
 				return mainCamera;

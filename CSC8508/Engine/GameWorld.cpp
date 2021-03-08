@@ -26,6 +26,7 @@ GameWorld::~GameWorld()	{
 
 void GameWorld::Clear() {
 	gameObjects.clear();
+	newGameObjects.clear();
 	constraints.clear();
 	killPlanes.clear();
 
@@ -56,6 +57,17 @@ std::vector<GameObject*> GameWorld::GetObjectsWithTag(std::string tag) const {
 	}
 
 	return objectsWithTag;
+
+}
+
+GameObject* NCL::CSC8508::GameWorld::GetObjectWithTag(std::string tag) const
+{
+	for (auto go : gameObjects)
+	{
+		if (go->HasTag(tag))
+			return go;
+	}
+	return nullptr;
 }
 
 GameObject* GameWorld::AddGameObject(GameObject* o) {
@@ -223,6 +235,8 @@ void GameWorld::GetConstraintIterators(
 	first	= constraints.begin();
 	last	= constraints.end();
 }
+
+
 
 std::vector<GameObject*> GameWorld::ObjectsWithinRadius(Vector3 position, float radius, std::string tag) const {
 

@@ -9,7 +9,9 @@
 #include "RingComponenet.h"
 
 #include "../Engine/GameObject.h"
+#include "Game.h"
 #include "BonusComponent.h"
+#include "GameStateManagerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -25,6 +27,9 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
 	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
+	if (name == "GameStateManager")		return gameObject->AddComponent<GameStateManagerComponent>(game->GetWorld());
+	
+
 	if (name == "PlaySound")	return gameObject->AddComponent<PlaySound>(componentJson["path"], componentJson["mode"], componentJson["volume"], componentJson["min"]);
 	if (name == "SetListener")	return gameObject->AddComponent<SetListener>(componentJson["ID"]);
 

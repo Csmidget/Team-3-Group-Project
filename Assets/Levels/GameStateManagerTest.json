@@ -1,5 +1,16 @@
 [
     {
+        "name": "GameStateManager",
+        "isStatic": true,
+        "tag": "GameStateManager",
+      
+        "components": [
+            {
+            "name" : "GameStateManager"
+        }
+
+        ]
+    },{
         "name": "Goal",
         "isStatic": true,
         "tag": "Goal",
