@@ -22,20 +22,12 @@ namespace NCL {
 
 			void InitWorld();
 			void InitIntroWorld();
-			void InitOverWorld();
-			void InitPauseWorld();
-			void InitIntroCamera();
 			GameObject* InitOpenCube();
 			
 			virtual void UpdateGame(float dt);
-			virtual void UpdateIntroGame(float dt);
-			virtual void UpdatePauseGame(float dt);
 
-			int GetOpenOrExit() {
-				return OpenOrExit;
-			}
-			void SetOpenOrExit(int openorexit) {
-				OpenOrExit = openorexit;
+			void SetPaused(bool pause) {
+				paused = pause;
 			}
 
 			void AddGameObject(GameObject* go);
@@ -47,36 +39,17 @@ namespace NCL {
 
 		protected:
 
+			void InitIntroCamera();
+
 			void Clear();
 
 			void InitialiseAssets();
+			void InitDefaultFloor();
 
 			void InitCamera();
 			void UpdateKeys();
 						
 			void InitFromJSON(std::string fileName);
-
-			void InitGameExamples();
-
-			void InitSlopeLevel();
-			GameObject* OpenCube = nullptr;
-			GameObject* ExitCube = nullptr;
-			GameObject* PauseCube = nullptr;
-			GameObject* restartsqhere = nullptr;
-			int OpenOrExit = 0;
-			
-			void InitSphereGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, float radius);
-			void InitMixedGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing);
-			void InitCubeGridWorld(int numRows, int numCols, float rowSpacing, float colSpacing, const Maths::Vector3& cubeDims);
-			void InitDefaultFloor();
-			void BridgeConstraintTest();
-			void DoorConstraintTest();
-	
-			bool SelectObject();
-			bool IntroSelectObject();
-			void MoveSelectedObject();
-			void DebugObjectMovement();
-			void LockedObjectMovement();
 
 			GameObject* AddFloorToWorld(const Maths::Vector3& position);
 			GameObject* AddSphereToWorld(const Maths::Vector3& position, float radius, float inverseMass = 10.0f, bool respawning = false);
@@ -101,20 +74,10 @@ namespace NCL {
 
 			bool useGravity;
 			bool inSelectionMode;
+			bool paused;
 
 			float		forceMagnitude;
-
-			GameObject* selectionObject = nullptr;
-			GameObject* newselectionObject = nullptr;
-			GameObject* forwardObject = nullptr;
 		
-
-			//Coursework Additional functionality	
-			GameObject* lockedObject	= nullptr;
-			Maths::Vector3 lockedOffset		= Maths::Vector3(0, 14, 20);
-			void LockCameraToObject(GameObject* o) {
-				lockedObject = o;
-			}
 			string name;
 			Vector4 saveColor = Vector4(1, 1, 1, 1);
 		};

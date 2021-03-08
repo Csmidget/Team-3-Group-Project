@@ -22,5 +22,5 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 }
 
 void GameOverState::OnAwake() {
-	game->InitOverWorld();
+
 }

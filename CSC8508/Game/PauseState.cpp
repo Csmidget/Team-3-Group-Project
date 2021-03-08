@@ -15,5 +15,9 @@ PushdownState::PushdownResult PauseState::OnUpdate(float dt, PushdownState** new
 }
 
 void PauseState::OnAwake() {
+	game->SetPaused(true);
+};
 
+void PauseState::OnSleep() {
+	game->SetPaused(false);
 };
