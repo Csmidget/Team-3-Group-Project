@@ -13,6 +13,9 @@ namespace NCL {
 				GameStateManagerComponent(GameObject* object, GameWorld* gameWorld);
 				void Start();
 				void Update(float dt);
+
+				void SetIsGameFinished(bool* isGameFinished) { this->isGameFinished = isGameFinished; };
+				void SetClientScore(int* score) { clientScore = score; }
 			private:
 				void RefreshPlayerList();
 				bool IsGameOver();
@@ -20,6 +23,9 @@ namespace NCL {
 				GameWorld* world;
 				std::vector<GameObject*> players;
 				int clientPlayerID = 0;
+
+				bool* isGameFinished;
+				int* clientScore;
 		};
 	}
 }

@@ -10,6 +10,7 @@
 
 #include "Game.h"
 #include "../Engine/Debug.cpp"
+#include "GameStateManagerComponent.h"
 
 
 
@@ -50,7 +51,13 @@ class OverScreen : public PushdownState {
 			Debug::Print("Play again", Vector2(30, 10));
 			Debug::Print("Your score:" + std::to_string(gameScore), Vector2(30, 50));
 		}
-		return PushdownResult::Top;
+		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::SPACE)) {
+			return PushdownResult::Top;
+
+		}
+
+
+		return PushdownResult::NoChange;
 	}
 	void OnAwake()override {
 		std::cout << " 加载结束界面 !\n";
@@ -98,6 +105,10 @@ class GameScreen : public PushdownState {
 			*newState = new OverScreen();
 			return PushdownResult::Over;
 		}*/
+		if (isGameFinished) {
+			*newState = new OverScreen();
+			return PushdownResult::Over;
+		}
 		else {
 			g1->UpdateGame(dt);
 		}
@@ -106,9 +117,16 @@ class GameScreen : public PushdownState {
 	};
 	void OnAwake() override {
 		std::cout << " Preparing to mine coins !\n";
+
+		GameObject* object = g1->GetWorld()->GetObjectWithTag("GameStateManager");
+		if (object) {
+			object->GetComponent<GameStateManagerComponent>()->SetIsGameFinished(&isGameFinished);
+			object->GetComponent<GameStateManagerComponent>()->SetClientScore(&gameScore);
+		}
 	}
 protected:
 	Game* g1 = new Game("1");
+	bool isGameFinished = false;
 };
 
 class IntroScreen : public PushdownState {

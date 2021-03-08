@@ -14,11 +14,14 @@ void NCL::CSC8508::GameStateManagerComponent::Start()
 
 void NCL::CSC8508::GameStateManagerComponent::Update(float dt)
 {
-	if (clientPlayerID < players.size() && clientPlayerID >= 0)
-		Debug::Print("Score: " + std::to_string(players.at(clientPlayerID)->GetComponent<ScoreComponent>()->GetScore()), Vector2(75, 95));
+	if (clientPlayerID < players.size() && clientPlayerID >= 0) {
+		int score = players.at(clientPlayerID)->GetComponent<ScoreComponent>()->GetScore();
+		Debug::Print("Score: " + std::to_string(score), Vector2(75, 95));
+		if (clientScore) *clientScore = score;
+	
+	}
 
-
-	if (IsGameOver()) Debug::Print("Game is Finished", Vector2(75, 90));
+	if (IsGameOver() && isGameFinished) *isGameFinished = true;
 	//Go to next scene
 }
 

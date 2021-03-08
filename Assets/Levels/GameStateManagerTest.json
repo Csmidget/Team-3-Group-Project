@@ -2,7 +2,7 @@
     {
         "name": "GameStateManager",
         "isStatic": true,
-        "tag": "",
+        "tag": "GameStateManager",
       
         "components": [
             {
