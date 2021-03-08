@@ -8,12 +8,15 @@ namespace NCL {
 		class Game;
 
 		class PlayState : public PushdownState {
+
 			PushdownResult OnUpdate(float dt, PushdownState** newState) override;
 			void OnAwake() override;
+
+		public:
+			PlayState(Game* game);
+
 		protected:
-			Game* g1;
-			bool isGameFinished = false;
-			int score = 0;
+			Game* game;
 		};
 
 	}

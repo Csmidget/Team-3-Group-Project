@@ -26,6 +26,7 @@ GameWorld::~GameWorld()	{
 
 void GameWorld::Clear() {
 	gameObjects.clear();
+	newGameObjects.clear();
 	constraints.clear();
 	killPlanes.clear();
 

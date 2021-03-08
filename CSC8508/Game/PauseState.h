@@ -11,8 +11,15 @@ namespace NCL {
 
 			PushdownResult OnUpdate(float dt, PushdownState** newState) override;
 			void OnAwake() override;
+			void OnSleep() override;
+
+		public:
+			PauseState(Game* game) {
+				this->game = game;
+			}
+
 		protected:
-			Game* g2;
+			Game* game;
 		};
 
 	}

@@ -28,13 +28,10 @@ int main() {
 		return -1;
 	}
 
-
 	srand((unsigned int)time(0));
-	PushdownMachine machine(new IntroState());
 	w->ShowOSPointer(false);
 	w->LockMouseToWindow(true);
-
-//	Game* g = new Game();
+	Game* game = new Game();
 	w->GetTimer()->GetTimeDeltaSeconds(); //Clear the timer so we don't get a larget first dt!
 	while (w->UpdateWindow() && !Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
 
@@ -53,7 +50,7 @@ int main() {
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {
 			w->SetWindowPosition(0, 0);
 		}
-		machine.Update(dt);
+		game->UpdateGame(dt);
 		w->SetTitle("Gametech frame time:" + std::to_string(1000.0f * dt));
 	}
 
