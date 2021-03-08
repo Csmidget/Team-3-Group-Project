@@ -1,7 +1,6 @@
 #pragma once
 #include "Transform.h"
 #include "CollisionVolume.h"
-
 #include "PhysicsObject.h"
 #include "RenderObject.h"
 
@@ -14,6 +13,7 @@ namespace NCL {
 	namespace CSC8508 {
 
 		class Component;
+		class GameWorld;
 
 		class GameObject	{
 
@@ -64,10 +64,6 @@ namespace NCL {
 
 			void SetIsStatic(bool val) {
 				isStatic = val;
-			}
-
-			void AddTag(std::string tag) {
-				tags.emplace_back(tag);
 			}
 
 			bool HasTag(std::string tag) {
