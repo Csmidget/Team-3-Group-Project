@@ -70,6 +70,8 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="SetListener.cpp">
+    </ClCompile>
+    <ClCompile Include="RingComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -117,6 +119,8 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="SetListener.h">
+     </ClInclude>
+    <ClInclude Include="RingComponenet.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

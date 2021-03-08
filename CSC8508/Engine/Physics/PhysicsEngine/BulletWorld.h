@@ -44,7 +44,8 @@ namespace NCL
 				~BulletWorld();
 
 				void setGravity(NCL::Maths::Vector3 force);
-				GameObject* rayIntersect(NCL::Maths::Vector3 from, NCL::Maths::Vector3 to);
+				GameObject* rayIntersect(	NCL::Maths::Vector3 from, NCL::Maths::Vector3 to,
+									/*OUT*/ NCL::Maths::Vector3 pointHit);
 
 				void addRigidBody(RigidBody* body);
 				void removeRigidBody(RigidBody* body);
