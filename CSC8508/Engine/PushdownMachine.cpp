@@ -10,32 +10,58 @@ bool PushdownMachine::Update(float dt) {
 		PushdownState::PushdownResult result = activeState->OnUpdate(dt, &newState);
 
 		switch (result) {
-			case PushdownState::PushdownResult::Pop: {
-				activeState->OnSleep();
-				delete activeState;
-				stateStack.pop();
-				if (stateStack.empty()) {
-					return false;
-				}
-				else {
-					activeState = stateStack.top();
-					activeState->OnAwake();
-				} 
-			} break;
-			case PushdownState::PushdownResult::Push: {
-				activeState->OnSleep();
-				stateStack.push(newState);
-				activeState = newState;
+		case PushdownState::PushdownResult::Pop: {
+			activeState->OnSleep();
+			delete activeState;
+			stateStack.pop();
+			if (stateStack.empty()) {
+				return false;
+			}
+			else {
+				activeState = stateStack.top();
 				activeState->OnAwake();
-			} break;
-			case PushdownState::PushdownResult::Replace: {
-				activeState->OnSleep();
+			}
+		} break;
+		case PushdownState::PushdownResult::Push: {
+			activeState->OnSleep();
+			stateStack.push(newState);
+			activeState = newState;
+			activeState->OnAwake();
+		} break;
+		case PushdownState::PushdownResult::Over: {
+			activeState->OnSleep();
+			stateStack.push(newState);
+			activeState = newState;
+			newState->OnAwake();
+		}break;
+		case PushdownState::PushdownResult::Top: {
+			activeState->OnSleep();
+			delete activeState;
+			stateStack.pop();
+			if (stateStack.empty()) {
+				return false;
+			}
+			else {
+				activeState = stateStack.top();
 				delete activeState;
-				stateStack.pop();
-				stateStack.push(newState);
-				activeState = newState;
+			}
+			stateStack.pop();
+			if (stateStack.empty()) {
+				return false;
+			}
+			else {
+				activeState = stateStack.top();
 				activeState->OnAwake();
-			} break;
+			}
+		}break;
+		case PushdownState::PushdownResult::Replace: {
+			activeState->OnSleep();
+			delete activeState;
+			stateStack.pop();
+			stateStack.push(newState);
+			activeState = newState;
+			activeState->OnAwake();
+		} break;
 		}
 
 	}

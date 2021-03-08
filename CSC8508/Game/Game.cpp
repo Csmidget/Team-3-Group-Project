@@ -23,7 +23,8 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace Maths;
 
-Game::Game() {
+Game::Game(string pagename) {
+	name = pagename;
 	resourceManager = new OGLResourceManager();
 	world = new GameWorld();
 	renderer = new GameTechRenderer(*world, *resourceManager);
@@ -59,8 +60,22 @@ void Game::InitialiseAssets() {
 
 	//Todo: These should be removed whenever we fully shift to json levels.
 
-	InitCamera();
-	InitWorld();
+	if (name == "0") {
+		InitIntroCamera();
+		InitIntroWorld();
+	}
+	if (name == "1") {
+		InitCamera();
+		InitWorld();
+	}
+	if (name == "2") {
+		InitIntroCamera();
+		InitOverWorld();
+	}
+	if (name == "3") {
+		InitIntroCamera();
+		InitPauseWorld();
+	}
 }
 
 Game::~Game()	{
@@ -115,6 +130,38 @@ void Game::UpdateGame(float dt) {
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
+}
+
+void Game::UpdateIntroGame(float dt) {
+	if (!inSelectionMode) {
+		world->GetMainCamera()->UpdateCamera(dt);
+	}
+
+	IntroSelectObject();
+	physics->Update(dt);
+
+
+	world->UpdateWorld(dt);
+	renderer->Update(dt);
+
+	Debug::FlushRenderables(dt);
+	renderer->Render();
+}
+
+void Game::UpdatePauseGame(float dt) {
+	if (!inSelectionMode) {
+		world->GetMainCamera()->UpdateCamera(dt);
+	}
+
+	IntroSelectObject();
+	physics->Update(dt);
+
+
+	world->UpdateWorld(dt);
+	renderer->Update(dt);
+
+	Debug::FlushRenderables(dt);
+	renderer->Render();
 }
 
 void Game::UpdateKeys() {
@@ -254,6 +301,24 @@ void Game::InitCamera() {
 	lockedObject = nullptr;
 }
 
+void Game::InitIntroCamera() {
+	world->GetMainCamera()->SetNearPlane(0.1f);
+	world->GetMainCamera()->SetFarPlane(500.0f);
+	world->GetMainCamera()->SetPitch(-15.0f);
+	world->GetMainCamera()->SetYaw(315.0f);
+	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
+	lockedObject = nullptr;
+}
+
+void Game::InitOpenCube() {
+	Vector3 cubeDims = Vector3(10, 10, 10);
+	Vector3 position = Vector3(-20, 40, 0);
+	OpenCube = AddButtonToWorld(position, cubeDims);
+	OpenCube->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
+	cubeDims = Vector3(10, 10, 10);
+	position = Vector3(0, 60, 0);
+}
+
 void Game::Clear() {
 	world->ClearAndErase();
 	physics->clear();
@@ -287,6 +352,23 @@ void Game::InitWorld() {
 	//AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
 	//AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
 	//AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
+}
+
+void Game::InitIntroWorld() {
+	Clear();;
+	InitOpenCube();
+	InitDefaultFloor();
+}
+
+void Game::InitPauseWorld() {
+	Clear();
+	InitDefaultFloor();
+}
+
+void Game::InitOverWorld() {
+	world->ClearAndErase();
+	physics->clear();
+	InitDefaultFloor();
 }
 
 void Game::DoorConstraintTest() {
@@ -438,6 +520,29 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 												0.4f,
 												physics);
 	cube->GetPhysicsObject()->body->setUserPointer(cube);
+
+	world->AddGameObject(cube);
+
+	return cube;
+}
+
+GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic, bool respawning) {
+	GameObject* cube = respawning ? new RespawningObject(position, true, "respawning cube") : new GameObject("cube");
+
+	AABBVolume* volume = new AABBVolume(dimensions);
+
+	cube->SetBoundingVolume((CollisionVolume*)volume);
+
+	cube->GetTransform()
+		.SetPosition(position)
+		.SetScale(dimensions * 2);
+
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"), nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
+
+	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
+	cube->GetPhysicsObject()->InitCubeInertia();
+	cube->SetIsStatic(isStatic);
 
 	world->AddGameObject(cube);
 
@@ -691,6 +796,67 @@ bool Game::SelectObject() {
 	}
 
 	return false;
+}
+
+bool Game::IntroSelectObject() {
+
+	inSelectionMode = !inSelectionMode;
+
+	Window::GetWindow()->ShowOSPointer(true);
+	Window::GetWindow()->LockMouseToWindow(false);
+
+	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
+		if (selectionObject) {	//set colour to deselected;
+
+			selectionObject->GetRenderObject()->SetColour(saveColor);
+
+			newselectionObject = selectionObject;
+			if (selectionObject == OpenCube) {
+				OpenOrExit = 1;
+				return true;
+			}
+			if (selectionObject == ExitCube) {
+				OpenOrExit = 2;
+				return true;
+			}
+			if (selectionObject == PauseCube) {
+				OpenOrExit = 3;
+				return true;
+			}
+			if (selectionObject == restartsqhere) {
+				OpenOrExit = 4;
+				return true;
+			}
+			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
+
+			RayCollision closestCollision;
+			if (world->Raycast(ray, closestCollision, true)) {
+				selectionObject = (GameObject*)closestCollision.node;
+				saveColor = selectionObject->GetRenderObject()->GetColour();
+				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
+
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
+
+			RayCollision closestCollision;
+			if (world->Raycast(ray, closestCollision, true)) {
+				selectionObject = (GameObject*)closestCollision.node;
+				saveColor = selectionObject->GetRenderObject()->GetColour();
+				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+	}
 }
 
 /*
