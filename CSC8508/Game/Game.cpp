@@ -1,23 +1,25 @@
 #include "Game.h"
 #include "JSONLevelFactory.h"
 #include "GameTechRenderer.h"
-#include "../Engine/PhysicsSystem.h"
-#include "../Engine/GameWorld.h"
-#include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
-#include "../../Common/TextureLoader.h"
-#include "../Engine/PositionConstraint.h"
-#include "../Engine/OrientationConstraint.h"
 #include "RespawningObject.h"
-#include"../Audio/SoundManager.h"
-#include"../Audio/SoundInstance.h"
-#include "../../Common/ShaderBase.h"
-#include "../Engine/PushdownMachine.h"
 #include "IntroState.h"
 
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
+
 #include"SetListener.h"
 #include"PlaySound.h"
+
+#include "../Engine/GameWorld.h"
+#include "../Engine/PhysicsSystem.h"
+#include "../Engine/PositionConstraint.h"
+#include "../Engine/OrientationConstraint.h"
+#include "../Engine/PushdownMachine.h"
+#include"../Audio/SoundManager.h"
+#include"../Audio/SoundInstance.h"
+#include "../../Common/TextureLoader.h"
+#include "../../Common/ShaderBase.h"
+#include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -144,17 +146,6 @@ void Game::InitIntroCamera() {
 	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
 }
 
-GameObject* Game::InitOpenCube() {
-	GameObject* openCube;
-	Vector3 cubeDims = Vector3(10, 10, 10);
-	Vector3 position = Vector3(-20, 40, 0);
-	openCube = AddButtonToWorld(position, cubeDims);
-	openCube->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
-	cubeDims = Vector3(10, 10, 10);
-	position = Vector3(0, 60, 0);
-	return openCube;
-}
-
 void Game::Clear() {
 	world->ClearAndErase();
 	physics->clear();
@@ -169,9 +160,12 @@ void Game::InitFromJSON(std::string fileName) {
 }
 
 void Game::InitWorld() {
+	InitWorld("CharlesTest.json");
+}
+void Game::InitWorld(std::string levelName) {
 	Clear();
 	InitCamera();
-	InitFromJSON("CharlesTest.json");
+	InitFromJSON(levelName);
 
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
 	player->AddComponent<PlayerComponent>(this);
@@ -186,7 +180,6 @@ void Game::InitWorld() {
 void Game::InitIntroWorld() {
 	Clear();
 	InitIntroCamera();
-//	InitOpenCube();
 	InitDefaultFloor();
 }
 
