@@ -1,4 +1,6 @@
 #pragma once
+
+
 #include <vector>
 #include "Ray.h"
 #include "CollisionDetection.h"
@@ -55,7 +57,7 @@ namespace NCL {
 			bool Raycast(Ray& r, RayCollision& closestCollision, bool closestObject = false, bool includeStatic = false) const;
 
 			std::vector<GameObject*> ObjectsWithinRadius(Vector3 position, float radius, std::string tag = "") const;
-
+			
 			virtual void UpdateWorld(float dt);
 
 			void OperateOnContents(GameObjectFunc f);
@@ -70,7 +72,11 @@ namespace NCL {
 
 			void FlipDisplayQuadTree() { displayQuadtree = !displayQuadtree; }
 
+			std::vector<GameObject*> GetObjectsWithTag(string tag);
+
 		protected:
+
+			std::vector<GameObject*> newGameObjects;
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;
 			std::vector<Plane*>		 killPlanes;

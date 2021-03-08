@@ -1,3 +1,4 @@
+
 #include "../../Common/Window.h"
 
 #include "../Engine/StateMachine.h"
@@ -9,22 +10,27 @@
 #include "Game.h"
 
 
+
 using namespace NCL;
 using namespace CSC8508;
 
-//Charles comment
+
+
+
+
+
+
 
 /*
-
 The main function should look pretty familar to you!
 We make a window, and then go into a while loop that repeatedly
 runs our 'game' until we press escape. Instead of making a 'renderer'
 and updating it, we instead make a whole game, and repeatedly update that,
-instead. 
-
+instead.
 This time, we've added some extra functionality to the window class - we can
-hide or show the 
+hide or show the
 // blarg
+//wort wort wort
 */
 int gameScore = 1000;
 
@@ -46,7 +52,7 @@ class OverScreen : public PushdownState {
 		return PushdownResult::Top;
 	}
 	void OnAwake()override {
-		std::cout << " ¼ÓÔØ½áÊø½çÃæ !\n";
+		std::cout << " ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ !\n";
 	}
 protected:
 	Game* g2 = new Game("2");
@@ -85,7 +91,7 @@ class GameScreen : public PushdownState {
 			return PushdownResult::Pop;
 
 		}
-		// function for game over £¨ÅÐ¶ÏÓÎÏ·ÊÇ·ñ½áÊø£©
+		// function for game over ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ï·ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /*		if (g1->GetFinal() || g1->GetScore() <= 0) {
 			gameScore = g1->GetScore();
 			*newState = new OverScreen();
@@ -135,11 +141,13 @@ protected:
 };
 
 int main() {
-	Window*w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
+	Window* w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
 
 	if (!w->HasInitialised()) {
 		return -1;
-	}	
+	}
+
+
 	srand((unsigned int)time(0));
 	PushdownMachine machine(new IntroScreen());
 
@@ -167,4 +175,6 @@ int main() {
 		machine.Update(dt);
 		w->SetTitle("Gametech frame time:" + std::to_string(1000.0f * dt));
 	}
+
+	Window::DestroyGameWindow();
 }

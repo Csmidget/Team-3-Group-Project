@@ -1,11 +1,13 @@
 #include "GameObject.h"
+#include "GameWorld.h"
 #include "CollisionDetection.h"
 #include "Debug.h"
+#include "Component.h"
 #include <sstream>
 
 using namespace NCL::CSC8508;
 
-GameObject::GameObject(string objectName)	{
+GameObject::GameObject(string objectName) : transform(this)	{
 	name			= objectName;
 	worldID			= -1;
 	isActive		= true;
@@ -20,6 +22,55 @@ GameObject::~GameObject()	{
 	delete boundingVolume;
 	delete physicsObject;
 	delete renderObject;
+
+	for (auto component : components)
+		delete component;
+	
+	components.clear();
+
+}
+
+void GameObject::Start() {
+	for (auto component : components) {
+		component->Start();
+	}
+}
+
+void GameObject::Update(float dt)
+{
+	for (auto component : components) {
+		component->Update(dt);
+	}
+
+	OnUpdate(dt);
+}
+
+void GameObject::OnCollisionBegin(GameObject* otherObject)
+{
+	for (auto component : components) {
+		component->OnCollisionBegin(otherObject);
+	}
+}
+
+void GameObject::OnCollisionStay(GameObject* otherObject)
+{
+	for (auto component : components) {
+		component->OnCollisionStay(otherObject);
+	}
+}
+
+void GameObject::OnCollisionEnd(GameObject* otherObject)
+{
+	for (auto component : components) {
+		component->OnCollisionEnd(otherObject);
+	}
+}
+
+void GameObject::OnKill() {
+	isActive = false;
+	for (auto component : components) {
+		component->OnKill();
+	}
 }
 
 bool GameObject::GetBroadphaseAABB(Vector3&outSize) const {
@@ -55,6 +106,13 @@ void GameObject::UpdateBroadphaseAABB() {
 		Vector3 halfSizes = Vector3(volume.GetRadius(), volume.GetHalfHeight(),volume.GetRadius());
 		broadphaseAABB = mat * halfSizes;
 	}
+}
+
+void GameObject::SetGameWorld(GameWorld* newWorld) {
+	if (world != nullptr)
+		throw std::exception("Attempted to assign gameObject to multiple worlds!");
+
+	world = newWorld;
 }
 
 void GameObject::PrintDebugInfo() const {

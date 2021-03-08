@@ -1,29 +1,56 @@
 #include "Game.h"
+#include "JSONLevelFactory.h"
+#include "GameTechRenderer.h"
+#include "../Engine/PhysicsSystem.h"
 #include "../Engine/GameWorld.h"
-#include "../../Plugins/OpenGLRendering/OGLMesh.h"
-#include "../../Plugins/OpenGLRendering/OGLShader.h"
-#include "../../Plugins/OpenGLRendering/OGLTexture.h"
+#include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "../../Common/TextureLoader.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
 #include "RespawningObject.h"
+#include"../Audio/SoundManager.h"
+#include"../Audio/SoundInstance.h"
+#include "../../Common/ShaderBase.h"
+
+#include "PlayerComponent.h"
+#include "RespawnComponent.h"
+#include"SetListener.h"
+#include"PlaySound.h"
+
+//JENKINS TEST 3
 
 using namespace NCL;
 using namespace CSC8508;
+using namespace Maths;
+
+Game::Game() {
+	resourceManager = new OGLResourceManager();
+	world = new GameWorld();
+	renderer = new GameTechRenderer(*world, *resourceManager);
+	//physics		= new PhysicsSystem(*world);
+	physics		= new physics::BulletWorld();
 
 Game::Game(string pagename) {
 	name = pagename;
 	world		= new GameWorld();
 	renderer	= new GameTechRenderer(*world);
 	physics		= new PhysicsSystem(*world);
+	networkManager = new NetworkManager();
 
-	forceMagnitude	= 10.0f;
-	useGravity		= false;
+	forceMagnitude = 10.0f;
+	useGravity = false;
 	inSelectionMode = false;
 
 	Debug::SetRenderer(renderer);
-
+	Audio::SoundManager::Init();
 	InitialiseAssets();
+	Audio::SoundInstance* test = new Audio::SoundInstance();
+	test->SetVolume(0.1f);
+	Audio::SoundManager::CreateInstance("River.mp3", test);
+	test->Set3DAttributes(Vector3(20, 3, 2));
+	test->SetLoop(true);
+	test->SetMaxMinDistance(100, 10);
+	test->Play();
 }
 
 /*
@@ -34,22 +61,8 @@ for this module, even in the coursework, but you can add it if you like!
 
 */
 void Game::InitialiseAssets() {
-	auto loadFunc = [](const string& name, OGLMesh** into) {
-		*into = new OGLMesh(name);
-		(*into)->SetPrimitiveType(GeometryPrimitive::Triangles);
-		(*into)->UploadToGPU();
-	};
 
-	loadFunc("cube.msh"		 , &cubeMesh);
-	loadFunc("sphere.msh"	 , &sphereMesh);
-	loadFunc("Male1.msh"	 , &charMeshA);
-	loadFunc("courier.msh"	 , &charMeshB);
-	loadFunc("security.msh"	 , &enemyMesh);
-	loadFunc("coin.msh"		 , &bonusMesh);
-	loadFunc("capsule.msh"	 , &capsuleMesh);
-
-	basicTex	= (OGLTexture*)TextureLoader::LoadAPITexture("checkerboard.png");
-	basicShader = new OGLShader("GameTechVert.glsl", "GameTechFrag.glsl");
+	//Todo: These should be removed whenever we fully shift to json levels.
 
 	if (name == "0") {
 		InitIntroCamera();
@@ -70,16 +83,8 @@ void Game::InitialiseAssets() {
 }
 
 Game::~Game()	{
-	delete cubeMesh;
-	delete sphereMesh;
-	delete charMeshA;
-	delete charMeshB;
-	delete enemyMesh;
-	delete bonusMesh;
-
-	delete basicTex;
-	delete basicShader;
-
+	delete resourceManager;
+	delete networkManager;
 	delete physics;
 	delete renderer;
 	delete world;
@@ -123,9 +128,12 @@ void Game::UpdateGame(float dt) {
 
 	world->UpdateWorld(dt);
 	renderer->Update(dt);
+	networkManager->Update(dt);
+	gameStateManager->Update(dt);
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();
+	Audio::SoundManager::Update();
 }
 
 void Game::UpdateIntroGame(float dt) {
@@ -174,7 +182,7 @@ void Game::UpdateKeys() {
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
 		useGravity = !useGravity; //Toggle gravity!
-		physics->UseGravity(useGravity);
+		//physics->UseGravity(useGravity);
 	}
 	//Running certain physics updates in a consistent order might cause some
 	//bias in the calculations - the same objects might keep 'winning' the constraint
@@ -220,27 +228,34 @@ void Game::LockedObjectMovement() {
 	Vector3 charForward2 = lockedObject->GetTransform().GetOrientation() * Vector3(0, 0, 1);
 
 	float force = 100.0f;
-
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::LEFT)) {
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::A)) {
 		lockedObject->GetPhysicsObject()->AddForce(-rightAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::RIGHT)) {
-		Vector3 worldPos = selectionObject->GetTransform().GetPosition();
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::D)) {
 		lockedObject->GetPhysicsObject()->AddForce(rightAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::UP)) {
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::W)) {
 		lockedObject->GetPhysicsObject()->AddForce(fwdAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::DOWN)) {
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::S)) {
 		lockedObject->GetPhysicsObject()->AddForce(-fwdAxis * force);
 	}
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::NEXT)) {
-		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,-10,0));
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::SPACE)) {
+		lockedObject->GetPhysicsObject()->AddForce(Vector3(0,600.0f,0));
 	}
+
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) {
+		selectionObject->GetPhysicsObject()->AddTorque(Vector3(0, -100, 0));
+	}
+
+	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::E)) {
+		selectionObject->GetPhysicsObject()->AddTorque(Vector3(0, 100, 0));
+	}
+
 }
 
 void Game::DebugObjectMovement() {
@@ -302,46 +317,37 @@ void Game::InitCamera() {
 
 void Game::Clear() {
 	world->ClearAndErase();
-	physics->Clear();
+	physics->clear();
+
+	useGravity = true;
+	//physics->UseGravity(true);
+}
+
+void Game::InitFromJSON(std::string fileName) {
+	Clear();
+	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
 void Game::InitWorld() {
 	Clear();
 
-	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0,-100,0)));
-	world->AddKillPlane(new Plane(Vector3(0, 0, -1), Vector3(0,0,100)));
+	InitFromJSON("MaciejTest.json");
 
-//	InitMixedGridWorld(5, 5, 3.5f, 3.5f);
-//	InitGameExamples();
+	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
+	player->AddComponent<PlayerComponent>(this);
+	player->AddComponent<RespawnComponent>();
+	player->AddComponent<SetListener>(0);
+	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
+	player->AddTag("Player");
 
-	//GameObject* capsule = AddCapsuleToWorld(Vector3(0, 10, 0), 1.0f, 0.5f); 
-	//capsule->GetTransform().SetOrientation(Matrix4::Rotation(45, Vector3(0, 0, 1)));
-	//AddCubeToWorld(Vector3(-1.5, 8, 0), Vector3(1, 1, 1), 0.0f, true);
+	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	gameStateManager = new GameStateManager(world);
 
-	AddCapsuleToWorld(Vector3(4.5f, 100, -150), 1.0f, 0.5f,10.0f,true);
-	AddCapsuleToWorld(Vector3(0, 100, -150), 1.0f, 0.5f,10.0f,true)->GetTransform().SetOrientation(Matrix3::Rotation(90,Vector3(0,0,1)));
-//	AddCapsuleToWorld(Vector3(5, 10, -10), 1.0f, 0.5f);
-	AddSphereToWorld(Vector3(-4.5f, 10, -7.4f), 1.0f);
-	AddSphereToWorld(Vector3(-4.5f, 100, -150),1.0f,10.0f,true);
-	//
-	AddOBBCubeToWorld(Vector3(10, 104.5f, -150), Vector3(1, 1, 1), 10.0f,false,true)->GetTransform().SetOrientation(Matrix4::Rotation(0, Vector3(0, 0, 1)));
-	AddOBBCubeToWorld(Vector3(-4.5f, 0, -3.5f), Vector3(1, 1, 5));
-	AddOBBCubeToWorld(Vector3(-4.5f, 5, -5), Vector3(1, 1, 1));
-	AddOBBCubeToWorld(Vector3(0, 5, -5), Vector3(1, 1, 1));
-	AddOBBCubeToWorld(Vector3(20, 20, -20), Vector3(10,10,10));
-//	AddSphereToWorld(Vector3(-1, 15, -6), 1.0f);
-//	AddStateObjectToWorld(Vector3(0, 10, -15));
-	AddSphereToWorld(Vector3(5, 10, 10), 1.0f);
-	AddSphereToWorld(Vector3(5, 10, 5), 1.0f);
-	AddSphereToWorld(Vector3(5, 10, 0), 1.0f);
-	//AddSphereToWorld(Vector3(5, 10, -5), 1.0f);
-//	BridgeConstraintTest();
-	DoorConstraintTest();
-	InitDefaultFloor();
-
-	//Slope
-	GameObject* slope = AddOBBCubeToWorld(Vector3(0, 50, -150), Vector3(50, 2, 50), 0.0f, true);
-	slope->GetTransform().SetOrientation(Matrix4::Rotation(45, Vector3(1, 0, 0)));
+	//AddFloorToWorld(Vector3(0, 0, 0));
+	//AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
+	//AddSphereToWorld(Vector3(10, 10, 0), 1.0f, 10);
+	//AddSphereToWorld(Vector3(9.8f, 20, 0), 1.0f, 10);
+	//AddCapsuleToWorld(Vector3(20, 10, 0), 1.0, 0.5, 10.0f);
 }
 
 void Game::InitIntroWorld() {
@@ -384,9 +390,7 @@ void Game::DoorConstraintTest() {
 	GameObject* hinge2 = AddOBBCubeToWorld(Vector3(-30, 30, -40), Vector3(1, 1, 1), 0.0f, true);
 	GameObject* door = AddOBBCubeToWorld(Vector3(-30, 20, -40), Vector3(2, 2, 2), 10.0f, false);
 	world->AddConstraint(new OrientationConstraint(door, hinge, Vector3(0, 1, 0)));
-	//world->AddConstraint(new OrientationConstraint(door, hinge2, Vector3(0, 1, 0)));
 	world->AddConstraint(new PositionConstraint(hinge, door, 10.0f));
-	//world->AddConstraint(new PositionConstraint(hinge2, door, 10.0f));
 }
 
 void Game::BridgeConstraintTest() {
@@ -426,23 +430,34 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 	GameObject* floor = new GameObject("floor");
 
 	Vector3 floorSize	= Vector3(100, 2, 100);
-	AABBVolume* volume	= new AABBVolume(floorSize);
-	floor->SetBoundingVolume((CollisionVolume*)volume);
+
 	floor->GetTransform()
 		.SetScale(floorSize * 2)
 		.SetPosition(position);
 
-	floor->SetRenderObject(new RenderObject(&floor->GetTransform(), cubeMesh, basicTex, basicShader));
+	floor->SetRenderObject(new RenderObject(&floor->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	floor->SetPhysicsObject(new PhysicsObject(&floor->GetTransform(), floor->GetBoundingVolume()));
 
-	floor->GetPhysicsObject()->SetInverseMass(0);
-	floor->GetPhysicsObject()->InitCubeInertia();
+	//testing adding bullet physics object
+	floor->GetPhysicsObject()->body->addBoxShape(floorSize);
+	floor->GetPhysicsObject()->body->createBody(0,
+												0.4f,
+												0.9f,
+												physics);
+
+	floor->GetPhysicsObject()->body->setUserPointer(floor);
 
 	floor->SetIsStatic(true);
 
 	world->AddGameObject(floor);
 
 	return floor;
+}
+
+void Game::AddGameObject(GameObject* go)
+{
+	if (go != nullptr)
+		world->AddGameObject(go);
 }
 
 /*
@@ -456,18 +471,21 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 	GameObject* sphere = respawning ? new RespawningObject(position,true,"respawning sphere") : new GameObject("sphere");
 
 	Vector3 sphereSize = Vector3(radius, radius, radius);
-	SphereVolume* volume = new SphereVolume(radius);
-	sphere->SetBoundingVolume((CollisionVolume*)volume);
 
 	sphere->GetTransform()
 		.SetScale(sphereSize)
 		.SetPosition(position);
 
-	sphere->SetRenderObject(new RenderObject(&sphere->GetTransform(), sphereMesh, basicTex, basicShader));
+	sphere->SetRenderObject(new RenderObject(&sphere->GetTransform(), resourceManager->LoadMesh("sphere.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	sphere->SetPhysicsObject(new PhysicsObject(&sphere->GetTransform(), sphere->GetBoundingVolume()));
 
-	sphere->GetPhysicsObject()->SetInverseMass(inverseMass);
-	sphere->GetPhysicsObject()->InitHollowSphereInertia();
+	//testing adding bullet physics object
+	sphere->GetPhysicsObject()->body->addSphereShape(radius);
+	sphere->GetPhysicsObject()->body->createBody(	inverseMass,
+													0.4f,
+													0.4f,
+													physics);
+	sphere->GetPhysicsObject()->body->setUserPointer(sphere);
 
 	world->AddGameObject(sphere);
 
@@ -478,19 +496,21 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	
 	GameObject* capsule = respawning ? new RespawningObject(position,true,"respawning_capsule") : new GameObject("capsule");
 
-	CapsuleVolume* volume = new CapsuleVolume(halfHeight, radius);
-	capsule->SetBoundingVolume((CollisionVolume*)volume);
-
 	capsule->GetTransform()
 		.SetScale(Vector3(radius* 2, halfHeight, radius * 2))
 		.SetPosition(position);
 
-	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), capsuleMesh, basicTex, basicShader));
+	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), resourceManager->LoadMesh("capsule.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	capsule->SetPhysicsObject(new PhysicsObject(&capsule->GetTransform(), capsule->GetBoundingVolume()));
 
-	capsule->GetPhysicsObject()->SetInverseMass(inverseMass);
-	capsule->GetPhysicsObject()->InitCapsuleInertia(halfHeight,radius);
+	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
 
+	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
+													0.4f,
+													0.4f,
+													physics);
+	capsule->GetPhysicsObject()->body->setUserPointer(capsule);
+	
 	world->AddGameObject(capsule);
 
 	return capsule;
@@ -500,44 +520,44 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic, bool respawning) {
 	GameObject* cube = respawning ? new RespawningObject(position,true,"respawning cube") : new GameObject("cube");
 
-	AABBVolume* volume = new AABBVolume(dimensions);
-
-	cube->SetBoundingVolume((CollisionVolume*)volume);
-
 	cube->GetTransform()
 		.SetPosition(position)
 		.SetScale(dimensions * 2);
 
-	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), cubeMesh, basicTex, basicShader));
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
 
-	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
-	cube->GetPhysicsObject()->InitCubeInertia();
-	cube->SetIsStatic(isStatic);
+	//testing adding bullet physics object
+	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
+	cube->GetPhysicsObject()->body->createBody(	inverseMass,
+												0.4f,
+												0.4f,
+												physics);
+	cube->GetPhysicsObject()->body->setUserPointer(cube);
 
 	world->AddGameObject(cube);
 
 	return cube;
 }
 
-
-GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic, bool respawning) {
-	GameObject* cube = respawning ? new RespawningObject(position,true,"respawning cube") : new GameObject("cube");
-
-	OBBVolume* volume = new OBBVolume(dimensions);
-
-	cube->SetBoundingVolume((CollisionVolume*)volume);
+GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass , bool isStatic, bool respawning)
+{
+	GameObject* cube = respawning ? new RespawningObject(position, true, "respawning cube") : new GameObject("cube");
 
 	cube->GetTransform()
 		.SetPosition(position)
 		.SetScale(dimensions * 2);
 
-	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), cubeMesh, basicTex, basicShader));
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
 
-	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
-	cube->GetPhysicsObject()->InitCubeInertia();
-	cube->SetIsStatic(isStatic);
+	//testing adding bullet physics object
+	cube->GetPhysicsObject()->body->addBoxShape(dimensions);
+	cube->GetPhysicsObject()->body->createBody(	inverseMass,
+												0.4f,
+												1.0f,
+												physics);
+	cube->GetPhysicsObject()->body->setUserPointer(cube);
 
 	world->AddGameObject(cube);
 
@@ -609,10 +629,10 @@ GameObject* Game::AddPlayerToWorld(const Vector3& position) {
 		.SetPosition(position);
 
 	if (rand() % 2) {
-		character->SetRenderObject(new RenderObject(&character->GetTransform(), charMeshA, nullptr, basicShader));
+		character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("Male1.msh"),nullptr,  nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	}
 	else {
-		character->SetRenderObject(new RenderObject(&character->GetTransform(), charMeshB, nullptr, basicShader));
+		character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("courier.msh"),nullptr, nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	}
 	character->SetPhysicsObject(new PhysicsObject(&character->GetTransform(), character->GetBoundingVolume()));
 
@@ -639,7 +659,7 @@ GameObject* Game::AddEnemyToWorld(const Vector3& position) {
 		.SetScale(Vector3(meshSize, meshSize, meshSize))
 		.SetPosition(position);
 
-	character->SetRenderObject(new RenderObject(&character->GetTransform(), enemyMesh, nullptr, basicShader));
+	character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("security.msh"),nullptr, nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	character->SetPhysicsObject(new PhysicsObject(&character->GetTransform(), character->GetBoundingVolume()));
 
 	character->GetPhysicsObject()->SetInverseMass(inverseMass);
@@ -659,7 +679,7 @@ GameObject* Game::AddBonusToWorld(const Vector3& position) {
 		.SetScale(Vector3(0.25, 0.25, 0.25))
 		.SetPosition(position);
 
-	apple->SetRenderObject(new RenderObject(&apple->GetTransform(), bonusMesh, nullptr, basicShader));
+	apple->SetRenderObject(new RenderObject(&apple->GetTransform(), resourceManager->LoadMesh("coin.msh"),nullptr, nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	apple->SetPhysicsObject(new PhysicsObject(&apple->GetTransform(), apple->GetBoundingVolume()));
 
 	apple->GetPhysicsObject()->SetInverseMass(1.0f);
@@ -747,60 +767,71 @@ bool Game::IntroSelectObject() {
 
 bool Game::SelectObject() {
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::P)) {
-		world->ClearAndErase();
-		physics->Clear();
-	}
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::P)) {
+	//	world->ClearAndErase();
+	//	//physics->Clear();
+	//}
+	//
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
-		inSelectionMode = !inSelectionMode;
-		if (inSelectionMode) {
-			Window::GetWindow()->ShowOSPointer(true);
-			Window::GetWindow()->LockMouseToWindow(false);
-		}
-		else {
-			Window::GetWindow()->ShowOSPointer(false);
-			Window::GetWindow()->LockMouseToWindow(true);
-		}
-	}
-	if (inSelectionMode) {
-		renderer->DrawString("Press Q to change to camera mode!", Vector2(5, 85));
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
+	//	inSelectionMode = !inSelectionMode;
+	//	if (inSelectionMode) {
+	//		Window::GetWindow()->ShowOSPointer(true);
+	//		Window::GetWindow()->LockMouseToWindow(false);
+	//	}
+	//	else {
+	//		Window::GetWindow()->ShowOSPointer(false);
+	//		Window::GetWindow()->LockMouseToWindow(true);
+	//	}
+	//}
+	//if (inSelectionMode) {
+	//	renderer->DrawString("Press Q to change to camera mode!", Vector2(5, 85));
 
-		if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
-			if (selectionObject) {	//set colour to deselected;
-				selectionObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
+	//	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
+	//		if (selectionObject) {	//set colour to deselected;
+	//			selectionObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
 
-				if(forwardObject)
-					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
+	//			if(forwardObject)
+	//				forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 1, 1));
 
-				selectionObject = nullptr;
-				forwardObject = nullptr;
-				lockedObject	= nullptr;
-			}
+	//			selectionObject = nullptr;
+	//			forwardObject = nullptr;
+	//			lockedObject	= nullptr;
+	//		}
 
-			Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
-			RayCollision closestCollision;
-			if (world->Raycast(ray, closestCollision, true)) {
-				Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(0, 1, 0, 1), 10.0f);
-				selectionObject = (GameObject*)closestCollision.node;
-				selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
-				
-				ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
-				if (world->Raycast(ray, closestCollision, true)) {
-					Debug::DrawLine(ray.GetPosition(), closestCollision.collidedAt, Vector4(1, 1, 0, 1), 10.0f);
-					forwardObject = (GameObject*)closestCollision.node;
-					forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 0, 1));
-				}
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-	}
-	else {
-		renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
-	}
+	//		Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
+	//		//RayCollision closestCollision;
+	//		//Vector3 testVector1;
+	//		GameObject* test = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+	//		if(test)
+	//			std::cout << test->GetName() << std::endl;
+
+	//		if (test) {
+	//			//need to think out where the debug line draws now
+	//			//Debug::DrawLine(ray.GetPosition(),testVector1, Vector4(0, 1, 0, 1), 10.0f);
+	//			selectionObject = test;
+	//			selectionObject->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
+	//			
+	//			ray = Ray(selectionObject->GetTransform().GetPosition(), selectionObject->GetTransform().GetOrientation() * Vector3(0, 0, -1));
+	//			//Vector3 testVector2;
+	//			GameObject* test2 = physics->rayIntersect(ray.GetPosition(), ray.GetDirection() * 5000.0f);
+	//			if (test2) {
+	//				//Debug::DrawLine(ray.GetPosition(), test2->GetTransform().GetPosition(), Vector4(1, 1, 0, 1), 10.0f);
+	//				forwardObject = test2;
+	//				forwardObject->GetRenderObject()->SetColour(Vector4(1, 1, 0, 1));
+	//			}
+	//			return true;
+	//		}
+	//		else {
+	//			return false;
+	//		}
+	//	}
+	//}
+	//else {
+	//	renderer->DrawString("Press Q to change to select mode!", Vector2(5, 85));
+	//}
+
+
 
 	if (lockedObject) {
 		renderer->DrawString("Press L to unlock object!", Vector2(5, 80));
@@ -832,7 +863,7 @@ added linear motion into our physics system. After the second tutorial, objects 
 line - after the third, they'll be able to twist under torque aswell.
 */
 void Game::MoveSelectedObject() {
-	renderer->DrawString("Click Force: " + std::to_string(forceMagnitude), Vector2(10, 20));
+//	renderer->DrawString("Click Force: " + std::to_string(forceMagnitude), Vector2(10, 20));
 	forceMagnitude += Window::GetMouse()->GetWheelMovement() * 1.0f;
 
 	if (!selectionObject) {
@@ -867,3 +898,4 @@ void Game::MoveSelectedObject() {
 	}
 
 }
+

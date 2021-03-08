@@ -19,6 +19,7 @@ https://research.ncl.ac.uk/game/
 #include "../../Common/Matrix4.h"
 
 #include "../../Common/MeshGeometry.h"
+#include "../../Common/MeshMaterial.h"
 
 #ifdef _WIN32
 #include "../../Common/Win32Window.h"
@@ -154,6 +155,15 @@ void OGLRenderer::BindMesh(MeshGeometry*m) {
 	}
 }
 
+void OGLRenderer::BindMaterial(MeshMaterial* m) {
+	if (!m) {
+		boundMaterial = nullptr;
+	}
+	else {
+		boundMaterial = m;
+	}
+}
+
 void OGLRenderer::DrawBoundMesh(int subLayer, int numInstances) {
 	if (!boundMesh) {
 		std::cout << __FUNCTION__ << " has been called without a bound mesh!" << std::endl;
@@ -195,6 +205,13 @@ void OGLRenderer::DrawBoundMesh(int subLayer, int numInstances) {
 	}
 	else {
 		glDrawArrays(mode, 0, count);
+	}
+}
+
+void OGLRenderer::UpdateBoundMaterialLayer(int layer) {
+	if (boundMaterial) {
+		TextureBase* tex = boundMaterial->GetMaterialForLayer(layer)->GetEntry("Diffuse");
+		BindTextureToShader(tex, "mainTex", 0);
 	}
 }
 

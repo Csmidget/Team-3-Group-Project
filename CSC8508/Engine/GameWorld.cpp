@@ -52,6 +52,8 @@ GameObject* GameWorld::AddGameObject(GameObject* o) {
 	assert(std::find(gameObjects.begin(), gameObjects.end(), o) == gameObjects.end());
 
 	gameObjects.emplace_back(o);
+	newGameObjects.emplace_back(o);
+	o->SetGameWorld(this);
 	o->SetWorldID(worldIDCounter++);
 	
 	if (o->IsStatic()) {
@@ -97,6 +99,14 @@ void GameWorld::OperateOnContents(GameObjectFunc f) {
 }
 
 void GameWorld::UpdateWorld(float dt) {
+
+	if (newGameObjects.size() > 0) {
+		for (size_t i = 0; i < newGameObjects.size(); i++)
+		{
+			newGameObjects[i]->Start();
+		}
+		newGameObjects.clear();
+	}
 
 	objectTree->Clear();
 	
@@ -200,6 +210,22 @@ void GameWorld::GetConstraintIterators(
 	std::vector<Constraint*>::const_iterator& last) const {
 	first	= constraints.begin();
 	last	= constraints.end();
+}
+
+std::vector<GameObject*> NCL::CSC8508::GameWorld::GetObjectsWithTag(string tag)
+{
+	std::vector<GameObject*> objectsWithTag;
+	std::vector<GameObject*>::const_iterator first;
+	std::vector<GameObject*>::const_iterator last;
+	
+	GetObjectIterators(first,last);
+
+	for (auto i = first; i != last; ++i) {
+		if ((*i)->HasTag(tag))
+			objectsWithTag.emplace_back((*i));
+	}
+
+	return objectsWithTag;
 }
 
 std::vector<GameObject*> GameWorld::ObjectsWithinRadius(Vector3 position, float radius, std::string tag) const {

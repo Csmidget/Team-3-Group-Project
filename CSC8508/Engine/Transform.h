@@ -12,15 +12,17 @@ using namespace NCL::Maths;
 
 namespace NCL {
 	namespace CSC8508 {
+		class GameObject;
+
 		class Transform
 		{
 		public:
-			Transform();
+			Transform(GameObject* object);
 			~Transform();
 
-			Transform& SetPosition(const Vector3& worldPos);
+			Transform& SetPosition(const Vector3& worldPos, bool updatePhysics = true);
 			Transform& SetScale(const Vector3& worldScale);
-			Transform& SetOrientation(const Quaternion& newOr);
+			Transform& SetOrientation(const Quaternion& newOr, bool updatePhysics = true);
 
 			Vector3 GetPosition() const {
 				return position;
@@ -42,6 +44,7 @@ namespace NCL {
 			void PrintDebugInfo(int& currLine, float lineSpacing) const;
 
 		protected:
+			GameObject* gameObject;
 			Matrix4		matrix;
 			Quaternion	orientation;
 			Vector3		position;

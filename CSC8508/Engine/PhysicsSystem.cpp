@@ -26,6 +26,7 @@ PhysicsSystem::PhysicsSystem(GameWorld& g) : gameWorld(g)	{
 	globalDamping	= 0.995f;
 	linearDamping	= 0.4f;
 	SetGravity(Vector3(0.0f, -9.8f, 0.0f));
+
 }
 
 PhysicsSystem::~PhysicsSystem()	{

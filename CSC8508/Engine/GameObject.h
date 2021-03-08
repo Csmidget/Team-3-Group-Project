@@ -1,18 +1,24 @@
 #pragma once
 #include "Transform.h"
 #include "CollisionVolume.h"
-
 #include "PhysicsObject.h"
 #include "RenderObject.h"
 
-#include <vector>
+#include <set>
+#include <algorithm>
 
 using std::vector;
 
 namespace NCL {
 	namespace CSC8508 {
 
+		class Component;
+		class GameWorld;
+
 		class GameObject	{
+
+			friend class GameWorld;
+
 		public:
 			GameObject(string name = "");
 			~GameObject();
@@ -24,14 +30,16 @@ namespace NCL {
 				collisionLayer = val;
 			}
 
-			virtual void Update(float dt) {};
+			void Update(float dt);
+
+			virtual void OnUpdate(float dt) {};
 
 			void PrintDebugInfo() const;
 			
 			//Override to add debug info
 			virtual void ObjectSpecificDebugInfo(int& currLine, float lineSpacing) const {};
 
-			virtual void OnKill() { isActive = false; }
+			virtual void OnKill();
 
 			void SetBoundingVolume(CollisionVolume* vol) {
 				boundingVolume = vol;
@@ -57,9 +65,15 @@ namespace NCL {
 				isStatic = val;
 			}
 
+			void AddTag(std::string tag) {
+				tags.insert(tag);
+			}
+
 			bool HasTag(std::string tag) {
 				return std::find(tags.begin(), tags.end(), tag) != tags.end();			
 			}
+
+			GameWorld* GetWorld() { return world; }
 
 			Transform& GetTransform() {
 				return transform;
@@ -89,13 +103,10 @@ namespace NCL {
 				return name;
 			}
 
-			virtual void OnCollisionBegin(GameObject* otherObject) {
-				//std::cout << "OnCollisionBegin event occured!\n";
-			}
-
-			virtual void OnCollisionEnd(GameObject* otherObject) {
-				//std::cout << "OnCollisionEnd event occured!\n";
-			}
+			void OnCollisionBegin(GameObject* otherObject);
+			void OnCollisionStay(GameObject* otherObject);
+			void OnCollisionEnd(GameObject* otherObject);
+		
 
 			bool GetBroadphaseAABB(Vector3&outsize) const;
 
@@ -105,16 +116,47 @@ namespace NCL {
 				worldID = newID;
 			}
 
-			int		GetWorldID() const {
+			int	GetWorldID() const {
 				return worldID;
 			}
 
+			template<typename T, typename... Params>
+			T* AddComponent(Params... vals) {
+				T* component = new T(this, vals...);
+				components.push_back(component);
+				return component;
+			}
+
+			template<typename T>
+			T* GetComponent() const {
+				for (auto component : components) {
+					T* t = dynamic_cast<T*>(component);
+		
+					if (t != nullptr) {
+						return t;
+					}
+				}
+		
+				return nullptr;
+			}
+
+			template<typename T>
+			void RemoveComponent() {
+				//erase-remove idiom
+				components.erase(std::remove_if(components.begin(), components.end(), [](Component* c) {return dynamic_cast<T*>(c) != nullptr; }));
+			}
+
 		protected:
+
+			void Start();
+			void SetGameWorld(GameWorld* world);
+
 			Transform			transform;
 
 			CollisionVolume*	boundingVolume;
 			PhysicsObject*		physicsObject;
 			RenderObject*		renderObject;
+			GameWorld*			world;
 
 			bool	isActive;
 			bool	isStatic;
@@ -122,7 +164,8 @@ namespace NCL {
 			int collisionLayer;
 			string	name;
 			Vector3 broadphaseAABB;
-			std::vector<std::string> tags;
+			std::set<std::string> tags;
+			std::vector<Component*> components;
 		};
 	}
 }
