@@ -48,8 +48,8 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 
 	float renderScale = renderObjectJson["renderScale"].is_number() ? renderObjectJson["renderScale"] : 1;
 
-	if (renderObjectJson["mesh"] == "Cube.msh" || renderObjectJson["mesh"] == "Sphere.msh")
-		renderScale = 2.0f;
+	//if (renderObjectJson["mesh"] == "Cube.msh" || renderObjectJson["mesh"] == "Sphere.msh")
+	//	renderScale = 2.0f;
 
 	ShaderBase* shader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");//renderObjectJson["vertex"],renderObjectJson["fragment"]);
 	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * renderScale);
@@ -68,9 +68,9 @@ void SetPhysicsObjectFromJson(Game* game, GameObject* gameObject, json physicsOb
 	
 	if (colliderObjectJson.is_object()) {
 		if (colliderObjectJson["type"] == "box")
-			po->body->addBoxShape(transform.GetScale());
+			po->body->addBoxShape(transform.GetScale() / 2.0f);
 		else if (colliderObjectJson["type"] == "sphere")
-			po->body->addSphereShape(transform.GetScale().x);
+			po->body->addSphereShape(transform.GetScale().x / 2.0f);
 		else if (colliderObjectJson["type"] == "capsule")
 			po->body->addCapsuleShape(transform.GetScale().z, transform.GetScale().y - transform.GetScale().z);
 	}
