@@ -22,6 +22,9 @@
     <Filter Include="Light">
       <UniqueIdentifier>{754ef6fe-8430-46f3-b910-da5cd4d12991}</UniqueIdentifier>
     </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{29625e85-8ea7-4819-b914-492a589ee84f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -74,6 +77,18 @@
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="GameOverState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -122,6 +137,18 @@
     </ClInclude>
     <ClInclude Include="BonusComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

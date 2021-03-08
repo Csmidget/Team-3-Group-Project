@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <vector>
 #include "Ray.h"
 #include "CollisionDetection.h"
