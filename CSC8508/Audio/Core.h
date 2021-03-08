@@ -24,6 +24,7 @@ namespace NCL {
 				std::map<FMOD::Channel*, FMOD::Sound*> oneShots;
 				SoundMap coreSounds;
 				ChannelMap coreChannels;
+				int listenersNumber;
 
 				Core();
 				~Core();

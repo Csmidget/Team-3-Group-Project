@@ -88,9 +88,23 @@ void SoundManager::DeleteInstance(SoundInstance* soundInstance)
 	foundSoundVector.erase(foundSoundInstance);
 }
 
-void SoundManager::UpdateListener(const SoundListener& listener)
+void SoundManager::UpdateListener(const SoundListener* listener)
 {
-	ErrorCheck(audioCore->coreSystem->set3DListenerAttributes(listener.ID, &listener.pos, &listener.vel, &listener.forward, &listener.up));
+	ErrorCheck(audioCore->coreSystem->set3DListenerAttributes(listener->ID, &listener->pos, &listener->vel, &listener->forward, &listener->up));
+}
+
+void SoundManager::AddListener()
+{
+	audioCore->listenersNumber++;
+	ErrorCheck(audioCore->coreSystem->set3DNumListeners(audioCore->listenersNumber));
+}
+
+void SoundManager::RemoveListener()
+{
+	if (audioCore->listenersNumber == 1)
+		return;
+	audioCore->listenersNumber--;
+	ErrorCheck(audioCore->coreSystem->set3DNumListeners(audioCore->listenersNumber));
 }
 
 void SoundManager::StopAllInstances()
