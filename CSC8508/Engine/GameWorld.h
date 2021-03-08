@@ -74,6 +74,7 @@ namespace NCL {
 			void FlipDisplayQuadTree() { displayQuadtree = !displayQuadtree; }
 
 		protected:
+			std::vector<GameObject*> newGameObjects;
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;
 			std::vector<Plane*>		 killPlanes;
