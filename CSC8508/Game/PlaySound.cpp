@@ -13,7 +13,7 @@ enum class PlaySound::PlayMode {
 	OnCollisionEnd,
 };
 
-PlaySound::PlaySound(GameObject* object, std::string path, std::string mode, float volume)
+PlaySound::PlaySound(GameObject* object, std::string path, std::string mode, float volume, float minDistance)
 	:Component(object)
 {
 	soundPath = path;
@@ -27,7 +27,7 @@ PlaySound::PlaySound(GameObject* object, std::string path, std::string mode, flo
 	sound = new Audio::SoundInstance();
 	Audio::SoundManager::CreateInstance(soundPath, sound);
 	sound->SetVolume(soundVolume);
-	sound->SetMaxMinDistance(100, 20);
+	sound->SetMaxMinDistance(200, minDistance);
 	sound->Set3DAttributes(object->GetTransform().GetPosition());
 }
 

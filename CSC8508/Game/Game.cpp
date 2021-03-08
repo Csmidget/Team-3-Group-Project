@@ -276,7 +276,7 @@ void Game::InitWorld() {
 	player->AddComponent<PlayerComponent>(this);
 	player->AddComponent<RespawnComponent>();
 	player->AddComponent<SetListener>(0);
-	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f);
+	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
 	player->AddTag("Player");
 	world->Start();
 
