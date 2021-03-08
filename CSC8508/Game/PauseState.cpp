@@ -10,10 +10,10 @@ PushdownState::PushdownResult PauseState::OnUpdate(float dt, PushdownState** new
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::K)) {
 		return PushdownResult::Pop;
 	}
-	g2->UpdateGame(dt);
+
 	return PushdownResult::NoChange;
 }
 
 void PauseState::OnAwake() {
-	g2 = new Game("2");
+
 };

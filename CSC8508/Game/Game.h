@@ -13,14 +13,20 @@ namespace NCL {
 		class PhysicsSystem;
 		class GameWorld;
 		class GameObject;
+		class PushdownMachine;
 
 		class Game		{
 		public:
-			Game(string name = "");
+			Game();
 			~Game();
 
+			void InitWorld();
+			void InitIntroWorld();
+			void InitOverWorld();
+			void InitPauseWorld();
+			void InitIntroCamera();
+			GameObject* InitOpenCube();
 			
-
 			virtual void UpdateGame(float dt);
 			virtual void UpdateIntroGame(float dt);
 			virtual void UpdatePauseGame(float dt);
@@ -47,15 +53,7 @@ namespace NCL {
 
 			void InitCamera();
 			void UpdateKeys();
-
-			void InitWorld();
-			void InitIntroWorld();
-			void InitOverWorld();
-			void InitPauseWorld();
-			void InitIntroCamera();
-			void InitOpenCube();
-			void InitExitCube();
-			
+						
 			void InitFromJSON(std::string fileName);
 
 			void InitGameExamples();
@@ -94,10 +92,10 @@ namespace NCL {
 
 
 			GameTechRenderer*	renderer;
-			//PhysicsSystem*		physics;
 			GameWorld*			world;
 			NCL::Rendering::ResourceManager* resourceManager;
 			physics::BulletWorld* physics;
+			PushdownMachine* gameStateMachine;
 
 			NetworkManager* networkManager;
 
@@ -109,11 +107,7 @@ namespace NCL {
 			GameObject* selectionObject = nullptr;
 			GameObject* newselectionObject = nullptr;
 			GameObject* forwardObject = nullptr;
-
-			// OGLShader * m_temp_shader = nullptr;
-			//GameObject* m_tempp;
-
-			
+		
 
 			//Coursework Additional functionality	
 			GameObject* lockedObject	= nullptr;

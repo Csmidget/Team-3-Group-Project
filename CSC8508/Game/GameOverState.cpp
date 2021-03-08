@@ -7,7 +7,7 @@ using namespace NCL;
 using namespace CSC8508;
 
 PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** newState) {
-	g2->UpdateGame(dt);
+	game->UpdateGame(dt);
 
 	if (gameScore <= 0) {
 		Debug::Print("Play again", Vector2(30, 10));
@@ -16,12 +16,11 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 	else {
 		Debug::Print("Play again", Vector2(30, 10));
 		Debug::Print("You win", Vector2(30, 30));
-		Debug::Print("Play again", Vector2(30, 10));
 		Debug::Print("Your score:" + std::to_string(gameScore), Vector2(30, 50));
 	}
 	return PushdownResult::Top;
 }
 
 void GameOverState::OnAwake() {
-	g2 = new Game("2");
+	game->InitOverWorld();
 }

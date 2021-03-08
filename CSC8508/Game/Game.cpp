@@ -11,26 +11,25 @@
 #include"../Audio/SoundManager.h"
 #include"../Audio/SoundInstance.h"
 #include "../../Common/ShaderBase.h"
+#include "../Engine/PushdownMachine.h"
+#include "IntroState.h"
 
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
 
-//JENKINS TEST 3
-
 using namespace NCL;
 using namespace CSC8508;
 using namespace Maths;
 
-Game::Game(string pagename) {
-	name = pagename;
+Game::Game() {
 	resourceManager = new OGLResourceManager();
 	world = new GameWorld();
 	renderer = new GameTechRenderer(*world, *resourceManager);
 	//physics		= new PhysicsSystem(*world);
 	physics		= new physics::BulletWorld();
-
+	gameStateMachine = new PushdownMachine(new IntroState(this));
 	networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
@@ -50,32 +49,12 @@ Game::Game(string pagename) {
 }
 
 /*
-
 Each of the little demo scenarios used in the game uses the same 2 meshes, 
 and the same texture and shader. There's no need to ever load in anything else
 for this module, even in the coursework, but you can add it if you like!
-
 */
 void Game::InitialiseAssets() {
-
-	//Todo: These should be removed whenever we fully shift to json levels.
-
-	if (name == "0") {
-		InitIntroCamera();
-		InitIntroWorld();
-	}
-	if (name == "1") {
-		InitCamera();
-		InitWorld();
-	}
-	if (name == "2") {
-		InitIntroCamera();
-		InitOverWorld();
-	}
-	if (name == "3") {
-		InitIntroCamera();
-		InitPauseWorld();
-	}
+	InitIntroWorld();
 }
 
 Game::~Game()	{
@@ -87,6 +66,9 @@ Game::~Game()	{
 }
 
 void Game::UpdateGame(float dt) {
+
+	gameStateMachine->Update(dt);
+
 	if (!inSelectionMode) {
 		world->GetMainCamera()->UpdateCamera(dt);
 	}
@@ -309,13 +291,14 @@ void Game::InitIntroCamera() {
 	lockedObject = nullptr;
 }
 
-void Game::InitOpenCube() {
+GameObject* Game::InitOpenCube() {
 	Vector3 cubeDims = Vector3(10, 10, 10);
 	Vector3 position = Vector3(-20, 40, 0);
 	OpenCube = AddButtonToWorld(position, cubeDims);
 	OpenCube->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
 	cubeDims = Vector3(10, 10, 10);
 	position = Vector3(0, 60, 0);
+	return OpenCube;
 }
 
 void Game::Clear() {
@@ -333,7 +316,7 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitWorld() {
 	Clear();
-
+	InitCamera();
 	InitFromJSON("GameStateManagerTest.json");
 
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
@@ -353,18 +336,21 @@ void Game::InitWorld() {
 }
 
 void Game::InitIntroWorld() {
-	Clear();;
-	InitOpenCube();
+	Clear();
+	InitIntroCamera();
+//	InitOpenCube();
 	InitDefaultFloor();
 }
 
 void Game::InitPauseWorld() {
-	Clear();
+	Clear();		
+	InitIntroCamera();
 	InitDefaultFloor();
 }
 
 void Game::InitOverWorld() {
-	world->ClearAndErase();
+	Clear();
+	InitIntroCamera();
 	physics->clear();
 	InitDefaultFloor();
 }

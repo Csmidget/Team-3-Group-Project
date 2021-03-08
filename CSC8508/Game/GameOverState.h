@@ -12,8 +12,13 @@ namespace NCL {
 
 			void OnAwake() override;
 
+		public:
+			GameOverState(Game* game) {
+				this->game = game;
+			}
+
 		protected:
-			Game* g2;
+			Game* game;
 			int gameScore = 0;
 		};
 
