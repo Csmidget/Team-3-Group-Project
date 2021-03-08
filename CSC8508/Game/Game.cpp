@@ -352,7 +352,7 @@ void Game::InitWorld() {
 
 
 
-	world->Start();
+	//world->Start();
 
 
 

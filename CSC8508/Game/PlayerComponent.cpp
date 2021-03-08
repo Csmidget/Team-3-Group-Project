@@ -163,9 +163,10 @@ void NCL::CSC8508::PlayerComponent::Movement()
 		direction += Vector3(1, 0, 0);
 	}
 	
+	direction.Normalise();
 	// ----------- MIGHT NEED TO CHANGE ---------------
 
-	physicsObject->AddForce(transform->GetOrientation() * direction.Normalised() * (lastCollisionTimer < 0.1f ? speed : speed / 5));
+	//physicsObject->AddForce(transform->GetOrientation() * direction.Normalised() * (lastCollisionTimer < 0.1f ? speed : speed / 5));
 	
 }
 
@@ -179,6 +180,9 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE))
 		{
 			movementState = (PlayerMovementState)(movementState + 1);
+			Vector3 currentForce = physicsObject->body->getForce();
+			physicsObject->body->clearForces();
+			physicsObject->AddForce(Vector3(currentForce.x, 0, currentForce.z));
 			jumpCounter = 3;
 		}
 		if (jumpCounter > 0)
@@ -202,8 +206,13 @@ void NCL::CSC8508::PlayerComponent::ClampVelocity()
 	physicsObject->SetLinearVelocity(currentVelocity.Normalised() * magnitude);
 }
 
-void NCL::CSC8508::PlayerComponent::Stop()
+void NCL::CSC8508::PlayerComponent::AccelerateTo(Vector3 targetVelocity, float dt)
 {
+	Vector3 currentVelocity = physicsObject->body->getLinearVelocity();
+	Vector3 delta = targetVelocity - currentVelocity;
+
+	Vector3 acceleration = (delta / dt).Normalised() * (Vector3::Dot(currentVelocity, delta) > 0 ? MAX_ACCELERATION : MAX_DECELERATION);
+	physicsObject->AddForce(acceleration / physicsObject->GetInverseMass());
 }
 
 void NCL::CSC8508::PlayerComponent::Interact()
@@ -214,6 +223,7 @@ void PlayerComponent::UpdateControls(float dt)
 {
 	CameraMovement();
 	Movement();
+	AccelerateTo(direction * MAX_WALKING_SPEED, dt);
 	Jump();
 }
 

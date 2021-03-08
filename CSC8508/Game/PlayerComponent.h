@@ -41,7 +41,8 @@ namespace NCL {
 		private:
 
 			PlayerMovementState movementState;
-			Maths::Vector3 dir;
+			//Maths::Vector3 dir;
+			Vector3 direction;
 			PhysicsObject* physicsObject;
 
 			bool lockOrientation;
@@ -54,6 +55,9 @@ namespace NCL {
 
 			float speed;
 			float MAX_WALKING_SPEED;
+			float MAX_ACCELERATION;
+			float MAX_DECELERATION;
+
 
 			float jump;
 			float MAX_AIR_SPEED;
@@ -73,7 +77,7 @@ namespace NCL {
 			void Movement();
 			void Jump();
 			void ClampVelocity();
-			void Stop();
+			void AccelerateTo(Vector3 targetVelocity);
 
 			void Interact();
 
