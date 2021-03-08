@@ -278,7 +278,6 @@ void Game::InitWorld() {
 	player->AddComponent<SetListener>(0);
 	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
 	player->AddTag("Player");
-	world->Start();
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 	gameStateManager = new GameStateManager(world);

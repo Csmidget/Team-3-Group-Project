@@ -4,7 +4,7 @@
 #include "PhysicsObject.h"
 #include "RenderObject.h"
 
-#include <vector>
+#include <set>
 #include <algorithm>
 
 using std::vector;
@@ -30,7 +30,6 @@ namespace NCL {
 				collisionLayer = val;
 			}
 
-			void Start();
 			void Update(float dt);
 
 			virtual void OnUpdate(float dt) {};
@@ -64,6 +63,10 @@ namespace NCL {
 
 			void SetIsStatic(bool val) {
 				isStatic = val;
+			}
+
+			void AddTag(std::string tag) {
+				tags.insert(tag);
 			}
 
 			bool HasTag(std::string tag) {
@@ -145,6 +148,7 @@ namespace NCL {
 
 		protected:
 
+			void Start();
 			void SetGameWorld(GameWorld* world);
 
 			Transform			transform;
@@ -160,7 +164,7 @@ namespace NCL {
 			int collisionLayer;
 			string	name;
 			Vector3 broadphaseAABB;
-			std::vector<std::string> tags;
+			std::set<std::string> tags;
 			std::vector<Component*> components;
 		};
 	}
