@@ -58,7 +58,6 @@ namespace NCL {
 
 			std::vector<GameObject*> ObjectsWithinRadius(Vector3 position, float radius, std::string tag = "") const;
 			
-			void Start();
 			virtual void UpdateWorld(float dt);
 
 			void OperateOnContents(GameObjectFunc f);
@@ -76,6 +75,7 @@ namespace NCL {
 			std::vector<GameObject*> GetObjectsWithTag(string tag);
 
 		protected:
+
 			std::vector<GameObject*> newGameObjects;
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;
