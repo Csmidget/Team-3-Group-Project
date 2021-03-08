@@ -46,6 +46,29 @@ void GameWorld::ClearAndErase() {
 	Clear();
 }
 
+std::vector<GameObject*> NCL::CSC8508::GameWorld::GetObjectsWithTag(std::string tag) const
+{
+	std::vector<GameObject*> objectsWithTag;
+	for (auto go : gameObjects)
+	{
+		if (go->HasTag(tag))
+			objectsWithTag.push_back(go);
+	}
+
+	return objectsWithTag;
+
+}
+
+GameObject* NCL::CSC8508::GameWorld::GetObjectWithTag(std::string tag) const
+{
+	for (auto go : gameObjects)
+	{
+		if (go->HasTag(tag))
+			return go;
+	}
+	return nullptr;
+}
+
 GameObject* GameWorld::AddGameObject(GameObject* o) {
 
 	//For debugging, we should not be adding duplicate objects to the world.
@@ -212,18 +235,7 @@ void GameWorld::GetConstraintIterators(
 	last	= constraints.end();
 }
 
-std::vector<GameObject*> NCL::CSC8508::GameWorld::GetObjectsWithTag(string tag)
-{
-	std::vector<GameObject*> objectsWithTag;
-	for (auto go : gameObjects)
-	{
-		if (go->HasTag(tag))
-			objectsWithTag.push_back(go);
-	}
 
-	return objectsWithTag;
-
-}
 
 std::vector<GameObject*> GameWorld::ObjectsWithinRadius(Vector3 position, float radius, std::string tag) const {
 

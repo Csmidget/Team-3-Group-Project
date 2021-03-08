@@ -18,7 +18,7 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt)
 		Debug::Print("Score: " + std::to_string(players.at(clientPlayerID)->GetComponent<ScoreComponent>()->GetScore()), Vector2(75, 95));
 
 
-	if (IsGameOver()) Debug::Print("Game is Finished", Vector2(75, 90));
+	if (IsGameOver()) *isGameFinished = true;
 	//Go to next scene
 }
 
