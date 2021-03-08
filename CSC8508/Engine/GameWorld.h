@@ -33,6 +33,8 @@ namespace NCL {
 			void AddConstraint(Constraint* c);
 			void RemoveConstraint(Constraint* c, bool andDelete = false);
 
+			std::vector<GameObject*> GetObjectsWithTag(std::string tag) const;
+
 			Camera* GetMainCamera() const {
 				return mainCamera;
 			}
@@ -40,7 +42,6 @@ namespace NCL {
 			QuadTree<GameObject*>* GetObjectTree() const {
 				return objectTree;
 			}
-
 
 			QuadTree<GameObject*>* GetStaticObjectTree() const {
 				return staticObjectTree;
@@ -71,8 +72,6 @@ namespace NCL {
 				std::vector<Constraint*>::const_iterator& last) const;
 
 			void FlipDisplayQuadTree() { displayQuadtree = !displayQuadtree; }
-
-			std::vector<GameObject*> GetObjectsWithTag(string tag);
 
 		protected:
 

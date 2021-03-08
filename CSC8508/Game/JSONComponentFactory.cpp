@@ -31,6 +31,5 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 
 	if (name == "Ring")			return gameObject->AddComponent<RingComponent>();
 
-
 	return nullptr;
 }
