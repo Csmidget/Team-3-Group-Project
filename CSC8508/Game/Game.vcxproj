@@ -163,11 +163,14 @@
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlaySound.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RespawnComponent.cpp" />
     <ClCompile Include="RespawningObject.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="SetListener.cpp" />
     <ClCompile Include="RingComponent.cpp" />
+    <ClCompile Include="Shadow.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BonusComponent.h" />
@@ -184,16 +187,20 @@
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlaySound.h" />
     <ClInclude Include="PlayState.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="RespawnComponent.h" />
     <ClInclude Include="RespawningObject.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="SetListener.h" />
     <ClInclude Include="RingComponenet.h" />
+    <ClInclude Include="Shadow.h" />
+    <ClInclude Include="SpotLight.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
