@@ -77,7 +77,7 @@ namespace NCL {
 			void Movement();
 			void Jump();
 			void ClampVelocity();
-			void AccelerateTo(Vector3 targetVelocity);
+			void AccelerateTo(Vector3 targetVelocity, float dt);
 
 			void Interact();
 
