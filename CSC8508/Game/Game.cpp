@@ -271,7 +271,6 @@ void Game::InitWorld() {
 	player->AddComponent<PlayerComponent>(this);
 	player->AddComponent<RespawnComponent>();
 	player->AddTag("Player");
-	world->Start();
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 	gameStateManager = new GameStateManager(world);
