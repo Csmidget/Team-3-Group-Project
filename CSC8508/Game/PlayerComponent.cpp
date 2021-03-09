@@ -19,7 +19,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	movementState = PlayerMovementState::WALKING;
 
 	speed = 100.0f;
-	jump = 360.f;
+	jump = 150.f;
 
 	MAX_WALKING_SPEED = 10.f;
 	MAX_AIR_SPEED = 10000.f;
@@ -38,8 +38,6 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	testTimer = 0.f;
 	hasJumped = false;
 
-	//physicsObject->SetFriction(0.1f);
-	//physicsObject->body->setDamping(0.05, 0.f);
 	camera = game->GetWorld()->GetMainCamera();
 
 	this->game = game;
@@ -94,9 +92,6 @@ void PlayerComponent::Update(float dt) {
 		}
 		Testing();
 	}
-
-	//std::cout << movementState << std::endl;
-	//ClampVelocity();
 }
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
