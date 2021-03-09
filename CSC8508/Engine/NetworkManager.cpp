@@ -39,7 +39,8 @@ NetworkManager::~NetworkManager()
 void NetworkManager::Update(float dt)
 {
 	if (OFFLINE_MODE) return;
-	
+	timeToNextPacket -= dt;
+
 	if (timeToNextPacket < 0) {
 		isClient ? UpdateAsClient(dt) : UpdateAsServer(dt);	
 		timeToNextPacket += 1.0f / 20.0f; //20hz server/client update

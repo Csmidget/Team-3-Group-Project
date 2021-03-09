@@ -57,9 +57,9 @@ namespace NCL {
 			void UpdateMinimumState();
 
 
-			bool const OFFLINE_MODE = true;
-			bool const TEST_MODE = true;
-			bool isClient = true;
+			bool const OFFLINE_MODE = false;
+			bool const TEST_MODE = false;
+			bool isClient = false;
 
 			GameServer* thisServer;
 			GameClient* thisClient;
