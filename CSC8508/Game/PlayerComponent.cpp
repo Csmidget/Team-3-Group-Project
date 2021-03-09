@@ -19,7 +19,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	movementState = PlayerMovementState::WALKING;
 
 	speed = 100.0f;
-	jump = 1550.f;
+	jump = 360.f;
 
 	MAX_WALKING_SPEED = 10.f;
 	MAX_AIR_SPEED = 10000.f;
