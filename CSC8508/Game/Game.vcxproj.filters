@@ -145,6 +145,5 @@
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
-    <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
   </ItemGroup>
 </Project>
