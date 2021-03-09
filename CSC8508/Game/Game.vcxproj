@@ -156,6 +156,7 @@
     <ClCompile Include="JSONComponentFactory.cpp" />
     <ClCompile Include="JSONLevelFactory.cpp" />
     <ClCompile Include="JSONShared.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="JSONComponentFactory.h" />
     <ClInclude Include="JSONLevelFactory.h" />
     <ClInclude Include="JSONShared.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayerComponent.h" />
