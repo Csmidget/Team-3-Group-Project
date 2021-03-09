@@ -19,7 +19,9 @@ IntroState::IntroState(Game* game) {
 }
 
 PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** newState) {
-	Debug::Print("Click the Cube to Start game", Vector2(1, 5));
+	Debug::Print("Game of Team 3!", Vector2(42, 30));
+	Debug::Print("Click to Start", Vector2(42, 50));
+	Debug::Print("Click to Exit", Vector2(43, 70));
 
 	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
 
@@ -38,14 +40,13 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 			}
 		}
 	}
-
 	return PushdownResult::NoChange;
 };
 
 void IntroState::OnAwake() {
 	game->InitIntroWorld();
-	openCube = game->AddButtonToWorld(Vector3(-20, 40, 0), Vector3(10, 10, 10), 0.0f, false, false);
-
+	openCube = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), 0.0f, false, false);
+	exitCube = game->AddButtonToWorld(Vector3(0, -10, 0), Vector3(8, 2, 0), 0.0f, false, false);
 	Window::GetWindow()->ShowOSPointer(true);
 	Window::GetWindow()->LockMouseToWindow(false);
 }

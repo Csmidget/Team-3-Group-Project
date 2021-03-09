@@ -35,7 +35,7 @@ Game::Game() {
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
-	inSelectionMode = false;
+	inSelectionMode = false;	
 
 	Debug::SetRenderer(renderer);
 	Audio::SoundManager::Init();
@@ -99,9 +99,9 @@ void Game::UpdateGame(float dt) {
 }
 
 void Game::UpdateKeys() {
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F1)) {
-		InitWorld(); //We can reset the simulation at any time with F1
-	}
+//	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F1)) {
+//		InitIntroWorld(); //We can reset the simulation at any time with F1
+//	}
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F2)) {
 		InitCamera(); //F2 will reset the camera to a specific default place
@@ -128,7 +128,6 @@ void Game::UpdateKeys() {
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F8)) {
 		world->ShuffleObjects(false);
 	}
-
 }
 
 void Game::InitCamera() {
@@ -142,9 +141,9 @@ void Game::InitCamera() {
 void Game::InitIntroCamera() {
 	world->GetMainCamera()->SetNearPlane(0.1f);
 	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(-15.0f);
-	world->GetMainCamera()->SetYaw(315.0f);
-	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
+	world->GetMainCamera()->SetPitch(0.0f);
+	world->GetMainCamera()->SetYaw(0.0f);
+	world->GetMainCamera()->SetPosition(Vector3(0, 0, 60));
 }
 
 void Game::Clear() {
@@ -163,41 +162,25 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	InitWorld("CharlesTest.json");
 }
+
 void Game::InitWorld(std::string levelName) {
 	Clear();
 
 	InitCamera();
 
 	InitFromJSON(levelName);
-
-
-	//for (int i = 1; i < 2; i++)
-	//{
-	//	auto player = AddCapsuleToWorld(Vector3(-60 + 10 * i, 5, 0), 1.0f, 0.5f, 10, true);
-	//	player->AddComponent<PlayerComponent>();
-	//	player->GetComponent<PlayerComponent>()->SetSpeed(50,  0.01f);
-	//	player->GetComponent<PlayerComponent>()->SetJump(50 * i, 0.02f);		
-	//	//player->GetComponent<PlayerComponent>()->SetSpeed(40);
-	//	//player->GetComponent<PlayerComponent>()->SetJump(0);
-	//}
 	
 	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	player->AddComponent<PlayerComponent>(this);
 
-
-
 	//world->Start();
 
-
-
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
-
 }
 
 void Game::InitIntroWorld() {
 	Clear();
 	InitIntroCamera();
-	InitDefaultFloor();
 }
 
 /*
