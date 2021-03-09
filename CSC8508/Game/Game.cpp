@@ -99,9 +99,9 @@ void Game::UpdateGame(float dt) {
 }
 
 void Game::UpdateKeys() {
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F1)) {
-		InitIntroWorld(); //We can reset the simulation at any time with F1
-	}
+//	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F1)) {
+//		InitIntroWorld(); //We can reset the simulation at any time with F1
+//	}
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F2)) {
 		InitCamera(); //F2 will reset the camera to a specific default place

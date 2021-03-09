@@ -40,7 +40,6 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 			}
 		}
 	}
-
 	return PushdownResult::NoChange;
 };
 
