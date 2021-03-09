@@ -1,6 +1,7 @@
 #include "MeshMaterial.h"
 #include "Assets.h"
 #include "TextureLoader.h"
+#include "ResourceManager.h"
 
 #include <fstream>
 #include <iostream>
@@ -73,11 +74,27 @@ void MeshMaterial::LoadTextures() {
 	}
 }
 
+void MeshMaterial::LoadTextures(ResourceManager* manager) {
+	for (auto& i : meshLayers) {
+		i->LoadTextures(manager);
+	}
+}
+
 void MeshMaterialEntry::LoadTextures() {
 	for (auto& i : entries) {
 		string filename = Assets::TEXTUREDIR + i.second.first;
 
 		TextureBase* t = TextureLoader::LoadAPITexture(filename);
+
+		i.second.second = t;
+	}
+}
+
+void MeshMaterialEntry::LoadTextures(ResourceManager* manager) {
+	for (auto& i : entries) {
+	//	string filename = Assets::TEXTUREDIR.substr(0,Assets::TEXTUREDIR.size()-1) + i.second.first;
+
+		TextureBase* t = manager->LoadTexture(i.second.first);
 
 		i.second.second = t;
 	}

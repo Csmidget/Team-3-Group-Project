@@ -237,6 +237,7 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RendererBase.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ShaderBase.h" />
     <ClInclude Include="SimpleFont.h" />
     <ClInclude Include="TextureBase.h" />

@@ -1,35 +1,37 @@
+
 #include "../../Common/Window.h"
 
-#include "Game.h"
+#include "../Engine/PushdownMachine.h"
+#include "IntroState.h"
 
+#include "Game.h"
+#include "../Engine/Debug.cpp"
+#include "GameStateManagerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
 
 /*
-
 The main function should look pretty familar to you!
 We make a window, and then go into a while loop that repeatedly
 runs our 'game' until we press escape. Instead of making a 'renderer'
 and updating it, we instead make a whole game, and repeatedly update that,
-instead. 
-
+instead.
 This time, we've added some extra functionality to the window class - we can
-hide or show the 
-// blarg
-//wort wort wort
+hide or show the
 */
+
 int main() {
-	Window*w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
+	Window* w = Window::CreateGameWindow("CSC8508 Game technology!", 1280, 720);
 
 	if (!w->HasInitialised()) {
 		return -1;
-	}	
+	}
+
 	srand((unsigned int)time(0));
 	w->ShowOSPointer(false);
 	w->LockMouseToWindow(true);
-
-	Game* g = new Game();
+	Game* game = new Game();
 	w->GetTimer()->GetTimeDeltaSeconds(); //Clear the timer so we don't get a larget first dt!
 	while (w->UpdateWindow() && !Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
 
@@ -48,10 +50,9 @@ int main() {
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {
 			w->SetWindowPosition(0, 0);
 		}
-
+		game->UpdateGame(dt);
 		w->SetTitle("Gametech frame time:" + std::to_string(1000.0f * dt));
-
-		g->UpdateGame(dt);
 	}
-	Window::DestroyGameWindow();
+
+//	Window::DestroyGameWindow();
 }

@@ -2,11 +2,14 @@
 #include <iomanip>
 #include <sstream>
 #include "Debug.h"
+#include "GameObject.h"
+#include "PhysicsObject.h"
 
 using namespace NCL::CSC8508;
 
-Transform::Transform()
+Transform::Transform(GameObject* object)
 {
+	this->gameObject = object;
 	scale	= Vector3(1, 1, 1);
 }
 
@@ -22,8 +25,12 @@ void Transform::UpdateMatrix() {
 		Matrix4::Scale(scale);
 }
 
-Transform& Transform::SetPosition(const Vector3& worldPos) {
+Transform& Transform::SetPosition(const Vector3& worldPos, bool updatePhysics) {
 	position = worldPos;
+
+	if (updatePhysics && gameObject->GetPhysicsObject())
+		gameObject->GetPhysicsObject()->body->setTransform();
+
 	UpdateMatrix();
 	return *this;
 }
@@ -34,8 +41,12 @@ Transform& Transform::SetScale(const Vector3& worldScale) {
 	return *this;
 }
 
-Transform& Transform::SetOrientation(const Quaternion& worldOrientation) {
+Transform& Transform::SetOrientation(const Quaternion& worldOrientation, bool updatePhysics) {
 	orientation = worldOrientation;
+
+	if (updatePhysics && gameObject->GetPhysicsObject())
+		gameObject->GetPhysicsObject()->body->setTransform();
+
 	UpdateMatrix();
 	return *this;
 }

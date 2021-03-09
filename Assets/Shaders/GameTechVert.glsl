@@ -1,42 +1,23 @@
 #version 400 core
+layout (location = 0) in vec3 position;
+layout (location = 1) in vec3 normal;
+layout (location = 2) in vec2 texCoord;
 
 uniform mat4 modelMatrix 	= mat4(1.0f);
 uniform mat4 viewMatrix 	= mat4(1.0f);
 uniform mat4 projMatrix 	= mat4(1.0f);
-uniform mat4 shadowMatrix 	= mat4(1.0f);
 
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec4 colour;
-layout(location = 2) in vec2 texCoord;
-layout(location = 3) in vec3 normal;
+uniform bool reverse_normals = true;
 
-uniform vec4 		objectColour = vec4(1,1,1,1);
+out vec3 FragPos;
+out vec3 Normal;
+out vec2 TexCoords;
 
-uniform bool hasVertexColours = false;
-
-out Vertex
+void main()
 {
-	vec4 colour;
-	vec2 texCoord;
-	vec4 shadowProj;
-	vec3 normal;
-	vec3 worldPos;
-} OUT;
-
-void main(void)
-{
-	mat4 mvp 		  = (projMatrix * viewMatrix * modelMatrix);
-	mat3 normalMatrix = transpose ( inverse ( mat3 ( modelMatrix )));
-
-	OUT.shadowProj 	=  shadowMatrix * vec4 ( position,1);
-	OUT.worldPos 	= ( modelMatrix * vec4 ( position ,1)). xyz ;
-	OUT.normal 		= normalize ( normalMatrix * normalize ( normal ));
-	
-	OUT.texCoord	= texCoord;
-	OUT.colour		= objectColour;
-
-	if(hasVertexColours) {
-		OUT.colour		= objectColour * colour;
-	}
-	gl_Position		= mvp * vec4(position, 1.0);
+    FragPos = vec3(modelMatrix * vec4(position, 1.0));
+    Normal = mat3(transpose(inverse(modelMatrix))) * normal;  
+    TexCoords = texCoord;
+    
+    gl_Position = projMatrix * viewMatrix * vec4(FragPos, 1.0);
 }

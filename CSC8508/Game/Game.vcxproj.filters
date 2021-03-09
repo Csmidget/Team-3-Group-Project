@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{b096e6d2-7fc1-4520-a5eb-c98d5093bb2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JSON">
+      <UniqueIdentifier>{9e202e83-4377-4918-be81-da740b27802f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{29625e85-8ea7-4819-b914-492a589ee84f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{e8ee3208-ac23-4195-ae88-b5c41c9da676}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -27,6 +39,62 @@
     <ClCompile Include="RespawningObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONLevelFactory.cpp">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONComponentFactory.cpp">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONShared.cpp">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RespawnComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySound.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SetListener.cpp">
+    </ClCompile>
+    <ClCompile Include="RingComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManagerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Shadow.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -38,5 +106,67 @@
     <ClInclude Include="RespawningObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONShared.h">
+      <Filter>JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONLevelFactory.h">
+      <Filter>JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONComponentFactory.h">
+      <Filter>JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RespawnComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySound.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SetListener.h">
+    </ClInclude>
+    <ClInclude Include="RingComponenet.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManagerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
+    <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
+    <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

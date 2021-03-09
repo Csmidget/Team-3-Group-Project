@@ -1,10 +1,13 @@
 #pragma once
+#include "../Engine/GameWorld.h"
+
 #include "../../Plugins/OpenGLRendering/OGLRenderer.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include "../../Plugins/OpenGLRendering/OGLTexture.h"
 #include "../../Plugins/OpenGLRendering/OGLMesh.h"
 
-#include "../Engine/GameWorld.h"
+#include "../../Common/ResourceManager.h"
+
 
 namespace NCL {
 	class Maths::Vector3;
@@ -14,17 +17,19 @@ namespace NCL {
 
 		class GameTechRenderer : public OGLRenderer	{
 		public:
-			GameTechRenderer(GameWorld& world);
+			GameTechRenderer(GameWorld& world, ResourceManager& resourceManager);
 			~GameTechRenderer();
 
+			OGLShader* getTempShader() { return m_temp_shader; }
+			//NCL::Rendering::ResourceManager* GetResourceManager() { return resourceManager; }
 		protected:
 			void RenderFrame()	override;
 
 			Matrix4 SetupDebugLineMatrix()	const override;
 			Matrix4 SetupDebugStringMatrix()const override;
 
-			OGLShader*		defaultShader;
-
+			OGLShader*	defaultShader;
+			//GameTechRenderer* renderer;
 			GameWorld&	gameWorld;
 
 			void BuildObjectList();
@@ -33,23 +38,31 @@ namespace NCL {
 			void RenderCamera(); 
 			void RenderSkybox();
 
-			void LoadSkybox();
+			void RenderLight();
 
+			//void InitLight();
+			//void LoadLight();
+			void LoadSkybox();
+			//NCL::Rendering::ResourceManager* resourceManager;
 			vector<const RenderObject*> activeObjects;
 
 			OGLShader*  skyboxShader;
 			OGLMesh*	skyboxMesh;
 			GLuint		skyboxTex;
 
-			//shadow mapping things
-			OGLShader*	shadowShader;
-			GLuint		shadowTex;
-			GLuint		shadowFBO;
-			Matrix4     shadowMatrix;
+			OGLShader* m_temp_shader = nullptr;
 
-			Vector4		lightColour;
-			float		lightRadius;
-			Vector3		lightPosition;
+			//shadow mapping things
+			NCL::Rendering::OGLShader* depthShader;
+			NCL::Rendering::OGLShader* lightshader;
+
+			//GLuint		shadowTex;
+			//GLuint		shadowFBO;
+			//Matrix4     shadowMatrix;
+
+			//Vector4		lightColour;
+			//float		lightRadius;
+			//Vector3		lightPosition;
 		};
 	}
 }

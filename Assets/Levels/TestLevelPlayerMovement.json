@@ -1,0 +1,54 @@
+[
+    
+    {
+        "name": "Floor",
+        "isStatic": true,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 0.0,
+                "y": -0.20000000298023225,
+                "z": 0.0
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 80.0,
+                "y": 0.20000000298023225,
+                "z": 250.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Floor.mat",
+            "renderScale": 2
+        },
+        "physics": {
+            "mass": 0.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": true
+        }
+    }
+]

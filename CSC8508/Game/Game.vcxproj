@@ -104,11 +104,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINSOCKAPI_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib;PhysicsEngine.lib</AdditionalDependencies>
+      <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib;Audio.lib;PhysicsEngine.lib</AdditionalDependencies>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)dll\*.*" "$(TargetDir)" /Y /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -140,17 +144,64 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>Engine.lib;Common.lib;OpenGLRendering.lib;Networking-ENet.lib;ws2_32.lib;Winmm.lib;User32.lib;Gdi32.lib;PhysicsEngine.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)dll\*.*" "$(TargetDir)" /Y /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BonusComponent.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
+    <ClCompile Include="GameStateManagerComponent.cpp" />
     <ClCompile Include="GameTechRenderer.cpp" />
+    <ClCompile Include="IntroState.cpp" />
+    <ClCompile Include="JSONComponentFactory.cpp" />
+    <ClCompile Include="JSONLevelFactory.cpp" />
+    <ClCompile Include="JSONShared.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="PlaySound.cpp" />
+    <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="RespawnComponent.cpp" />
     <ClCompile Include="RespawningObject.cpp" />
+    <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="SetListener.cpp" />
+    <ClCompile Include="RingComponent.cpp" />
+    <ClCompile Include="Shadow.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BonusComponent.h" />
+    <ClInclude Include="GameOverState.h" />
+    <ClInclude Include="GameStateManagerComponent.h" />
     <ClInclude Include="GameTechRenderer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="IntroState.h" />
+    <ClInclude Include="JSONComponentFactory.h" />
+    <ClInclude Include="JSONLevelFactory.h" />
+    <ClInclude Include="JSONShared.h" />
+    <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="PlaySound.h" />
+    <ClInclude Include="PlayState.h" />
+    <ClInclude Include="PointLight.h" />
+    <ClInclude Include="RespawnComponent.h" />
     <ClInclude Include="RespawningObject.h" />
+    <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="SetListener.h" />
+    <ClInclude Include="RingComponenet.h" />
+    <ClInclude Include="Shadow.h" />
+    <ClInclude Include="SpotLight.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
+    <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
+    <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

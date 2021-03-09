@@ -4,6 +4,7 @@
 #include "CollisionDetection.h"
 #include "../../Common/Camera.h"
 #include <algorithm>
+#include <vector>
 
 using namespace NCL;
 using namespace NCL::CSC8508;
@@ -25,6 +26,7 @@ GameWorld::~GameWorld()	{
 
 void GameWorld::Clear() {
 	gameObjects.clear();
+	newGameObjects.clear();
 	constraints.clear();
 	killPlanes.clear();
 
@@ -46,12 +48,36 @@ void GameWorld::ClearAndErase() {
 	Clear();
 }
 
+std::vector<GameObject*> GameWorld::GetObjectsWithTag(std::string tag) const {
+	std::vector<GameObject*> objectsWithTag;
+	for (auto go : gameObjects)
+	{
+		if (go->HasTag(tag))
+			objectsWithTag.push_back(go);
+	}
+
+	return objectsWithTag;
+
+}
+
+GameObject* NCL::CSC8508::GameWorld::GetObjectWithTag(std::string tag) const
+{
+	for (auto go : gameObjects)
+	{
+		if (go->HasTag(tag))
+			return go;
+	}
+	return nullptr;
+}
+
 GameObject* GameWorld::AddGameObject(GameObject* o) {
 
 	//For debugging, we should not be adding duplicate objects to the world.
 	assert(std::find(gameObjects.begin(), gameObjects.end(), o) == gameObjects.end());
 
 	gameObjects.emplace_back(o);
+	newGameObjects.emplace_back(o);
+	o->SetGameWorld(this);
 	o->SetWorldID(worldIDCounter++);
 	
 	if (o->IsStatic()) {
@@ -97,6 +123,14 @@ void GameWorld::OperateOnContents(GameObjectFunc f) {
 }
 
 void GameWorld::UpdateWorld(float dt) {
+
+	if (newGameObjects.size() > 0) {
+		for (size_t i = 0; i < newGameObjects.size(); i++)
+		{
+			newGameObjects[i]->Start();
+		}
+		newGameObjects.clear();
+	}
 
 	objectTree->Clear();
 	
@@ -201,6 +235,8 @@ void GameWorld::GetConstraintIterators(
 	first	= constraints.begin();
 	last	= constraints.end();
 }
+
+
 
 std::vector<GameObject*> GameWorld::ObjectsWithinRadius(Vector3 position, float radius, std::string tag) const {
 
