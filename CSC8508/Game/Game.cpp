@@ -3,7 +3,6 @@
 #include "GameTechRenderer.h"
 #include "RespawningObject.h"
 #include "IntroState.h"
-
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 
@@ -77,6 +76,7 @@ void Game::UpdateGame(float dt) {
 
 	UpdateKeys();
 
+
 	if (useGravity) {
 		Debug::Print("(G)ravity on", Vector2(5, 95));
 	}
@@ -128,6 +128,7 @@ void Game::UpdateKeys() {
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F8)) {
 		world->ShuffleObjects(false);
 	}
+
 }
 
 void Game::InitCamera() {
@@ -164,17 +165,33 @@ void Game::InitWorld() {
 }
 void Game::InitWorld(std::string levelName) {
 	Clear();
+
 	InitCamera();
+
 	InitFromJSON(levelName);
 
-	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
+
+	//for (int i = 1; i < 2; i++)
+	//{
+	//	auto player = AddCapsuleToWorld(Vector3(-60 + 10 * i, 5, 0), 1.0f, 0.5f, 10, true);
+	//	player->AddComponent<PlayerComponent>();
+	//	player->GetComponent<PlayerComponent>()->SetSpeed(50,  0.01f);
+	//	player->GetComponent<PlayerComponent>()->SetJump(50 * i, 0.02f);		
+	//	//player->GetComponent<PlayerComponent>()->SetSpeed(40);
+	//	//player->GetComponent<PlayerComponent>()->SetJump(0);
+	//}
+	
+	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	player->AddComponent<PlayerComponent>(this);
-	player->AddComponent<RespawnComponent>();
-	player->AddComponent<SetListener>(0);
-	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
-	player->AddTag("Player");
+
+
+
+	//world->Start();
+
+
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+
 }
 
 void Game::InitIntroWorld() {

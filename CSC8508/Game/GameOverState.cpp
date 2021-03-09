@@ -6,6 +6,14 @@
 using namespace NCL;
 using namespace CSC8508;
 
+GameOverState::GameOverState(Game* game, int score) {
+
+	this->game = game;
+	game->InitIntroWorld();
+	gameScore = score;
+
+}
+
 PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** newState) {	
 	
 	PrintOutcome();
