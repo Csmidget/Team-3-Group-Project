@@ -34,8 +34,10 @@ namespace NCL
 				btRigidBody* returnBody() { return body; };
 
 				void setTransform();
-
 				void updateTransform();
+
+				void makeTrigger();
+				void makeKinematic();
 				
 				void addForce(NCL::Maths::Vector3 force);
 				void addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos);
@@ -46,10 +48,16 @@ namespace NCL
 
 				void setDamping(float linear, float angular);
 
+				NCL::Maths::Vector3 getForce();
+				void clearForces();
+				NCL::Maths::Vector3 getLinearVelocity();
+
 			private:
 
 				float linearDamping = 0.05f;
 				float angularDamping = 0.7f;
+
+				bool isKinemtic = false;
 
 				//PhysicsObject* parent;
 				Transform* transform;

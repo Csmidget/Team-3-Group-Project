@@ -4,7 +4,7 @@
 #include "PhysicsObject.h"
 #include "RenderObject.h"
 
-#include <set>
+#include <unordered_set>
 #include <algorithm>
 
 using std::vector;
@@ -70,7 +70,7 @@ namespace NCL {
 			}
 
 			bool HasTag(std::string tag) {
-				return std::find(tags.begin(), tags.end(), tag) != tags.end();			
+				return tags.find(tag) != tags.end();			
 			}
 
 			GameWorld* GetWorld() { return world; }
@@ -164,7 +164,7 @@ namespace NCL {
 			int collisionLayer;
 			string	name;
 			Vector3 broadphaseAABB;
-			std::set<std::string> tags;
+			std::unordered_set<std::string> tags;
 			std::vector<Component*> components;
 		};
 	}

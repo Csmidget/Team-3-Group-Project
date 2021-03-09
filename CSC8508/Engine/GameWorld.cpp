@@ -4,6 +4,7 @@
 #include "CollisionDetection.h"
 #include "../../Common/Camera.h"
 #include <algorithm>
+#include <vector>
 
 using namespace NCL;
 using namespace NCL::CSC8508;
@@ -25,6 +26,7 @@ GameWorld::~GameWorld()	{
 
 void GameWorld::Clear() {
 	gameObjects.clear();
+	newGameObjects.clear();
 	constraints.clear();
 	killPlanes.clear();
 
@@ -44,6 +46,28 @@ void GameWorld::ClearAndErase() {
 	}
 
 	Clear();
+}
+
+std::vector<GameObject*> GameWorld::GetObjectsWithTag(std::string tag) const {
+	std::vector<GameObject*> objectsWithTag;
+	for (auto go : gameObjects)
+	{
+		if (go->HasTag(tag))
+			objectsWithTag.push_back(go);
+	}
+
+	return objectsWithTag;
+
+}
+
+GameObject* NCL::CSC8508::GameWorld::GetObjectWithTag(std::string tag) const
+{
+	for (auto go : gameObjects)
+	{
+		if (go->HasTag(tag))
+			return go;
+	}
+	return nullptr;
 }
 
 GameObject* GameWorld::AddGameObject(GameObject* o) {
@@ -212,21 +236,7 @@ void GameWorld::GetConstraintIterators(
 	last	= constraints.end();
 }
 
-std::vector<GameObject*> NCL::CSC8508::GameWorld::GetObjectsWithTag(string tag)
-{
-	std::vector<GameObject*> objectsWithTag;
-	std::vector<GameObject*>::const_iterator first;
-	std::vector<GameObject*>::const_iterator last;
-	
-	GetObjectIterators(first,last);
 
-	for (auto i = first; i != last; ++i) {
-		if ((*i)->HasTag(tag))
-			objectsWithTag.emplace_back((*i));
-	}
-
-	return objectsWithTag;
-}
 
 std::vector<GameObject*> GameWorld::ObjectsWithinRadius(Vector3 position, float radius, std::string tag) const {
 

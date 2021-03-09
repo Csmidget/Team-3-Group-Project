@@ -1,5 +1,260 @@
 [
     {
+        "name": "polySurface1",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.000017483953342889436,
+                "y": 0.9842381477355957,
+                "z": -0.10920711606740952
+            },
+            "radius": 0.5021796822547913,
+            "height": 2.240000009536743,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 9.899999618530274,
+                "y": 0.13500000536441804,
+                "z": 7.28000020980835
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "polySurface1.msh",
+            "material": "HairheadBody.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (64)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 17.5,
+                "y": 2.0,
+                "z": -5.049999713897705
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 4.0,
+                "y": 4.0,
+                "z": 4.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Checkerboard.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 11.5,
+                "y": 12.65999984741211,
+                "z": -3.2799999713897707
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "Default-Material.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Floor (2)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 25.0,
+                "y": 12.279999732971192,
+                "z": 44.060001373291019
+            },
+            "orientation": {
+                "x": -0.2588191032409668,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 0.9659258127212524
+            },
+            "scale": {
+                "x": 50.0,
+                "y": 0.20000000298023225,
+                "z": 50.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Checkerboard.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Floor (1)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 50.0,
+                "y": -0.10000000149011612,
+                "z": 0.0
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 50.0,
+                "y": 0.20000000298023225,
+                "z": 50.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Checkerboard.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
         "name": "Cube (57)",
         "isStatic": false,
         "tag": "Untagged",
@@ -2297,8 +2552,8 @@
                 "z": 0.0
             },
             "orientation": {
-                "x": 0.4082178771495819,
-                "y": -0.23456968367099763,
+                "x": -0.4082178771495819,
+                "y": 0.23456968367099763,
                 "z": 0.10938163101673126,
                 "w": 0.8754261136054993
             },
@@ -3946,7 +4201,7 @@
         "transform": {
             "position": {
                 "x": 0.0,
-                "y": 0.0,
+                "y": -0.10000000149011612,
                 "z": 0.0
             },
             "orientation": {

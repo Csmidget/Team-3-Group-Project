@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <vector>
 #include "Ray.h"
 #include "CollisionDetection.h"
@@ -24,6 +23,9 @@ namespace NCL {
 			void Clear();
 			void ClearAndErase();
 
+			std::vector<GameObject*> GetObjectsWithTag(std::string tag) const;
+			GameObject* GetObjectWithTag(std::string tag) const;
+
 			GameObject* AddGameObject(GameObject* o);
 			void RemoveGameObject(GameObject* o, bool andDelete = false);
 
@@ -33,6 +35,7 @@ namespace NCL {
 			void AddConstraint(Constraint* c);
 			void RemoveConstraint(Constraint* c, bool andDelete = false);
 
+
 			Camera* GetMainCamera() const {
 				return mainCamera;
 			}
@@ -40,7 +43,6 @@ namespace NCL {
 			QuadTree<GameObject*>* GetObjectTree() const {
 				return objectTree;
 			}
-
 
 			QuadTree<GameObject*>* GetStaticObjectTree() const {
 				return staticObjectTree;
@@ -71,8 +73,6 @@ namespace NCL {
 				std::vector<Constraint*>::const_iterator& last) const;
 
 			void FlipDisplayQuadTree() { displayQuadtree = !displayQuadtree; }
-
-			std::vector<GameObject*> GetObjectsWithTag(string tag);
 
 		protected:
 

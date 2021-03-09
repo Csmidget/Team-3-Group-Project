@@ -128,10 +128,6 @@ void RigidBody::updateTransform()
 		btTransform worldTransform;
 		shapeMotionTransform->getWorldTransform(worldTransform);
 
-
-		//btVector3 pos = body->getCenterOfMassTransform().getOrigin();
-		//btQuaternion rotation = body->getCenterOfMassTransform().getRotation();
-
 		btVector3 pos = worldTransform.getOrigin();
 		btQuaternion rotation = worldTransform.getRotation();
 
@@ -192,8 +188,53 @@ void RigidBody::setUserPointer(void* object)
 
 void RigidBody::setDamping(float linear, float angular)
 {
-	linearDamping = linear;
-	angularDamping = angular;
+	if (body)
+	{
+		linearDamping = linear;
+		angularDamping = angular;
 
-	body->setDamping(linearDamping, angularDamping);
+		body->setDamping(linearDamping, angularDamping);
+	}
+	
+}
+
+
+NCL::Maths::Vector3 RigidBody::getForce()
+{
+	return convertbtVector3(body->getTotalForce());
+}
+
+void RigidBody::clearForces()
+{
+	body->clearForces();
+}
+
+NCL::Maths::Vector3 RigidBody::getLinearVelocity()
+{
+	return convertbtVector3(body->getLinearVelocity());
+}
+
+void RigidBody::makeTrigger()
+{
+	if (body)
+	{
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		if (body->getMass() > 0)
+		{
+			btScalar bodyMass = 0;
+			btVector3 bodyInertia;
+			colShape->calculateLocalInertia(bodyMass, bodyInertia);
+			body->setMassProps(0,bodyInertia);
+		}
+	}
+}
+
+void RigidBody::makeKinematic()
+{
+	if (body)
+	{
+		isKinemtic = true;
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+	}
+
 }
