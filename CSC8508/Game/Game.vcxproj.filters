@@ -22,9 +22,6 @@
     <Filter Include="State">
       <UniqueIdentifier>{29625e85-8ea7-4819-b914-492a589ee84f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Light">
-      <UniqueIdentifier>{e8ee3208-ac23-4195-ae88-b5c41c9da676}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -86,15 +83,6 @@
     <ClCompile Include="PlayState.cpp">
       <Filter>State</Filter>
     </ClCompile>
-    <ClCompile Include="PointLight.cpp">
-      <Filter>Light</Filter>
-    </ClCompile>
-    <ClCompile Include="Shadow.cpp">
-      <Filter>Light</Filter>
-    </ClCompile>
-    <ClCompile Include="SpotLight.cpp">
-      <Filter>Light</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -153,20 +141,10 @@
     <ClInclude Include="PlayState.h">
       <Filter>State</Filter>
     </ClInclude>
-    <ClInclude Include="PointLight.h">
-      <Filter>Light</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Light</Filter>
-    </ClInclude>
-    <ClInclude Include="SpotLight.h">
-      <Filter>Light</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>
