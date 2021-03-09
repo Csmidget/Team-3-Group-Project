@@ -370,7 +370,8 @@ void GameTechRenderer::RenderCamera() {
 		Matrix4 fullShadowMat = shadowMatrix * modelMatrix;
 		glUniformMatrix4fv(shadowLocation, 1, false, (float*)&fullShadowMat);
 
-		glUniform4fv(colourLocation, 1, (float*)&i->GetColour());
+		Vector4 colour = i->GetColour();
+		glUniform4fv(colourLocation, 1, (float*)&colour);
 
 		glUniform1i(hasVColLocation, !(*i).GetMesh()->GetColourData().empty());
 

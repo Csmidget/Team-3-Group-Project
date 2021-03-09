@@ -3,7 +3,6 @@
 #include "GameTechRenderer.h"
 #include "RespawningObject.h"
 #include "IntroState.h"
-
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 
@@ -36,7 +35,7 @@ Game::Game() {
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
-	inSelectionMode = false;
+	inSelectionMode = false;	
 
 	Debug::SetRenderer(renderer);
 	Audio::SoundManager::Init();
@@ -76,6 +75,7 @@ void Game::UpdateGame(float dt) {
 	}
 
 	UpdateKeys();
+
 
 	if (useGravity) {
 		Debug::Print("(G)ravity on", Vector2(5, 95));
@@ -162,17 +162,18 @@ void Game::InitFromJSON(std::string fileName) {
 void Game::InitWorld() {
 	InitWorld("CharlesTest.json");
 }
+
 void Game::InitWorld(std::string levelName) {
 	Clear();
-	InitCamera();
-	InitFromJSON(levelName);
 
-	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
+	InitCamera();
+
+	InitFromJSON(levelName);
+	
+	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	player->AddComponent<PlayerComponent>(this);
-	player->AddComponent<RespawnComponent>();
-	player->AddComponent<SetListener>(0);
-	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
-	player->AddTag("Player");
+
+	//world->Start();
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 }

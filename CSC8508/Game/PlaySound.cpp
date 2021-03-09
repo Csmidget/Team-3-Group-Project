@@ -39,14 +39,12 @@ PlaySound::~PlaySound()
 void PlaySound::OnCollisionBegin(GameObject* otherObject)
 {
 	if (mode == PlayMode::OnCollisionBegin)
-		if (!sound->isPlaying())
 			sound->Play();
 }
 
 void PlaySound::OnCollisionEnd(GameObject* otherObject)
 {
 	if (mode == PlayMode::OnCollisionEnd)
-		if (!sound->isPlaying())
 			sound->Play();
 }
 
