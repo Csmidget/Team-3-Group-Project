@@ -35,11 +35,6 @@ namespace NCL {
 			void AddConstraint(Constraint* c);
 			void RemoveConstraint(Constraint* c, bool andDelete = false);
 
-
-			Camera* GetMainCamera() const {
-				return mainCamera;
-			}
-
 			QuadTree<GameObject*>* GetObjectTree() const {
 				return objectTree;
 			}
@@ -60,12 +55,7 @@ namespace NCL {
 
 			std::vector<GameObject*> ObjectsWithinRadius(Vector3 position, float radius, std::string tag = "") const;
 
-
-			
 			virtual void UpdateWorld(float dt);
-
-
-
 
 			void OperateOnContents(GameObjectFunc f);
 
@@ -88,8 +78,6 @@ namespace NCL {
 
 			QuadTree<GameObject*>* objectTree;
 			QuadTree<GameObject*>* staticObjectTree;
-
-			Camera* mainCamera;
 
 			bool	shuffleConstraints;
 			bool	shuffleObjects;
