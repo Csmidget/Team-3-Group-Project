@@ -8,6 +8,8 @@
 #include "CameraComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
+#include "ScoreComponent.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -167,7 +169,16 @@ void Game::InitWorld(std::string levelName) {
 	
 	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	player->AddComponent<PlayerComponent>(this);
+	player->AddComponent<ScoreComponent>();
+	player->AddTag("Player");
 
+	//AddCapsuleToWorld(Vector3(-10, 5, 0), 1.0f, 0.5f, 3.f, true);
+
+	AddFloorToWorld(Vector3(0, 0, 0));
+
+	auto triggerScore = AddCubeToWorld(Vector3(30, 4.0f, 0), Vector3(1, 1, 1), 0);
+	triggerScore->AddComponent<RingComponent>(10);
+	triggerScore->AddTag("Ring");
 	//world->Start();
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
