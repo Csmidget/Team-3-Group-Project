@@ -63,8 +63,6 @@
     <ClCompile Include="PlaySound.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="SetListener.cpp">
-    </ClCompile>
     <ClCompile Include="RingComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -88,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="PlayState.cpp">
       <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="SetListener.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,8 +128,6 @@
     <ClInclude Include="PlaySound.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="SetListener.h">
-    </ClInclude>
     <ClInclude Include="RingComponenet.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -149,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="PlayState.h">
       <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="SetListener.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
