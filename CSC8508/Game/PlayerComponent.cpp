@@ -7,6 +7,7 @@
 #include "../../Common/Camera.h"
 #include "../../Common/Window.h"
 #include "../../Common/Maths.h"
+
 #include <algorithm>
 
 using namespace NCL;
@@ -18,9 +19,9 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	movementState = PlayerMovementState::WALKING;
 
 	speed = 100.0f;
-	jump = 150.f;
+	jump = 1550.f;
 
-	MAX_WALKING_SPEED = 1000.f;
+	MAX_WALKING_SPEED = 10.f;
 	MAX_AIR_SPEED = 10000.f;
 
 	jumpCounter = 0;
@@ -37,8 +38,8 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	testTimer = 0.f;
 	hasJumped = false;
 
-	physicsObject->SetFriction(0.1f);
-	physicsObject->body->setDamping(0.05, 0.f);
+	//physicsObject->SetFriction(0.1f);
+	//physicsObject->body->setDamping(0.05, 0.f);
 	camera = game->GetWorld()->GetMainCamera();
 
 	this->game = game;
@@ -107,7 +108,7 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 
 void NCL::CSC8508::PlayerComponent::OnCollisionStay(GameObject* otherObject)
 {
-
+	lastCollisionTimer = 0.0f;
 }
 
 void NCL::CSC8508::PlayerComponent::OnCollisionEnd(GameObject* otherObject)
@@ -145,7 +146,7 @@ void NCL::CSC8508::PlayerComponent::CameraMovement()
 void NCL::CSC8508::PlayerComponent::Movement()
 {
 	//Update movement
-	Vector3 direction = Vector3(0, 0, 0);
+	direction = Vector3(0, 0, 0);
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::W))
 	{
 		direction += Vector3(0, 0, -1);
@@ -163,11 +164,8 @@ void NCL::CSC8508::PlayerComponent::Movement()
 		direction += Vector3(1, 0, 0);
 	}
 	
-	direction.Normalise();
-	// ----------- MIGHT NEED TO CHANGE ---------------
+	direction = transform->GetOrientation() * direction.Normalised();
 
-	//physicsObject->AddForce(transform->GetOrientation() * direction.Normalised() * (lastCollisionTimer < 0.1f ? speed : speed / 5));
-	
 }
 
 void NCL::CSC8508::PlayerComponent::Jump()
@@ -182,13 +180,13 @@ void NCL::CSC8508::PlayerComponent::Jump()
 			movementState = (PlayerMovementState)(movementState + 1);
 			Vector3 currentForce = physicsObject->body->getForce();
 			physicsObject->body->clearForces();
-			physicsObject->AddForce(Vector3(currentForce.x, 0, currentForce.z));
+			physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
 			jumpCounter = 3;
 		}
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->AddForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * jumpCounter);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * jumpCounter);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}
@@ -210,9 +208,11 @@ void NCL::CSC8508::PlayerComponent::AccelerateTo(Vector3 targetVelocity, float d
 {
 	Vector3 currentVelocity = physicsObject->body->getLinearVelocity();
 	Vector3 delta = targetVelocity - currentVelocity;
+	Vector3 deltaAccel = (targetVelocity - currentVelocity) / dt;
+	float accelMag = std::min(deltaAccel.Length(), (Vector3::Dot(currentVelocity, delta) > 0 ? MAX_ACCELERATION : MAX_DECELERATION));
 
-	Vector3 acceleration = (delta / dt).Normalised() * (Vector3::Dot(currentVelocity, delta) > 0 ? MAX_ACCELERATION : MAX_DECELERATION);
-	physicsObject->AddForce(acceleration / physicsObject->GetInverseMass());
+	Vector3 acceleration = deltaAccel.Normalised() * accelMag;
+	physicsObject->body->addForce(acceleration / physicsObject->GetInverseMass()  );
 }
 
 void NCL::CSC8508::PlayerComponent::Interact()
@@ -223,7 +223,10 @@ void PlayerComponent::UpdateControls(float dt)
 {
 	CameraMovement();
 	Movement();
-	AccelerateTo(direction * MAX_WALKING_SPEED, dt);
+	
+
+	AccelerateTo(direction * MAX_WALKING_SPEED + Vector3(0, physicsObject->body->getLinearVelocity().y, 0), dt);
+
 	Jump();
 }
 

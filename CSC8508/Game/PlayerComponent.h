@@ -1,6 +1,5 @@
 #pragma once
 #include "../Engine/Component.h"
-
 #include "../../Common/Vector3.h"
 
 namespace NCL {
@@ -42,7 +41,7 @@ namespace NCL {
 
 			PlayerMovementState movementState;
 			//Maths::Vector3 dir;
-			Vector3 direction;
+			Maths::Vector3 direction;
 			PhysicsObject* physicsObject;
 
 			bool lockOrientation;
@@ -55,8 +54,8 @@ namespace NCL {
 
 			float speed;
 			float MAX_WALKING_SPEED;
-			float MAX_ACCELERATION;
-			float MAX_DECELERATION;
+			const float MAX_ACCELERATION = 1000000000000.f;
+			const float MAX_DECELERATION = 100000000000000.f;
 
 
 			float jump;
@@ -77,7 +76,7 @@ namespace NCL {
 			void Movement();
 			void Jump();
 			void ClampVelocity();
-			void AccelerateTo(Vector3 targetVelocity, float dt);
+			void AccelerateTo(Maths::Vector3 targetVelocity, float dt);
 
 			void Interact();
 
