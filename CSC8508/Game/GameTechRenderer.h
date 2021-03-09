@@ -15,6 +15,8 @@ namespace NCL {
 	namespace CSC8508 {
 		class RenderObject;
 
+		class Light;
+
 		class GameTechRenderer : public OGLRenderer	{
 		public:
 			GameTechRenderer(GameWorld& world, ResourceManager& resourceManager);
@@ -37,10 +39,7 @@ namespace NCL {
 			void RenderShadowMap();
 			void RenderCamera(); 
 			void RenderSkybox();
-
-			void RenderLight();
-
-			//void InitLight();
+			void InitLight();
 			//void LoadLight();
 			void LoadSkybox();
 			//NCL::Rendering::ResourceManager* resourceManager;
@@ -53,16 +52,15 @@ namespace NCL {
 			OGLShader* m_temp_shader = nullptr;
 
 			//shadow mapping things
-			NCL::Rendering::OGLShader* depthShader;
-			NCL::Rendering::OGLShader* lightshader;
+			NCL::Rendering::OGLShader*	shadowShader;
+			NCL::Rendering::OGLShader* shader;
+			GLuint		shadowTex;
+			GLuint		shadowFBO;
+			Matrix4     shadowMatrix;
 
-			//GLuint		shadowTex;
-			//GLuint		shadowFBO;
-			//Matrix4     shadowMatrix;
-
-			//Vector4		lightColour;
-			//float		lightRadius;
-			//Vector3		lightPosition;
+			Vector4		lightColour;
+			float		lightRadius;
+			Vector3		lightPosition;
 		};
 	}
 }
