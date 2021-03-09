@@ -64,6 +64,7 @@ namespace NCL {
 		static const Keyboard*	 GetKeyboard() { return keyboard; }
 		static const Mouse*		 GetMouse() { return mouse; }
 		static const GameTimer*	 GetTimer() { return timer; }
+		static void				 TickTimer();
 
 		static Window*	const GetWindow() { return window; }
 	protected:

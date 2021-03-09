@@ -70,6 +70,10 @@ bool	Window::UpdateWindow() {
 	return InternalUpdate();
 }
 
+void Window::TickTimer() {
+	timer->Tick();
+}
+
 void Window::ResizeRenderer() {
 	if (renderer) {
 		renderer->OnWindowResize((int)size.x, (int)size.y);

@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.h"
 #include "../Engine/PushdownState.h"
 namespace NCL {
 	namespace CSC8508 {
@@ -13,11 +12,7 @@ namespace NCL {
 			void OnAwake() override;
 			void PrintOutcome();
 		public:
-			GameOverState(Game* game, int score) {
-				this->game = game;
-				game->InitIntroWorld();
-				gameScore = score;
-			}
+			GameOverState(Game* game, int score);
 
 		protected:
 			Game* game;
