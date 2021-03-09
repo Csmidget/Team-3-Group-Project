@@ -14,6 +14,8 @@ using namespace CSC8508;
 IntroState::IntroState(Game* game) {
 	this->game = game;
 	this->world = game->GetWorld();
+	openCube = nullptr;
+	exitCube = nullptr;
 }
 
 PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** newState) {
@@ -42,7 +44,7 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 
 void IntroState::OnAwake() {
 	game->InitIntroWorld();
-	openCube = this->game->InitOpenCube();
+	openCube = game->AddButtonToWorld(Vector3(-20, 40, 0), Vector3(10, 10, 10), 0.0f, false, false);
 
 	Window::GetWindow()->ShowOSPointer(true);
 	Window::GetWindow()->LockMouseToWindow(false);
