@@ -202,6 +202,17 @@ void RigidBody::setDamping(float linear, float angular)
 	
 }
 
+void RigidBody::setFriction(float friction)
+{
+	if(body)
+		body->setFriction(friction);
+}
+
+void RigidBody::setRestitution(float restitutuion)
+{
+	if(body)
+		body->setRestitution(restitutuion);
+}
 
 NCL::Maths::Vector3 RigidBody::getForce()
 {

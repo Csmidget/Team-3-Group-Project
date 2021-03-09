@@ -15,7 +15,6 @@ namespace NCL {
 			void OnCollisionBegin(GameObject* otherObject) override;
 
 		private:
-			bool active = true;
 			PhysicsObject* physicsObject;
 		};
 

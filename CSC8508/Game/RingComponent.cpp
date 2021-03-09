@@ -17,6 +17,6 @@ void RingComponent::OnCollisionBegin(GameObject* other)
 	{
 		//add score
 
-		this->gameObject->SetIsActive(false);
+		//this->gameObject->SetIsActive(false);
 	}
 }
