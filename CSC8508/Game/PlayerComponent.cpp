@@ -7,6 +7,7 @@
 #include "../../Common/Camera.h"
 #include "../../Common/Window.h"
 #include "../../Common/Maths.h"
+#include "CameraComponent.h"
 
 #include <algorithm>
 
@@ -40,7 +41,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 
 	//physicsObject->SetFriction(0.1f);
 	//physicsObject->body->setDamping(0.05, 0.f);
-	camera = game->GetWorld()->GetMainCamera();
+	camera = CameraComponent::GetMain();
 
 	this->game = game;
 }

@@ -10,6 +10,7 @@ namespace NCL {
 
 		class PhysicsObject;
 		class Game;
+		class CameraComponent;
 
 		enum PlayerMovementState
 		{
@@ -69,7 +70,7 @@ namespace NCL {
 			bool hasJumped;
 			
 			Game* game;
-			Camera* camera;
+			CameraComponent* camera;
 			
 
 			void CameraMovement();
