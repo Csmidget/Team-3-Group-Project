@@ -1,8 +1,8 @@
 #pragma once
 
-#include <../../Assets/packages/glm.0.9.9.800/build/native/include/glm/glm.hpp>
-#include <../../Assets/packages/glm.0.9.9.800/build/native/include/glm/gtc/matrix_transform.hpp>
-#include <../../Assets/packages/glm.0.9.9.800/build/native/include/glm/gtc/type_ptr.hpp>
+#include "../../include/glm/glm.hpp"
+#include "../../include/glm/gtc/matrix_transform.hpp"
+#include "../../include/glm/gtc/type_ptr.hpp"
 #include "GameTechRenderer.h"
 
 

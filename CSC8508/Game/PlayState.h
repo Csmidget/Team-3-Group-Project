@@ -1,12 +1,12 @@
 #pragma once
 
 #include "../Engine/PushdownState.h"
-#include "GameStateManagerComponent.h"
 
 namespace NCL {
 	namespace CSC8508 {
 
 		class Game;
+		class GameStateManagerComponent;
 
 		class PlayState : public PushdownState {
 
