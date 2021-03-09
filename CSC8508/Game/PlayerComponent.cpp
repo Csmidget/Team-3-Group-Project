@@ -7,6 +7,7 @@
 #include "../../Common/Camera.h"
 #include "../../Common/Window.h"
 #include "../../Common/Maths.h"
+#include "CameraComponent.h"
 
 #include <algorithm>
 
@@ -38,7 +39,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	testTimer = 0.f;
 	hasJumped = false;
 
-	camera = game->GetWorld()->GetMainCamera();
+	camera = CameraComponent::GetMain();
 
 	this->game = game;
 }

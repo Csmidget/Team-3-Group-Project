@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BonusComponent.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameStateManagerComponent.cpp" />
     <ClCompile Include="GameTechRenderer.cpp" />
@@ -175,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BonusComponent.h" />
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameStateManagerComponent.h" />
     <ClInclude Include="GameTechRenderer.h" />

@@ -95,6 +95,9 @@
     <ClCompile Include="SpotLight.cpp">
       <Filter>Light</Filter>
     </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -161,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="SpotLight.h">
       <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
