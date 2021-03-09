@@ -5,7 +5,7 @@
 #include "IntroState.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
-
+#include "CameraComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
 
@@ -13,11 +13,6 @@
 #include "../Engine/PhysicsSystem.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
-#include "RespawningObject.h"
-#include "../Engine/Physics/PhysicsEngine/BulletWorld.cpp"
-
-
-//JENKINS TEST 3
 #include "../Engine/PushdownMachine.h"
 #include"../Audio/SoundManager.h"
 #include"../Audio/SoundInstance.h"
@@ -33,7 +28,6 @@ Game::Game() {
 	resourceManager = new OGLResourceManager();
 	world = new GameWorld();
 	renderer = new GameTechRenderer(*world, *resourceManager);
-	//physics		= new PhysicsSystem(*world);
 	physics		= new physics::BulletWorld();
 	gameStateMachine = new PushdownMachine(new IntroState(this));
 	networkManager = new NetworkManager();
@@ -74,10 +68,6 @@ Game::~Game()	{
 void Game::UpdateGame(float dt) {
 
 	gameStateMachine->Update(dt);
-
-	if (!inSelectionMode) {
-		world->GetMainCamera()->UpdateCamera(dt);
-	}
 
 	UpdateKeys();
 
@@ -136,19 +126,20 @@ void Game::UpdateKeys() {
 }
 
 void Game::InitCamera() {
-	world->GetMainCamera()->SetNearPlane(0.1f);
-	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(-15.0f);
-	world->GetMainCamera()->SetYaw(315.0f);
-	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
+	AddCameraToWorld(Vector3(-60, 40, 60));
+	CameraComponent::GetMain()->SetNearPlane(0.1f);
+	CameraComponent::GetMain()->SetFarPlane(500.0f);
+	CameraComponent::GetMain()->SetPitch(-15.0f);
+	CameraComponent::GetMain()->SetYaw(315.0f);
 }
 
 void Game::InitIntroCamera() {
-	world->GetMainCamera()->SetNearPlane(0.1f);
-	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(0.0f);
-	world->GetMainCamera()->SetYaw(0.0f);
-	world->GetMainCamera()->SetPosition(Vector3(0, 0, 60));
+	AddCameraToWorld(Vector3(0, 0, 60));
+
+	CameraComponent::GetMain()->SetNearPlane(0.1f);
+	CameraComponent::GetMain()->SetFarPlane(500.0f);
+	CameraComponent::GetMain()->SetPitch(0.0f);
+	CameraComponent::GetMain()->SetYaw(0.0f);
 }
 
 void Game::Clear() {
@@ -160,7 +151,6 @@ void Game::Clear() {
 }
 
 void Game::InitFromJSON(std::string fileName) {
-	Clear();
 	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
@@ -188,6 +178,14 @@ void Game::InitWorld(std::string levelName) {
 void Game::InitIntroWorld() {
 	Clear();
 	InitIntroCamera();
+}
+
+GameObject* Game::AddCameraToWorld(const Vector3& position) {
+	GameObject* camera = new GameObject("camera");
+	camera->GetTransform().SetPosition(position);
+	camera->AddComponent<CameraComponent>();
+	world->AddGameObject(camera);
+	return camera;
 }
 
 /*
@@ -260,13 +258,6 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 
 	return sphere;
 }
-	//GameObject* hingeconstraint()
-	//{
-		
-		
-		//physics->addhingeconstraint()->bodyA;
-
-	//}
 
 GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, float radius, float inverseMass, bool respawning) {
 	
