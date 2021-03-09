@@ -158,11 +158,14 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 	thisClient->RegisterPacketHandler(Full_State, this);
 	thisClient->RegisterPacketHandler(Player_Connected, this);
 	thisClient->RegisterPacketHandler(Player_Disconnected, this);
+
+
 }
 
 void NetworkManager::UpdateAsServer(float dt)
 {
 	if (!thisServer) return;
+	thisServer->UpdateServer();
 
 	packetsToSnapshot--;
 	if (packetsToSnapshot < 0) {
@@ -177,6 +180,7 @@ void NetworkManager::UpdateAsServer(float dt)
 void NetworkManager::UpdateAsClient(float dt)
 {
 	if (!thisClient) return;
+	thisClient->UpdateClient();
 
 	ClientPacket newPacket;
 

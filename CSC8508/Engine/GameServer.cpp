@@ -87,6 +87,7 @@ void GameServer::UpdateServer() {
 		}
 		enet_packet_destroy(event.packet);
 	}
+
 }
 
 //void GameServer::ThreadedUpdate() {
