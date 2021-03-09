@@ -6,8 +6,6 @@
 #include "GameTechRenderer.h"
 
 
-//poing light class
-
 class PointLight
 {
 

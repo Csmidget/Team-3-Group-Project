@@ -6,8 +6,6 @@
 #include "GameTechRenderer.h"
 
 
-//spotlight class
-
 class SpotLight
 {
 public:
