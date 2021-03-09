@@ -168,7 +168,7 @@ void Game::InitWorld(std::string levelName) {
 
 	InitCamera();
 
-	InitFromJSON("TestLevelPlayerMovement.json");
+	InitFromJSON(levelName);
 
 
 	//for (int i = 1; i < 2; i++)

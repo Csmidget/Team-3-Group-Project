@@ -4,6 +4,8 @@
 #include "Game.h"
 #include "../Engine/GameWorld.h"
 #include "../Engine/Debug.h"
+#include "GameStateManagerComponent.h"
+
 
 using namespace NCL;
 using namespace CSC8508;
