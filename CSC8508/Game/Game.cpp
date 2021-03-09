@@ -304,17 +304,26 @@ void Game::InitCamera() {
 void Game::InitIntroCamera() {
 	world->GetMainCamera()->SetNearPlane(0.1f);
 	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(-15.0f);
-	world->GetMainCamera()->SetYaw(315.0f);
-	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
-	lockedObject = nullptr;
+	world->GetMainCamera()->SetPitch(0.0f);
+	world->GetMainCamera()->SetYaw(0.0f);
+	world->GetMainCamera()->SetPosition(Vector3(0, 0, 60));
+//	lockedObject = nullptr;
 }
 
 void Game::InitOpenCube() {
-	Vector3 cubeDims = Vector3(10, 10, 10);
-	Vector3 position = Vector3(-20, 40, 0);
+	Vector3 cubeDims = Vector3(8, 2, 0);
+	Vector3 position = Vector3(0, 0, 0);
 	OpenCube = AddButtonToWorld(position, cubeDims);
 	OpenCube->GetRenderObject()->SetColour(Vector4(0, 1, 0, 1));
+	cubeDims = Vector3(10, 10, 10);
+	position = Vector3(0, 60, 0);
+}
+
+void Game::InitExitCube() {
+	Vector3 cubeDims = Vector3(8, 2, 0);
+	Vector3 position = Vector3(0, -10, 0);
+	ExitCube = AddButtonToWorld(position, cubeDims);
+	ExitCube->GetRenderObject()->SetColour(Vector4(1, 0, 0, 1));
 	cubeDims = Vector3(10, 10, 10);
 	position = Vector3(0, 60, 0);
 }
@@ -357,7 +366,7 @@ void Game::InitWorld() {
 void Game::InitIntroWorld() {
 	Clear();;
 	InitOpenCube();
-	InitDefaultFloor();
+	InitExitCube();
 }
 
 void Game::InitPauseWorld() {

@@ -113,7 +113,8 @@ protected:
 class IntroScreen : public PushdownState {
 	PushdownResult OnUpdate(float dt,
 		PushdownState** newState) override {
-		Debug::Print("Click the Cube to Start game", Vector2(1, 5));
+		Debug::Print("Click to Start", Vector2(42, 50));
+		Debug::Print("Click to Exit", Vector2(43, 70));
 		switch (g0->GetOpenOrExit()) {
 		case 0:
 			g0->UpdateIntroGame(dt);
