@@ -1,11 +1,10 @@
 #pragma once
 #include "Transform.h"
 #include "CollisionVolume.h"
-
 #include "PhysicsObject.h"
 #include "RenderObject.h"
 
-#include <vector>
+#include <unordered_set>
 #include <algorithm>
 
 using std::vector;
@@ -14,8 +13,12 @@ namespace NCL {
 	namespace CSC8508 {
 
 		class Component;
+		class GameWorld;
 
 		class GameObject	{
+
+			friend class GameWorld;
+
 		public:
 			GameObject(string name = "");
 			~GameObject();
@@ -27,7 +30,6 @@ namespace NCL {
 				collisionLayer = val;
 			}
 
-			void Start();
 			void Update(float dt);
 
 			virtual void OnUpdate(float dt) {};
@@ -63,9 +65,15 @@ namespace NCL {
 				isStatic = val;
 			}
 
-			bool HasTag(std::string tag) {
-				return std::find(tags.begin(), tags.end(), tag) != tags.end();			
+			void AddTag(std::string tag) {
+				tags.insert(tag);
 			}
+
+			bool HasTag(std::string tag) {
+				return tags.find(tag) != tags.end();			
+			}
+
+			GameWorld* GetWorld() { return world; }
 
 			Transform& GetTransform() {
 				return transform;
@@ -139,11 +147,16 @@ namespace NCL {
 			}
 
 		protected:
+
+			void Start();
+			void SetGameWorld(GameWorld* world);
+
 			Transform			transform;
 
 			CollisionVolume*	boundingVolume;
 			PhysicsObject*		physicsObject;
 			RenderObject*		renderObject;
+			GameWorld*			world;
 
 			bool	isActive;
 			bool	isStatic;
@@ -151,7 +164,7 @@ namespace NCL {
 			int collisionLayer;
 			string	name;
 			Vector3 broadphaseAABB;
-			std::vector<std::string> tags;
+			std::unordered_set<std::string> tags;
 			std::vector<Component*> components;
 		};
 	}

@@ -38,6 +38,7 @@ void PlayerComponent::Update(float dt) {
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject) {
 	//lastCollisionTimer = 0.0f;
+	
 }
 
 void PlayerComponent::UpdateControls(float dt) {

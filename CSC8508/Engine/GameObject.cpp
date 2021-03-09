@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "GameWorld.h"
 #include "CollisionDetection.h"
 #include "Debug.h"
 #include "Component.h"
@@ -105,6 +106,13 @@ void GameObject::UpdateBroadphaseAABB() {
 		Vector3 halfSizes = Vector3(volume.GetRadius(), volume.GetHalfHeight(),volume.GetRadius());
 		broadphaseAABB = mat * halfSizes;
 	}
+}
+
+void GameObject::SetGameWorld(GameWorld* newWorld) {
+	if (world != nullptr)
+		throw std::exception("Attempted to assign gameObject to multiple worlds!");
+
+	world = newWorld;
 }
 
 void GameObject::PrintDebugInfo() const {

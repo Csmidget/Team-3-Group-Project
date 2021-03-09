@@ -54,8 +54,8 @@ namespace NCL
 
 			private:
 
-				float linearDamping = 0.05;
-				float angularDamping = 0.7;
+				float linearDamping = 0.05f;
+				float angularDamping = 0.7f;
 
 				bool isKinemtic = false;
 

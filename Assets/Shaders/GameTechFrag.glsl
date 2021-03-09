@@ -75,7 +75,7 @@ uniform sampler2D texture_specular1;
 
 // 光源
 uniform DirLight dirLight;
-uniform PointLight pointLights[2];
+uniform PointLight pointLights[4];
 uniform SpotLight spotLight;
 uniform Material material;
 
@@ -142,7 +142,7 @@ void main()
 	//	result = CalcDirLight(dirLight, norm, viewDir);
 
 		// 4个点光源
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 4; i++) {
 			result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
 		}
 
