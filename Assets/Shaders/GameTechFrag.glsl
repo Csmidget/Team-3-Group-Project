@@ -72,7 +72,7 @@ void main()
     // 最终的颜色计算
     vec3 result = vec3(0.0f);
     // 计算点光源
-    for(int i = 0; i < 1; i++)
+    for(int i = 0; i < 3; i++)
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);  
     // 计算聚光灯
     for(int i = 0; i < 3; i++)
