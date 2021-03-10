@@ -34,7 +34,7 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "SetListener")	return gameObject->AddComponent<SetListener>(componentJson["ID"]);
 
 
-	if (name == "Ring")			return gameObject->AddComponent<RingComponent>();
+	if (name == "Ring")			return gameObject->AddComponent<RingComponent>(10);
 
 	return nullptr;
 }

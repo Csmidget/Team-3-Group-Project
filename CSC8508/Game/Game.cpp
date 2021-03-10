@@ -8,6 +8,8 @@
 #include "CameraComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
+#include "ScoreComponent.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
