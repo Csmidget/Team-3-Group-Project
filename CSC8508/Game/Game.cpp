@@ -169,6 +169,7 @@ void Game::InitWorld(std::string levelName) {
 	InitFromJSON(levelName);
 	
 	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	player->AddComponent<TeleportComponent>();
 	player->AddComponent<PlayerComponent>(this);
 	player->AddTag("Player");
 	

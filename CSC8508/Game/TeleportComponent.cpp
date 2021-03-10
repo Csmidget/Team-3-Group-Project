@@ -22,7 +22,7 @@ void TeleportComponent::OnCollisionBegin(GameObject* other)
 	{
 		std::cout << "teleport\n";
 		std::cout << otherTeleportPosition;
-		other->GetTransform().SetPosition(otherTeleportPosition);
+		transform->SetPosition(otherTeleportPosition);
 
 		PhysicsObject* physicsObject = gameObject->GetPhysicsObject();
 		if (physicsObject != nullptr) {
