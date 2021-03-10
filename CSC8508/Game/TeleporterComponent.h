@@ -1,7 +1,3 @@
-
-
-
-
 #include "../Engine/Component.h"
 #include "../../Common/Vector3.h"
 namespace NCL {
@@ -12,7 +8,6 @@ namespace NCL {
 		public:
 			TeleportComponent(GameObject* object);
 			void Start() override;
-			//void OnTeleport() override;
 			void OnCollisionBegin(GameObject* otherObject) override;
 
 		private:
