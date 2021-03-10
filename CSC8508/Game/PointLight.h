@@ -24,6 +24,6 @@ protected:
 	float constant;
 	float linear;
 	float quadratic;
-	float farPlane = 10.0f;
+	float farPlane = 50.0f;
 };
 

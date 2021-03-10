@@ -12,6 +12,13 @@ public:
 	SpotLight(std::vector<glm::vec3>& position);
 	void render(NCL::Rendering::OGLShader* lightshader);
 
+	int getSpotNumber();
+	std::vector<glm::vec3> getPos();
+	float getFarPlane();
+	glm::vec3 getDirect() { return direct; }
+
+	glm::mat4 getLightVPMatrix(int idx);
+
 private:
 	std::vector<glm::vec3> position;
 	glm::vec3 direct;
@@ -22,6 +29,7 @@ private:
 	float constant;
 	float linear;
 	float quadratic;
+	float farPlane = 50.0f;
 
 };
 
