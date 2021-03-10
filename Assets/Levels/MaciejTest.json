@@ -21,9 +21,9 @@
         },
         "transform": {
             "position": {
-                "x": 12.0,
-                "y": 1.0,
-                "z": 21.0
+                "x": 6.0,
+                "y": 0.5,
+                "z": 10.5
             },
             "orientation": {
                 "x": 0.0,
@@ -43,11 +43,129 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.6799999475479127,
+                "y": 0.7699999809265137,
+                "z": -2.640000104904175
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "Checkerboard.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": false,
-            "isKinematic": true
+            "isKinematic": false
+        },
+        "Components": [
+            {
+                "name": "Player"
+            },
+            {
+                "name": "PlaySound",
+                "path": "Laser_Shot2.wav",
+                "mode": "OnCollisionBegin",
+                "volume": 1.0,
+                "min": 15.0
+            },
+            {
+                "name": "SetListener",
+                "ID": 0
+            }
+        ]
+    },
+    {
+        "name": "Directional Light",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "none",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 0.0,
+                "y": 3.0,
+                "z": 0.0
+            },
+            "orientation": {
+                "x": -0.4082178771495819,
+                "y": 0.23456968367099763,
+                "z": 0.10938163101673126,
+                "w": 0.8754261136054993
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "",
+            "material": "",
+            "renderScale": 0
+        },
+        "physics": {
+            "mass": -1.0,
+            "drag": 0.0,
+            "angularDrag": 0.0,
+            "useGravity": false,
+            "isKinematic": false
         }
     },
     {
@@ -72,9 +190,9 @@
         },
         "transform": {
             "position": {
-                "x": 20.420000076293947,
-                "y": 1.2599999904632569,
-                "z": -11.359999656677246
+                "x": 10.210000038146973,
+                "y": 0.6299999952316284,
+                "z": -5.679999828338623
             },
             "orientation": {
                 "x": 0.0,
@@ -94,11 +212,11 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 1.0000000116860974e-7,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
-            "useGravity": false,
-            "isKinematic": true
+            "useGravity": true,
+            "isKinematic": false
         }
     },
     {
@@ -123,9 +241,9 @@
         },
         "transform": {
             "position": {
-                "x": 12.0,
+                "x": 6.0,
                 "y": 0.0,
-                "z": 2.0
+                "z": 1.0
             },
             "orientation": {
                 "x": 0.0,
@@ -148,8 +266,8 @@
             "mass": 1.0000000116860974e-7,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
-            "useGravity": false,
-            "isKinematic": true
+            "useGravity": true,
+            "isKinematic": false
         }
     },
     {
@@ -175,8 +293,8 @@
         "transform": {
             "position": {
                 "x": 0.0,
-                "y": 1.0,
-                "z": 2.0
+                "y": 0.5,
+                "z": 1.0
             },
             "orientation": {
                 "x": 0.0,
@@ -196,11 +314,11 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 1.0000000116860974e-7,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
-            "useGravity": false,
-            "isKinematic": true
+            "useGravity": true,
+            "isKinematic": false
         }
     },
     {
@@ -225,9 +343,9 @@
         },
         "transform": {
             "position": {
-                "x": 20.420000076293947,
-                "y": 3.140000104904175,
-                "z": 2.0
+                "x": 10.210000038146973,
+                "y": 1.5700000524520875,
+                "z": 1.0
             },
             "orientation": {
                 "x": -0.2588191032409668,
@@ -247,11 +365,11 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 1.0000000116860974e-7,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
-            "useGravity": false,
-            "isKinematic": true
+            "useGravity": true,
+            "isKinematic": false
         }
     },
     {
@@ -276,9 +394,9 @@
         },
         "transform": {
             "position": {
-                "x": 62.20000076293945,
-                "y": 1.0,
-                "z": 2.0
+                "x": 31.100000381469728,
+                "y": 0.5,
+                "z": 1.0
             },
             "orientation": {
                 "x": -0.7071068286895752,
@@ -298,11 +416,11 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 1.0000000116860974e-7,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
-            "useGravity": false,
-            "isKinematic": true
+            "useGravity": true,
+            "isKinematic": false
         }
     },
     {
@@ -327,9 +445,9 @@
         },
         "transform": {
             "position": {
-                "x": 12.0,
-                "y": 1.0,
-                "z": -17.0
+                "x": 6.0,
+                "y": 0.5,
+                "z": -8.5
             },
             "orientation": {
                 "x": 0.0,
@@ -349,11 +467,11 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 1.0000000116860974e-7,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
-            "useGravity": false,
-            "isKinematic": true
+            "useGravity": true,
+            "isKinematic": false
         }
     }
 ]

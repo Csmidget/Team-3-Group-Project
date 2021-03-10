@@ -6,8 +6,11 @@
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 #include "CameraComponent.h"
+#include "TeleporterComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
+#include "ScoreComponent.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -39,13 +42,14 @@ Game::Game() {
 	Debug::SetRenderer(renderer);
 	Audio::SoundManager::Init();
 	InitialiseAssets();
-	Audio::SoundInstance* test = new Audio::SoundInstance();
-	test->SetVolume(0.1f);
-	Audio::SoundManager::CreateInstance("River.mp3", test);
-	test->Set3DAttributes(Vector3(20, 3, 2));
-	test->SetLoop(true);
-	test->SetMaxMinDistance(100, 10);
-	test->Play();
+
+	//Play Background Music
+	music = new Audio::SoundInstance();
+	music->SetVolume(0.2f);
+	Audio::SoundManager::CreateInstance("BacgroundMusic.wav", music);
+	music->SetLoop(true);
+	music->Set3D(false);
+	music->Play();
 }
 
 /*
@@ -63,11 +67,13 @@ Game::~Game()	{
 	delete physics;
 	delete renderer;
 	delete world;
+	delete music;
 }
 
-void Game::UpdateGame(float dt) {
+bool Game::UpdateGame(float dt) {
 
-	gameStateMachine->Update(dt);
+	if (gameStateMachine->Update(dt) == false)
+		return false;
 
 	UpdateKeys();
 
@@ -91,6 +97,8 @@ void Game::UpdateGame(float dt) {
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
+
+	return true;
 }
 
 void Game::UpdateKeys() {
@@ -180,16 +188,18 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
+
+	auto teleport = AddCubeToWorld(Vector3(20, -10, -20), Vector3(3, 3, 3), 0.0f, true, false);
+	teleport->AddComponent<TeleporterComponent>(Vector3(5, 1, 5));
 	
-	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	player->AddComponent<PlayerComponent>(this);
-	player->AddTag("Player");
+	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	//player->AddComponent<PlayerComponent>(this);
+	
 	//world->Start();
 
-	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
-	
-	InitNetworkPlayers();
+	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 
+	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
 }
 

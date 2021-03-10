@@ -13,7 +13,7 @@ namespace NCL {
 
 			enum class PlayMode;
 
-			PlaySound(GameObject* object, std::string path, std::string mode, float volume, float minDistance);
+			PlaySound(GameObject* object, std::string path, int mode, float volume, float minDistance);
 			~PlaySound();
 			void OnCollisionBegin(GameObject* otherObject);
 			void OnCollisionEnd(GameObject* otherObject);
@@ -23,7 +23,7 @@ namespace NCL {
 		private:
 			Audio::SoundInstance* sound;
 
-			int soundVolume;
+			float soundVolume;
 			std::string soundPath;
 			PlayMode mode;
 		};

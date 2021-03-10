@@ -7,6 +7,7 @@
 
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 #include "../Engine/NetworkManager.h"
+#include"../Audio/SoundInstance.h"
 
 namespace NCL {
 	namespace CSC8508 {
@@ -26,7 +27,7 @@ namespace NCL {
 			void InitWorld(std::string levelName);
 			void InitIntroWorld();
 			
-			virtual void UpdateGame(float dt);
+			virtual bool UpdateGame(float dt);
 
 			void SetPaused(bool pause) {
 				paused = pause;
@@ -71,6 +72,7 @@ namespace NCL {
 			physics::BulletWorld* physics;
 			PushdownMachine* gameStateMachine;
 			NetworkManager* networkManager;
+			Audio::SoundInstance* music;
 
 			bool useGravity;
 			bool inSelectionMode;
