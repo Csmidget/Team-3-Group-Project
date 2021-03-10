@@ -150,7 +150,11 @@ void RigidBody::setTransform()
 		NCL::Maths::Vector3 SetPosition = transform->GetPosition();
 		btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
 
-		body->setCenterOfMassTransform(btTransform(rotation, position));
+		btTransform newTransform;
+		newTransform.setOrigin(position);
+		newTransform.setRotation(rotation);
+		body->setWorldTransform(newTransform);
+		body->getMotionState()->setWorldTransform(newTransform);
 	}
 }
 

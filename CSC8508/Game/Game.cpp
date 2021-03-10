@@ -6,6 +6,7 @@
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 #include "CameraComponent.h"
+#include "TeleporterComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
 
@@ -65,9 +66,10 @@ Game::~Game()	{
 	delete world;
 }
 
-void Game::UpdateGame(float dt) {
+bool Game::UpdateGame(float dt) {
 
-	gameStateMachine->Update(dt);
+	if (gameStateMachine->Update(dt) == false)
+		return false;
 
 	UpdateKeys();
 
@@ -91,6 +93,8 @@ void Game::UpdateGame(float dt) {
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
+
+	return true;
 }
 
 void Game::UpdateKeys() {
@@ -164,6 +168,9 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
+
+	auto teleport = AddCubeToWorld(Vector3(20, -10, -20), Vector3(3, 3, 3), 0.0f, true, false);
+	teleport->AddComponent<TeleporterComponent>(Vector3(0, 0, 0));
 	
 	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	//player->AddComponent<PlayerComponent>(this);
