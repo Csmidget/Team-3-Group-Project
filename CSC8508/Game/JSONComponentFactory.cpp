@@ -35,7 +35,7 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "PlaySound")	return gameObject->AddComponent<PlaySound>(componentJson["path"], componentJson["mode"], componentJson["volume"], componentJson["min"]);
 	if (name == "SetListener")	return gameObject->AddComponent<SetListener>(componentJson["ID"]);
 
-	if (name == "Teleporter")	return gameObject->AddComponent<TeleporterComponent>(componentJson["target"]);
+	if (name == "Teleporter")	return gameObject->AddComponent<TeleporterComponent>(JsonToVector3(componentJson["target"]));
 
 	if (name == "Ring")			return gameObject->AddComponent<RingComponent>(10);
 

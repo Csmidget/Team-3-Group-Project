@@ -57,7 +57,7 @@ NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(o
 	movementState = PlayerMovementState::WALKING;
 	
 	speed = 50.0f;
-	jump = 100.f;
+	jump = 10.0f;
 
 	MAX_WALKING_SPEED = 1000.f;
 	MAX_AIR_SPEED = 10000.f;
