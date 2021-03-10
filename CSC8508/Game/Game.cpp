@@ -2,6 +2,7 @@
 #include "JSONLevelFactory.h"
 #include "GameTechRenderer.h"
 #include "RespawningObject.h"
+#include "TeleportComponent.h"
 #include "IntroState.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
@@ -167,9 +168,13 @@ void Game::InitWorld(std::string levelName) {
 
 	InitFromJSON(levelName);
 	
-	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	//player->AddComponent<PlayerComponent>(this);
+	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	player->AddComponent<PlayerComponent>(this);
+	player->AddTag("Player");
 	
+	auto Teleport = AddCapsuleToWorld(Vector3(0, -10, 10), 1.0f, 1.5f, 0.1f, false);
+	Teleport->AddTag("Teleport");
+	Teleport->AddComponent<TeleportComponent>();
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));

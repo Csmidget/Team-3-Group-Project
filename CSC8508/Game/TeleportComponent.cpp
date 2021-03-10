@@ -12,13 +12,13 @@ TeleportComponent::TeleportComponent(GameObject* object) : Component(object) {
 }
 
 void TeleportComponent::Start() {
-	otherTeleportPosition = Vector3(10, 10, 10);
+	otherTeleportPosition = Vector3(10, -10, 10);
 //	otherTeleportPosition = transform->GetPosition();
 }
 
 void TeleportComponent::OnCollisionBegin(GameObject* other)
 {
-	if (other->HasTag("Teleport"))
+	if (other->HasTag("Player"))
 	{
 		std::cout << "teleport\n";
 		std::cout << otherTeleportPosition;

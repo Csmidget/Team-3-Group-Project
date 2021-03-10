@@ -173,6 +173,7 @@
     <ClCompile Include="RingComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="TeleportComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BonusComponent.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="RingComponenet.h" />
     <ClInclude Include="Shadow.h" />
     <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="TeleportComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
