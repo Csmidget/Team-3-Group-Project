@@ -19,6 +19,7 @@ void RespawningObject::OnKill() {
 	if (!randomizeOrientation) {
 		transform.SetOrientation({});
 	}
+
 	else {
 		Quaternion newRot = 
 			Matrix3::Rotation((float)(rand() % 360), Vector3(1, 0, 0)) *
