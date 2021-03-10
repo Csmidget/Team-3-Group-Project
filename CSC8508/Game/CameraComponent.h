@@ -16,7 +16,7 @@ namespace NCL {
 		public:
 			const Camera* GetCamera() const { return camera; }
 			CameraComponent(GameObject* object, bool main = false);
-			~CameraComponent() override;
+			~CameraComponent();
 
 			void SetPitch(float pitch);
 			void SetYaw(float yaw);
