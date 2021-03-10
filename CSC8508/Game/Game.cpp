@@ -8,7 +8,8 @@
 #include "CameraComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
-#include "../Game/TeleporterComponent.h"
+#include "ScoreComponent.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -156,10 +157,7 @@ void Game::InitFromJSON(std::string fileName) {
 }
 
 void Game::InitWorld() {
-
-
-
-	InitWorld("CharlesTest.json");
+	InitWorld("DesouzaTest.json");
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -169,18 +167,14 @@ void Game::InitWorld(std::string levelName) {
 
 	InitFromJSON(levelName);
 	
-	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	player->AddComponent<PlayerComponent>(this);
-
-	player->AddComponent<TeleportComponent>();
-
-	auto Teleport = AddCapsuleToWorld(Vector3(40, 0, 10), 1.0f, 1.5f, 0.0f, false);
-	Teleport->AddTag("Teleport");
-
+	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	//player->AddComponent<PlayerComponent>(this);
+	
 	//world->Start();
 
-	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 
+	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
 }
 

@@ -135,7 +135,6 @@ void NCL::CSC8508::PlayerComponent::CameraMovement()
 
 	camera->SetPitch(-pitch);
 	camera->SetYaw(angles.y);
-
 	Quaternion cameraAngle = Quaternion::EulerAnglesToQuaternion(-pitch, angles.y, 0.0f);
 	Vector3 cameraOffset = cameraAngle * (Vector3(0, 0, 1) * cameraDistance);
 	Vector3 cameraFocusPoint = transform->GetPosition() + Vector3(0, 2, 0);

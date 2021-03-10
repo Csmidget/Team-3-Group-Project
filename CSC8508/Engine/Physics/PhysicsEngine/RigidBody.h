@@ -47,6 +47,9 @@ namespace NCL
 				void addTorqueImpulse(NCL::Maths::Vector3 force);
 
 				void setDamping(float linear, float angular);
+				void setFriction(float friction);
+				void setRestitution( float restitutuion);
+
 
 				NCL::Maths::Vector3 getForce();
 				void clearForces();
@@ -54,8 +57,8 @@ namespace NCL
 
 			private:
 
-				float linearDamping = 0.05f;
-				float angularDamping = 0.7f;
+				btScalar linearDamping = 0.05f;
+				btScalar angularDamping = 0.7f;
 
 				bool isKinemtic = false;
 
