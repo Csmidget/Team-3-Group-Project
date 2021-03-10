@@ -36,7 +36,6 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 				return PushdownResult::Push;
 			}
 			if (hitObject == exitCube) {
-				Window::DestroyGameWindow();
 				return PushdownResult::Pop;
 			}
 		}

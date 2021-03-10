@@ -104,7 +104,7 @@
     {
         "name": "Collider 15",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -152,6 +152,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -619,7 +626,7 @@
     {
         "name": "Collider 5",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -667,6 +674,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -859,7 +873,7 @@
             },
             "scale": {
                 "x": 3.824758291244507,
-                "y": 0.23219700157642365,
+                "y": 0.4000000059604645,
                 "z": 0.007046000100672245
             }
         },
@@ -1129,7 +1143,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -90.05999755859375,
+                    "y": 9.5,
+                    "z": -47.04999923706055
+                }
+            }
+        ]
     },
     {
         "name": "Capsule (1)",
@@ -1236,7 +1260,7 @@
     {
         "name": "Collider 6",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -1284,6 +1308,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -1598,7 +1629,7 @@
     {
         "name": "Collider 2",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -1647,6 +1678,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -1654,7 +1692,7 @@
     {
         "name": "Collider 7",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -1702,6 +1740,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -1807,7 +1852,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 9.144000053405762,
+                    "y": 1.0,
+                    "z": -12.229999542236329
+                }
+            }
+        ]
     },
     {
         "name": "Cube (66)",
@@ -2317,7 +2372,24 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "PlaySound",
+                "path": "teleportSound.wav",
+                "mode": 1,
+                "volume": 0.800000011920929,
+                "min": 50.0
+            },
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -171.38999938964845,
+                    "y": 1.0,
+                    "z": 5.190000057220459
+                }
+            }
+        ]
     },
     {
         "name": "StartPositionLvl1",
@@ -2424,7 +2496,7 @@
     {
         "name": "Collider 17",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -2472,6 +2544,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -2730,7 +2809,24 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "PlaySound",
+                "path": "teleportSound.wav",
+                "mode": 1,
+                "volume": 0.800000011920929,
+                "min": 50.0
+            },
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -87.9000015258789,
+                    "y": 1.0,
+                    "z": 5.170000076293945
+                }
+            }
+        ]
     },
     {
         "name": "Cube (112)",
@@ -2817,7 +2913,7 @@
             },
             "scale": {
                 "x": 11.802531242370606,
-                "y": 0.23219700157642365,
+                "y": 0.4000000059604645,
                 "z": 0.007046000100672245
             }
         },
@@ -3296,7 +3392,7 @@
     {
         "name": "Collider 14",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -3344,6 +3440,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -3602,7 +3705,24 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "PlaySound",
+                "path": "teleportSound.wav",
+                "mode": 1,
+                "volume": 0.800000011920929,
+                "min": 50.0
+            },
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 9.144000053405762,
+                    "y": 1.0,
+                    "z": -12.229999542236329
+                }
+            }
+        ]
     },
     {
         "name": "Cube (92)",
@@ -4066,7 +4186,7 @@
     {
         "name": "Collider 8",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -4114,6 +4234,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -4632,7 +4759,7 @@
     {
         "name": "Collider 18",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -4680,6 +4807,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -6468,7 +6602,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 5.070000171661377,
+                    "y": 1.0,
+                    "z": 5.170000076293945
+                }
+            }
+        ]
     },
     {
         "name": "Cube (107)",
@@ -6626,7 +6770,7 @@
     {
         "name": "Collider 3",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -6674,6 +6818,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -6733,7 +6884,7 @@
     {
         "name": "Collider 9",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -6782,6 +6933,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -6789,7 +6947,7 @@
     {
         "name": "Collider 13",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -6837,6 +6995,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -7253,7 +7418,7 @@
     {
         "name": "Collider 11",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -7301,6 +7466,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -7360,7 +7532,7 @@
     {
         "name": "Collider 4",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -7409,6 +7581,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -7416,7 +7595,7 @@
     {
         "name": "FinishPad",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Goal",
         "collider": {
             "type": "box",
             "size": {
@@ -7717,7 +7896,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -87.9000015258789,
+                    "y": 1.0,
+                    "z": 5.170000076293945
+                }
+            }
+        ]
     },
     {
         "name": "Capsule (3)",
@@ -7820,6 +8009,62 @@
             "useGravity": true,
             "isKinematic": false
         }
+    },
+    {
+        "name": "GameManager",
+        "isStatic": false,
+        "tag": "GameStateManager",
+        "collider": {
+            "type": "none",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 10.637395858764649,
+                "y": -6.622330665588379,
+                "z": -9.725732803344727
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "",
+            "material": "",
+            "renderScale": 0
+        },
+        "physics": {
+            "mass": -1.0,
+            "drag": 0.0,
+            "angularDrag": 0.0,
+            "useGravity": false,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "GameStateManager"
+            }
+        ]
     },
     {
         "name": "Cube (88)",
@@ -8281,7 +8526,7 @@
         }
     },
     {
-        "name": "Capsule",
+        "name": "Player",
         "isStatic": false,
         "tag": "Player",
         "collider": {
@@ -8297,7 +8542,7 @@
                 "z": 0.0
             },
             "radius": 0.5,
-            "height": 2.0,
+            "height": 1.0,
             "isTrigger": false
         },
         "transform": {
@@ -8320,7 +8565,7 @@
         },
         "render": {
             "mesh": "Capsule.msh",
-            "material": "KillFloor.mat",
+            "material": "playerMat.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8335,6 +8580,9 @@
                 "name": "Player"
             },
             {
+                "name": "ScoreComponent"
+            },
+            {
                 "name": "SetListener",
                 "ID": 0
             }
@@ -8343,7 +8591,7 @@
     {
         "name": "Collider 10",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -8392,6 +8640,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -8399,7 +8654,7 @@
     {
         "name": "Collider 1",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -8447,6 +8702,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -8710,7 +8972,7 @@
     {
         "name": "Collider 12",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -8758,6 +9020,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -9205,7 +9474,7 @@
             },
             "scale": {
                 "x": 11.072917938232422,
-                "y": 0.23219700157642365,
+                "y": 0.4000000059604645,
                 "z": 0.007046000100672245
             }
         },
@@ -9424,7 +9693,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 9.144000053405762,
+                    "y": 1.0,
+                    "z": -12.229999542236329
+                }
+            }
+        ]
     },
     {
         "name": "Cube (32)",
@@ -9684,7 +9963,7 @@
     {
         "name": "Collider 16",
         "isStatic": false,
-        "tag": "Untagged",
+        "tag": "Ring",
         "collider": {
             "type": "box",
             "size": {
@@ -9732,6 +10011,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }

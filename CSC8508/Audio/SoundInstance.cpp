@@ -36,11 +36,10 @@ void SoundInstance::Play()
 	if (channel)
 	{
 		if (is3D)
-		{
 			Audio::ErrorCheck(channel->set3DAttributes(&attributes3D.pos, &attributes3D.vel));
-			Audio::ErrorCheck(channel->setVolume(volume));
-			Audio::ErrorCheck(channel->setPitch(pitch));
-		}
+		
+		Audio::ErrorCheck(channel->setVolume(volume));
+		Audio::ErrorCheck(channel->setPitch(pitch));	
 		Audio::ErrorCheck(channel->setPaused(false));
 		audioCore->coreChannels[channelID] = channel;
 	}

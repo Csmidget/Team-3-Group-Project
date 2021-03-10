@@ -23,7 +23,7 @@ namespace NCL {
 		private:
 			Audio::SoundInstance* sound;
 
-			int soundVolume;
+			float soundVolume;
 			std::string soundPath;
 			PlayMode mode;
 		};

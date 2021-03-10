@@ -7,6 +7,7 @@
 #include"PlaySound.h"
 #include"SetListener.h"
 #include "RingComponenet.h"
+#include "TeleporterComponent.h"
 
 #include "../Engine/GameObject.h"
 #include "Game.h"
@@ -28,11 +29,13 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
 	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
 	if (name == "GameStateManager")		return gameObject->AddComponent<GameStateManagerComponent>(game->GetWorld());
+	if (name == "ScoreComponent")		return gameObject->AddComponent<ScoreComponent>();
 	
 
 	if (name == "PlaySound")	return gameObject->AddComponent<PlaySound>(componentJson["path"], componentJson["mode"], componentJson["volume"], componentJson["min"]);
 	if (name == "SetListener")	return gameObject->AddComponent<SetListener>(componentJson["ID"]);
 
+	if (name == "Teleporter")	return gameObject->AddComponent<TeleporterComponent>(JsonToVector3(componentJson["target"]));
 
 	if (name == "Ring")			return gameObject->AddComponent<RingComponent>(10);
 
