@@ -142,6 +142,8 @@ void RigidBody::setTransform()
 {
 	if (body)
 	{
+		worldRef->removeRigidBody(this);
+
 		NCL::Maths::Vector3 eulerAngles = transform->GetOrientation().ToEuler();
 
 		btQuaternion rotation;
@@ -151,6 +153,8 @@ void RigidBody::setTransform()
 		btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
 
 		body->setCenterOfMassTransform(btTransform(rotation, position));
+
+		worldRef->addRigidBody(this);
 	}
 }
 

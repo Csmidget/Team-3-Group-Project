@@ -69,7 +69,7 @@ void BulletWorld::removeRigidBody(RigidBody* body)
 //steps simulation and sets the transform based on bullet physics
 void BulletWorld::Update(float dt)
 {
-	dynamicsWorld->stepSimulation(dt ,10);
+	dynamicsWorld->stepSimulation(dt ,4);
 	checkCollisions();
 
 	for (auto i : rigidList)
