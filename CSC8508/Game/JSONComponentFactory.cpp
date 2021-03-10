@@ -28,6 +28,7 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
 	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
 	if (name == "GameStateManager")		return gameObject->AddComponent<GameStateManagerComponent>(game->GetWorld());
+	if (name == "ScoreComponent")		return gameObject->AddComponent<ScoreComponent>();
 	
 
 	if (name == "PlaySound")	return gameObject->AddComponent<PlaySound>(componentJson["path"], componentJson["mode"], componentJson["volume"], componentJson["min"]);
