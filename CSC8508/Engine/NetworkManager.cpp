@@ -114,6 +114,12 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 //	}
 //}
 
+void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet)
+{
+	ClientPlayer* player = serverPlayers.find(id)->second;
+	player->Update(*packet);
+}
+
 void NetworkManager::TestClient()
 {
 	string clientName = "Client1";
@@ -169,6 +175,7 @@ void NetworkManager::UpdateAsServer(float dt)
 {
 	if (!thisServer) return;
 	thisServer->UpdateServer();
+	
 
 	packetsToSnapshot--;
 	if (packetsToSnapshot < 0) {
@@ -197,6 +204,7 @@ void NetworkManager::UpdateAsClient(float dt)
 	if (!localPlayer) return;
 	localPlayer->WritePacket(&newPacket, dt, stateID);
 	thisClient->SendPacket(*newPacket);
+	stateID++;
 }
 
 void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)

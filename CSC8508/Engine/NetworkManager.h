@@ -57,6 +57,8 @@ namespace NCL {
 			
 			void SetLocalPlayer(GameObject* object) { localPlayer = new ClientPlayer("Me",*object, 0); }
 
+			void UpdateServerPlayer(int id, GamePacket* packet);
+
 		private:
 			void TestClient();
 			void TestServer();

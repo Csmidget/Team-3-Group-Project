@@ -87,6 +87,7 @@ void GameServer::UpdateServer() {
 		else if (type == ENetEventType::ENET_EVENT_TYPE_RECEIVE) {
 			GamePacket* packet = (GamePacket*)event.packet->data;
 			ProcessPacket(packet, peer);
+			manager->UpdateServerPlayer(peer, packet);
 		}
 		enet_packet_destroy(event.packet);
 	}
