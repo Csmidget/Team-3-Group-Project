@@ -2,14 +2,14 @@
 #include "JSONLevelFactory.h"
 #include "GameTechRenderer.h"
 #include "RespawningObject.h"
-#include "TeleportComponent.h"
 #include "IntroState.h"
-
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
-
+#include "CameraComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
+#include "ScoreComponent.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -30,14 +30,13 @@ Game::Game() {
 	resourceManager = new OGLResourceManager();
 	world = new GameWorld();
 	renderer = new GameTechRenderer(*world, *resourceManager);
-	//physics		= new PhysicsSystem(*world);
 	physics		= new physics::BulletWorld();
 	gameStateMachine = new PushdownMachine(new IntroState(this));
 	networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
-	inSelectionMode = false;
+	inSelectionMode = false;	
 
 	Debug::SetRenderer(renderer);
 	Audio::SoundManager::Init();
@@ -72,11 +71,8 @@ void Game::UpdateGame(float dt) {
 
 	gameStateMachine->Update(dt);
 
-	if (!inSelectionMode) {
-		world->GetMainCamera()->UpdateCamera(dt);
-	}
-
 	UpdateKeys();
+
 
 	if (useGravity) {
 		Debug::Print("(G)ravity on", Vector2(5, 95));
@@ -100,9 +96,9 @@ void Game::UpdateGame(float dt) {
 }
 
 void Game::UpdateKeys() {
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F1)) {
-		InitIntroWorld(); //We can reset the simulation at any time with F1
-	}
+//	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F1)) {
+//		InitIntroWorld(); //We can reset the simulation at any time with F1
+//	}
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::F2)) {
 		InitCamera(); //F2 will reset the camera to a specific default place
@@ -132,19 +128,20 @@ void Game::UpdateKeys() {
 }
 
 void Game::InitCamera() {
-	world->GetMainCamera()->SetNearPlane(0.1f);
-	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(-15.0f);
-	world->GetMainCamera()->SetYaw(315.0f);
-	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
+	AddCameraToWorld(Vector3(-60, 40, 60));
+	CameraComponent::GetMain()->SetNearPlane(0.1f);
+	CameraComponent::GetMain()->SetFarPlane(500.0f);
+	CameraComponent::GetMain()->SetPitch(-15.0f);
+	CameraComponent::GetMain()->SetYaw(315.0f);
 }
 
 void Game::InitIntroCamera() {
-	world->GetMainCamera()->SetNearPlane(0.1f);
-	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(0.0f);
-	world->GetMainCamera()->SetYaw(0.0f);
-	world->GetMainCamera()->SetPosition(Vector3(0, 0, 60));
+	AddCameraToWorld(Vector3(0, 0, 60));
+
+	CameraComponent::GetMain()->SetNearPlane(0.1f);
+	CameraComponent::GetMain()->SetFarPlane(500.0f);
+	CameraComponent::GetMain()->SetPitch(0.0f);
+	CameraComponent::GetMain()->SetYaw(0.0f);
 }
 
 void Game::Clear() {
@@ -156,35 +153,42 @@ void Game::Clear() {
 }
 
 void Game::InitFromJSON(std::string fileName) {
-	Clear();
 	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
 void Game::InitWorld() {
-	InitWorld("CharlesTest.json");
+	InitWorld("DesouzaTest.json");
 }
+
 void Game::InitWorld(std::string levelName) {
 	Clear();
+
 	InitCamera();
+
 	InitFromJSON(levelName);
+	
+	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	//player->AddComponent<PlayerComponent>(this);
+	
+	//world->Start();
 
-	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
-	player->AddComponent<PlayerComponent>(this);
-	player->AddComponent<TeleportComponent>();
-	player->AddComponent<RespawnComponent>();
-	player->AddComponent<SetListener>(0);
-	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
-	player->AddTag("Player");
+	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 
-	auto Teleport = AddCapsuleToWorld(Vector3(40, 10, 10), 1.0f, 1.5f, 1.0f, false);
-	Teleport->AddTag("Teleport");
-
-	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	//Tick the timer so that the load time isn't factored into any time related calculations
+	Window::TickTimer();
 }
 
 void Game::InitIntroWorld() {
 	Clear();
 	InitIntroCamera();
+}
+
+GameObject* Game::AddCameraToWorld(const Vector3& position) {
+	GameObject* camera = new GameObject("camera");
+	camera->GetTransform().SetPosition(position);
+	camera->AddComponent<CameraComponent>();
+	world->AddGameObject(camera);
+	return camera;
 }
 
 /*
@@ -432,5 +436,4 @@ GameObject* Game::AddBonusToWorld(const Vector3& position) {
 
 	return apple;
 }
-
 

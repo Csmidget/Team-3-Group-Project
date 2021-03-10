@@ -40,6 +40,7 @@ namespace NCL {
 			GameObject* AddEnemyToWorld(const Maths::Vector3& position);
 			GameObject* AddBonusToWorld(const Maths::Vector3& position);
 			GameObject* AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
+			GameObject* AddCameraToWorld(const Vector3& position);
 
 			GameWorld* GetWorld() const { return world; }
 			physics::BulletWorld* GetPhysics() const { return physics; }

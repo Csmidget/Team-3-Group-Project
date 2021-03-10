@@ -46,7 +46,7 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 		tex = resourceManager->LoadTexture("checkerboard.png");
 
 
-	float renderScale = renderObjectJson["renderScale"].is_number() ? renderObjectJson["renderScale"] : 1;
+	float renderScale = renderObjectJson["renderScale"].is_number() ? (float)renderObjectJson["renderScale"] : 1;
 
 	//if (renderObjectJson["mesh"] == "Cube.msh" || renderObjectJson["mesh"] == "Sphere.msh")
 	//	renderScale = 2.0f;
@@ -72,7 +72,7 @@ void SetPhysicsObjectFromJson(Game* game, GameObject* gameObject, json physicsOb
 		else if (colliderObjectJson["type"] == "sphere")
 			po->body->addSphereShape(transform.GetScale().x / 2.0f);
 		else if (colliderObjectJson["type"] == "capsule")
-			po->body->addCapsuleShape(colliderObjectJson["radius"],colliderObjectJson["height"] / 2.0f);
+			po->body->addCapsuleShape(colliderObjectJson["radius"], transform.GetScale().y * colliderObjectJson["height"] / 2.0f);
 	}
 
 	float mass = physicsObjectJson["mass"];
@@ -122,7 +122,7 @@ GameObject* CreateObjectFromJson(json objectJson, Game* game)
 
 	go->AddTag(objectJson["tag"]);
 
-	go->SetIsStatic(objectJson["isStatic"].is_boolean() ? objectJson["isStatic"] : false);
+	go->SetIsStatic(objectJson["isStatic"].is_boolean() ? (bool)objectJson["isStatic"] : false);
 
 	for (auto component : objectJson["components"])
 	  JSONComponentFactory::AddComponentFromJson(component, go, game);

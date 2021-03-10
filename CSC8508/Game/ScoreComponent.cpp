@@ -1,6 +1,7 @@
 #include "ScoreComponent.h"
 #include "../Engine/GameObject.h"
 #include "BonusComponent.h"
+#include "RingComponenet.h"
 
 NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component(object)
 {
@@ -14,6 +15,13 @@ void NCL::CSC8508::ScoreComponent::OnCollisionBegin(GameObject* otherObject)
 
 	if (otherObject->HasTag("Bonus")) {
 		score += otherObject->GetComponent<BonusComponent>()->GetBonus();
+		otherObject->OnKill();
+		return;
+	}
+
+	if (otherObject->HasTag("Ring"))
+	{
+		score += otherObject->GetComponent<RingComponent>()->GetBonus();
 		otherObject->OnKill();
 		return;
 	}

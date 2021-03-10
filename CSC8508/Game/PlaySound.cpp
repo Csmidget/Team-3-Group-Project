@@ -13,16 +13,16 @@ enum class PlaySound::PlayMode {
 	OnCollisionEnd,
 };
 
-PlaySound::PlaySound(GameObject* object, std::string path, std::string mode, float volume, float minDistance)
+PlaySound::PlaySound(GameObject* object, std::string path, int mode, float volume, float minDistance)
 	:Component(object)
 {
 	soundPath = path;
 	soundVolume = volume;
 
-	if (mode == "OnStart") this->mode = PlayMode::OnStart;
-	else if (mode == "OnCollisionBegin") this->mode = PlayMode::OnCollisionBegin;
-	else if (mode == "OnCollisionEnd") this->mode = PlayMode::OnCollisionEnd;
-	else if (mode == "OnKill") this->mode = PlayMode::OnKill;
+	if (mode == 0) this->mode = PlayMode::OnStart;
+	else if (mode == 1) this->mode = PlayMode::OnCollisionBegin;
+	else if (mode == 2) this->mode = PlayMode::OnCollisionEnd;
+	else if (mode == 3) this->mode = PlayMode::OnKill;
 
 	sound = new Audio::SoundInstance();
 	Audio::SoundManager::CreateInstance(soundPath, sound);
@@ -39,14 +39,12 @@ PlaySound::~PlaySound()
 void PlaySound::OnCollisionBegin(GameObject* otherObject)
 {
 	if (mode == PlayMode::OnCollisionBegin)
-		if (!sound->isPlaying())
 			sound->Play();
 }
 
 void PlaySound::OnCollisionEnd(GameObject* otherObject)
 {
 	if (mode == PlayMode::OnCollisionEnd)
-		if (!sound->isPlaying())
 			sound->Play();
 }
 

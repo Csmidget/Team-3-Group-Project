@@ -159,25 +159,29 @@ void RigidBody::createBody(	float mass,
 							float friction,
 							BulletWorld* physicsWorld)
 {
-	worldRef = physicsWorld;
+	if (colShape)
+	{
+		worldRef = physicsWorld;
 
-	btQuaternion rotation = convertQuaternion(transform->GetOrientation());
-	btVector3 position = convertVector3(transform->GetPosition());
+		btQuaternion rotation = convertQuaternion(transform->GetOrientation());
+		btVector3 position = convertVector3(transform->GetPosition());
 
-	btDefaultMotionState* motionState = new btDefaultMotionState(btTransform(rotation, position));
-	btScalar bodyMass = mass;
-	btVector3 bodyInertia;
-	colShape->calculateLocalInertia(bodyMass, bodyInertia);
+		btDefaultMotionState* motionState = new btDefaultMotionState(btTransform(rotation, position));
+		btScalar bodyMass = mass;
+		btVector3 bodyInertia;
+		colShape->calculateLocalInertia(bodyMass, bodyInertia);
 
-	btRigidBody::btRigidBodyConstructionInfo bodyInfo = btRigidBody::btRigidBodyConstructionInfo(bodyMass, motionState, colShape, bodyInertia);
+		btRigidBody::btRigidBodyConstructionInfo bodyInfo = btRigidBody::btRigidBodyConstructionInfo(bodyMass, motionState, colShape, bodyInertia);
 
-	bodyInfo.m_restitution = restitution;
-	bodyInfo.m_friction = friction;
+		bodyInfo.m_restitution = restitution;
+		bodyInfo.m_friction = friction;
 	
-	body = new btRigidBody(bodyInfo);
+		body = new btRigidBody(bodyInfo);
 
-	body->setDamping(linearDamping, angularDamping);
-	worldRef->addRigidBody(this);
+		body->setDamping(linearDamping, angularDamping);
+		worldRef->addRigidBody(this);
+	}
+	
 }
 
 void RigidBody::setUserPointer(void* object)
@@ -198,20 +202,34 @@ void RigidBody::setDamping(float linear, float angular)
 	
 }
 
+void RigidBody::setFriction(float friction)
+{
+	if(body)
+		body->setFriction(friction);
+}
+
+void RigidBody::setRestitution(float restitutuion)
+{
+	if(body)
+		body->setRestitution(restitutuion);
+}
 
 NCL::Maths::Vector3 RigidBody::getForce()
 {
-	return convertbtVector3(body->getTotalForce());
+	if(body)
+		return convertbtVector3(body->getTotalForce());
 }
 
 void RigidBody::clearForces()
 {
-	body->clearForces();
+	if(body)
+		body->clearForces();
 }
 
 NCL::Maths::Vector3 RigidBody::getLinearVelocity()
 {
-	return convertbtVector3(body->getLinearVelocity());
+	if (body)
+		return convertbtVector3(body->getLinearVelocity());
 }
 
 void RigidBody::makeTrigger()

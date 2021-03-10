@@ -71,6 +71,7 @@ namespace NCL {
 
 		//Gets position in world space
 		Vector3 GetPosition() const { return position; }
+		Vector3& GetPosition() { return position; }
 		//Sets position in world space
 		void	SetPosition(const Vector3& val) { position = val; }
 

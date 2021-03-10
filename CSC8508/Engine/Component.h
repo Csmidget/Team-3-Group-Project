@@ -11,6 +11,7 @@ namespace NCL {
 		public:
 
 			Component(GameObject* object);
+			virtual ~Component() {};
 			virtual void Start() {};
 			virtual void Update(float dt) {};
 			virtual void OnCollisionBegin(GameObject* otherObject) {};
