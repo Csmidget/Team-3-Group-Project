@@ -25,7 +25,7 @@ namespace NCL {
 			void InitWorld(std::string levelName);
 			void InitIntroWorld();
 			
-			virtual void UpdateGame(float dt);
+			virtual bool UpdateGame(float dt);
 
 			void SetPaused(bool pause) {
 				paused = pause;
