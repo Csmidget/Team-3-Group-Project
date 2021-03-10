@@ -104,7 +104,7 @@ void RigidBody::addImpulse(NCL::Maths::Vector3 force)
 	if (body)
 	{
 		btVector3 pushForce = convertVector3(force);
-		body->applyCentralPushImpulse(pushForce);
+		body->applyCentralImpulse(pushForce);
 		body->activate();
 	}
 }
