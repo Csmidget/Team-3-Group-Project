@@ -11,7 +11,6 @@ void TeleporterComponent::OnCollisionBegin(GameObject* other) {
 	if (other->HasTag("Player"))
 	{
 		other->GetTransform().SetPosition(targetPosition);
-		//other->GetPhysicsObject()->body->setTransform();
-		//other->GetPhysicsObject()->body->setLinearVelocity(Vector3(0, 0, 0));
+		other->GetPhysicsObject()->body->setLinearVelocity(Vector3(0, 0, 0));
 	}
 }

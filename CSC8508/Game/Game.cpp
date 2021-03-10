@@ -174,7 +174,7 @@ void Game::InitWorld(std::string levelName) {
 	InitFromJSON(levelName);
 
 	auto teleport = AddCubeToWorld(Vector3(20, -10, -20), Vector3(3, 3, 3), 0.0f, true, false);
-	teleport->AddComponent<TeleporterComponent>(Vector3(0, 0, 0));
+	teleport->AddComponent<TeleporterComponent>(Vector3(5, 1, 5));
 	
 	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	//player->AddComponent<PlayerComponent>(this);
