@@ -9,6 +9,7 @@
 #include "../../Common/Maths.h"
 #include "CameraComponent.h"
 
+#include"../Audio/SoundManager.h"
 #include <algorithm>
 
 using namespace NCL;
@@ -43,6 +44,12 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	//physicsObject->body->setDamping(0.05, 0.f);
 	camera = CameraComponent::GetMain();
 
+	//Audio
+	JumpSound = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
+	JumpSound->Set3D(false);
+	JumpSound->SetVolume(0.4f);
+
 	this->game = game;
 }
 NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(object)
@@ -71,6 +78,12 @@ NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(o
 
 	camera = nullptr;
 	game = nullptr;
+
+	//Audio
+	JumpSound = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
+	JumpSound->Set3D(false);
+	JumpSound->SetVolume(0.4f);
 }
 
 
@@ -177,6 +190,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE))
 		{
+			JumpSound->Play();
 			movementState = (PlayerMovementState)(movementState + 1);
 			Vector3 currentForce = physicsObject->body->getForce();
 			physicsObject->body->clearForces();

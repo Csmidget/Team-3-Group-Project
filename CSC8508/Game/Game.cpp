@@ -41,13 +41,14 @@ Game::Game() {
 	Debug::SetRenderer(renderer);
 	Audio::SoundManager::Init();
 	InitialiseAssets();
-	Audio::SoundInstance* test = new Audio::SoundInstance();
-	test->SetVolume(0.1f);
-	Audio::SoundManager::CreateInstance("River.mp3", test);
-	test->Set3DAttributes(Vector3(20, 3, 2));
-	test->SetLoop(true);
-	test->SetMaxMinDistance(100, 10);
-	test->Play();
+
+	//Play Background Music
+	music = new Audio::SoundInstance();
+	music->SetVolume(0.2f);
+	Audio::SoundManager::CreateInstance("BacgroundMusic.wav", music);
+	music->SetLoop(true);
+	music->Set3D(false);
+	music->Play();
 }
 
 /*
@@ -65,6 +66,7 @@ Game::~Game()	{
 	delete physics;
 	delete renderer;
 	delete world;
+	delete music;
 }
 
 void Game::UpdateGame(float dt) {
