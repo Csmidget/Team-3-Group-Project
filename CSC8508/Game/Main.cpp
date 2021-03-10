@@ -50,11 +50,12 @@ int main() {
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {
 			w->SetWindowPosition(0, 0);
 		}
+
 		if (!game->UpdateGame(dt))
 			break;
 
 		w->SetTitle("Gametech frame time:" + std::to_string(1000.0f * dt));
 	}
 
-//	Window::DestroyGameWindow();
+	Window::DestroyGameWindow();
 }
