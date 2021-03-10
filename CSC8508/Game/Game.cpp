@@ -263,14 +263,7 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 
 	return sphere;
 }
-	GameObject* hingeconstraint()
-	{
-		
-		
-		physics->addhingeconstraint()->bodyA;
-
-	}
-
+	
 GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, float radius, float inverseMass, bool respawning) {
 	
 	GameObject* capsule = respawning ? new RespawningObject(position,true,"respawning_capsule") : new GameObject("capsule");
