@@ -8,7 +8,6 @@ namespace NCL {
 		public:
 			TeleportComponent(GameObject* object);
 			void Start() override;
-			void OnTeleport() override;
 			void OnCollisionBegin(GameObject* otherObject) override;
 
 		private:

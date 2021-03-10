@@ -2,7 +2,7 @@
 #include "JSONLevelFactory.h"
 #include "GameTechRenderer.h"
 #include "RespawningObject.h"
-//#include "TeleportComponent.h"
+#include "TeleportComponent.h"
 #include "IntroState.h"
 
 #include "PlayerComponent.h"
@@ -170,6 +170,7 @@ void Game::InitWorld(std::string levelName) {
 
 	auto player = AddCapsuleToWorld(Vector3(10, 10, 10), 1.0f, 0.5f, 1.0f, false);
 	player->AddComponent<PlayerComponent>(this);
+	player->AddComponent<TeleportComponent>();
 	player->AddComponent<RespawnComponent>();
 	player->AddComponent<SetListener>(0);
 	player->AddComponent<PlaySound>("Laser_Shot2.wav", "OnCollisionBegin", 1.0f, 10.0f);
