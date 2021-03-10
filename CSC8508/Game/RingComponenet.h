@@ -11,11 +11,11 @@ namespace NCL {
 		class RingComponent : public Component {
 
 		public:
-			RingComponent(GameObject* object);
-			void OnCollisionBegin(GameObject* otherObject) override;
-
+			RingComponent(GameObject* object , int bonus);
+			int GetBonus() { return bonus; }
 		private:
 			PhysicsObject* physicsObject;
+			int bonus;
 		};
 
 	}
