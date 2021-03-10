@@ -21,9 +21,9 @@
         },
         "transform": {
             "position": {
-                "x": -3.2179911136627199,
-                "y": 2.1803534030914308,
-                "z": -4.786574840545654
+                "x": 10.637395858764649,
+                "y": -6.622330665588379,
+                "z": -9.725732803344727
             },
             "orientation": {
                 "x": 0.0,
@@ -208,6 +208,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -723,6 +730,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -1341,6 +1355,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -1703,6 +1724,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -1758,6 +1786,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -2528,6 +2563,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -3401,6 +3443,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -4171,6 +4220,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -4736,6 +4792,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -6731,6 +6794,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -6838,6 +6908,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -6893,6 +6970,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -7358,6 +7442,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -7464,6 +7555,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -8451,6 +8549,13 @@
         },
         "components": [
             {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
+            {
                 "name": "Ring"
             }
         ]
@@ -8506,6 +8611,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -8817,6 +8929,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
@@ -9791,6 +9910,13 @@
             "isKinematic": false
         },
         "components": [
+            {
+                "name": "PlaySound",
+                "path": "collectPoint.wav",
+                "mode": 3,
+                "volume": 1.0,
+                "min": 500.0
+            },
             {
                 "name": "Ring"
             }
