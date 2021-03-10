@@ -142,19 +142,17 @@ void RigidBody::setTransform()
 {
 	if (body)
 	{
-		worldRef->removeRigidBody(this);
+		//worldRef->removeRigidBody(this);
 
-		NCL::Maths::Vector3 eulerAngles = transform->GetOrientation().ToEuler();
-
-		btQuaternion rotation;
-		rotation.setEulerZYX(eulerAngles.z, eulerAngles.y, eulerAngles.x);
+		btQuaternion rotation = convertQuaternion(transform->GetOrientation());
 
 		NCL::Maths::Vector3 SetPosition = transform->GetPosition();
-		btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
+		btVector3 position = convertVector3(SetPosition);
+			//btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
 
 		body->setCenterOfMassTransform(btTransform(rotation, position));
 
-		worldRef->addRigidBody(this);
+		//worldRef->addRigidBody(this);
 	}
 }
 

@@ -80,7 +80,7 @@ void PlayerComponent::Update(float dt) {
 	physicsObject->SetAngularVelocity(Vector3(0, 0, 0));
 
 	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
-	transform->SetOrientation(orientation);
+	//transform->SetOrientation(orientation);
 
 	if (camera != nullptr)
 	{

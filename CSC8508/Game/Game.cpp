@@ -157,7 +157,7 @@ void Game::InitFromJSON(std::string fileName) {
 }
 
 void Game::InitWorld() {
-	InitWorld("DesouzaTest.json");
+	InitWorld("CharlesTest.json");
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -167,10 +167,12 @@ void Game::InitWorld(std::string levelName) {
 
 	InitFromJSON(levelName);
 	
-	//auto player = AddCapsuleToWorld(Vector3(5, 1.5f, 5), 1.0f, 0.5f, 3.f, true);
+	//auto player = AddCapsuleToWorld(Vector3(0, 5.f, 5), 1.0f, 0.5f, 3.f, true);
 	//player->AddComponent<PlayerComponent>(this);
 	
 	//world->Start();
+
+	AddFloorToWorld(Vector3(0, 0, 0));
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 
