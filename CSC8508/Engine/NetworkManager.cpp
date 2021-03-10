@@ -22,11 +22,10 @@ NetworkManager::NetworkManager()
 	if (OFFLINE_MODE) return;
 	
 	NetworkBase::Initialise();
-
 	if(TEST_MODE) isClient ? TestClient() : TestServer();
 
 	isClient ? StartAsClient() : StartAsServer();
-
+	
 }
 
 NetworkManager::~NetworkManager()
@@ -96,6 +95,11 @@ void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, 
 	}
 }
 
+void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
+{
+	playerLobby.emplace(id);
+}
+
 //void NCL::CSC8508::NetworkManager::OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b)
 //{
 //	if (thisServer) { //detected a collision between players!
@@ -132,7 +136,7 @@ void NetworkManager::TestClient()
 void NetworkManager::TestServer()
 {
 	TestPacketReceiver serverReceiver("Server");
-	GameServer* server = new GameServer(NetworkBase::GetDefaultPort(), 8);
+	GameServer* server = new GameServer(NetworkBase::GetDefaultPort(), 8, this);
 	server->RegisterPacketHandler(String_Message, &serverReceiver);
 
 	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
@@ -146,7 +150,7 @@ void NetworkManager::TestServer()
 
 void NCL::CSC8508::NetworkManager::StartAsServer()
 {
-	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 4);
+	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 4,  this);
 	thisServer->RegisterPacketHandler(Received_State, this);
 }
 

@@ -1,15 +1,16 @@
 #include "GameServer.h"
-#include "GameWorld.h"
+#include "NetworkManager.h"
 #include <iostream>
 
 using namespace NCL;
 using namespace CSC8508;
 
-GameServer::GameServer(int onPort, int maxClients)	{
+GameServer::GameServer(int onPort, int maxClients, NetworkManager* manager)	{
 	port		= onPort;
 	clientMax	= maxClients;
 	clientCount = 0;
 	netHandle	= nullptr;
+	this->manager = manager;
 	//threadAlive = false;
 
 	Initialise();
@@ -75,6 +76,8 @@ void GameServer::UpdateServer() {
 			std::cout << "Server: New client connected" << std::endl;
 			NewPlayerPacket player(peer);
 			SendGlobalPacket(player);
+			manager->AddPlayerToLobby(peer);
+			
 		}
 		else if (type == ENetEventType::ENET_EVENT_TYPE_DISCONNECT) {
 			std::cout << "Server: A client has disconnected" << std::endl;
@@ -98,6 +101,3 @@ void GameServer::UpdateServer() {
 
 //Second networking tutorial stuff
 
-void GameServer::SetGameWorld(GameWorld &g) {
-	gameWorld = &g;
-}

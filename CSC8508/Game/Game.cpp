@@ -154,6 +154,21 @@ void Game::InitFromJSON(std::string fileName) {
 	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
+void Game::InitNetworkPlayers()
+{
+	std::queue<int>* lobby = networkManager->GetPlayerLobby();
+
+	while (lobby->size() > 0) {
+		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+		
+
+		networkManager->AddPlayerToGame(lobby->front(), player);
+		lobby->pop();
+	
+	}
+
+}
+
 void Game::InitWorld() {
 	InitWorld("GameStateManagerTest.json");
 }
@@ -171,6 +186,8 @@ void Game::InitWorld(std::string levelName) {
 	//world->Start();
 
 	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	
+	InitNetworkPlayers();
 
 	Window::TickTimer();
 }
