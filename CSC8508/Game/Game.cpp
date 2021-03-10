@@ -46,7 +46,7 @@ Game::Game() {
 	//Play Background Music
 	music = new Audio::SoundInstance();
 	music->SetVolume(0.2f);
-	Audio::SoundManager::CreateInstance("BacgroundMusic.wav", music);
+	Audio::SoundManager::CreateInstance("BacgroundMusicLong.mp3", music);
 	music->SetLoop(true);
 	music->Set3D(false);
 	music->Play();
@@ -172,9 +172,6 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
-
-	auto teleport = AddCubeToWorld(Vector3(20, -10, -20), Vector3(3, 3, 3), 0.0f, true, false);
-	teleport->AddComponent<TeleporterComponent>(Vector3(5, 1, 5));
 	
 	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	//player->AddComponent<PlayerComponent>(this);

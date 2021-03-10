@@ -1,61 +1,5 @@
 [
     {
-        "name": "GameManager",
-        "isStatic": false,
-        "tag": "GameStateManager",
-        "collider": {
-            "type": "none",
-            "size": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "center": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "radius": 0.0,
-            "height": 0.0,
-            "isTrigger": false
-        },
-        "transform": {
-            "position": {
-                "x": 10.637395858764649,
-                "y": -6.622330665588379,
-                "z": -9.725732803344727
-            },
-            "orientation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0,
-                "w": 1.0
-            },
-            "scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            }
-        },
-        "render": {
-            "mesh": "",
-            "material": "",
-            "renderScale": 0
-        },
-        "physics": {
-            "mass": -1.0,
-            "drag": 0.0,
-            "angularDrag": 0.0,
-            "useGravity": false,
-            "isKinematic": false
-        },
-        "components": [
-            {
-                "name": "GameStateManager"
-            }
-        ]
-    },
-    {
         "name": "Cube (19)",
         "isStatic": false,
         "tag": "Untagged",
@@ -929,7 +873,7 @@
             },
             "scale": {
                 "x": 3.824758291244507,
-                "y": 0.23219700157642365,
+                "y": 0.4000000059604645,
                 "z": 0.007046000100672245
             }
         },
@@ -1199,7 +1143,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -90.05999755859375,
+                    "y": 9.5,
+                    "z": -47.04999923706055
+                }
+            }
+        ]
     },
     {
         "name": "Capsule (1)",
@@ -1898,7 +1852,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 9.144000053405762,
+                    "y": 1.0,
+                    "z": -12.229999542236329
+                }
+            }
+        ]
     },
     {
         "name": "Cube (66)",
@@ -2408,7 +2372,24 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "PlaySound",
+                "path": "teleportSound.wav",
+                "mode": 1,
+                "volume": 0.800000011920929,
+                "min": 50.0
+            },
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -171.38999938964845,
+                    "y": 1.0,
+                    "z": 5.190000057220459
+                }
+            }
+        ]
     },
     {
         "name": "StartPositionLvl1",
@@ -2782,7 +2763,7 @@
     {
         "name": "TeleportPad",
         "isStatic": false,
-        "tag": "Goal",
+        "tag": "Untagged",
         "collider": {
             "type": "box",
             "size": {
@@ -2828,7 +2809,24 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "PlaySound",
+                "path": "teleportSound.wav",
+                "mode": 1,
+                "volume": 0.800000011920929,
+                "min": 50.0
+            },
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -87.9000015258789,
+                    "y": 1.0,
+                    "z": 5.170000076293945
+                }
+            }
+        ]
     },
     {
         "name": "Cube (112)",
@@ -2915,7 +2913,7 @@
             },
             "scale": {
                 "x": 11.802531242370606,
-                "y": 0.23219700157642365,
+                "y": 0.4000000059604645,
                 "z": 0.007046000100672245
             }
         },
@@ -3707,7 +3705,24 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "PlaySound",
+                "path": "teleportSound.wav",
+                "mode": 1,
+                "volume": 0.800000011920929,
+                "min": 50.0
+            },
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 9.144000053405762,
+                    "y": 1.0,
+                    "z": -12.229999542236329
+                }
+            }
+        ]
     },
     {
         "name": "Cube (92)",
@@ -6587,7 +6602,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 5.070000171661377,
+                    "y": 1.0,
+                    "z": 5.170000076293945
+                }
+            }
+        ]
     },
     {
         "name": "Cube (107)",
@@ -7871,7 +7896,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": -87.9000015258789,
+                    "y": 1.0,
+                    "z": 5.170000076293945
+                }
+            }
+        ]
     },
     {
         "name": "Capsule (3)",
@@ -7974,6 +8009,62 @@
             "useGravity": true,
             "isKinematic": false
         }
+    },
+    {
+        "name": "GameManager",
+        "isStatic": false,
+        "tag": "GameStateManager",
+        "collider": {
+            "type": "none",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 10.637395858764649,
+                "y": -6.622330665588379,
+                "z": -9.725732803344727
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "",
+            "material": "",
+            "renderScale": 0
+        },
+        "physics": {
+            "mass": -1.0,
+            "drag": 0.0,
+            "angularDrag": 0.0,
+            "useGravity": false,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "GameStateManager"
+            }
+        ]
     },
     {
         "name": "Cube (88)",
@@ -9383,7 +9474,7 @@
             },
             "scale": {
                 "x": 11.072917938232422,
-                "y": 0.23219700157642365,
+                "y": 0.4000000059604645,
                 "z": 0.007046000100672245
             }
         },
@@ -9602,7 +9693,17 @@
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 9.144000053405762,
+                    "y": 1.0,
+                    "z": -12.229999542236329
+                }
+            }
+        ]
     },
     {
         "name": "Cube (32)",
