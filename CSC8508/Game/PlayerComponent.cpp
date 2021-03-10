@@ -57,7 +57,7 @@ NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(o
 	movementState = PlayerMovementState::WALKING;
 	
 	speed = 50.0f;
-	jump = 10.0f;
+	jump = 100.f;
 
 	MAX_WALKING_SPEED = 1000.f;
 	MAX_AIR_SPEED = 10000.f;
@@ -200,7 +200,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * jumpCounter);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 0.2, 0) * jump * jumpCounter);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}
