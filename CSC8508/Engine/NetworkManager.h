@@ -55,6 +55,7 @@ namespace NCL {
 				serverPlayers.emplace(id, new ClientPlayer("Client", *object, id));
 			}
 			
+			void SetLocalPlayer(GameObject* object) { localPlayer = new ClientPlayer("Me",*object, 0); }
 
 		private:
 			void TestClient();
@@ -82,9 +83,11 @@ namespace NCL {
 			std::vector<NetworkObject*> networkObjects;
 
 			std::map<int, ClientPlayer*> serverPlayers;
-			GameObject* localPlayer;
+			ClientPlayer* localPlayer;
 
 			std::queue<int> playerLobby;
+
+			int stateID = 0;
 		};
 
 	}

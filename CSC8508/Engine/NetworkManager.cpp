@@ -163,7 +163,6 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 	thisClient->RegisterPacketHandler(Player_Connected, this);
 	thisClient->RegisterPacketHandler(Player_Disconnected, this);
 
-
 }
 
 void NetworkManager::UpdateAsServer(float dt)
@@ -186,14 +185,16 @@ void NetworkManager::UpdateAsClient(float dt)
 	if (!thisClient) return;
 	thisClient->UpdateClient();
 
-	ClientPacket newPacket;
-
+//	ClientPacket newPacket;
+/*
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE)) {
 		//fire button pressed!
 		newPacket.buttonstates[0] = 1;
 		newPacket.lastID = 0; //You'll need to work this out somehow...
-	}
-	thisClient->SendPacket(newPacket);
+	}*/
+	GamePacket* newPacket;
+	localPlayer->WritePacket(&newPacket, dt, stateID);
+	thisClient->SendPacket(*newPacket);
 }
 
 void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)

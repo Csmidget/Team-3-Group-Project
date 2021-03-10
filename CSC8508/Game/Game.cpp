@@ -156,8 +156,9 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitNetworkPlayers()
 {
-	std::queue<int>* lobby = networkManager->GetPlayerLobby();
+	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
 
+	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 		
