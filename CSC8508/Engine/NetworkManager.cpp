@@ -193,6 +193,8 @@ void NetworkManager::UpdateAsClient(float dt)
 		newPacket.lastID = 0; //You'll need to work this out somehow...
 	}*/
 	GamePacket* newPacket;
+
+	if (!localPlayer) return;
 	localPlayer->WritePacket(&newPacket, dt, stateID);
 	thisClient->SendPacket(*newPacket);
 }
