@@ -17,6 +17,7 @@ namespace NCL {
 			virtual void OnCollisionStay(GameObject* otherObject) {};
 			virtual void OnCollisionEnd(GameObject* otherObject) {};
 			virtual void OnKill() {};
+			virtual void OnTeleport() {};
 
 		protected:
 			GameObject* gameObject;

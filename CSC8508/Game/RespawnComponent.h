@@ -6,8 +6,8 @@
 namespace NCL {
 	namespace CSC8508 {
 
-		class RespawnComponent : public Component {
-
+		class RespawnComponent : public Component 
+		{
 		public:
 			RespawnComponent(GameObject* object);
 			void Start() override;

@@ -169,6 +169,7 @@
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="SetListener.cpp" />
     <ClCompile Include="RingComponent.cpp" />
+    <ClCompile Include="TeleportComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BonusComponent.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="SetListener.h" />
     <ClInclude Include="RingComponenet.h" />
+    <ClInclude Include="TeleportComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />

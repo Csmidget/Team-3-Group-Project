@@ -29,11 +29,11 @@ namespace NCL {
 			void SetPaused(bool pause) {
 				paused = pause;
 			}
-
 			void AddGameObject(GameObject* go);
 			GameObject* AddFloorToWorld(const Maths::Vector3& position);
 			GameObject* AddSphereToWorld(const Maths::Vector3& position, float radius, float inverseMass = 10.0f, bool respawning = false);
 			GameObject* AddCubeToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
+			GameObject* AddTeleportToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
 			GameObject* AddOBBCubeToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
 			GameObject* AddCapsuleToWorld(const Maths::Vector3& position, float halfHeight, float radius, float inverseMass = 10.0f, bool respawning = false);
 			GameObject* AddPlayerToWorld(const Maths::Vector3& position);
