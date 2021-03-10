@@ -3,9 +3,9 @@
 
 PointLight::PointLight(std::vector<glm::vec3>& position) :
 	position(position),
-	ambient(glm::vec3(1.0)),
-	diffuse(glm::vec3(1.0)),
-	specular(glm::vec3(1.0)),
+	ambient(glm::vec3(5.0)),
+	diffuse(glm::vec3(5.0)),
+	specular(glm::vec3(5.0)),
 	constant(0.09),
 	linear(0.09),
 	quadratic(0.032)

@@ -140,12 +140,14 @@ void GameTechRenderer::RenderLight()
 {
 	glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), "material.shininess"), 32.0f);
 	std::vector<glm::vec3> pointLightPos;
-	pointLightPos.push_back(glm::vec3(-20.0f, 10.0f, -30.0f));
+	pointLightPos.push_back(glm::vec3(-20.0f, 20.0f, -30.0f));
+	pointLightPos.push_back(glm::vec3(-50.0f, 20.0f, 0.0f));
+	pointLightPos.push_back(glm::vec3(-70.0f, 20.0f, 0.0f));
 
 
 	std::vector<glm::vec3> spotLightPos;
 	spotLightPos.push_back(glm::vec3(10.0f, 30.0f, 30.0f));
-	spotLightPos.push_back(glm::vec3(10.0f, 30.0f, -30.0f));
+	spotLightPos.push_back(glm::vec3(-45.0f, 30.0f, -10.0f));
 	spotLightPos.push_back(glm::vec3(30.0f, 30.0f, 0.0f));
 
 	PointLight pointlight(pointLightPos);
