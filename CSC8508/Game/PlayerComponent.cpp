@@ -122,6 +122,7 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 
 void NCL::CSC8508::PlayerComponent::OnCollisionStay(GameObject* otherObject)
 {
+	movementState = PlayerMovementState::WALKING;
 	lastCollisionTimer = 0.0f;
 }
 
@@ -178,7 +179,6 @@ void NCL::CSC8508::PlayerComponent::Movement()
 	}
 	
 	direction = transform->GetOrientation() * direction.Normalised();
-
 }
 
 void NCL::CSC8508::PlayerComponent::Jump()
@@ -200,7 +200,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 0.3, 0) * jump * jumpCounter);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * 3);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}
