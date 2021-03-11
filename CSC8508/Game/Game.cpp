@@ -78,12 +78,12 @@ bool Game::UpdateGame(float dt) {
 	UpdateKeys();
 
 
-	if (useGravity) {
-		Debug::Print("(G)ravity on", Vector2(5, 95));
-	}
-	else {
-		Debug::Print("(G)ravity off", Vector2(5, 95));
-	}
+	//if (useGravity) {
+	//	Debug::Print("(G)ravity on", Vector2(5, 95));
+	//}
+	//else {
+	//	Debug::Print("(G)ravity off", Vector2(5, 95));
+	//}
 
 	if (!paused) {
 		physics->Update(dt);
@@ -110,10 +110,10 @@ void Game::UpdateKeys() {
 		InitCamera(); //F2 will reset the camera to a specific default place
 	}
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
-		useGravity = !useGravity; //Toggle gravity!
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
+	//	useGravity = !useGravity; //Toggle gravity!
 		//physics->UseGravity(useGravity);
-	}
+	//}
 	//Running certain physics updates in a consistent order might cause some
 	//bias in the calculations - the same objects might keep 'winning' the constraint
 	//allowing the other one to stretch too much etc. Shuffling the order so that it
