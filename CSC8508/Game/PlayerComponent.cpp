@@ -7,7 +7,9 @@
 #include "../../Common/Camera.h"
 #include "../../Common/Window.h"
 #include "../../Common/Maths.h"
+#include "CameraComponent.h"
 
+#include"../Audio/SoundManager.h"
 #include <algorithm>
 
 using namespace NCL;
@@ -40,7 +42,13 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 
 	//physicsObject->SetFriction(0.1f);
 	//physicsObject->body->setDamping(0.05, 0.f);
-	camera = game->GetWorld()->GetMainCamera();
+	camera = CameraComponent::GetMain();
+
+	//Audio
+	JumpSound = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
+	JumpSound->Set3D(false);
+	JumpSound->SetVolume(0.4f);
 
 	this->game = game;
 }
@@ -70,6 +78,12 @@ NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(o
 
 	camera = nullptr;
 	game = nullptr;
+
+	//Audio
+	JumpSound = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
+	JumpSound->Set3D(false);
+	JumpSound->SetVolume(0.4f);
 }
 
 
@@ -134,7 +148,6 @@ void NCL::CSC8508::PlayerComponent::CameraMovement()
 
 	camera->SetPitch(-pitch);
 	camera->SetYaw(angles.y);
-
 	Quaternion cameraAngle = Quaternion::EulerAnglesToQuaternion(-pitch, angles.y, 0.0f);
 	Vector3 cameraOffset = cameraAngle * (Vector3(0, 0, 1) * cameraDistance);
 	Vector3 cameraFocusPoint = transform->GetPosition() + Vector3(0, 2, 0);
@@ -177,6 +190,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE))
 		{
+			JumpSound->Play();
 			movementState = (PlayerMovementState)(movementState + 1);
 			Vector3 currentForce = physicsObject->body->getForce();
 			physicsObject->body->clearForces();
@@ -186,7 +200,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * jumpCounter);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 0.2, 0) * jump * jumpCounter);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}

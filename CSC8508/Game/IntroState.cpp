@@ -6,6 +6,7 @@
 #include "../Engine/CollisionDetection.h"
 #include "../../Common/Window.h"
 #include "../../Common/Camera.h"
+#include "CameraComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -25,7 +26,7 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 
 	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
 
-		Ray ray = CollisionDetection::BuildRayFromMouse(*world->GetMainCamera());
+		Ray ray = CollisionDetection::BuildRayFromMouse(*CameraComponent::GetMain()->GetCamera());
 
 		RayCollision closestCollision;
 		if (world->Raycast(ray, closestCollision, true)) {
@@ -35,7 +36,6 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 				return PushdownResult::Push;
 			}
 			if (hitObject == exitCube) {
-				Window::DestroyGameWindow();
 				return PushdownResult::Pop;
 			}
 		}

@@ -19,11 +19,11 @@
     <Filter Include="JSON">
       <UniqueIdentifier>{9e202e83-4377-4918-be81-da740b27802f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Light">
-      <UniqueIdentifier>{754ef6fe-8430-46f3-b910-da5cd4d12991}</UniqueIdentifier>
-    </Filter>
     <Filter Include="State">
       <UniqueIdentifier>{29625e85-8ea7-4819-b914-492a589ee84f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{e8ee3208-ac23-4195-ae88-b5c41c9da676}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,9 +57,6 @@
     <ClCompile Include="RespawnComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>Light</Filter>
-    </ClCompile>
     <ClCompile Include="PlaySound.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -87,7 +84,22 @@
     <ClCompile Include="PlayState.cpp">
       <Filter>State</Filter>
     </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Shadow.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
     <ClCompile Include="SetListener.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TeleporterComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,12 +131,6 @@
     <ClInclude Include="RespawnComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Light</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlaySound.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -149,12 +155,32 @@
     <ClInclude Include="PlayState.h">
       <Filter>State</Filter>
     </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
     <ClInclude Include="SetListener.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TeleporterComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
+    <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

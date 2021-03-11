@@ -1,6 +1,7 @@
 #pragma once
 #include "../Engine/Component.h"
 #include "../../Common/Vector3.h"
+#include"../Audio/SoundInstance.h"
 
 namespace NCL {
 
@@ -10,6 +11,7 @@ namespace NCL {
 
 		class PhysicsObject;
 		class Game;
+		class CameraComponent;
 
 		enum PlayerMovementState
 		{
@@ -43,6 +45,7 @@ namespace NCL {
 			//Maths::Vector3 dir;
 			Maths::Vector3 direction;
 			PhysicsObject* physicsObject;
+			Audio::SoundInstance* JumpSound;
 
 			bool lockOrientation;
 
@@ -69,7 +72,7 @@ namespace NCL {
 			bool hasJumped;
 			
 			Game* game;
-			Camera* camera;
+			CameraComponent* camera;
 			
 
 			void CameraMovement();
