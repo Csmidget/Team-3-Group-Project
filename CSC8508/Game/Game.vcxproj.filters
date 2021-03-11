@@ -60,8 +60,6 @@
     <ClCompile Include="PlaySound.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="SetListener.cpp">
-    </ClCompile>
     <ClCompile Include="RingComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -98,6 +96,12 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="SetListener.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TeleporterComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -127,13 +131,8 @@
     <ClInclude Include="RespawnComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlaySound.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SetListener.h">
     </ClInclude>
     <ClInclude Include="RingComponenet.h">
       <Filter>Components</Filter>
@@ -166,6 +165,15 @@
       <Filter>Light</Filter>
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SetListener.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TeleporterComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

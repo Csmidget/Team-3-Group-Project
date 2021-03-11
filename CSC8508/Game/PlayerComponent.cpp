@@ -9,6 +9,7 @@
 #include "../../Common/Maths.h"
 #include "CameraComponent.h"
 
+#include"../Audio/SoundManager.h"
 #include <algorithm>
 
 using namespace NCL;
@@ -43,6 +44,12 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	//physicsObject->body->setDamping(0.05, 0.f);
 	camera = CameraComponent::GetMain();
 
+	//Audio
+	JumpSound = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
+	JumpSound->Set3D(false);
+	JumpSound->SetVolume(0.4f);
+
 	this->game = game;
 }
 NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(object)
@@ -71,6 +78,12 @@ NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(o
 
 	camera = nullptr;
 	game = nullptr;
+
+	//Audio
+	JumpSound = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
+	JumpSound->Set3D(false);
+	JumpSound->SetVolume(0.4f);
 }
 
 
@@ -109,6 +122,7 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 
 void NCL::CSC8508::PlayerComponent::OnCollisionStay(GameObject* otherObject)
 {
+	movementState = PlayerMovementState::WALKING;
 	lastCollisionTimer = 0.0f;
 }
 
@@ -135,7 +149,6 @@ void NCL::CSC8508::PlayerComponent::CameraMovement()
 
 	camera->SetPitch(-pitch);
 	camera->SetYaw(angles.y);
-
 	Quaternion cameraAngle = Quaternion::EulerAnglesToQuaternion(-pitch, angles.y, 0.0f);
 	Vector3 cameraOffset = cameraAngle * (Vector3(0, 0, 1) * cameraDistance);
 	Vector3 cameraFocusPoint = transform->GetPosition() + Vector3(0, 2, 0);
@@ -166,7 +179,6 @@ void NCL::CSC8508::PlayerComponent::Movement()
 	}
 	
 	direction = transform->GetOrientation() * direction.Normalised();
-
 }
 
 void NCL::CSC8508::PlayerComponent::Jump()
@@ -178,6 +190,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE))
 		{
+			JumpSound->Play();
 			movementState = (PlayerMovementState)(movementState + 1);
 			Vector3 currentForce = physicsObject->body->getForce();
 			physicsObject->body->clearForces();
@@ -187,7 +200,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * jumpCounter);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * 3);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}
