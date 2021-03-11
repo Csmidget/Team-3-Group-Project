@@ -5,9 +5,12 @@
 #include "IntroState.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
-
+#include "CameraComponent.h"
+#include "TeleporterComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
+#include "ScoreComponent.h"
+#include "RingComponenet.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -28,7 +31,6 @@ Game::Game() {
 	resourceManager = new OGLResourceManager();
 	world = new GameWorld();
 	renderer = new GameTechRenderer(*world, *resourceManager);
-	//physics		= new PhysicsSystem(*world);
 	physics		= new physics::BulletWorld();
 	gameStateMachine = new PushdownMachine(new IntroState(this));
 	networkManager = new NetworkManager();
@@ -40,13 +42,14 @@ Game::Game() {
 	Debug::SetRenderer(renderer);
 	Audio::SoundManager::Init();
 	InitialiseAssets();
-	Audio::SoundInstance* test = new Audio::SoundInstance();
-	test->SetVolume(0.1f);
-	Audio::SoundManager::CreateInstance("River.mp3", test);
-	test->Set3DAttributes(Vector3(20, 3, 2));
-	test->SetLoop(true);
-	test->SetMaxMinDistance(100, 10);
-	test->Play();
+
+	//Play Background Music
+	music = new Audio::SoundInstance();
+	music->SetVolume(0.2f);
+	Audio::SoundManager::CreateInstance("BacgroundMusicLong.mp3", music);
+	music->SetLoop(true);
+	music->Set3D(false);
+	music->Play();
 }
 
 /*
@@ -64,15 +67,13 @@ Game::~Game()	{
 	delete physics;
 	delete renderer;
 	delete world;
+	delete music;
 }
 
-void Game::UpdateGame(float dt) {
+bool Game::UpdateGame(float dt) {
 
-	gameStateMachine->Update(dt);
-
-	if (!inSelectionMode) {
-		world->GetMainCamera()->UpdateCamera(dt);
-	}
+	if (gameStateMachine->Update(dt) == false)
+		return false;
 
 	UpdateKeys();
 
@@ -96,6 +97,8 @@ void Game::UpdateGame(float dt) {
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
+
+	return true;
 }
 
 void Game::UpdateKeys() {
@@ -131,19 +134,20 @@ void Game::UpdateKeys() {
 }
 
 void Game::InitCamera() {
-	world->GetMainCamera()->SetNearPlane(0.1f);
-	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(-15.0f);
-	world->GetMainCamera()->SetYaw(315.0f);
-	world->GetMainCamera()->SetPosition(Vector3(-60, 40, 60));
+	AddCameraToWorld(Vector3(-60, 40, 60));
+	CameraComponent::GetMain()->SetNearPlane(0.1f);
+	CameraComponent::GetMain()->SetFarPlane(500.0f);
+	CameraComponent::GetMain()->SetPitch(-15.0f);
+	CameraComponent::GetMain()->SetYaw(315.0f);
 }
 
 void Game::InitIntroCamera() {
-	world->GetMainCamera()->SetNearPlane(0.1f);
-	world->GetMainCamera()->SetFarPlane(500.0f);
-	world->GetMainCamera()->SetPitch(0.0f);
-	world->GetMainCamera()->SetYaw(0.0f);
-	world->GetMainCamera()->SetPosition(Vector3(0, 0, 60));
+	AddCameraToWorld(Vector3(0, 0, 60));
+
+	CameraComponent::GetMain()->SetNearPlane(0.1f);
+	CameraComponent::GetMain()->SetFarPlane(500.0f);
+	CameraComponent::GetMain()->SetPitch(0.0f);
+	CameraComponent::GetMain()->SetYaw(0.0f);
 }
 
 void Game::Clear() {
@@ -155,12 +159,11 @@ void Game::Clear() {
 }
 
 void Game::InitFromJSON(std::string fileName) {
-	Clear();
 	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
 void Game::InitWorld() {
-	InitWorld("CharlesTest.json");
+	InitWorld("DesouzaTest.json");
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -170,17 +173,28 @@ void Game::InitWorld(std::string levelName) {
 
 	InitFromJSON(levelName);
 	
-	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	player->AddComponent<PlayerComponent>(this);
-
+	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	//player->AddComponent<PlayerComponent>(this);
+	
 	//world->Start();
 
-	world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+
+	//Tick the timer so that the load time isn't factored into any time related calculations
+	Window::TickTimer();
 }
 
 void Game::InitIntroWorld() {
 	Clear();
 	InitIntroCamera();
+}
+
+GameObject* Game::AddCameraToWorld(const Vector3& position) {
+	GameObject* camera = new GameObject("camera");
+	camera->GetTransform().SetPosition(position);
+	camera->AddComponent<CameraComponent>();
+	world->AddGameObject(camera);
+	return camera;
 }
 
 /*
