@@ -3,6 +3,8 @@
 #include "../../Common/Vector3.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include <string>
+#include <queue>
+
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 #include "../Engine/NetworkManager.h"
 #include"../Audio/SoundInstance.h"
@@ -25,7 +27,7 @@ namespace NCL {
 			void InitWorld(std::string levelName);
 			void InitIntroWorld();
 			
-			virtual void UpdateGame(float dt);
+			virtual bool UpdateGame(float dt);
 
 			void SetPaused(bool pause) {
 				paused = pause;
@@ -61,6 +63,8 @@ namespace NCL {
 			void UpdateKeys();
 						
 			void InitFromJSON(std::string fileName);
+
+			void InitNetworkPlayers();
 
 			GameTechRenderer*	renderer;
 			GameWorld*			world;

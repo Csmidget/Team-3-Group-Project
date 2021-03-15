@@ -150,9 +150,11 @@ void RigidBody::setTransform()
 		btVector3 position = convertVector3(SetPosition);
 			//btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
 
-		body->setCenterOfMassTransform(btTransform(rotation, position));
-
-		//worldRef->addRigidBody(this);
+		btTransform newTransform;
+		newTransform.setOrigin(position);
+		newTransform.setRotation(rotation);
+		body->setWorldTransform(newTransform);
+		body->getMotionState()->setWorldTransform(newTransform);
 	}
 }
 

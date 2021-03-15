@@ -6,6 +6,7 @@
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 #include "CameraComponent.h"
+#include "TeleporterComponent.h"
 #include"SetListener.h"
 #include"PlaySound.h"
 #include "ScoreComponent.h"
@@ -45,7 +46,7 @@ Game::Game() {
 	//Play Background Music
 	music = new Audio::SoundInstance();
 	music->SetVolume(0.2f);
-	Audio::SoundManager::CreateInstance("BacgroundMusic.wav", music);
+	Audio::SoundManager::CreateInstance("BacgroundMusicLong.mp3", music);
 	music->SetLoop(true);
 	music->Set3D(false);
 	music->Play();
@@ -69,19 +70,20 @@ Game::~Game()	{
 	delete music;
 }
 
-void Game::UpdateGame(float dt) {
+bool Game::UpdateGame(float dt) {
 
-	gameStateMachine->Update(dt);
+	if (gameStateMachine->Update(dt) == false)
+		return false;
 
 	UpdateKeys();
 
 
-	if (useGravity) {
-		Debug::Print("(G)ravity on", Vector2(5, 95));
-	}
-	else {
-		Debug::Print("(G)ravity off", Vector2(5, 95));
-	}
+	//if (useGravity) {
+	//	Debug::Print("(G)ravity on", Vector2(5, 95));
+	//}
+	//else {
+	//	Debug::Print("(G)ravity off", Vector2(5, 95));
+	//}
 
 	if (!paused) {
 		physics->Update(dt);
@@ -95,6 +97,8 @@ void Game::UpdateGame(float dt) {
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
+
+	return true;
 }
 
 void Game::UpdateKeys() {
@@ -106,10 +110,10 @@ void Game::UpdateKeys() {
 		InitCamera(); //F2 will reset the camera to a specific default place
 	}
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
-		useGravity = !useGravity; //Toggle gravity!
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
+	//	useGravity = !useGravity; //Toggle gravity!
 		//physics->UseGravity(useGravity);
-	}
+	//}
 	//Running certain physics updates in a consistent order might cause some
 	//bias in the calculations - the same objects might keep 'winning' the constraint
 	//allowing the other one to stretch too much etc. Shuffling the order so that it
@@ -158,6 +162,22 @@ void Game::InitFromJSON(std::string fileName) {
 	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
+void Game::InitNetworkPlayers()
+{
+	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
+
+	std::queue<int>* lobby = networkManager->GetPlayerLobby();
+	while (lobby->size() > 0) {
+		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 3.f, true);
+		
+
+		networkManager->AddPlayerToGame(lobby->front(), player);
+		lobby->pop();
+	
+	}
+
+}
+
 void Game::InitWorld() {
 	InitWorld("DesouzaTest.json");
 }
@@ -177,6 +197,7 @@ void Game::InitWorld(std::string levelName) {
 	//AddFloorToWorld(Vector3(0, 0, 0));
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();

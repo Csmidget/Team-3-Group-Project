@@ -13,12 +13,13 @@ NetworkObject::~NetworkObject()	{
 }
 
 bool NetworkObject::ReadPacket(GamePacket& p) {
-	if (p.type == Delta_State) {
+	if (p.type == Player_Delta_State) {
 		return ReadDeltaPacket((DeltaPacket&)p);
 	}
-	if (p.type == Full_State) {
+	if (p.type == Player_Full_State) {
 		return ReadFullPacket((FullPacket&)p);
 	}
+
 	return false; //this isn't a packet we care about!
 }
 
