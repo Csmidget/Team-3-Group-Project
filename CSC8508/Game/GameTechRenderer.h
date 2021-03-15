@@ -9,13 +9,16 @@
 #include "../../Common/ResourceManager.h"
 
 
+class Shadow;
+class PointLight;
+class SpotLight;
 namespace NCL {
 	class Maths::Vector3;
 	class Maths::Vector4;
 	namespace CSC8508 {
 		class RenderObject;
 
-		class GameTechRenderer : public OGLRenderer	{
+		class GameTechRenderer : public OGLRenderer {
 		public:
 			GameTechRenderer(GameWorld& world, ResourceManager& resourceManager);
 			~GameTechRenderer();
@@ -28,14 +31,14 @@ namespace NCL {
 			Matrix4 SetupDebugLineMatrix()	const override;
 			Matrix4 SetupDebugStringMatrix()const override;
 
-			OGLShader*	defaultShader;
+			OGLShader* defaultShader;
 			//GameTechRenderer* renderer;
-			GameWorld&	gameWorld;
+			GameWorld& gameWorld;
 
 			void BuildObjectList();
 			void SortObjectList();
 			void RenderShadowMap();
-			void RenderCamera(); 
+			void RenderCamera();
 			void RenderSkybox();
 
 			void RenderLight();
@@ -46,15 +49,21 @@ namespace NCL {
 			//NCL::Rendering::ResourceManager* resourceManager;
 			vector<const RenderObject*> activeObjects;
 
-			OGLShader*  skyboxShader;
-			OGLMesh*	skyboxMesh;
+			OGLShader* skyboxShader;
+			OGLMesh* skyboxMesh;
 			GLuint		skyboxTex;
 
 			OGLShader* m_temp_shader = nullptr;
 
 			//shadow mapping things
-			NCL::Rendering::OGLShader* depthShader;
+			NCL::Rendering::OGLShader* depthCubemapShader;
+			NCL::Rendering::OGLShader* depth2DShader;
 			NCL::Rendering::OGLShader* lightshader;
+
+			PointLight* pointlight;
+			SpotLight* spotlight;
+			Shadow* pointShadowMaps[4]; //point light shadows
+			Shadow* spotShadowMaps[4]; //spot light shadows
 
 			//GLuint		shadowTex;
 			//GLuint		shadowFBO;
