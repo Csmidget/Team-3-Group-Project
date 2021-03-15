@@ -10,7 +10,7 @@ namespace NCL {
 
 		public:
 			TeleporterComponent(GameObject* object, Maths::Vector3 targetPos);
-			void OnCollisionBegin(GameObject* other);
+			void OnCollisionStay(GameObject* other);
 
 		private:
 			Maths::Vector3 targetPosition;

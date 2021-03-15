@@ -78,12 +78,12 @@ bool Game::UpdateGame(float dt) {
 	UpdateKeys();
 
 
-	if (useGravity) {
-		Debug::Print("(G)ravity on", Vector2(5, 95));
-	}
-	else {
-		Debug::Print("(G)ravity off", Vector2(5, 95));
-	}
+	//if (useGravity) {
+	//	Debug::Print("(G)ravity on", Vector2(5, 95));
+	//}
+	//else {
+	//	Debug::Print("(G)ravity off", Vector2(5, 95));
+	//}
 
 	if (!paused) {
 		physics->Update(dt);
@@ -110,10 +110,10 @@ void Game::UpdateKeys() {
 		InitCamera(); //F2 will reset the camera to a specific default place
 	}
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
-		useGravity = !useGravity; //Toggle gravity!
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
+	//	useGravity = !useGravity; //Toggle gravity!
 		//physics->UseGravity(useGravity);
-	}
+	//}
 	//Running certain physics updates in a consistent order might cause some
 	//bias in the calculations - the same objects might keep 'winning' the constraint
 	//allowing the other one to stretch too much etc. Shuffling the order so that it
@@ -162,6 +162,22 @@ void Game::InitFromJSON(std::string fileName) {
 	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
+void Game::InitNetworkPlayers()
+{
+	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
+
+	std::queue<int>* lobby = networkManager->GetPlayerLobby();
+	while (lobby->size() > 0) {
+		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 3.f, true);
+		
+
+		networkManager->AddPlayerToGame(lobby->front(), player);
+		lobby->pop();
+	
+	}
+
+}
+
 void Game::InitWorld() {
 	InitWorld("DesouzaTest.json");
 }
@@ -179,6 +195,7 @@ void Game::InitWorld(std::string levelName) {
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
