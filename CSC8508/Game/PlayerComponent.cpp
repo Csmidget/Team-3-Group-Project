@@ -19,7 +19,6 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 {
 	movementState = PlayerMovementState::WALKING;
 
-	speed = 100.0f;
 	jump = 150.f;
 
 	MAX_WALKING_SPEED = 10.f;
@@ -46,8 +45,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(object)
 {
 	movementState = PlayerMovementState::WALKING;
-	
-	speed = 50.0f;
+
 	jump = 100.f;
 
 	MAX_WALKING_SPEED = 1000.f;
