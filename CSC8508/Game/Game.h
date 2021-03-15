@@ -43,6 +43,8 @@ namespace NCL {
 			GameObject* AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
 			GameObject* AddCameraToWorld(const Vector3& position);
 
+			GameObject* Raycast(const Vector3& from, const Vector3& to) const;
+
 			GameWorld* GetWorld() const { return world; }
 			physics::BulletWorld* GetPhysics() const { return physics; }
 

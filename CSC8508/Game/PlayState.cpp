@@ -1,6 +1,7 @@
 #include "PlayState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
+#include "DebugState.h"
 #include "Game.h"
 #include "../Engine/GameWorld.h"
 #include "../Engine/Debug.h"
@@ -35,7 +36,10 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::P)) {
 		*newState = new PauseState(game);
 		return PushdownResult::Push;
-
+	}
+	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {
+		*newState = new DebugState(game);
+		return PushdownResult::Push;
 	}
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::F1)) {
 		return PushdownResult::Pop;

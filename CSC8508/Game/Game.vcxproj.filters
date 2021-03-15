@@ -102,6 +102,9 @@
     <ClCompile Include="TeleporterComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="DebugState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="TeleporterComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugState.h">
+      <Filter>State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

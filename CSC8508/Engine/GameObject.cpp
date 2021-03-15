@@ -39,7 +39,8 @@ void GameObject::Start() {
 void GameObject::Update(float dt)
 {
 	for (auto component : components) {
-		component->Update(dt);
+		if (component->IsEnabled())
+			component->Update(dt);
 	}
 
 	OnUpdate(dt);
@@ -79,6 +80,17 @@ bool GameObject::GetBroadphaseAABB(Vector3&outSize) const {
 	}
 	outSize = broadphaseAABB;
 	return true;
+}
+
+std::vector<std::string> GameObject::DebugInfo() const {
+	std::vector<std::string> info;
+	
+	for (auto comp : components) {
+		auto compInfo = comp->GetDebugInfo();
+		info.insert(info.end(), compInfo.begin(), compInfo.end());
+	}
+
+	return info;
 }
 
 void GameObject::UpdateBroadphaseAABB() {

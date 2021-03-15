@@ -103,6 +103,8 @@ namespace NCL {
 				return name;
 			}
 
+			std::vector<std::string> DebugInfo() const;
+
 			void OnCollisionBegin(GameObject* otherObject);
 			void OnCollisionStay(GameObject* otherObject);
 			void OnCollisionEnd(GameObject* otherObject);

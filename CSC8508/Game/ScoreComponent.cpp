@@ -3,7 +3,7 @@
 #include "BonusComponent.h"
 #include "RingComponenet.h"
 
-NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component(object)
+NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component("ScoreComponent", object)
 {
 	hasFinished = false;
 	score = 0;
