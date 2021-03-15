@@ -20,8 +20,8 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 {
 	movementState = PlayerMovementState::WALKING;
 
-	speed = 100.0f;
-	jump = 100.f;
+	speed = 1.0f;
+	jump = 20.f;
 
 	MAX_WALKING_SPEED = 10.f;
 	MAX_AIR_SPEED = 10000.f;
@@ -184,20 +184,22 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 	if (movementState != PlayerMovementState::JUMP_TWO)
 	{
-
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE))
 		{
 			JumpSound->Play();
 			movementState = (PlayerMovementState)(movementState + 1);
 			Vector3 currentForce = physicsObject->body->getForce();
-			physicsObject->body->clearForces();
-			physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
+			//physicsObject->body->clearForces();
+			//physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
+			//physicsObject->body->addImpulse(Vector3(0, 1, 0) /** 10*/);
 			jumpCounter = 3;
 		}
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * 3);
+			//physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * 3);
+
+			physicsObject->body->addImpulse(Vector3(0, 1, 0) * jump);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}

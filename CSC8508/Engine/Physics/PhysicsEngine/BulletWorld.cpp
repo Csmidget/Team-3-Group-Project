@@ -69,14 +69,16 @@ void BulletWorld::removeRigidBody(RigidBody* body)
 //steps simulation and sets the transform based on bullet physics
 void BulletWorld::Update(float dt)
 {
-	dynamicsWorld->stepSimulation(dt ,4);
+	dynamicsWorld->stepSimulation((btScalar)dt, 4);
 	checkCollisions();
 
 	for (auto i : rigidList)
 	{
 		i->updateTransform();
-		i->returnBody()->applyDamping(dt /*1.f / 60.f*/);
+		i->returnBody()->applyDamping((btScalar)dt);
 	}
+	
+
 }
 
 //checks all manifolds for new and expired manifolds to activate the Oncollision end and begin functions
