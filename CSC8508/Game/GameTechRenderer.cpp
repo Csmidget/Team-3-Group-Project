@@ -13,6 +13,7 @@
 #include "../../include/glm/gtc/type_ptr.hpp"
 #include "PointLight.h"
 #include "SpotLight.h"
+#include "Shadow.h"
 
 using namespace NCL;
 using namespace Rendering;
@@ -28,8 +29,8 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 	glEnable(GL_DEPTH_TEST);
 
 	// 加载阴影shader
-	depthShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl", "GameTechShadowGeom.glsl");
-
+	depthCubemapShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl", "GameTechShadowGeom.glsl");
+	depth2DShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl");
 	m_temp_shader = (OGLShader*)resourceManager.LoadShader("gameTechVert.glsl", "gameTechFrag.glsl");
 
 	lightshader = (OGLShader*)resourceManager.LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");
@@ -55,11 +56,32 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 	glClearColor(1, 1, 1, 1);
 
 
-	//lightPosition = Vector3(0.0, 30.0f, -30.0f);
+	//setup light data
+	std::vector<glm::vec3> pointLightPos;
+	pointLightPos.push_back(glm::vec3(-80.0f, 30.0f, 0.0f));
+	pointLightPos.push_back(glm::vec3(0.0f, 30.0f, 0.0f));
+	//pointLightPos.push_back(glm::vec3(0.0f, 10.0f, 30.0f));
+	//pointLightPos.push_back(glm::vec3(30.0f, 10.0f, 0.0f));
 
+	std::vector<glm::vec3> spotLightPos;
+	spotLightPos.push_back(glm::vec3(10.0f, 30.0f, 30.0f));
+	//spotLightPos.push_back(glm::vec3(10.0f, 30.0f, -30.0f));
+	//spotLightPos.push_back(glm::vec3(30.0f, 30.0f, 0.0f));
 
+	pointlight = new PointLight(pointLightPos);
+	spotlight = new SpotLight(spotLightPos);
 
+	//setup shadow map
 
+	for (int i = 0; i < pointlight->getPointNumber(); ++i)
+	{
+		pointShadowMaps[i] = new Shadow();
+	}
+
+	for (int i = 0; i < spotlight->getSpotNumber(); ++i)
+	{
+		spotShadowMaps[i] = new Shadow();
+	}
 	//Skybox!
 	skyboxShader = (OGLShader*)resourceManager.LoadShader("skyboxVertex.glsl", "skyboxFragment.glsl");
 	skyboxMesh = new OGLMesh();
@@ -73,6 +95,13 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 GameTechRenderer::~GameTechRenderer() {
 
 	delete skyboxMesh;
+	delete pointlight;
+	delete spotlight;
+
+	for (int i = 0; i < pointlight->getPointNumber(); ++i)
+	{
+		delete pointShadowMaps[i];
+	}
 
 	//glDeleteTextures(1, &shadowTex);
 	//glDeleteFramebuffers(1, &shadowFBO);
@@ -120,8 +149,6 @@ void GameTechRenderer::LoadSkybox() {
 
 
 void GameTechRenderer::RenderFrame() {
-	glEnable(GL_CULL_FACE);
-	glClearColor(1, 1, 1, 1);
 	BuildObjectList();
 	SortObjectList();
 
@@ -129,6 +156,8 @@ void GameTechRenderer::RenderFrame() {
 		return;
 
 	RenderShadowMap();// 渲染阴影
+	glEnable(GL_CULL_FACE);
+	glClearColor(1, 1, 1, 1);
 	RenderSkybox();		// 绘制天空盒
 
 	RenderCamera();		// 摄像机
@@ -139,23 +168,25 @@ void GameTechRenderer::RenderFrame() {
 void GameTechRenderer::RenderLight()
 {
 	glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), "material.shininess"), 32.0f);
-	std::vector<glm::vec3> pointLightPos;
-	pointLightPos.push_back(glm::vec3(-20.0f, 20.0f, -30.0f));
-	pointLightPos.push_back(glm::vec3(-50.0f, 20.0f, 0.0f));
-	pointLightPos.push_back(glm::vec3(-70.0f, 20.0f, 0.0f));
+	pointlight->render(lightshader);
 
+	for (int i = 0; i < pointlight->getPointNumber(); ++i)
+	{
+		glActiveTexture(GL_TEXTURE4 + i);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, pointShadowMaps[i]->getCubemapTexture());
+		glUniform1i(glGetUniformLocation(lightshader->GetProgramID(), ("pointLights[" + std::to_string(i) + "].shadowMap").c_str()), 4 + i);
+	}
 
-	std::vector<glm::vec3> spotLightPos;
-	spotLightPos.push_back(glm::vec3(10.0f, 30.0f, 30.0f));
-	spotLightPos.push_back(glm::vec3(-45.0f, 30.0f, -10.0f));
-	spotLightPos.push_back(glm::vec3(30.0f, 30.0f, 0.0f));
+	spotlight->render(lightshader);
 
-	PointLight pointlight(pointLightPos);
-	SpotLight spotlight(spotLightPos);
-
-	pointlight.render(lightshader);
-	spotlight.render(lightshader);
-
+	/*
+	for (int i = 0; i < spotlight->getSpotNumber(); ++i)
+	{
+		glActiveTexture(GL_TEXTURE8 + i);
+		glBindTexture(GL_TEXTURE_2D, spotShadowMaps[i]->get2DmapTexture());
+		glUniform1i(glGetUniformLocation(lightshader->GetProgramID(), ("spotLight[" + std::to_string(i) + "].shadowMap").c_str()), 8 + i);
+	}
+	*/
 }
 
 void GameTechRenderer::BuildObjectList() {
@@ -179,66 +210,79 @@ void GameTechRenderer::SortObjectList() {
 }
 
 void GameTechRenderer::RenderShadowMap() {
+	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
 
-	//GLfloat aspect = (GLfloat)SHADOWSIZE / (GLfloat)SHADOWSIZE;
-	//Matrix4 shadowViewMatrix = Matrix4::BuildViewMatrix(lightPosition, Vector3(0, 0, 0), Vector3(0, 1, 0));
-	//Matrix4 shadowProjMatrix = Matrix4::Perspective(100.0f, 500.0f, 1, 45.0f);
+	BindShader(depthCubemapShader);
 
-	//std::vector<Matrix4> shadowTransforms;
-	//shadowTransforms.push_back(shadowProjMatrix * Matrix4::BuildViewMatrix(lightPosition, Vector3(1.0, 0.0, 0.0), Vector3(0.0, -1.0, 0.0)));
-	//shadowTransforms.push_back(shadowProjMatrix * Matrix4::BuildViewMatrix(lightPosition, Vector3(-1.0, 0.0, 0.0), Vector3(0.0, -1.0, 0.0)));
-	//shadowTransforms.push_back(shadowProjMatrix * Matrix4::BuildViewMatrix(lightPosition, Vector3(0.0, 1.0, 0.0), Vector3(0.0, 0.0, 1.0)));
-	//shadowTransforms.push_back(shadowProjMatrix * Matrix4::BuildViewMatrix(lightPosition, Vector3(0.0, -1.0, 0.0), Vector3(0.0, 0.0, -1.0)));
-	//shadowTransforms.push_back(shadowProjMatrix * Matrix4::BuildViewMatrix(lightPosition, Vector3(0.0, 0.0, 1.0), Vector3(0.0, -1.0, 0.0)));
-	//shadowTransforms.push_back(shadowProjMatrix * Matrix4::BuildViewMatrix(lightPosition, Vector3(0.0, 0.0, -1.0), Vector3(0.0, -1.0, 0.0)));
+	int modelLocation = glGetUniformLocation(depthCubemapShader->GetProgramID(), "mvpMatrix");
 
-	//BindShader(depthShader);
-	//
-	//glBindFramebuffer(GL_FRAMEBUFFER, shadowFBO);
-	//glClear(GL_DEPTH_BUFFER_BIT);
-	//glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
-	//glViewport(0, 0, SHADOWSIZE, SHADOWSIZE);
-	//glCullFace(GL_FRONT);
+	GLfloat aspect = 1.0;
 
-	//int mvpLocation = glGetUniformLocation(depthShader->GetProgramID(), "mvpMatrix");
 
-	//Matrix4 mvMatrix = shadowProjMatrix * shadowViewMatrix;
+	for (int li = 0; li < pointlight->getPointNumber(); ++li)
+	{
+		auto& shadowMap = pointShadowMaps[li];
+		shadowMap->BindShadowFBOAsCubemap();
+		glClearDepth(1.0);
+		glClear(GL_DEPTH_BUFFER_BIT);
 
-	//shadowMatrix = biasMatrix * mvMatrix; 
+		shadowMap->DrawPointLightShadowMap(depthCubemapShader, *pointlight, li);
 
-	//// 传入深度贴图
-	//for (GLuint i = 0; i < 6; ++i)
-	//{
-	//	glUniformMatrix4fv(glGetUniformLocation(depthShader->GetProgramID(),
-	//		("shadowMatrices[" + std::to_string(i) + "]").c_str()), 1, GL_FALSE,
-	//		(float*)&(shadowTransforms[i]));
-	//}
+		for (const auto& i : activeObjects) {
+			BindMesh((*i).GetMesh());
+			Matrix4 modelMatrix = (*i).GetTransform()->GetMatrix();
+			glUniformMatrix4fv(modelLocation, 1, false, (float*)&modelMatrix);
 
-	//Vector3 lightpos = Vector3(0.0f, 30.0f, 0.0f);
-	//glUniform1f(glGetUniformLocation(depthShader->GetProgramID(), "far_plane"), 25.0f);
-	//glUniform3fv(glGetUniformLocation(depthShader->GetProgramID(), "lightPos"), 1, (float*)&lightpos);
+			int layerCount = (*i).GetMesh()->GetSubMeshCount();
+			for (int i = 0; i < layerCount; ++i) {
+				DrawBoundMesh(i);
+			}
+		}
+	}
 
-	//// 渲染
-	//for (const auto&i : activeObjects) {
-	//	Matrix4 modelMatrix = (*i).GetTransform()->GetMatrix();
-	//	glUniformMatrix4fv(glGetUniformLocation(depthShader->GetProgramID(), "model"), 1, false, (float*)&modelMatrix);
-	//	BindMesh((*i).GetMesh());
-	//	int layerCount = (*i).GetMesh()->GetSubMeshCount();
-	//	for (int i = 0; i < layerCount; ++i) {
-	//		DrawBoundMesh(i);
-	//	}
-	//}
+	/*
 
-	//glViewport(0, 0, currentWidth, currentHeight);
-	//glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	//glCullFace(GL_BACK);
+	BindShader(depth2DShader);
+
+	modelLocation = glGetUniformLocation(depth2DShader->GetProgramID(), "mMatrix");
+	int vpLocation = glGetUniformLocation(depth2DShader->GetProgramID(), "vpMatrix");
+	//int mvpLocation = glGetUniformLocation(depth2DShader->GetProgramID(), "mvpMatrix");
+
+	for (int li = 0; li < spotlight->getSpotNumber(); ++li)
+	{
+		auto lightPos = spotlight->getPos()[li];
+		spotShadowMaps[li]->BindShadowFBOAs2D();
+		glClearDepth(1.0);
+		glClear(GL_DEPTH_BUFFER_BIT);
+
+		spotShadowMaps[li]->DrawSpotLightShadowMap(depth2DShader, *spotlight, li);
+
+		for (const auto& i : activeObjects) {
+			BindMesh((*i).GetMesh());
+			Matrix4 modelMatrix = i->GetTransform()->GetMatrix();
+			glUniformMatrix4fv(modelLocation, 1, GL_FALSE, (float*)&(modelMatrix));
+			glUniformMatrix4fv(vpLocation, 1, GL_FALSE, glm::value_ptr(spotlight->getLightVPMatrix(li)));
+
+			//Matrix4 modelMatrix = i->GetTransform()->GetMatrix();
+			//Matrix4 mvpMatrix = Matrix4((float*)glm::value_ptr(spotlight->getLightVPMatrix(li)))* modelMatrix;
+			//glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, (float*)& (mvpMatrix));
+			int layerCount = (*i).GetMesh()->GetSubMeshCount();
+			for (int i = 0; i < layerCount; ++i) {
+				DrawBoundMesh(i);
+			}
+		}
+	}
+	*/
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 }
 
 void GameTechRenderer::RenderSkybox() {
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
+	glViewport(0, 0, currentWidth, currentHeight);
 
 	float screenAspect = (float)currentWidth / (float)currentHeight;
 	Matrix4 viewMatrix = CameraComponent::GetMain()->GetCamera()->BuildViewMatrix();
@@ -266,6 +310,7 @@ void GameTechRenderer::RenderSkybox() {
 }
 
 void GameTechRenderer::RenderCamera() {
+	glViewport(0, 0, currentWidth, currentHeight);
 	float screenAspect = (float)currentWidth / (float)currentHeight;
 	Matrix4 viewMatrix = CameraComponent::GetMain()->GetCamera()->BuildViewMatrix();
 	Matrix4 projMatrix = CameraComponent::GetMain()->GetCamera()->BuildProjectionMatrix(screenAspect);
@@ -290,7 +335,7 @@ void GameTechRenderer::RenderCamera() {
 	//glActiveTexture(GL_TEXTURE0 + 1);
 	//glBindTexture(GL_TEXTURE_2D, shadowTex);
 
-	glUseProgram(lightshader->GetProgramID());
+	BindShader(lightshader);
 
 	for (const auto& i : activeObjects) {
 
