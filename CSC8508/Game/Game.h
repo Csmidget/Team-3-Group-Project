@@ -3,6 +3,8 @@
 #include "../../Common/Vector3.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include <string>
+#include <queue>
+
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 #include "../Engine/NetworkManager.h"
 #include"../Audio/SoundInstance.h"
@@ -61,6 +63,8 @@ namespace NCL {
 			void UpdateKeys();
 						
 			void InitFromJSON(std::string fileName);
+
+			void InitNetworkPlayers();
 
 			GameTechRenderer*	renderer;
 			GameWorld*			world;

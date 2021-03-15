@@ -36,6 +36,8 @@ void NCL::CSC8508::GameStateManagerComponent::RefreshPlayerList()
 
 bool NCL::CSC8508::GameStateManagerComponent::IsGameOver()
 {
+	if (players.size() == 0) return false;
+
 	for (int i = 0; i < players.size(); i++)
 		if (!players.at(i)->GetComponent<ScoreComponent>()->IsFinished())
 			return false;

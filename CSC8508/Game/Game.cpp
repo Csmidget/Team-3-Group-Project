@@ -162,6 +162,22 @@ void Game::InitFromJSON(std::string fileName) {
 	JSONLevelFactory::ReadLevelFromJson(fileName, this);
 }
 
+void Game::InitNetworkPlayers()
+{
+	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
+
+	std::queue<int>* lobby = networkManager->GetPlayerLobby();
+	while (lobby->size() > 0) {
+		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 3.f, true);
+		
+
+		networkManager->AddPlayerToGame(lobby->front(), player);
+		lobby->pop();
+	
+	}
+
+}
+
 void Game::InitWorld() {
 	InitWorld("DesouzaTest.json");
 }
@@ -179,6 +195,7 @@ void Game::InitWorld(std::string levelName) {
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
