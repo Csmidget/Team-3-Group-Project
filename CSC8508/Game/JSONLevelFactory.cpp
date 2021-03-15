@@ -72,7 +72,7 @@ void SetPhysicsObjectFromJson(Game* game, GameObject* gameObject, json physicsOb
 		else if (colliderObjectJson["type"] == "sphere")
 			po->body->addSphereShape(transform.GetScale().x / 2.0f);
 		else if (colliderObjectJson["type"] == "capsule")
-			po->body->addCapsuleShape(colliderObjectJson["radius"],colliderObjectJson["height"] / 2.0f);
+			po->body->addCapsuleShape(colliderObjectJson["radius"], transform.GetScale().y * colliderObjectJson["height"] / 2.0f);
 	}
 
 	float mass = physicsObjectJson["mass"];

@@ -49,7 +49,7 @@ namespace NCL {
 				void SetMaxMinDistance(float max, float min =0);
 				void SetObjectMinDistance(const Maths::Vector3& scale);
 				void SetLoop(bool loop) { isLoop = loop; }
-				void Set3D(bool _3D) { _3D = is3D; }
+				void Set3D(bool _3D) { is3D =_3D; }
 
 			protected:
 
