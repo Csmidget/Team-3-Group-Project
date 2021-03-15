@@ -73,7 +73,7 @@ namespace NCL {
 			void UpdateMinimumState();
 
 
-			bool const OFFLINE_MODE = false;
+			bool const OFFLINE_MODE = true;
 			bool const TEST_MODE = false;
 			bool isClient = true;
 

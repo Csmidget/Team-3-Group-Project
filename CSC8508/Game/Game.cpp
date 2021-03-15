@@ -179,7 +179,7 @@ void Game::InitNetworkPlayers()
 }
 
 void Game::InitWorld() {
-	InitWorld("GameStateManagerTest.json");
+	InitWorld("DesouzaTest.json");
 }
 
 void Game::InitWorld(std::string levelName) {
