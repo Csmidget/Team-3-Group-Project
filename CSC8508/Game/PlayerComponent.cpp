@@ -108,9 +108,6 @@ void PlayerComponent::Update(float dt) {
 		}
 		Testing();
 	}
-
-	//std::cout << movementState << std::endl;
-	//ClampVelocity();
 }
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
@@ -122,6 +119,7 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 
 void NCL::CSC8508::PlayerComponent::OnCollisionStay(GameObject* otherObject)
 {
+	movementState = PlayerMovementState::WALKING;
 	lastCollisionTimer = 0.0f;
 }
 
@@ -178,7 +176,6 @@ void NCL::CSC8508::PlayerComponent::Movement()
 	}
 	
 	direction = transform->GetOrientation() * direction.Normalised();
-
 }
 
 void NCL::CSC8508::PlayerComponent::Jump()
@@ -200,7 +197,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 0.2, 0) * jump * jumpCounter);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * 3);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}
@@ -209,14 +206,6 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 }
 
-void NCL::CSC8508::PlayerComponent::ClampVelocity()
-{
-	//Seperate out into walking and jumping
-	Vector3 currentVelocity = physicsObject->GetLinearVelocity();
-	float magnitude = Clamp(currentVelocity.Length(), 0.f ,jumping ? MAX_AIR_SPEED : MAX_WALKING_SPEED);
-
-	physicsObject->SetLinearVelocity(currentVelocity.Normalised() * magnitude);
-}
 
 void NCL::CSC8508::PlayerComponent::AccelerateTo(Vector3 targetVelocity, float dt)
 {

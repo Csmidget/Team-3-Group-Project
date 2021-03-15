@@ -57,8 +57,8 @@ namespace NCL {
 
 			float speed;
 			float MAX_WALKING_SPEED;
-			const float MAX_ACCELERATION = 1000000000000.f;
-			const float MAX_DECELERATION = 100000000000000.f;
+			const float MAX_ACCELERATION = 10000000000000.f;
+			const float MAX_DECELERATION = 10000000000000.f;
 
 
 			float jump;

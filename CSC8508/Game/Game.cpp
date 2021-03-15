@@ -46,7 +46,7 @@ Game::Game() {
 	//Play Background Music
 	music = new Audio::SoundInstance();
 	music->SetVolume(0.2f);
-	Audio::SoundManager::CreateInstance("BacgroundMusic.wav", music);
+	Audio::SoundManager::CreateInstance("BacgroundMusicLong.mp3", music);
 	music->SetLoop(true);
 	music->Set3D(false);
 	music->Play();
@@ -78,12 +78,12 @@ bool Game::UpdateGame(float dt) {
 	UpdateKeys();
 
 
-	if (useGravity) {
-		Debug::Print("(G)ravity on", Vector2(5, 95));
-	}
-	else {
-		Debug::Print("(G)ravity off", Vector2(5, 95));
-	}
+	//if (useGravity) {
+	//	Debug::Print("(G)ravity on", Vector2(5, 95));
+	//}
+	//else {
+	//	Debug::Print("(G)ravity off", Vector2(5, 95));
+	//}
 
 	if (!paused) {
 		physics->Update(dt);
@@ -110,10 +110,10 @@ void Game::UpdateKeys() {
 		InitCamera(); //F2 will reset the camera to a specific default place
 	}
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
-		useGravity = !useGravity; //Toggle gravity!
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
+	//	useGravity = !useGravity; //Toggle gravity!
 		//physics->UseGravity(useGravity);
-	}
+	//}
 	//Running certain physics updates in a consistent order might cause some
 	//bias in the calculations - the same objects might keep 'winning' the constraint
 	//allowing the other one to stretch too much etc. Shuffling the order so that it
@@ -188,9 +188,6 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
-
-	auto teleport = AddCubeToWorld(Vector3(20, -10, -20), Vector3(3, 3, 3), 0.0f, true, false);
-	teleport->AddComponent<TeleporterComponent>(Vector3(5, 1, 5));
 	
 	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	//player->AddComponent<PlayerComponent>(this);

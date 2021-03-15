@@ -7,10 +7,11 @@ TeleporterComponent::TeleporterComponent(GameObject* object, Maths::Vector3 targ
 	this->targetPosition = target;
 }
 
-void TeleporterComponent::OnCollisionBegin(GameObject* other) {
+void TeleporterComponent::OnCollisionStay(GameObject* other) {
 	if (other->HasTag("Player"))
 	{
 		other->GetTransform().SetPosition(targetPosition);
-		other->GetPhysicsObject()->body->setLinearVelocity(Vector3(0, 0, 0));
+	//	other->GetPhysicsObject()->body->setLinearVelocity(Vector3(0, 0, 0));
 	}
 }
+
