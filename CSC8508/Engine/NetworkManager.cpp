@@ -97,7 +97,11 @@ void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, 
 
 void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 {
-	if (id == localPlayer->GetPlayerID()) return;
+	if (isClient) 
+		if (thisClient->GetID() == id) return;
+	
+	
+	
 
 	playerLobby.emplace(id);
 }
