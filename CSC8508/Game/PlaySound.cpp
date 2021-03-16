@@ -14,7 +14,7 @@ enum class PlaySound::PlayMode {
 };
 
 PlaySound::PlaySound(GameObject* object, std::string path, int mode, float volume, float minDistance)
-	:Component(object)
+	:Component("PlaySound", object)
 {
 	soundPath = path;
 	soundVolume = volume;

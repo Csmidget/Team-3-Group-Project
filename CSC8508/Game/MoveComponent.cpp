@@ -5,7 +5,7 @@
 using namespace NCL;
 using namespace CSC8508;
 
-MoveComponent::MoveComponent(GameObject* object, Vector3 direction, float time) : Component(object) {
+MoveComponent::MoveComponent(GameObject* object, Vector3 direction, float time) : Component("MoveComponent", object) {
 	physicsObject = object->GetPhysicsObject();
 	this->timePerDirection = time;
 	this->currentTimer = 0.0f;

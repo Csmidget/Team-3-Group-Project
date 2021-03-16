@@ -3,7 +3,7 @@
 using namespace NCL;
 using namespace CSC8508;
 
-TeleporterComponent::TeleporterComponent(GameObject* object, Maths::Vector3 target) : Component(object) {
+TeleporterComponent::TeleporterComponent(GameObject* object, Maths::Vector3 target) : Component("TeleporterComponent", object) {
 	this->targetPosition = target;
 }
 
