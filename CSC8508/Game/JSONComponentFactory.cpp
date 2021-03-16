@@ -4,8 +4,8 @@
 #include "MoveComponent.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
-#include"PlaySound.h"
-#include"SetListener.h"
+#include "PlaySound.h"
+#include "SetListener.h"
 #include "RingComponenet.h"
 #include "TeleporterComponent.h"
 
