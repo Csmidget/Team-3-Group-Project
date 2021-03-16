@@ -25,10 +25,6 @@ namespace NCL {
 
 		public:
 			PlayerComponent(GameObject* object, Game* game);
-			
-			//Testing constructor
-			PlayerComponent(GameObject* object);
-			
 
 			void Update(float dt);
 			void UpdateControls(float dt);
