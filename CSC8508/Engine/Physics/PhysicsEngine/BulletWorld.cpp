@@ -37,43 +37,28 @@ void BulletWorld::setGravity(NCL::Maths::Vector3 force)
 	dynamicsWorld->setGravity(convertVector3(force));
 }
 
-void BulletWorld::addhingeconstraint(RigidBody* bodyA /*, NCL::Maths::Vector3 point*/){
-	//GameObject* B = AddCubeToWorld(Vector3(0, 20, 0), Vector3(1, 1, 1), 10);
-	//GameObject* bodyA = AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
-	//physics->addhingeconstraint(A->GetPhysicsObject()->body, B->GetPhysicsObject()->body);
-	btVector3 pivot(1, 5, 1);// = convertVector3(point);
+void BulletWorld::addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point){
+
+	//btVector3 pivot(1, 5, 1);// = convertVector3(point);
+	btVector3 pivot = convertVector3(point);
 	btTypedConstraint* p2p = new btPoint2PointConstraint(*bodyA ->returnBody(), pivot);
-	
-	p2p->setBreakingImpulseThreshold((btScalar)10000.2);
+	p2p->setBreakingImpulseThreshold((btScalar)10.2);
 	dynamicsWorld->addConstraint(p2p);
-
-	//p2p->setDbgDrawSize(btScalar(5.f));
-	//btVector3 pivot(1, 1, 1);
-	//btRigidBody* body0 = createRigidBody(1, 1, 1);	//rbA = AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1));
-	//btPoint2PointConstraint(RigidBody & B, const btVector3 & pivotInA);
-	//btPoint2PointConstraint(RigidBody & A, btRigidBody & B, const btVector3 & pivotInA, const btVector3 & pivotInB);
-	//btTransform trans;
-	//float mass = 1.f;
-	//btCollisionShape* shape = new btBoxShape(btVector3(1.0f, 1.0f, 1.0f));
-	//btRigidBody* createRigidBody(float mass, const btTransform & startTransform, btCollisionShape * shape, const btVector4 & color = btVector4(1, 0, 0, 1));
-	//AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1), 0.0f);
-	//btRigidBody* AddRigidBody;
-	// trans.setIdentity();
-	// trans.setOrigin(btVector3(1, 30, -5));
-	 //AddRigidBody(mass, trans, shape);
-	// trans.setOrigin(btVector3(0, 0, -5));
-	 //btRigidBody* body0 = createRigidBody(mass, trans, shape);
-	// trans.setOrigin(btVector3(2 * CUBE_HALF_EXTENTS, 20, 0));
-	 //mass = 1.f;
-	 //	btRigidBody* body1 = 0;//createRigidBody( mass,trans,shape);
-	// btVector3 pivotInA(CUBE_HALF_EXTENTS, CUBE_HALF_EXTENTS, 0);
-	 //btTypedConstraint* p2p = new btPoint2PointConstraint(*body0, pivotInA);
-	// m_dynamicsWorld->addConstraint(p2p);
-	// p2p->setBreakingImpulseThreshold(10.2);
-	 //p2p->setDbgDrawSize(btScalar(5.f));
-	 
-
 }
+
+void BulletWorld::addhingeconstraint(RigidBody* doorbody, NCL::Maths::Vector3 point, NCL::Maths::Vector3 axisA) {
+
+	btHingeConstraint* doorhinge = NULL;
+	//const btVector3 pivot(1.0f, 2.0f, 1.0f);
+	const btVector3 pivot = convertVector3(point);
+	//btVector3 axis(0.0f, 1.0f, 0.0f);
+	btVector3 axis = convertVector3(axisA);
+	doorhinge = new btHingeConstraint(*doorbody->returnBody(), pivot, axis);
+	//doorhinge->setLimit(-3.1415 * 0.25f, 3.1415 * 0.25f);
+	dynamicsWorld->addConstraint(doorhinge);
+}
+
+
 
 //cast a ray between to points and returns the hit gameobject or nullptr if nothing is hit
 GameObject* BulletWorld::rayIntersect(	NCL::Maths::Vector3 from, NCL::Maths::Vector3 to,

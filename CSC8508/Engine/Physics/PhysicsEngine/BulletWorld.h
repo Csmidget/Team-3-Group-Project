@@ -48,7 +48,8 @@ namespace NCL
 									/*OUT*/ NCL::Maths::Vector3 pointHit);
 
 				void addRigidBody(RigidBody* body);
-				void addhingeconstraint(RigidBody* bodyA);
+				void addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point);
+				void addhingeconstraint(RigidBody* doorbody, NCL::Maths::Vector3 point, NCL::Maths::Vector3 axisA);
 				
 				void removeRigidBody(RigidBody* body);
 
