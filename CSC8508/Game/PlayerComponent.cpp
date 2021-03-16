@@ -52,39 +52,6 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 
 	this->game = game;
 }
-NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(object)
-{
-	movementState = PlayerMovementState::WALKING;
-	
-	speed = 50.0f;
-	jump = 0.01f;
-
-	MAX_WALKING_SPEED = 1000.f;
-	MAX_AIR_SPEED = 10000.f;
-
-	jumpCounter = 0;
-	
-	pitch = 20.0f;
-	yaw = 0.0f;
-	cameraDistance = 10.0f;
-	jumping = false;
-	lastCollisionTimer = 0.1f;
-	lockOrientation = false;
-	physicsObject = object->GetPhysicsObject();
-
-	testing = true;
-	testTimer = 0.f;
-	hasJumped = false;
-
-	camera = nullptr;
-	game = nullptr;
-
-	//Audio
-	JumpSound = new Audio::SoundInstance();
-	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
-	JumpSound->Set3D(false);
-	JumpSound->SetVolume(0.4f);
-}
 
 
 void PlayerComponent::Update(float dt) {

@@ -74,8 +74,10 @@ void BulletWorld::Update(float dt)
 
 	for (auto i : rigidList)
 	{
-		i->updateTransform();
+		
 		i->returnBody()->applyDamping((btScalar)dt);
+		i->returnBody()->integrateVelocities((btScalar)dt);
+		i->updateTransform();
 	}
 	
 
