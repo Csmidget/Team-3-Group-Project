@@ -4,6 +4,7 @@ namespace NCL {
 	namespace CSC8508 {
 
 		class Game;
+		class CameraComponent;
 
 		class GameOverState : public PushdownState {
 
@@ -11,14 +12,16 @@ namespace NCL {
 
 			void OnAwake() override;
 			void PrintOutcome();
+			
+			void UpdateCameraControls(float dt);
+
 		public:
 			GameOverState(Game* game, int score);
 
 		protected:
 			Game* game;
 			int gameScore = 0;
-
-			
+			CameraComponent* spectatorCamera;			
 		};
 
 	}
