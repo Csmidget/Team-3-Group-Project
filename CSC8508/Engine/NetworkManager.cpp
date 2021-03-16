@@ -119,7 +119,7 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet)
 {
 	ClientPlayer* player = serverPlayers.find(id)->second;
-	player->Update(*packet);
+	if(player) player->Update(*packet);
 }
 
 void NetworkManager::TestClient()
