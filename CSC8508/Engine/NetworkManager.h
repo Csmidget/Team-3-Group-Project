@@ -59,7 +59,6 @@ namespace NCL {
 			
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
-
 		private:
 			void TestClient();
 			void TestServer();
@@ -92,6 +91,9 @@ namespace NCL {
 			std::queue<int> playerLobby;
 
 			int stateID = 0;
+
+			const int MAX_CLIENTS = 8;
+
 		};
 
 	}

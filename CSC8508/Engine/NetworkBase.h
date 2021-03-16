@@ -101,6 +101,8 @@ public:
 	void RegisterPacketHandler(int msgID, PacketReceiver* receiver) {
 		packetHandlers.insert(std::make_pair(msgID, receiver));
 	}
+
+
 protected:
 	NetworkBase();
 	~NetworkBase();

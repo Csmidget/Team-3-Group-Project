@@ -100,8 +100,6 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 	if (isClient) 
 		if (thisClient->GetID() == id) return;
 	
-	
-	
 
 	playerLobby.emplace(id);
 }
@@ -154,7 +152,7 @@ void NetworkManager::TestClient()
 void NetworkManager::TestServer()
 {
 	TestPacketReceiver serverReceiver("Server");
-	GameServer* server = new GameServer(NetworkBase::GetDefaultPort(), 8, this);
+	GameServer* server = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS, this);
 	server->RegisterPacketHandler(String_Message, &serverReceiver);
 
 	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
@@ -168,7 +166,7 @@ void NetworkManager::TestServer()
 
 void NCL::CSC8508::NetworkManager::StartAsServer()
 {
-	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 8,  this);
+	thisServer = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS,  this);
 	thisServer->RegisterPacketHandler(Received_State, this);
 }
 

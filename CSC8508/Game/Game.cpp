@@ -173,8 +173,9 @@ void Game::InitNetworkPlayers()
 		
 
 		networkManager->AddPlayerToGame(lobby->front(), player);
+		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;
+
 		lobby->pop();
-	
 	}
 
 }
