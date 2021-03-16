@@ -8,6 +8,9 @@ using namespace CSC8508;
 
 CameraComponent* CameraComponent::mainCamera = nullptr;
 
+float CameraComponent::GetPitch() {
+	return camera->GetPitch();
+}
 
 void CameraComponent::SetPitch(float pitch) { 
 	Vector3 rotation = transform->GetOrientation().ToEuler();
@@ -15,6 +18,11 @@ void CameraComponent::SetPitch(float pitch) {
 	transform->SetOrientation(Quaternion::EulerAnglesToQuaternion(rotation.x, rotation.y, rotation.z));
 	camera->SetPitch(pitch); 
 }
+
+float CameraComponent::GetYaw() {
+	return camera->GetYaw();
+}
+
 void CameraComponent::SetYaw(float yaw) { 
 	Vector3 rotation = transform->GetOrientation().ToEuler();
 	rotation.y = yaw;
@@ -25,12 +33,17 @@ void CameraComponent::SetYaw(float yaw) {
 void CameraComponent::SetNearPlane(float nearPlane) { camera->SetNearPlane(nearPlane); }
 void CameraComponent::SetFarPlane(float farPlane) { camera->SetFarPlane(farPlane); }
 
+
+Maths::Vector3 CameraComponent::GetPosition() {
+	return camera->GetPosition();
+}
+
 void CameraComponent::SetPosition(const Maths::Vector3& position) {
 	camera->SetPosition(position);
 	transform->SetPosition(position);
 }
 
-CameraComponent::CameraComponent(GameObject* object, bool main) : Component(object) {
+CameraComponent::CameraComponent(GameObject* object, bool main) : Component("CameraComponent", object) {
 
 	if (mainCamera == nullptr || main)
 		mainCamera = this;
