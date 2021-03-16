@@ -16,7 +16,7 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace Maths;
 
-PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(object) 
+PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("PlayerComponent", object) 
 {
 	movementState = PlayerMovementState::WALKING;
 
@@ -51,6 +51,39 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	JumpSound->SetVolume(0.4f);
 
 	this->game = game;
+}
+NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component("PlayerComponent", object)
+{
+	movementState = PlayerMovementState::WALKING;
+	
+	speed = 50.0f;
+	jump = 100.f;
+
+	MAX_WALKING_SPEED = 1000.f;
+	MAX_AIR_SPEED = 10000.f;
+
+	jumpCounter = 0;
+	
+	pitch = 20.0f;
+	yaw = 0.0f;
+	cameraDistance = 10.0f;
+	jumping = false;
+	lastCollisionTimer = 0.1f;
+	lockOrientation = false;
+	physicsObject = object->GetPhysicsObject();
+
+	testing = true;
+	testTimer = 0.f;
+	hasJumped = false;
+
+	camera = nullptr;
+	game = nullptr;
+
+	//Audio
+	JumpSound = new Audio::SoundInstance();
+	Audio::SoundManager::CreateInstance("jumpSound.wav", JumpSound);
+	JumpSound->Set3D(false);
+	JumpSound->SetVolume(0.4f);
 }
 
 

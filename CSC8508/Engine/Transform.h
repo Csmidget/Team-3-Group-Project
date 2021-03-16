@@ -41,7 +41,7 @@ namespace NCL {
 			}
 			void UpdateMatrix();
 
-			void PrintDebugInfo(int& currLine, float lineSpacing) const;
+			std::vector<std::string> GetDebugInfo() const;
 
 		protected:
 			GameObject* gameObject;

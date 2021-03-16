@@ -77,14 +77,6 @@ bool Game::UpdateGame(float dt) {
 
 	UpdateKeys();
 
-
-	//if (useGravity) {
-	//	Debug::Print("(G)ravity on", Vector2(5, 95));
-	//}
-	//else {
-	//	Debug::Print("(G)ravity off", Vector2(5, 95));
-	//}
-
 	if (!paused) {
 		physics->Update(dt);
 
@@ -97,8 +89,11 @@ bool Game::UpdateGame(float dt) {
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
-
 	return true;
+}
+
+GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
+	return physics->rayIntersect(from, to, Vector3());
 }
 
 void Game::UpdateKeys() {

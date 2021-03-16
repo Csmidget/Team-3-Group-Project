@@ -4,6 +4,7 @@
 #include "Ray.h"
 #include "CollisionDetection.h"
 #include "QuadTree.h"
+#include "GameObject.h"
 
 namespace NCL {
 		class Camera;
@@ -69,8 +70,34 @@ namespace NCL {
 
 			void FlipDisplayQuadTree() { displayQuadtree = !displayQuadtree; }
 
-		protected:
+			//This is very costly and should not be done regularly.
+			template<class T>
+			std::vector<GameObject*> GetObjectsWithComponent() const {
+				static_assert(std::is_base_of<Component, T>::value, "Provided type is not a subclass of component");
 
+				std::vector<GameObject*> objects;
+				for (auto gameObject : gameObjects) {
+					if (gameObject->GetComponent<T>()) {
+						objects.push_back(gameObject);
+					}
+				}
+				return objects;
+			}
+
+			template<class T>
+			std::vector<T*> GetComponentsOfType() const {
+				static_assert(std::is_base_of<Component, T>::value, "Provided type is not a subclass of component");
+
+				std::vector<T*> components;
+				for (auto gameObject : gameObjects) {
+					T* component = gameObject->GetComponent<T>();
+					if (component != nullptr)
+						components.push_back(component);
+				}
+				return components;
+			}
+
+		protected:
 			std::vector<GameObject*> newGameObjects;
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;
@@ -86,4 +113,3 @@ namespace NCL {
 		};
 	}
 }
-
