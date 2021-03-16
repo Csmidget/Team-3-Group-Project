@@ -67,8 +67,10 @@ void GameClient::UpdateClient() {
 				
 			}
 			if (packet->type == Player_Delta_State || packet->type == Player_Full_State) {
+				int peer = packet->type == Player_Delta_State ? ((PlayerDeltaPacket*)packet)->playerID : ((PlayerFullPacket*)packet)->playerID;
+				manager->UpdateServerPlayer(peer, packet);
+
 				
-			
 			}
 
 		}
