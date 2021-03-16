@@ -74,6 +74,7 @@ void GameServer::UpdateServer() {
 
 		if (type == ENetEventType::ENET_EVENT_TYPE_CONNECT) {
 			std::cout << "Server: New client connected" << std::endl;
+			std::cout << "Peer ID = " << std::to_string(peer)<<std::endl;
 			NewPlayerPacket player(peer);
 			SendGlobalPacket(player);
 			manager->AddPlayerToLobby(peer);
