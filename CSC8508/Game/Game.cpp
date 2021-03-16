@@ -193,7 +193,7 @@ void Game::InitWorld(std::string levelName) {
 	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	player->AddComponent<PlayerComponent>(this);
 	AddFloorToWorld(Vector3(0, 0, 0));
-	GameObject* test = AddCubeToWorld(Vector3(1, 1, 1), Vector3(1, 1, 1));
+	GameObject* test = AddCubeToWorld(Vector3(1, 5, 1), Vector3(1, 1, 1));
 	physics->addhingeconstraint(test->GetPhysicsObject()->body);
 	//world->Start();
 

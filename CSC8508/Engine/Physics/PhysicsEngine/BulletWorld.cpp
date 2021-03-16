@@ -37,15 +37,17 @@ void BulletWorld::setGravity(NCL::Maths::Vector3 force)
 	dynamicsWorld->setGravity(convertVector3(force));
 }
 
-void BulletWorld::addhingeconstraint(RigidBody* bodyA){
+void BulletWorld::addhingeconstraint(RigidBody* bodyA /*, NCL::Maths::Vector3 point*/){
 	//GameObject* B = AddCubeToWorld(Vector3(0, 20, 0), Vector3(1, 1, 1), 10);
 	//GameObject* bodyA = AddCubeToWorld(Vector3(0, 30, 0), Vector3(1, 1, 1), 10);
 	//physics->addhingeconstraint(A->GetPhysicsObject()->body, B->GetPhysicsObject()->body);
-	btVector3 pivot(1, 1, 1);
+	btVector3 pivot(1, 5, 1);// = convertVector3(point);
 	btTypedConstraint* p2p = new btPoint2PointConstraint(*bodyA ->returnBody(), pivot);
-	m_dynamicsWorld->addConstraint(p2p);
-	p2p->setBreakingImpulseThreshold(10.2);
-	p2p->setDbgDrawSize(btScalar(5.f));
+	
+	p2p->setBreakingImpulseThreshold((btScalar)10000.2);
+	dynamicsWorld->addConstraint(p2p);
+
+	//p2p->setDbgDrawSize(btScalar(5.f));
 	//btVector3 pivot(1, 1, 1);
 	//btRigidBody* body0 = createRigidBody(1, 1, 1);	//rbA = AddCubeToWorld(Vector3(0, 10, 0), Vector3(1, 1, 1));
 	//btPoint2PointConstraint(RigidBody & B, const btVector3 & pivotInA);

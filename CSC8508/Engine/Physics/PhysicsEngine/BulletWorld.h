@@ -61,8 +61,7 @@ namespace NCL
 				btCollisionDispatcher* dispatcher;
 				btBroadphaseInterface* overlappingPairCache;
 				btSequentialImpulseConstraintSolver* solver;
-				btDiscreteDynamicsWorld* m_dynamicsWorld;
-
+			
 				btDiscreteDynamicsWorld* dynamicsWorld;
 
 				std::vector<RigidBody*> rigidList;
