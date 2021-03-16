@@ -1,5 +1,9 @@
 #include "RigidBody.h"
 #include "BulletWorld.h"
+#include "../../CSC8508/Engine/Debug.h"
+
+#include <sstream>
+#include <iomanip>
 
 using namespace NCL;
 using namespace CSC8508;
@@ -259,4 +263,53 @@ void RigidBody::makeKinematic()
 		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	}
 
+}
+
+std::vector<std::string> RigidBody::debugInfo()
+{
+	
+	vector<std::string> returnInfo;
+	returnInfo.push_back("Physics Info");
+	//Vector3 mass = convertbtVector3();
+
+	std::stringstream stream;
+	stream << std::fixed << std::setprecision(2);
+	stream << "  Mass: " << body->getMass();
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	Vector3 force = convertbtVector3(body->getTotalForce());
+	Debug::DrawLine(transform->GetPosition(), force.Normalised() * 10, NCL::Maths::Vector4(1, 0, 0, 1));
+
+	stream << "  Force Vector: " << force.x << "," << force.y << "," << force.z;
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	int shape = colShape->getShapeType();
+	switch (shape)
+	{
+	case BOX_SHAPE_PROXYTYPE: 
+		stream << "Collision Shape:  Box";
+		break;
+	case SPHERE_SHAPE_PROXYTYPE:
+		stream << "Collision Shape:  Sphere";
+		break;
+	case CAPSULE_SHAPE_PROXYTYPE:
+		stream << "Collision Shape:  Capsule";
+		break;
+	case CONE_SHAPE_PROXYTYPE:
+		stream << "Collision Shape:  Cone";
+		break;
+	case CYLINDER_SHAPE_PROXYTYPE:
+		stream << "Collision Shape:  Cylinder";
+		break;
+	default:
+		stream << "Collision Shape:  none Primitive";
+		break;
+	}
+	
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	return returnInfo;
 }

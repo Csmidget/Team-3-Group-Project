@@ -189,8 +189,8 @@ void NCL::CSC8508::PlayerComponent::Jump()
 			JumpSound->Play();
 			movementState = (PlayerMovementState)(movementState + 1);
 			Vector3 currentForce = physicsObject->body->getForce();
-			//physicsObject->body->clearForces();
-			//physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
+			physicsObject->body->clearForces();
+			physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
 			//physicsObject->body->addImpulse(Vector3(0, 1, 0) /** 10*/);
 			jumpCounter = 3;
 		}
