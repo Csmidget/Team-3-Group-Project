@@ -20,7 +20,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 {
 	movementState = PlayerMovementState::WALKING;
 
-	jump = 150.f;
+	jump = 100.f;
 
 	MAX_WALKING_SPEED = 10.f;
 	MAX_AIR_SPEED = 10000.f;
@@ -35,9 +35,6 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 	lockOrientation = false;
 	physicsObject = object->GetPhysicsObject();
 
-	testing = false;
-	testTimer = 0.f;
-	hasJumped = false;
 
 	camera = CameraComponent::GetMain();
 
@@ -62,15 +59,6 @@ void PlayerComponent::Update(float dt) {
 	{
 		UpdateControls(dt);
 	}
-	else
-	{
-		testTimer += dt;
-		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::NUM0))
-		{
-			testing != testing;
-		}
-		Testing();
-	}
 }
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
@@ -88,7 +76,6 @@ void NCL::CSC8508::PlayerComponent::OnCollisionStay(GameObject* otherObject)
 
 void NCL::CSC8508::PlayerComponent::OnCollisionEnd(GameObject* otherObject)
 {
-	hasJumped = true;
 	jumping = true;
 }
 
@@ -171,9 +158,13 @@ void NCL::CSC8508::PlayerComponent::Jump()
 void NCL::CSC8508::PlayerComponent::AccelerateTo(Vector3 targetVelocity, float dt)
 {
 	Vector3 currentVelocity = physicsObject->body->getLinearVelocity();
-	Vector3 delta = targetVelocity - currentVelocity;
-	Vector3 deltaAccel = (targetVelocity - currentVelocity) / dt;
-	float accelMag = std::min(deltaAccel.Length(), (Vector3::Dot(currentVelocity, delta) > 0 ? MAX_ACCELERATION : MAX_DECELERATION));
+	Vector3 currentVelocityXZ = Vector3(currentVelocity.x, 0, currentVelocity.z);
+
+	Vector3 delta = targetVelocity - currentVelocityXZ;
+	Vector3 deltaAccel = (targetVelocity - currentVelocityXZ) / dt;
+	float accelMag = std::min(deltaAccel.Length(), (Vector3::Dot(currentVelocityXZ, delta) > 0 ? MAX_ACCELERATION : MAX_DECELERATION));
+
+	std::cout << "deltaAccel normalised = " << deltaAccel.Normalised() << std::endl;
 
 	Vector3 acceleration = deltaAccel.Normalised() * accelMag;
 	physicsObject->body->addForce(acceleration / physicsObject->GetInverseMass()  );
@@ -189,43 +180,8 @@ void PlayerComponent::UpdateControls(float dt)
 	Movement();
 	
 
-	AccelerateTo(direction * MAX_WALKING_SPEED + Vector3(0, physicsObject->body->getLinearVelocity().y, 0), dt);
+	AccelerateTo(direction * MAX_WALKING_SPEED, dt);
 
 	Jump();
 }
 
-void NCL::CSC8508::PlayerComponent::Testing()
-{
-	if (testing)
-	{
-		TestMovement(); // around 50
-		//TestStaticJumping(); // around 200
-		//TestRunningJump();
-	}
-}
-
-void NCL::CSC8508::PlayerComponent::TestMovement()
-{
-	physicsObject->AddForce(transform->GetOrientation() * Vector3(0, 0, 1) * speed);
-}
-
-void NCL::CSC8508::PlayerComponent::TestStaticJumping()
-{
-	if (!jumping)
-	{
-		testTimer = 0.f;
-		physicsObject->AddForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump);
-	}
-}
-
-void NCL::CSC8508::PlayerComponent::TestRunningJump()
-{
-	if (testTimer < 2)
-	{
-		physicsObject->AddForce(transform->GetOrientation() * Vector3(0, 0, 1) * speed);
-	}
-	else if (!hasJumped)
-	{
-		physicsObject->AddForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump);
-	}
-}
