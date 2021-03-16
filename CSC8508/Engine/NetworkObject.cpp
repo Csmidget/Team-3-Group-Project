@@ -60,9 +60,9 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 }
 
 bool NetworkObject::ReadFullPacket(FullPacket &p) {
-	if (p.fullState.stateID < lastFullState.stateID) {
-		return false; // received an 'old' packet, ignore!
-	}
+	//if (p.fullState.stateID < lastFullState.stateID) {
+//		return false; // received an 'old' packet, ignore!
+//	}
 	lastFullState = p.fullState;
 
 	object.GetTransform()

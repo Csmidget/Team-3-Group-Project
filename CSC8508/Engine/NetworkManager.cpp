@@ -114,6 +114,8 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 //	}
 //}
 
+
+
 void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet)
 {
 	ClientPlayer* player = serverPlayers.find(id)->second;
@@ -125,7 +127,7 @@ void NetworkManager::TestClient()
 	string clientName = "Client1";
 	
 	TestPacketReceiver clientReceiver(clientName);
-	GameClient* client = new GameClient();
+	GameClient* client = new GameClient(this);
 	client->RegisterPacketHandler(String_Message, &clientReceiver);
 	bool canConnect = client->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort());
 
@@ -156,18 +158,19 @@ void NetworkManager::TestServer()
 
 void NCL::CSC8508::NetworkManager::StartAsServer()
 {
-	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 4,  this);
+	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 8,  this);
 	thisServer->RegisterPacketHandler(Received_State, this);
 }
 
 void NCL::CSC8508::NetworkManager::StartAsClient()
 {
-	thisClient = new GameClient();
+	thisClient = new GameClient(this);
 	thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort());
 	thisClient->RegisterPacketHandler(Delta_State, this);
 	thisClient->RegisterPacketHandler(Full_State, this);
 	thisClient->RegisterPacketHandler(Player_Connected, this);
 	thisClient->RegisterPacketHandler(Player_Disconnected, this);
+	thisClient->RegisterPacketHandler(Player_Count, this);
 
 }
 
@@ -191,30 +194,35 @@ void NetworkManager::UpdateAsClient(float dt)
 {
 	if (!thisClient) return;
 	thisClient->UpdateClient();
+	
 
-//	ClientPacket newPacket;
-/*
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE)) {
-		//fire button pressed!
-		newPacket.buttonstates[0] = 1;
-		newPacket.lastID = 0; //You'll need to work this out somehow...
-	}*/
 	GamePacket* newPacket;
 
 	if (!localPlayer) return;
 	localPlayer->WritePacket(&newPacket, dt, stateID);
 	thisClient->SendPacket(*newPacket);
-	stateID++;
+	//stateID++;
+	delete newPacket;
 }
 
 void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)
 {
-	std::vector<GameObject*>::const_iterator first;
-	std::vector<GameObject*>::const_iterator last;
+	for (int i = 0; i < serverPlayers.size(); i++) {
+		GamePacket* newPacket;
+		serverPlayers.at(i)->WritePacket(&newPacket, deltaFrame, stateID);
+		thisServer->SendGlobalPacket(*newPacket);
+		delete newPacket;
+		
+
+	}
+	//stateID++;
+	//std::vector<GameObject*>::const_iterator first;
+	//std::vector<GameObject*>::const_iterator last;
 
 	//world->GetObjectIterators(first, last);
 
-	for (auto i = first; i != last; ++i) {
+	//for (auto i = first; i != last; ++i) {
+		
 		//NetworkObject* o = (*i)->GetNetworkObject();
 		//if (!o) {
 		//	continue;
@@ -230,7 +238,7 @@ void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)
 		//	thisServer->SendGlobalPacket(*newPacket);
 		//	delete newPacket;
 		//}
-	}
+	//}
 }
 
 void NCL::CSC8508::NetworkManager::UpdateMinimumState()

@@ -1,17 +1,21 @@
 #include "GameClient.h"
+#include "NetworkManager.h"
+
 #include <iostream>
 #include <string>
 
 using namespace NCL;
 using namespace CSC8508;
 
-GameClient::GameClient()	{
+GameClient::GameClient(NetworkManager* manager)	{
 	netHandle = enet_host_create(nullptr, 1, 1, 0, 0);
+	this->manager = manager;
 }
 
 GameClient::~GameClient()	{
 	//threadAlive = false;
 	//updateThread.join();
+
 	enet_host_destroy(netHandle);
 }
 
@@ -52,6 +56,20 @@ void GameClient::UpdateClient() {
 			ProcessPacket(packet);
 
 			if (packet->type == Player_Connected) id = ((NewPlayerPacket*)packet)->playerID;
+			if (packet->type == Player_Count) {				
+					int* ids = ((PlayerCountPacket*)packet)->playerIDs;
+					for (int i = 0; i < 8; i++) {
+						int id = *(ids + i);
+						if (id == -1) continue;
+						
+						manager->AddPlayerToLobby(id);
+					}
+				
+			}
+			if (packet->type == Player_Delta_State || packet->type == Player_Full_State) {
+				
+			
+			}
 
 		}
 		enet_packet_destroy(event.packet);

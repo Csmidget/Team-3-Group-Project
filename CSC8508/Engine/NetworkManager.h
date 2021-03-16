@@ -59,6 +59,7 @@ namespace NCL {
 			
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
+
 		private:
 			void TestClient();
 			void TestServer();
@@ -75,7 +76,7 @@ namespace NCL {
 
 			bool const OFFLINE_MODE = false;
 			bool const TEST_MODE = false;
-			bool isClient = true;
+			bool isClient = false;
 
 			GameServer* thisServer;
 			GameClient* thisClient;
