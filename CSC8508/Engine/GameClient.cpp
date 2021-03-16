@@ -56,16 +56,8 @@ void GameClient::UpdateClient() {
 			ProcessPacket(packet);
 
 			if (packet->type == Player_Connected) id = ((NewPlayerPacket*)packet)->playerID;
-			if (packet->type == Player_Count) {				
-					int* ids = ((PlayerCountPacket*)packet)->playerIDs;
-					for (int i = 0; i < 8; i++) {
-						int id = *(ids + i);
-						if (id == -1) continue;
-						
-						manager->AddPlayerToLobby(id);
-					}
-				
-			}
+			if (packet->type == Player_Count) UpdateClientLobby(((PlayerCountPacket*)packet)->playerIDs);
+			
 			if (packet->type == Player_Delta_State || packet->type == Player_Full_State) {
 				int peer = packet->type == Player_Delta_State ? ((PlayerDeltaPacket*)packet)->playerID : ((PlayerFullPacket*)packet)->playerID;
 				manager->UpdateServerPlayer(peer, packet);
@@ -75,6 +67,18 @@ void GameClient::UpdateClient() {
 
 		}
 		enet_packet_destroy(event.packet);
+	}
+}
+
+void NCL::CSC8508::GameClient::UpdateClientLobby(int* playerIDs)
+{
+	while (!manager->GetPlayerLobby()->empty()) //empty queue
+				manager->GetPlayerLobby()->pop();
+	for (int i = 0; i < 8; i++) {
+		int id = *(playerIDs + i);
+		if (id == -1) continue;
+
+		manager->AddPlayerToLobby(id);
 	}
 }
 

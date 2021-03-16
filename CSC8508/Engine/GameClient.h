@@ -26,7 +26,8 @@ namespace NCL {
 
 			ENetPeer*	netPeer;
 			int id;
-
+			
+			void UpdateClientLobby(int* playerIDs);
 			//std::atomic<bool>	threadAlive;
 			//std::thread			updateThread;
 		};
