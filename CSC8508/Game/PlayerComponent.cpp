@@ -200,7 +200,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 0.2, 0) * jump * jumpCounter);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 0.3, 0) * jump * jumpCounter);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}
