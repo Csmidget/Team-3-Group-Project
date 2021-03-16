@@ -16,9 +16,13 @@ DebugState::DebugState(Game* game) {
 
 PushdownState::PushdownResult DebugState::OnUpdate(float dt, PushdownState** newState) {
 
-	if(!selectionMode)
+	if (!selectionMode) {
+		Debug::Print("Hit Q to enter selection mode", Vector2(2, 90));
 		UpdateCameraControls(dt);
+	}
 	else {
+		Debug::Print("Hit Q to enter camera mode", Vector2(2, 90));
+
 		if (Window::GetMouse()->ButtonPressed(NCL::MouseButtons::LEFT)) {
 			const Camera& cam = (*debugCamera->GetCamera());
 			auto r = CollisionDetection::BuildRayFromMouse(cam);
@@ -37,7 +41,7 @@ PushdownState::PushdownResult DebugState::OnUpdate(float dt, PushdownState** new
 		CameraComponent::SetMain(debugCamera);
 	}
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::G)) {
+	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::Q)) {
 		selectionMode = !selectionMode;
 		Window::GetWindow()->ShowOSPointer(selectionMode);
 		Window::GetWindow()->LockMouseToWindow(!selectionMode);
@@ -66,7 +70,7 @@ void DebugState::DisplayDebugInfo() {
 	int count = std::min(maxLines, (int)objectDebugInfo.size() - debugInfoScroll);
 
 	for (int i = 0; i < count; i++) {
-		Debug::Print(objectDebugInfo[debugInfoScroll + i], Vector2(5, 4 * i));
+		Debug::Print(objectDebugInfo[debugInfoScroll + i], Vector2(2,4 + 4 * i));
 	}
 }
 
@@ -122,6 +126,8 @@ void DebugState::OnAwake() {
 	debugCameraObject = new GameObject();
 	debugCamera = debugCameraObject->AddComponent<CameraComponent>(true);
 	debugCamera->SetPosition(oldMain->GetCamera()->GetPosition());
+	debugCamera->SetPitch(oldMain->GetPitch());
+	debugCamera->SetYaw(oldMain->GetYaw());
 	debugCamera->SetFarPlane(1000.0f);
 
 	Window::GetWindow()->ShowOSPointer(selectionMode);
