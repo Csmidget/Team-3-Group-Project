@@ -16,7 +16,7 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace Maths;
 
-PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(object) 
+PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("PlayerComponent", object) 
 {
 	movementState = PlayerMovementState::WALKING;
 
@@ -52,7 +52,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(obj
 
 	this->game = game;
 }
-NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component(object)
+NCL::CSC8508::PlayerComponent::PlayerComponent(GameObject* object) : Component("PlayerComponent", object)
 {
 	movementState = PlayerMovementState::WALKING;
 	
@@ -108,9 +108,6 @@ void PlayerComponent::Update(float dt) {
 		}
 		Testing();
 	}
-
-	//std::cout << movementState << std::endl;
-	//ClampVelocity();
 }
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
@@ -209,14 +206,6 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 }
 
-void NCL::CSC8508::PlayerComponent::ClampVelocity()
-{
-	//Seperate out into walking and jumping
-	Vector3 currentVelocity = physicsObject->GetLinearVelocity();
-	float magnitude = Clamp(currentVelocity.Length(), 0.f ,jumping ? MAX_AIR_SPEED : MAX_WALKING_SPEED);
-
-	physicsObject->SetLinearVelocity(currentVelocity.Normalised() * magnitude);
-}
 
 void NCL::CSC8508::PlayerComponent::AccelerateTo(Vector3 targetVelocity, float dt)
 {

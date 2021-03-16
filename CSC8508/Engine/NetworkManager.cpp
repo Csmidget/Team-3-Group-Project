@@ -22,11 +22,10 @@ NetworkManager::NetworkManager()
 	if (OFFLINE_MODE) return;
 	
 	NetworkBase::Initialise();
-
 	if(TEST_MODE) isClient ? TestClient() : TestServer();
 
 	isClient ? StartAsClient() : StartAsServer();
-
+	
 }
 
 NetworkManager::~NetworkManager()
@@ -39,7 +38,8 @@ NetworkManager::~NetworkManager()
 void NetworkManager::Update(float dt)
 {
 	if (OFFLINE_MODE) return;
-	
+	timeToNextPacket -= dt;
+
 	if (timeToNextPacket < 0) {
 		isClient ? UpdateAsClient(dt) : UpdateAsServer(dt);	
 		timeToNextPacket += 1.0f / 20.0f; //20hz server/client update
@@ -95,6 +95,11 @@ void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, 
 	}
 }
 
+void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
+{
+	playerLobby.emplace(id);
+}
+
 //void NCL::CSC8508::NetworkManager::OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b)
 //{
 //	if (thisServer) { //detected a collision between players!
@@ -108,6 +113,12 @@ void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, 
 //		thisClient->SendPacket(newPacket);
 //	}
 //}
+
+void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet)
+{
+	ClientPlayer* player = serverPlayers.find(id)->second;
+	player->Update(*packet);
+}
 
 void NetworkManager::TestClient()
 {
@@ -131,7 +142,7 @@ void NetworkManager::TestClient()
 void NetworkManager::TestServer()
 {
 	TestPacketReceiver serverReceiver("Server");
-	GameServer* server = new GameServer(NetworkBase::GetDefaultPort(), 8);
+	GameServer* server = new GameServer(NetworkBase::GetDefaultPort(), 8, this);
 	server->RegisterPacketHandler(String_Message, &serverReceiver);
 
 	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
@@ -145,7 +156,7 @@ void NetworkManager::TestServer()
 
 void NCL::CSC8508::NetworkManager::StartAsServer()
 {
-	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 4);
+	thisServer = new GameServer(NetworkBase::GetDefaultPort(), 4,  this);
 	thisServer->RegisterPacketHandler(Received_State, this);
 }
 
@@ -157,11 +168,14 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 	thisClient->RegisterPacketHandler(Full_State, this);
 	thisClient->RegisterPacketHandler(Player_Connected, this);
 	thisClient->RegisterPacketHandler(Player_Disconnected, this);
+
 }
 
 void NetworkManager::UpdateAsServer(float dt)
 {
 	if (!thisServer) return;
+	thisServer->UpdateServer();
+	
 
 	packetsToSnapshot--;
 	if (packetsToSnapshot < 0) {
@@ -176,15 +190,21 @@ void NetworkManager::UpdateAsServer(float dt)
 void NetworkManager::UpdateAsClient(float dt)
 {
 	if (!thisClient) return;
+	thisClient->UpdateClient();
 
-	ClientPacket newPacket;
-
+//	ClientPacket newPacket;
+/*
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE)) {
 		//fire button pressed!
 		newPacket.buttonstates[0] = 1;
 		newPacket.lastID = 0; //You'll need to work this out somehow...
-	}
-	thisClient->SendPacket(newPacket);
+	}*/
+	GamePacket* newPacket;
+
+	if (!localPlayer) return;
+	localPlayer->WritePacket(&newPacket, dt, stateID);
+	thisClient->SendPacket(*newPacket);
+	stateID++;
 }
 
 void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)

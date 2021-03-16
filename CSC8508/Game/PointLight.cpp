@@ -3,9 +3,9 @@
 
 PointLight::PointLight(std::vector<glm::vec3>& position) :
 	position(position),
-	ambient(glm::vec3(5.0)),
-	diffuse(glm::vec3(5.0)),
-	specular(glm::vec3(5.0)),
+	ambient(glm::vec3(10.0)),
+	diffuse(glm::vec3(10.0)),
+	specular(glm::vec3(10.0)),
 	constant(0.09),
 	linear(0.09),
 	quadratic(0.032)
@@ -25,6 +25,7 @@ void PointLight::render(NCL::Rendering::OGLShader* lightshader)
 		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("pointLights[" + std::to_string(index) + "].constant").c_str()), constant);
 		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("pointLights[" + std::to_string(index) + "].linear").c_str()), linear);
 		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("pointLights[" + std::to_string(index) + "].quadratic").c_str()), quadratic);
+		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("pointLights[" + std::to_string(index) + "].farPlane").c_str()), farPlane);
 	}
 
 }

@@ -3,6 +3,8 @@
 #include "../../Common/Vector3.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include <string>
+#include <queue>
+
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
 #include "../Engine/NetworkManager.h"
 #include"../Audio/SoundInstance.h"
@@ -43,6 +45,8 @@ namespace NCL {
 			GameObject* AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false, bool respawning = false);
 			GameObject* AddCameraToWorld(const Vector3& position);
 
+			GameObject* Raycast(const Vector3& from, const Vector3& to) const;
+
 			GameWorld* GetWorld() const { return world; }
 			physics::BulletWorld* GetPhysics() const { return physics; }
 
@@ -61,6 +65,8 @@ namespace NCL {
 			void UpdateKeys();
 						
 			void InitFromJSON(std::string fileName);
+
+			void InitNetworkPlayers();
 
 			GameTechRenderer*	renderer;
 			GameWorld*			world;

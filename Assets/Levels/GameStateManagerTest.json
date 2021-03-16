@@ -11,6 +11,68 @@
 
         ]
     },{
+        "name": "Player",
+        "isStatic": false,
+        "tag": "Player",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.190000057220459,
+                "y": 1.5720000267028809,
+                "z": 5.179999828338623
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "playerMat.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 3.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Player"
+            },
+            {
+                "name": "ScoreComponent"
+            },
+            {
+                "name": "SetListener",
+                "ID": 0
+            }
+        ]
+    },{
         "name": "Goal",
         "isStatic": true,
         "tag": "Goal",
