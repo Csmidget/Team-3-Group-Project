@@ -16,7 +16,7 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace Maths;
 
-PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component(object) 
+PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Player", object) 
 {
 	movementState = PlayerMovementState::WALKING;
 
