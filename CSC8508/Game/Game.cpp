@@ -180,6 +180,7 @@ void Game::InitNetworkPlayers()
 
 void Game::InitWorld() {
 	InitWorld("DesouzaTest.json");
+
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -187,11 +188,13 @@ void Game::InitWorld(std::string levelName) {
 
 	InitCamera();
 
-	InitFromJSON(levelName);
+	//InitFromJSON(levelName);
 	
-	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	//player->AddComponent<PlayerComponent>(this);
-	
+	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	player->AddComponent<PlayerComponent>(this);
+	AddFloorToWorld(Vector3(0, 0, 0));
+	GameObject* test = AddCubeToWorld(Vector3(1, 1, 1), Vector3(1, 1, 1));
+	physics->addhingeconstraint(test->GetPhysicsObject()->body);
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
@@ -383,6 +386,8 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 void Game::InitDefaultFloor() {
 	AddFloorToWorld(Vector3(0, -2, 0));
 }
+
+
 
 GameObject* Game::AddPlayerToWorld(const Vector3& position) {
 	float meshSize = 3.0f;
