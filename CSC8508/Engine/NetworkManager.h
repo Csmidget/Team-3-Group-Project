@@ -76,7 +76,7 @@ namespace NCL {
 
 			bool const OFFLINE_MODE = false;
 			bool const TEST_MODE = false;
-			bool isClient = true;
+			bool isClient = false;
 
 			GameServer* thisServer;
 			GameClient* thisClient;
