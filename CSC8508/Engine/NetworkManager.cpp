@@ -118,8 +118,12 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 
 void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet)
 {
-	ClientPlayer* player = serverPlayers.find(id)->second;
-	if(player) player->Update(*packet);
+	std::map<int, ClientPlayer*>::iterator it;
+	it = serverPlayers.find(id);
+	if (it == serverPlayers.end()) return;
+
+	ClientPlayer* player = it->second;
+	if (player && packet) player->Update(*packet);
 }
 
 void NetworkManager::TestClient()
