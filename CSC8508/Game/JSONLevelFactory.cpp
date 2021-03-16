@@ -54,7 +54,7 @@ void SetRenderObjectFromJson(GameObject* gameObject, json renderObjectJson, Game
 	ShaderBase* shader = resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");//renderObjectJson["vertex"],renderObjectJson["fragment"]);
 	gameObject->GetTransform().SetScale(gameObject->GetTransform().GetScale() * renderScale);
 
-	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, meshMat, tex, shader));
+	gameObject->SetRenderObject(new RenderObject(&gameObject->GetTransform(), mesh, meshMat, tex, nullptr, shader));
 }
 
 void SetPhysicsObjectFromJson(Game* game, GameObject* gameObject, json physicsObjectJson, json colliderObjectJson)

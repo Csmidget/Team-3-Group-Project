@@ -368,8 +368,6 @@ void GameTechRenderer::RenderCamera() {
 	//	glUniform1i(shadowTexLocation, 1);
 
 
-
-
 		Matrix4 modelMatrix = (*i).GetTransform()->GetMatrix();
 		glUniformMatrix4fv(modelLocation, 1, false, (float*)&modelMatrix);
 

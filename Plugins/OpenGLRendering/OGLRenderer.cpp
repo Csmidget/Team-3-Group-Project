@@ -155,6 +155,15 @@ void OGLRenderer::BindMesh(MeshGeometry*m) {
 	}
 }
 
+void OGLRenderer::BindAnimation(MeshAnimation* a) {
+	if (!a) {
+		boundAnimation = nullptr;
+	}
+	else {
+		boundAnimation = a;
+	}
+}
+
 void OGLRenderer::BindMaterial(MeshMaterial* m) {
 	if (!m) {
 		boundMaterial = nullptr;
@@ -173,9 +182,14 @@ void OGLRenderer::DrawBoundMesh(int subLayer, int numInstances) {
 		std::cout << __FUNCTION__ << " has been called without a bound shader!" << std::endl;
 		return;
 	}
+
 	GLuint	mode	= 0;
 	int		count	= 0;
 	int		offset	= 0;
+
+	if (boundAnimation) {
+
+	}
 
 	if (boundMesh->GetSubMeshCount() == 0) {
 		if (boundMesh->GetIndexCount() > 0) {

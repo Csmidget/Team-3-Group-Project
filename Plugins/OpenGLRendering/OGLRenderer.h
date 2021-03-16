@@ -28,6 +28,7 @@ https://research.ncl.ac.uk/game/
 namespace NCL {
 	class MeshGeometry;
 	class MeshMaterial;
+	class MeshAnimation;
 
 	namespace Maths {
 		class Matrix4;
@@ -79,6 +80,7 @@ namespace NCL {
 			void BindShader(ShaderBase*s);
 			void BindTextureToShader(const TextureBase*t, const std::string& uniform, int texUnit) const;
 			void BindMesh(MeshGeometry*m);
+			void BindAnimation(MeshAnimation* a);
 			void BindMaterial(MeshMaterial* m);
 			void UpdateBoundMaterialLayer(int layer = 0);
 			void DrawBoundMesh(int subLayer = 0, int numInstances = 1);
@@ -107,6 +109,7 @@ namespace NCL {
 
 			OGLMesh*		boundMesh;
 			MeshMaterial*	boundMaterial;
+			MeshAnimation*	boundAnimation;
 			OGLShader*		boundShader;
 
 			OGLShader*  debugShader;

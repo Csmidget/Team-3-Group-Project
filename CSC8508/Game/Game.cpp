@@ -223,7 +223,7 @@ GameObject* Game::AddFloorToWorld(const Vector3& position) {
 		.SetScale(floorSize * 2)
 		.SetPosition(position);
 
-	floor->SetRenderObject(new RenderObject(&floor->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	floor->SetRenderObject(new RenderObject(&floor->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	floor->SetPhysicsObject(new PhysicsObject(&floor->GetTransform(), floor->GetBoundingVolume()));
 
 	//testing adding bullet physics object
@@ -264,7 +264,7 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 		.SetScale(sphereSize)
 		.SetPosition(position);
 
-	sphere->SetRenderObject(new RenderObject(&sphere->GetTransform(), resourceManager->LoadMesh("sphere.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	sphere->SetRenderObject(new RenderObject(&sphere->GetTransform(), resourceManager->LoadMesh("sphere.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	sphere->SetPhysicsObject(new PhysicsObject(&sphere->GetTransform(), sphere->GetBoundingVolume()));
 
 	//testing adding bullet physics object
@@ -288,7 +288,7 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 		.SetScale(Vector3(radius* 2, halfHeight, radius * 2))
 		.SetPosition(position);
 
-	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), resourceManager->LoadMesh("capsule.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), resourceManager->LoadMesh("capsule.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	capsule->SetPhysicsObject(new PhysicsObject(&capsule->GetTransform(), capsule->GetBoundingVolume()));
 
 	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
@@ -312,7 +312,7 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 		.SetPosition(position)
 		.SetScale(dimensions * 2);
 
-	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
 
 	//testing adding bullet physics object
@@ -339,7 +339,7 @@ GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions, 
 		.SetPosition(position)
 		.SetScale(dimensions * 2);
 
-	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"), nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"), nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
 
 	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
@@ -359,7 +359,7 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 		.SetPosition(position)
 		.SetScale(dimensions * 2);
 
-	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"), resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
 
 	//testing adding bullet physics object
@@ -394,10 +394,10 @@ GameObject* Game::AddPlayerToWorld(const Vector3& position) {
 		.SetPosition(position);
 
 	if (rand() % 2) {
-		character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("Male1.msh"),nullptr,  nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+		character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("Male1.msh"),nullptr,  nullptr,nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	}
 	else {
-		character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("courier.msh"),nullptr, nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+		character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("courier.msh"),nullptr, nullptr,nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	}
 	character->SetPhysicsObject(new PhysicsObject(&character->GetTransform(), character->GetBoundingVolume()));
 
@@ -424,7 +424,7 @@ GameObject* Game::AddEnemyToWorld(const Vector3& position) {
 		.SetScale(Vector3(meshSize, meshSize, meshSize))
 		.SetPosition(position);
 
-	character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("security.msh"),nullptr, nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	character->SetRenderObject(new RenderObject(&character->GetTransform(), resourceManager->LoadMesh("security.msh"),nullptr, nullptr,nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	character->SetPhysicsObject(new PhysicsObject(&character->GetTransform(), character->GetBoundingVolume()));
 
 	character->GetPhysicsObject()->SetInverseMass(inverseMass);
@@ -444,7 +444,7 @@ GameObject* Game::AddBonusToWorld(const Vector3& position) {
 		.SetScale(Vector3(0.25, 0.25, 0.25))
 		.SetPosition(position);
 
-	apple->SetRenderObject(new RenderObject(&apple->GetTransform(), resourceManager->LoadMesh("coin.msh"),nullptr, nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	apple->SetRenderObject(new RenderObject(&apple->GetTransform(), resourceManager->LoadMesh("coin.msh"),nullptr, nullptr,nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	apple->SetPhysicsObject(new PhysicsObject(&apple->GetTransform(), apple->GetBoundingVolume()));
 
 	apple->GetPhysicsObject()->SetInverseMass(1.0f);

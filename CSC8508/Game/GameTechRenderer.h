@@ -49,8 +49,8 @@ namespace NCL {
 			//NCL::Rendering::ResourceManager* resourceManager;
 			vector<const RenderObject*> activeObjects;
 
-			OGLShader* skyboxShader;
-			OGLMesh* skyboxMesh;
+			OGLShader*	skyboxShader;
+			OGLMesh*	skyboxMesh;
 			GLuint		skyboxTex;
 
 			OGLShader* m_temp_shader = nullptr;
