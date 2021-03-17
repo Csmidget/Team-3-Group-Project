@@ -43,6 +43,9 @@ void GameObject::Update(float dt)
 			component->Update(dt);
 	}
 
+	if(renderObject)
+		renderObject->Update(dt);
+
 	OnUpdate(dt);
 }
 
