@@ -42,7 +42,7 @@ void BulletWorld::addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point
 	//btVector3 pivot(1, 5, 1);// = convertVector3(point);
 	btVector3 pivot = convertVector3(point);
 	btTypedConstraint* p2p = new btPoint2PointConstraint(*bodyA ->returnBody(), pivot);
-	p2p->setBreakingImpulseThreshold((btScalar)10.2);
+	p2p->setBreakingImpulseThreshold((btScalar)10000.2);
 	dynamicsWorld->addConstraint(p2p);
 }
 
