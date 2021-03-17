@@ -171,7 +171,6 @@
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RespawnComponent.cpp" />
-    <ClCompile Include="RespawningObject.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="SetListener.cpp" />
     <ClCompile Include="RingComponent.cpp" />
@@ -199,7 +198,6 @@
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="RespawnComponent.h" />
-    <ClInclude Include="RespawningObject.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="SetListener.h" />
     <ClInclude Include="RingComponenet.h" />

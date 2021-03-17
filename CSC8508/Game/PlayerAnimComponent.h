@@ -9,8 +9,8 @@ namespace NCL {
 
 		public:
 			PlayerAnimComponent(GameObject* object) {};
-			//void Start() override;
-			//void OnKill() override;
+			void Start() override;
+			void OnKill() override;
 		};
 
 	}

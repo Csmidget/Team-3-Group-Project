@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "JSONLevelFactory.h"
 #include "GameTechRenderer.h"
-#include "RespawningObject.h"
 #include "IntroState.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
@@ -163,7 +162,7 @@ void Game::InitNetworkPlayers()
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
-		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 3.f, true);
+		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 3.f);
 		
 
 		networkManager->AddPlayerToGame(lobby->front(), player);
@@ -255,8 +254,8 @@ rigid body representation. This and the cube function will let you build a lot o
 physics worlds. You'll probably need another function for the creation of OBB cubes too.
 
 */
-GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float inverseMass, bool respawning) {
-	GameObject* sphere = respawning ? new RespawningObject(position,true,"respawning sphere") : new GameObject("sphere");
+GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float inverseMass) {
+	GameObject* sphere = new GameObject("sphere");
 
 	Vector3 sphereSize = Vector3(radius, radius, radius);
 
@@ -280,9 +279,9 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 	return sphere;
 }
 
-GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, float radius, float inverseMass, bool respawning) {
+GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, float radius, float inverseMass) {
 	
-	GameObject* capsule = respawning ? new RespawningObject(position,true,"respawning_capsule") : new GameObject("capsule");
+	GameObject* capsule = new GameObject("capsule");
 
 	capsule->GetTransform()
 		.SetScale(Vector3(radius* 2, halfHeight, radius * 2))
@@ -305,8 +304,8 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 
 }
 
-GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic, bool respawning) {
-	GameObject* cube = respawning ? new RespawningObject(position,true,"respawning cube") : new GameObject("cube");
+GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic) {
+	GameObject* cube = new GameObject("cube");
 
 	cube->GetTransform()
 		.SetPosition(position)
@@ -328,8 +327,8 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 	return cube;
 }
 
-GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic, bool respawning) {
-	GameObject* cube = respawning ? new RespawningObject(position, true, "respawning cube") : new GameObject("cube");
+GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic) {
+	GameObject* cube = new GameObject("cube");
 
 	AABBVolume* volume = new AABBVolume(dimensions);
 
@@ -351,9 +350,9 @@ GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions, 
 	return cube;
 }
 
-GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass , bool isStatic, bool respawning)
+GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions, float inverseMass , bool isStatic)
 {
-	GameObject* cube = respawning ? new RespawningObject(position, true, "respawning cube") : new GameObject("cube");
+	GameObject* cube = new GameObject("cube");
 
 	cube->GetTransform()
 		.SetPosition(position)
