@@ -16,6 +16,11 @@
 #include "../Engine/PhysicsSystem.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
+#include "RespawningObject.h"
+#include "../Engine/Physics/PhysicsEngine/BulletWorld.cpp"
+
+
+//JENKINS TEST 3
 #include "../Engine/PushdownMachine.h"
 #include"../Audio/SoundManager.h"
 #include"../Audio/SoundInstance.h"
@@ -77,14 +82,6 @@ bool Game::UpdateGame(float dt) {
 
 	UpdateKeys();
 
-
-	//if (useGravity) {
-	//	Debug::Print("(G)ravity on", Vector2(5, 95));
-	//}
-	//else {
-	//	Debug::Print("(G)ravity off", Vector2(5, 95));
-	//}
-
 	if (!paused) {
 		physics->Update(dt);
 
@@ -97,8 +94,11 @@ bool Game::UpdateGame(float dt) {
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
-
 	return true;
+}
+
+GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
+	return physics->rayIntersect(from, to, Vector3());
 }
 
 void Game::UpdateKeys() {
@@ -181,7 +181,8 @@ void Game::InitNetworkPlayers()
 }
 
 void Game::InitWorld() {
-	InitWorld("GameStateManagerTest.json");
+	InitWorld("DesouzaTest.json");
+
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -193,7 +194,11 @@ void Game::InitWorld(std::string levelName) {
 	
 	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	//player->AddComponent<PlayerComponent>(this);
-	
+	//AddFloorToWorld(Vector3(0, 0, 0));
+	//GameObject* testA = AddCubeToWorld(Vector3(1, 5, 1), Vector3(1, 1, 1));
+	//GameObject* testB = AddCubeToWorld(Vector3(5, 5, 5), Vector3(1, 1, 1));
+	//physics->addpointconstraint(testB->GetPhysicsObject()->body, Vector3(1, 5, 1));
+	//physics->addhingeconstraint(testA->GetPhysicsObject()->body, Vector3(1.0f, 2.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f));
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
@@ -286,7 +291,7 @@ GameObject* Game::AddSphereToWorld(const Vector3& position, float radius, float 
 
 	return sphere;
 }
-
+	
 GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, float radius, float inverseMass, bool respawning) {
 	
 	GameObject* capsule = respawning ? new RespawningObject(position,true,"respawning_capsule") : new GameObject("capsule");
@@ -385,6 +390,8 @@ GameObject* Game::AddOBBCubeToWorld(const Vector3& position, Vector3 dimensions,
 void Game::InitDefaultFloor() {
 	AddFloorToWorld(Vector3(0, -2, 0));
 }
+
+
 
 GameObject* Game::AddPlayerToWorld(const Vector3& position) {
 	float meshSize = 3.0f;

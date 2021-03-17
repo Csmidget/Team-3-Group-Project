@@ -102,6 +102,9 @@
     <ClCompile Include="TeleporterComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="DebugState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -176,11 +179,15 @@
     <ClInclude Include="TeleporterComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="DebugState.h">
+      <Filter>State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Assets\Shaders\GameTechFrag.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
     <None Include="packages.config" />
+    <None Include="..\..\Assets\Shaders\GameTechShadowFrag.glsl" />
   </ItemGroup>
 </Project>

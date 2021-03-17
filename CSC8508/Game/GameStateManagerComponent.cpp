@@ -1,6 +1,6 @@
 #include "GameStateManagerComponent.h"
 
-NCL::CSC8508::GameStateManagerComponent::GameStateManagerComponent(GameObject* object, GameWorld* gameWorld) : Component(object)
+NCL::CSC8508::GameStateManagerComponent::GameStateManagerComponent(GameObject* object, GameWorld* gameWorld) : Component("GameStateManagerComponent", object)
 {
 	world = gameWorld;
 
