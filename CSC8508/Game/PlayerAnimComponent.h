@@ -5,12 +5,18 @@
 namespace NCL {
 	namespace CSC8508 {
 
+		class PlayerComponent;
+		class Game;
+
 		class PlayerAnimComponent : public Component {
 
 		public:
-			PlayerAnimComponent(GameObject* object) {};
+			PlayerAnimComponent(GameObject* object) : Component("PlayerAnim", object) {};
 			void Start() override;
-			void OnKill() override;
+			void Update(float dt) override;
+
+		private:
+			PlayerComponent* playerComp;
 		};
 
 	}
