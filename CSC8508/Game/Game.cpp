@@ -15,7 +15,6 @@
 #include "../Engine/PhysicsSystem.h"
 #include "../Engine/PositionConstraint.h"
 #include "../Engine/OrientationConstraint.h"
-#include "RespawningObject.h"
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.cpp"
 
 
