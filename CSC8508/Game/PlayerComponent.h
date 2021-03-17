@@ -25,6 +25,10 @@ namespace NCL {
 
 		public:
 			PlayerComponent(GameObject* object, Game* game);
+			
+			//Testing constructor
+			PlayerComponent(GameObject* object);
+			
 
 			void Update(float dt);
 			void UpdateControls(float dt);
@@ -32,6 +36,9 @@ namespace NCL {
 			void OnCollisionStay(GameObject* otherObject) override;
 			void OnCollisionEnd(GameObject* otherObject) override;
 
+			void SetSpeed(float speed, float max) { this->speed = speed; this->MAX_WALKING_SPEED = max; }
+			void SetJump(float jump, float max) { this->jump = jump; this->MAX_AIR_SPEED = max;
+			}
 		private:
 
 			PlayerMovementState movementState;
@@ -48,9 +55,10 @@ namespace NCL {
 			const float MAX_CAMERA_DISTANCE = 18.f;
 			const float MIN_CAMERA_DISTANCE = 13.f;
 
+			float speed;
 			float MAX_WALKING_SPEED;
-			const float MAX_ACCELERATION = 100000.f;
-			const float MAX_DECELERATION = 100000.f;
+			const float MAX_ACCELERATION = 10000000000000.f;
+			const float MAX_DECELERATION = 10000000000000.f;
 
 
 			float jump;
@@ -59,6 +67,9 @@ namespace NCL {
 			bool jumping;
 			float lastCollisionTimer;
 
+			bool testing;
+			float testTimer;
+			bool hasJumped;
 			
 			Game* game;
 			CameraComponent* camera;
@@ -67,10 +78,15 @@ namespace NCL {
 			void CameraMovement();
 			void Movement();
 			void Jump();
-
+			void ClampVelocity();
 			void AccelerateTo(Maths::Vector3 targetVelocity, float dt);
 
 			void Interact();
+
+			void Testing();
+			void TestMovement();
+			void TestStaticJumping();
+			void TestRunningJump();
 		};
 
 	}
