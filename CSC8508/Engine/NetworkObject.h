@@ -55,7 +55,7 @@ namespace NCL {
 				size = sizeof(ClientPacket);
 			}
 		};
-
+	
 
 
 		class NetworkObject

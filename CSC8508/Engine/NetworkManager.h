@@ -75,7 +75,7 @@ namespace NCL {
 
 			bool const OFFLINE_MODE = true;
 			bool const TEST_MODE = false;
-			bool isClient = true;
+			bool isClient = false;
 
 			GameServer* thisServer;
 			GameClient* thisClient;
@@ -91,6 +91,9 @@ namespace NCL {
 			std::queue<int> playerLobby;
 
 			int stateID = 0;
+
+			const int MAX_CLIENTS = 8;
+
 		};
 
 	}
