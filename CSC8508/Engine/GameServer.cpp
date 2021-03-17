@@ -74,9 +74,11 @@ void GameServer::UpdateServer() {
 
 		if (type == ENetEventType::ENET_EVENT_TYPE_CONNECT) {
 			std::cout << "Server: New client connected" << std::endl;
+			std::cout << "Peer ID = " << std::to_string(peer)<<std::endl;
 			NewPlayerPacket player(peer);
 			SendGlobalPacket(player);
 			manager->AddPlayerToLobby(peer);
+			SendGlobalLobby();
 			
 		}
 		else if (type == ENetEventType::ENET_EVENT_TYPE_DISCONNECT) {
@@ -92,6 +94,21 @@ void GameServer::UpdateServer() {
 		enet_packet_destroy(event.packet);
 	}
 
+}
+
+void NCL::CSC8508::GameServer::SendGlobalLobby()
+{
+	std::queue<int> lobby = *manager->GetPlayerLobby();
+	int playerIDs[8]{ -1,-1,-1,-1,-1,-1,-1,-1 };
+
+	for (int i = 0; i < 8; i++) {
+		if (lobby.empty()) break;
+		playerIDs[i] = lobby.front();
+		lobby.pop();
+	}
+
+	PlayerCountPacket packet(playerIDs);
+	SendGlobalPacket(packet);
 }
 
 //void GameServer::ThreadedUpdate() {

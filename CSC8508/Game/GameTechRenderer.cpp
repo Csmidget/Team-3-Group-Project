@@ -6,6 +6,7 @@
 #include "../../Common/Vector3.h"
 #include "../../Common/TextureLoader.h"
 #include "../../Common/Maths.h"
+#include "../../Common/MeshAnimation.h"
 
 
 #include "../../include/glm/glm.hpp"
@@ -29,11 +30,12 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 	glEnable(GL_DEPTH_TEST);
 
 	// 加载阴影shader
-	depthCubemapShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl", "GameTechShadowGeom.glsl");
+	depthCubemapShader = (OGLShader*)resourceManager.LoadShader("JointShadowVert.glsl", "GameTechShadowFrag.glsl", "GameTechShadowGeom.glsl");
 	depth2DShader = (OGLShader*)resourceManager.LoadShader("GameTechShadowVert.glsl", "GameTechShadowFrag.glsl");
 	m_temp_shader = (OGLShader*)resourceManager.LoadShader("gameTechVert.glsl", "gameTechFrag.glsl");
 
 	lightshader = (OGLShader*)resourceManager.LoadShader("GameTechVert.glsl", "GameTechFrag.glsl");
+	jointshader = (OGLShader*)resourceManager.LoadShader("JointVert.glsl", "GameTechFrag.glsl");
 
 	// 设置阴影
 	//glGenTextures(1, &shadowTex);
@@ -56,20 +58,17 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 	glClearColor(1, 1, 1, 1);
 
 
-	//lightPosition = Vector3(0.0, 30.0f, -30.0f);
-
-
-
-
 	//setup light data
 	std::vector<glm::vec3> pointLightPos;
-	//pointLightPos.push_back(glm::vec3(-20.0f, 10.0f, -30.0f));
-	pointLightPos.push_back(glm::vec3(0.0f, 10.0f, 0.0f));
+	pointLightPos.push_back(glm::vec3(-80.0f, 30.0f, 0.0f));
+	pointLightPos.push_back(glm::vec3(0.0f, 30.0f, 0.0f));
+	//pointLightPos.push_back(glm::vec3(0.0f, 10.0f, 30.0f));
+	//pointLightPos.push_back(glm::vec3(30.0f, 10.0f, 0.0f));
 
 	std::vector<glm::vec3> spotLightPos;
 	spotLightPos.push_back(glm::vec3(10.0f, 30.0f, 30.0f));
-	spotLightPos.push_back(glm::vec3(10.0f, 30.0f, -30.0f));
-	spotLightPos.push_back(glm::vec3(30.0f, 30.0f, 0.0f));
+	//spotLightPos.push_back(glm::vec3(10.0f, 30.0f, -30.0f));
+	//spotLightPos.push_back(glm::vec3(30.0f, 30.0f, 0.0f));
 
 	pointlight = new PointLight(pointLightPos);
 	spotlight = new SpotLight(spotLightPos);
@@ -85,7 +84,6 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 	{
 		spotShadowMaps[i] = new Shadow();
 	}
-
 	//Skybox!
 	skyboxShader = (OGLShader*)resourceManager.LoadShader("skyboxVertex.glsl", "skyboxFragment.glsl");
 	skyboxMesh = new OGLMesh();
@@ -153,8 +151,6 @@ void GameTechRenderer::LoadSkybox() {
 
 
 void GameTechRenderer::RenderFrame() {
-	glEnable(GL_CULL_FACE);
-	glClearColor(1, 1, 1, 1);
 	BuildObjectList();
 	SortObjectList();
 
@@ -162,6 +158,8 @@ void GameTechRenderer::RenderFrame() {
 		return;
 
 	RenderShadowMap();// 渲染阴影
+	glEnable(GL_CULL_FACE);
+	glClearColor(1, 1, 1, 1);
 	RenderSkybox();		// 绘制天空盒
 
 	RenderCamera();		// 摄像机
@@ -171,17 +169,17 @@ void GameTechRenderer::RenderFrame() {
 
 void GameTechRenderer::RenderLight()
 {
-	glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), "material.shininess"), 32.0f);
-	pointlight->render(lightshader);
+	glUniform1f(glGetUniformLocation(boundShader->GetProgramID(), "material.shininess"), 32.0f);
+	pointlight->render(boundShader);
 
 	for (int i = 0; i < pointlight->getPointNumber(); ++i)
 	{
 		glActiveTexture(GL_TEXTURE4 + i);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, pointShadowMaps[i]->getCubemapTexture());
-		glUniform1i(glGetUniformLocation(lightshader->GetProgramID(), ("pointLights[" + std::to_string(i) + "].shadowMap").c_str()), 4 + i);
+		glUniform1i(glGetUniformLocation(boundShader->GetProgramID(), ("pointLights[" + std::to_string(i) + "].shadowMap").c_str()), 4 + i);
 	}
 
-	spotlight->render(lightshader);
+	spotlight->render(boundShader);
 
 	/*
 	for (int i = 0; i < spotlight->getSpotNumber(); ++i)
@@ -191,7 +189,6 @@ void GameTechRenderer::RenderLight()
 		glUniform1i(glGetUniformLocation(lightshader->GetProgramID(), ("spotLight[" + std::to_string(i) + "].shadowMap").c_str()), 8 + i);
 	}
 	*/
-
 }
 
 void GameTechRenderer::BuildObjectList() {
@@ -215,7 +212,6 @@ void GameTechRenderer::SortObjectList() {
 }
 
 void GameTechRenderer::RenderShadowMap() {
-
 	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
 
@@ -224,7 +220,6 @@ void GameTechRenderer::RenderShadowMap() {
 	int modelLocation = glGetUniformLocation(depthCubemapShader->GetProgramID(), "mvpMatrix");
 
 	GLfloat aspect = 1.0;
-
 
 	for (int li = 0; li < pointlight->getPointNumber(); ++li)
 	{
@@ -237,6 +232,16 @@ void GameTechRenderer::RenderShadowMap() {
 
 		for (const auto& i : activeObjects) {
 			BindMesh((*i).GetMesh());
+
+			if ((*i).GetAnimation()) {
+				glUniform1i(glGetUniformLocation(depthCubemapShader->GetProgramID(), "hasJoints"), true);
+				int jointLoc = glGetUniformLocation(boundShader->GetProgramID(), "joints");
+				glUniformMatrix4fv(jointLoc, i->GetAnimation()->GetJointCount(), false, (float*)(i->GetFrameMatrices().data()));
+			}
+			else {
+				glUniform1i(glGetUniformLocation(depthCubemapShader->GetProgramID(), "hasJoints"), false);
+			}
+
 			Matrix4 modelMatrix = (*i).GetTransform()->GetMatrix();
 			glUniformMatrix4fv(modelLocation, 1, false, (float*)&modelMatrix);
 
@@ -316,6 +321,7 @@ void GameTechRenderer::RenderSkybox() {
 }
 
 void GameTechRenderer::RenderCamera() {
+	glViewport(0, 0, currentWidth, currentHeight);
 	float screenAspect = (float)currentWidth / (float)currentHeight;
 	Matrix4 viewMatrix = CameraComponent::GetMain()->GetCamera()->BuildViewMatrix();
 	Matrix4 projMatrix = CameraComponent::GetMain()->GetCamera()->BuildProjectionMatrix(screenAspect);
@@ -340,14 +346,18 @@ void GameTechRenderer::RenderCamera() {
 	//glActiveTexture(GL_TEXTURE0 + 1);
 	//glBindTexture(GL_TEXTURE_2D, shadowTex);
 
-	glUseProgram(lightshader->GetProgramID());
-
 	for (const auto& i : activeObjects) {
 
+		if (i->GetAnimation()) {
+			BindShader(jointshader);
+		}
+		else
+			BindShader(lightshader);
+
 		BindTextureToShader((OGLTexture*)(*i).GetDefaultTexture(), "mainTex", 0);
-		projLocation = glGetUniformLocation(lightshader->GetProgramID(), "projMatrix");
-		viewLocation = glGetUniformLocation(lightshader->GetProgramID(), "viewMatrix");
-		modelLocation = glGetUniformLocation(lightshader->GetProgramID(), "modelMatrix");
+		projLocation = glGetUniformLocation(boundShader->GetProgramID(), "projMatrix");
+		viewLocation = glGetUniformLocation(boundShader->GetProgramID(), "viewMatrix");
+		modelLocation = glGetUniformLocation(boundShader->GetProgramID(), "modelMatrix");
 
 		//	shadowLocation = glGetUniformLocation(lightshader->GetProgramID(), "shadowMatrix");
 		//	colourLocation = glGetUniformLocation(lightshader->GetProgramID(), "objectColour");
@@ -358,7 +368,7 @@ void GameTechRenderer::RenderCamera() {
 			lightColourLocation = glGetUniformLocation(lightshader->GetProgramID(), "lightColour");
 			lightRadiusLocation = glGetUniformLocation(lightshader->GetProgramID(), "lightRadius");*/
 
-		cameraLocation = glGetUniformLocation(lightshader->GetProgramID(), "viewPos");
+		cameraLocation = glGetUniformLocation(boundShader->GetProgramID(), "viewPos");
 		Vector3 cameraPos = CameraComponent::GetMain()->GetCamera()->GetPosition();
 		glUniform3fv(cameraLocation, 1, (float*)&cameraPos);
 
@@ -371,8 +381,6 @@ void GameTechRenderer::RenderCamera() {
 
 	//	int shadowTexLocation = glGetUniformLocation(lightshader->GetProgramID(), "shadowTex");
 	//	glUniform1i(shadowTexLocation, 1);
-
-
 
 
 		Matrix4 modelMatrix = (*i).GetTransform()->GetMatrix();
@@ -391,6 +399,12 @@ void GameTechRenderer::RenderCamera() {
 
 		BindMesh((*i).GetMesh());
 		BindMaterial((*i).GetMaterial());
+
+		if ((*i).GetAnimation()) {
+			int jointLoc = glGetUniformLocation(boundShader->GetProgramID(), "joints");
+			glUniformMatrix4fv(jointLoc, i->GetAnimation()->GetJointCount(), false, (float*)(i->GetFrameMatrices().data()));
+		}
+
 		int layerCount = (*i).GetMesh()->GetSubMeshCount();
 		for (int i = 0; i < layerCount; ++i) {
 			UpdateBoundMaterialLayer(i);

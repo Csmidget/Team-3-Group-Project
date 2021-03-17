@@ -4,7 +4,7 @@
 using namespace NCL;
 using namespace CSC8508;
 
-RingComponent::RingComponent(GameObject* object, int bonus) : Component(object)
+RingComponent::RingComponent(GameObject* object, int bonus) : Component("RingComponent", object)
 {
 	//active = true;
 	physicsObject = object->GetPhysicsObject();

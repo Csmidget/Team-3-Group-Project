@@ -48,6 +48,9 @@ namespace NCL
 									/*OUT*/ NCL::Maths::Vector3 pointHit);
 
 				void addRigidBody(RigidBody* body);
+				void addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point);
+				void addhingeconstraint(RigidBody* doorbody, NCL::Maths::Vector3 point, NCL::Maths::Vector3 axisA);
+				
 				void removeRigidBody(RigidBody* body);
 
 				void Update(float dt);
@@ -59,6 +62,7 @@ namespace NCL
 				btCollisionDispatcher* dispatcher;
 				btBroadphaseInterface* overlappingPairCache;
 				btSequentialImpulseConstraintSolver* solver;
+			
 				btDiscreteDynamicsWorld* dynamicsWorld;
 
 				std::vector<RigidBody*> rigidList;

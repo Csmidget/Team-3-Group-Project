@@ -47,10 +47,6 @@ int main() {
 			w->ShowConsole(false);
 		}
 
-		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {
-			w->SetWindowPosition(0, 0);
-		}
-
 		if (!game->UpdateGame(dt))
 			break;
 

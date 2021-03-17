@@ -8,7 +8,7 @@ using namespace NCL;
 using namespace CSC8508;
 
 SetListener::SetListener(GameObject* object, int listenerID)
-	:Component(object), object(object)
+	:Component("SetListener", object), object(object)
 {
 	listener = new Audio::SoundListener(listenerID);
 	Audio::SoundManager::AddListener();
