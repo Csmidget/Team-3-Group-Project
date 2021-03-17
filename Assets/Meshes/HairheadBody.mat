@@ -1,7 +1,7 @@
 MeshMat
 1
-4
-4
+3
+3
 Hair
 1
 Diffuse:/RealisticCharacter/Role/Hair.png
@@ -11,10 +11,6 @@ Diffuse:/RealisticCharacter/Role/head.png
 Body
 1
 Diffuse:/RealisticCharacter/Role/Body.png
-Weapon
-1
-Diffuse:/RealisticCharacter/weapon/Weapon.png
 0
 1
 2
-3

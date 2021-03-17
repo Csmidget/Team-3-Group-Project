@@ -82,6 +82,7 @@ namespace NCL {
 			float frameTime;
 			std::vector<Matrix4> animRelativeJoints;
 			std::vector<Matrix4> frameMatrices;
+			std::vector<Matrix4> prevFrameMatrices;
 		};
 	}
 }

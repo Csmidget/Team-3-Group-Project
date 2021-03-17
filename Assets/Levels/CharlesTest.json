@@ -4,11 +4,11 @@
         "isStatic": false,
         "tag": "Untagged",
         "collider": {
-            "type": "none",
+            "type": "box",
             "size": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
             },
             "center": {
                 "x": 0.0,
@@ -44,7 +44,7 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": -1.0,
+            "mass": 0.5,
             "drag": 0.0,
             "angularDrag": 0.0,
             "useGravity": false,

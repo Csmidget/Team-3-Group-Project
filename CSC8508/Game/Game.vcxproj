@@ -165,6 +165,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PlayerAnimComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlaySound.cpp" />
     <ClCompile Include="PlayState.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="JSONShared.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PlayerAnimComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlaySound.h" />
     <ClInclude Include="PlayState.h" />
