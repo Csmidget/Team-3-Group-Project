@@ -155,15 +155,6 @@ void OGLRenderer::BindMesh(MeshGeometry*m) {
 	}
 }
 
-void OGLRenderer::BindAnimation(MeshAnimation* a) {
-	if (!a) {
-		boundAnimation = nullptr;
-	}
-	else {
-		boundAnimation = a;
-	}
-}
-
 void OGLRenderer::BindMaterial(MeshMaterial* m) {
 	if (!m) {
 		boundMaterial = nullptr;

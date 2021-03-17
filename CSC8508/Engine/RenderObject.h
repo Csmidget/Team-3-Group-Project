@@ -22,6 +22,8 @@ namespace NCL {
 			RenderObject(Transform* parentTransform, MeshGeometry* mesh, MeshMaterial* mat, TextureBase* tex, MeshAnimation* anim, ShaderBase* shader);
 			~RenderObject();
 
+			void Update(float dt);
+
 			void SetDefaultTexture(TextureBase* t) {
 				texture = t;
 			}
@@ -60,7 +62,14 @@ namespace NCL {
 				return colour;
 			}
 
+			const std::vector<Matrix4>& GetFrameMatrices() const {
+				return frameMatrices;
+			}
+
 		protected:
+					
+			const Matrix4* GetRelativeJointData(unsigned int frame) const;
+
 			MeshGeometry*	mesh;
 			MeshMaterial*	material;
 			MeshAnimation*	animation;
@@ -70,6 +79,7 @@ namespace NCL {
 			Vector4			colour;
 
 			int currentFrame;
+			float frameTime;
 			std::vector<Matrix4> animRelativeJoints;
 			std::vector<Matrix4> frameMatrices;
 		};

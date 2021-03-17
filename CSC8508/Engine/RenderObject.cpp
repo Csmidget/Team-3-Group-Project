@@ -26,6 +26,38 @@ void RenderObject::SetAnimation(MeshAnimation* anim) {
 		animRelativeJoints = anim->GenerateRelativeJoints(mesh->GetInverseBindPose());
 }
 
+void RenderObject::Update(float dt) {
+	if (animation) {
+
+		frameTime -= dt;
+		while (frameTime < 0.0f) {
+			currentFrame = (currentFrame + 1) % animation->GetFrameCount();
+			frameTime += 1.0f / animation->GetFrameRate();
+		}
+
+		frameMatrices.clear();
+		const Matrix4* prevFrameData = GetRelativeJointData(currentFrame == 0 ? animation->GetFrameCount() - 1 : currentFrame - 1);
+		const Matrix4* currFrameData = GetRelativeJointData(currentFrame);
+
+		float progress = frameTime / (1.0f / animation->GetFrameRate());
+		for (unsigned int j = 0; j < mesh->GetJointCount(); j++) {
+			frameMatrices.push_back(Matrix4::LerpTransforms(progress, currFrameData[j], prevFrameData[j]));
+		}
+	}
+}
+
+const Matrix4* RenderObject::GetRelativeJointData(unsigned int frame) const {
+
+	if (frame >= animation->GetFrameCount()) {
+		return nullptr;
+	}
+	int matStart = frame * animation->GetJointCount();
+
+	Matrix4* dataStart = (Matrix4*)animRelativeJoints.data();
+
+	return dataStart + matStart;
+}
+
 RenderObject::~RenderObject() {
 
 }

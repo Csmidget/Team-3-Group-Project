@@ -171,6 +171,12 @@ namespace NCL {
 				o << "Vector3(" << v.x << "," << v.y << "," << v.z << ")" << std::endl;
 				return o;
 			}
+
+			static Vector3 Lerp(float progress, const Vector3& from, const Vector3& to) {
+				return Vector3(((1 - progress) * from.x) + (progress * to.x),
+					((1 - progress) * from.y) + (progress * to.y),
+					((1 - progress) * from.z) + (progress * to.z));
+			}
 		};
 	}
 }

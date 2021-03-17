@@ -57,8 +57,11 @@ namespace NCL {
 
 			//shadow mapping things
 			NCL::Rendering::OGLShader* depthCubemapShader;
+			NCL::Rendering::OGLShader* depthCubemapJointShader;
 			NCL::Rendering::OGLShader* depth2DShader;
+
 			NCL::Rendering::OGLShader* lightshader;
+			NCL::Rendering::OGLShader* jointshader;
 
 			PointLight* pointlight;
 			SpotLight* spotlight;

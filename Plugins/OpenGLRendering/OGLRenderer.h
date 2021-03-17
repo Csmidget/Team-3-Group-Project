@@ -80,7 +80,6 @@ namespace NCL {
 			void BindShader(ShaderBase*s);
 			void BindTextureToShader(const TextureBase*t, const std::string& uniform, int texUnit) const;
 			void BindMesh(MeshGeometry*m);
-			void BindAnimation(MeshAnimation* a);
 			void BindMaterial(MeshMaterial* m);
 			void UpdateBoundMaterialLayer(int layer = 0);
 			void DrawBoundMesh(int subLayer = 0, int numInstances = 1);
@@ -90,6 +89,9 @@ namespace NCL {
 			HDC		deviceContext;		//...Device context?
 			HGLRC	renderContext;		//Permanent Rendering Context		
 #endif
+
+			OGLShader* boundShader;
+			
 		private:
 			struct DebugString {
 				Maths::Vector4 colour;
@@ -110,7 +112,6 @@ namespace NCL {
 			OGLMesh*		boundMesh;
 			MeshMaterial*	boundMaterial;
 			MeshAnimation*	boundAnimation;
-			OGLShader*		boundShader;
 
 			OGLShader*  debugShader;
 			SimpleFont* font;

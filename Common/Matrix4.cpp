@@ -156,6 +156,37 @@ Matrix4 Matrix4::BuildViewMatrix(const Vector3& from, const Vector3& lookingAt, 
 	return m*r;
 }
 
+Matrix4 Matrix4::LerpTransforms(float p, const Matrix4& matFrom, const Matrix4& matTo)
+{
+	//Position
+	Vector3 from = matFrom.GetPositionVector();
+	Vector3 to = matTo.GetPositionVector();
+	Vector3 lerpedPos = Vector3::Lerp(p, from, to);
+
+	//Scale
+	auto tempFrom = matFrom;
+	auto tempTo = matTo;
+	tempFrom = tempFrom * Quaternion(tempFrom).Conjugate();
+	tempTo = tempTo * Quaternion(tempTo).Conjugate();
+
+	Vector3 fromScale = tempFrom.GetDiagonal();
+	Vector3 toScale = tempTo.GetDiagonal();
+	Vector3 lerpedScale = Vector3::Lerp(p, fromScale, toScale);
+
+	//Rotation
+	Quaternion fromRot = matFrom;
+	Quaternion toRot = matTo;
+	//I tried Slerping here but it caused odd jitter.
+	Quaternion lerpedRot = Quaternion::Lerp(fromRot, toRot, p);
+
+	//Put it back together.
+	Matrix4 newMat = Matrix4::Translation(lerpedPos) *
+		Matrix4::Scale(lerpedScale) *
+		Matrix4(lerpedRot);
+
+	return newMat;
+}
+
 Matrix4 Matrix4::Rotation(float degrees, const Vector3 &inaxis)	 {
 	Matrix4 m;
 
