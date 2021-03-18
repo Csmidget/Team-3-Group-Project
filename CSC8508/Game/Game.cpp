@@ -11,6 +11,7 @@
 #include"PlaySound.h"
 #include "ScoreComponent.h"
 #include "RingComponenet.h"
+#include "TimeScore.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -164,6 +165,9 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitWorld() {
 	InitWorld("DesouzaTest.json");
+/*	if (IntroState->confrontation == true) {
+		Debug::Print("New player!!!", Vector2(42, 30));
+	}*/
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -173,8 +177,8 @@ void Game::InitWorld(std::string levelName) {
 
 	InitFromJSON(levelName);
 	
-	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	//player->AddComponent<PlayerComponent>(this);
+	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
+	player->AddComponent<TimeScoreComponent>(this);
 	
 	//world->Start();
 
