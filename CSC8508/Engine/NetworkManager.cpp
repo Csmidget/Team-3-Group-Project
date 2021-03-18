@@ -33,6 +33,7 @@ NetworkManager::~NetworkManager()
 	delete thisClient;
 }
 
+
 void NetworkManager::Update(float dt)
 {
 	if (OFFLINE_MODE) return;
@@ -43,6 +44,7 @@ void NetworkManager::Update(float dt)
 		timeToNextPacket += 1.0f / 20.0f; //20hz server/client update
 	}
 
+	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::R)) Restart();
 }
 
 void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, int source)
@@ -211,6 +213,15 @@ void NCL::CSC8508::NetworkManager::UpdateMinimumState()
 	//	}
 	//	o->UpdateStateHistory(minID); //clear out old states so they arent taking up memory...
 	//}
+}
+
+void NCL::CSC8508::NetworkManager::Restart()
+{
+	NetworkBase::Destroy();
+	delete thisServer;
+	delete thisClient;
+	NetworkBase::Initialise();
+	isClient ? StartAsClient() : StartAsServer();
 }
 
 

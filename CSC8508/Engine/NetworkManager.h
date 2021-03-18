@@ -71,6 +71,8 @@ namespace NCL {
 			void BroadcastSnapshot(bool deltaFrame);
 			void UpdateMinimumState();
 
+			void Restart();
+
 
 			bool const OFFLINE_MODE = true;
 			bool isClient = false;
