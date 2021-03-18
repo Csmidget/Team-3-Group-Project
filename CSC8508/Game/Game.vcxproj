@@ -165,12 +165,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PlayerAnimComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlaySound.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RespawnComponent.cpp" />
-    <ClCompile Include="RespawningObject.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="SetListener.cpp" />
     <ClCompile Include="RingComponent.cpp" />
@@ -192,12 +192,12 @@
     <ClInclude Include="JSONShared.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PlayerAnimComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlaySound.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="RespawnComponent.h" />
-    <ClInclude Include="RespawningObject.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="SetListener.h" />
     <ClInclude Include="RingComponenet.h" />
