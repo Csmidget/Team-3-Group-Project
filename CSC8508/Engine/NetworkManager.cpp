@@ -45,12 +45,15 @@ void NetworkManager::Update(float dt)
 	}
 
 	if (!serverPlayers.empty()) {
-		for (int i = 0; i < serverPlayers.size(); i++)
-			serverPlayers.at(i)->Update(dt);
+
+		for (pair<int, ClientPlayer*> client : serverPlayers) 
+			client.second->Update(dt);
+		
+		
 
 	}
 
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::R)) Restart();
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::R)) Restart();
 }
 
 void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, int source)
