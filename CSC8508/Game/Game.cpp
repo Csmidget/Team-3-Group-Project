@@ -166,8 +166,9 @@ void Game::InitNetworkPlayers()
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
-		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 3.f);
 		
+		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0, true);
+		player->SetIsStatic(true);
 
 		networkManager->AddPlayerToGame(lobby->front(), player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;

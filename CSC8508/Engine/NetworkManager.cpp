@@ -22,8 +22,6 @@ NetworkManager::NetworkManager()
 	if (OFFLINE_MODE) return;
 	
 	NetworkBase::Initialise();
-	if(TEST_MODE) isClient ? TestClient() : TestServer();
-
 	isClient ? StartAsClient() : StartAsServer();
 	
 }
@@ -54,19 +52,8 @@ void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, 
 		ClientPacket* realPacket = (ClientPacket*)payload;
 	}
 	//CLIENT version of the game will receive these from the servers
-	else if (type == Delta_State) {
-		DeltaPacket* realPacket = (DeltaPacket*)payload;
-		if (realPacket->objectID < (int)networkObjects.size()) {
-			networkObjects[realPacket->objectID]->ReadPacket(*realPacket);
-		}
-	}
-	else if (type == Full_State) {
-		FullPacket* realPacket = (FullPacket*)payload;
-		if (realPacket->objectID < (int)networkObjects.size()) {
-			networkObjects[realPacket->objectID]->ReadPacket(*realPacket);
-		}
-	}
-	else if (type == Player_Delta_State) {
+	
+	if (type == Player_Delta_State) {
 		PlayerDeltaPacket* realPacket = (PlayerDeltaPacket*)payload;
 		if (realPacket->playerID < (int)serverPlayers.size()) {
 			serverPlayers[realPacket->playerID]->ReadPacket(*realPacket);
@@ -104,20 +91,6 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 	playerLobby.emplace(id);
 }
 
-//void NCL::CSC8508::NetworkManager::OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b)
-//{
-//	if (thisServer) { //detected a collision between players!
-//		MessagePacket newPacket;
-//		newPacket.messageID = COLLISION_MSG;
-//		newPacket.playerID = a->GetPlayerNum();
-//
-//		thisClient->SendPacket(newPacket);
-//
-//		newPacket.playerID = b->GetPlayerNum();
-//		thisClient->SendPacket(newPacket);
-//	}
-//}
-
 
 
 void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet)
@@ -128,40 +101,6 @@ void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet
 
 	ClientPlayer* player = it->second;
 	if (player && packet) player->Update(*packet);
-}
-
-void NetworkManager::TestClient()
-{
-	string clientName = "Client1";
-	
-	TestPacketReceiver clientReceiver(clientName);
-	GameClient* client = new GameClient(this);
-	client->RegisterPacketHandler(String_Message, &clientReceiver);
-	bool canConnect = client->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort());
-
-	int i = 0;
-	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
-		StringPacket strPacket(clientName + " says hello! " + to_string(i));
-		client->SendPacket(strPacket);
-		i++;
-		client->UpdateClient();
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-	}
-}
-
-void NetworkManager::TestServer()
-{
-	TestPacketReceiver serverReceiver("Server");
-	GameServer* server = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS, this);
-	server->RegisterPacketHandler(String_Message, &serverReceiver);
-
-	while (!Window::GetKeyboard()->KeyDown(KeyboardKeys::ESCAPE)) {
-		StringPacket strPacket("Server says hello! ");
-		server->SendGlobalPacket(strPacket);
-		server->UpdateServer();
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-	}
 }
 
 void NCL::CSC8508::NetworkManager::StartAsServer()

@@ -11,6 +11,8 @@ NCL::CSC8508::ClientPlayer::ClientPlayer(std::string clientName, GameObject& o, 
 
 void NCL::CSC8508::ClientPlayer::Update(GamePacket& p)
 {
+	object.GetPhysicsObject()->SetAngularVelocity(Vector3(0, 0, 0));
+
 	ReadPacket(p);
 }
 
