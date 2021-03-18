@@ -10,7 +10,7 @@
 #include"PlaySound.h"
 #include "ScoreComponent.h"
 #include "RingComponenet.h"
-#include "TimeScore.h"
+#include "TimeScoreComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -80,7 +80,7 @@ bool Game::UpdateGame(float dt) {
 		return false;
 
 	UpdateKeys();
-
+	
 	if (!paused) {
 		physics->Update(dt);
 
@@ -190,10 +190,6 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
-	
-//	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f);
-//	player->AddComponent<TimeScoreComponent>();
-	
 		
 	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
 	//player->AddComponent<PlayerComponent>(this);

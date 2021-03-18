@@ -105,6 +105,9 @@
     <ClCompile Include="PlayerAnimComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="TimeScoreComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -180,6 +183,9 @@
       <Filter>State</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAnimComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeScoreComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
