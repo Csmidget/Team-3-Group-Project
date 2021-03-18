@@ -25,6 +25,7 @@
 #include "../../Common/TextureLoader.h"
 #include "../../Common/ShaderBase.h"
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
+#include "NetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -169,7 +170,7 @@ void Game::InitNetworkPlayers()
 		
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		
+		player->AddComponent<NetworkPlayerComponent>();
 
 		networkManager->AddPlayerToGame(lobby->front(), player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;
