@@ -51,6 +51,9 @@ NCL::MeshGeometry* OGLResourceManager::LoadMesh(std::string fileName) {
 
 NCL::MeshAnimation* OGLResourceManager::LoadAnimation(std::string fileName) {
 
+	if (fileName.empty())
+		return nullptr;
+
 	if (loadedAnimations.find(fileName) != loadedAnimations.end())
 		return loadedAnimations[fileName];
 
