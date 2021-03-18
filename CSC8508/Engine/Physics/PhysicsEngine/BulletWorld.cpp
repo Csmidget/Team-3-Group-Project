@@ -17,6 +17,7 @@ BulletWorld::BulletWorld()
 	dynamicsWorld			=	new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
 	dynamicsWorld->setGravity(btVector3(0, -20.0f, 0));
+	dynamicsWorld->setInternalTickCallback((btInternalTickCallback)tickCallBack, this, true);
 }
 
 BulletWorld::~BulletWorld()
@@ -90,6 +91,16 @@ void BulletWorld::removeRigidBody(RigidBody* body)
 	rigidList.erase(std::remove(rigidList.begin(), rigidList.end(), body), rigidList.end());
 }
 
+void BulletWorld::addUpdateObject(GameObject* object)
+{
+	updateList.push_back(object);
+}
+
+void BulletWorld::removeUpdateObject(GameObject* object)
+{
+	updateList.erase(std::remove(updateList.begin(), updateList.end(), object), updateList.end());
+}
+
 //steps simulation and sets the transform based on bullet physics
 void BulletWorld::Update(float dt)
 {
@@ -98,14 +109,11 @@ void BulletWorld::Update(float dt)
 
 	for (auto i : rigidList)
 	{
-		
 		i->returnBody()->applyDamping((btScalar)dt);
 		i->returnBody()->integrateVelocities((btScalar)dt);
 		i->updateTransform();
 	}
 	
-	
-	//dynamicsWorld->
 }
 
 //checks all manifolds for new and expired manifolds to activate the Oncollision end and begin functions
@@ -176,4 +184,21 @@ void BulletWorld::clear()
 	}
 	rigidList.clear();
 	contactList.clear();
+	updateList.clear();
+}
+
+
+//callback tests
+void BulletWorld::tickCallBack(btDynamicsWorld* world, btScalar timeStep)
+{
+	BulletWorld* worldRef = (BulletWorld*)world->getWorldUserInfo();
+	worldRef->updateObjects(timeStep);
+}
+
+void BulletWorld::updateObjects(float dt)
+{
+	for (auto i : rigidList)
+	{
+		((GameObject*)i->returnBody()->getUserPointer())->fixedUpdate(dt);
+	}
 }

@@ -49,6 +49,14 @@ void GameObject::Update(float dt)
 	OnUpdate(dt);
 }
 
+void GameObject::fixedUpdate(float dt)
+{
+	for (auto component : components) {
+		if (component->IsEnabled())
+			component->fixedUpdate(dt);
+	}
+}
+
 void GameObject::OnCollisionBegin(GameObject* otherObject)
 {
 	for (auto component : components) {
