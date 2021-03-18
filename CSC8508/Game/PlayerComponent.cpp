@@ -54,7 +54,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 
 
 
-void PlayerComponent::Update(float dt) {
+void PlayerComponent::fixedUpdate(float dt) {
 	lastCollisionTimer += dt;
 
 	currentVelocity = physicsObject->body->getLinearVelocity();

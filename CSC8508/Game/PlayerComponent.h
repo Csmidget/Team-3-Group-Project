@@ -29,7 +29,7 @@ namespace NCL {
 		
 			bool receiveInputs;
 
-			void Update(float dt);
+			void fixedUpdate(float dt);
 			void UpdateControls(float dt);
 			void OnCollisionBegin(GameObject* otherObject) override;
 			void OnCollisionStay(GameObject* otherObject) override;
