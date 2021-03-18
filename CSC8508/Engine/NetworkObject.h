@@ -93,6 +93,7 @@ namespace NCL {
 			int fullErrors;
 
 			GameObject& object;
+			Quaternion orientation;
 
 			int networkID;
 		};
