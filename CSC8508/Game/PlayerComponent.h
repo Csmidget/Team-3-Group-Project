@@ -72,7 +72,7 @@ namespace NCL {
 			Game* game;
 			CameraComponent* camera;
 			
-			void IdleCheck();
+			PlayerMovementState IdleOrRunning();
 			void CameraMovement();
 			void Movement();
 			void Jump();

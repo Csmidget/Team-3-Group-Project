@@ -1,57 +1,5 @@
 [
     {
-        "name": "C_man_1_FBX2013",
-        "isStatic": false,
-        "tag": "Untagged",
-        "collider": {
-            "type": "none",
-            "size": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "center": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "radius": 0.0,
-            "height": 0.0,
-            "isTrigger": false
-        },
-        "transform": {
-            "position": {
-                "x": 5.24399995803833,
-                "y": 1.0499999523162842,
-                "z": 11.298999786376954
-            },
-            "orientation": {
-                "x": 0.7071068286895752,
-                "y": 0.0,
-                "z": 0.0,
-                "w": 0.7071068286895752
-            },
-            "scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            }
-        },
-        "render": {
-            "mesh": "MaleFreeSimpleMovement1.msh",
-            "material": "MaleFreeSimpleMovement1.mat",
-            "renderScale": 1,
-            "animation": "midair.anm"
-        },
-        "physics": {
-            "mass": -1.0,
-            "drag": 0.0,
-            "angularDrag": 0.0,
-            "useGravity": false,
-            "isKinematic": false
-        }
-    },
-    {
         "name": "Cube (19)",
         "isStatic": false,
         "tag": "Untagged",

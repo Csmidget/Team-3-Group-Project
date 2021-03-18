@@ -21,7 +21,7 @@ RenderObject::RenderObject(Transform* parentTransform, MeshGeometry* mesh, MeshM
 
 void RenderObject::SetAnimation(MeshAnimation* anim) {
 	animation = anim;
-	currentFrame = 0;
+	currentFrame = 0.1f;
 
 	if (animation) {
 		animRelativeJoints = anim->GenerateRelativeJoints(mesh->GetInverseBindPose());
