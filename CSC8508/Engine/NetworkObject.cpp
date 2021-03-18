@@ -51,11 +51,12 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 	fullOrientation.y += ((float)p.orientation[1]) / 127.0f;
 	fullOrientation.z += ((float)p.orientation[2]) / 127.0f;
 	fullOrientation.w += ((float)p.orientation[3]) / 127.0f;
+	std::cout << fullOrientation << std::endl;
+
 
 	object.GetTransform()
 		.SetPosition(fullPos)
 		.SetOrientation(fullOrientation);
-
 	return true;
 }
 
@@ -70,6 +71,7 @@ bool NetworkObject::ReadFullPacket(FullPacket &p) {
 		.SetOrientation(lastFullState.orientation);
 
 	stateHistory.emplace_back(lastFullState);
+	std::cout << lastFullState.orientation << std::endl;
 
 	return true;
 }
