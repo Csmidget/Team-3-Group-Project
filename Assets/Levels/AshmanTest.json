@@ -1,5 +1,68 @@
 [
     {
+        "name": "Player",
+        "isStatic": false,
+        "tag": "Player",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 0.0,
+                "y": 1.2300000190734864,
+                "z": 0.0
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "playerMat.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 3.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Player"
+            },
+            {
+                "name": "ScoreComponent"
+            },
+            {
+                "name": "SetListener",
+                "ID": 0
+            }
+        ]
+    },
+    {
         "name": "DisappearingPlatform (242)",
         "isStatic": false,
         "tag": "Untagged",
@@ -21,9 +84,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -32,14 +95,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -75,9 +138,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -86,14 +149,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -129,9 +192,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -140,14 +203,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -183,9 +246,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -194,14 +257,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -237,9 +300,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -248,14 +311,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -291,9 +354,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -302,14 +365,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -345,9 +408,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -356,14 +419,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -399,9 +462,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -410,14 +473,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -455,7 +518,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -464,14 +527,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -507,9 +570,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -518,14 +581,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -561,9 +624,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -572,14 +635,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -615,9 +678,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -626,14 +689,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -669,9 +732,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -680,14 +743,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -723,9 +786,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -734,14 +797,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -777,9 +840,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -788,14 +851,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -831,9 +894,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -842,14 +905,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -885,9 +948,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -896,14 +959,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -941,7 +1004,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -950,14 +1013,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -993,9 +1056,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1004,14 +1067,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1047,9 +1110,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1058,14 +1121,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1101,9 +1164,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1112,14 +1175,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1155,9 +1218,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1166,14 +1229,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1209,9 +1272,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1220,14 +1283,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1263,9 +1326,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1274,14 +1337,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1317,9 +1380,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1328,14 +1391,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1371,9 +1434,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1382,14 +1445,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1427,7 +1490,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -1436,14 +1499,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1479,9 +1542,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1490,14 +1553,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1533,9 +1596,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1544,14 +1607,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1587,9 +1650,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1598,14 +1661,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1641,9 +1704,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1652,14 +1715,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1695,9 +1758,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1706,14 +1769,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1749,9 +1812,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1760,14 +1823,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1803,9 +1866,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1814,14 +1877,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1857,9 +1920,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1868,14 +1931,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1913,7 +1976,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -1922,14 +1985,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -1965,9 +2028,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -1976,14 +2039,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2019,9 +2082,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2030,14 +2093,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2073,9 +2136,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2084,14 +2147,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2127,9 +2190,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2138,14 +2201,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2181,9 +2244,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2192,14 +2255,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2235,9 +2298,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2246,14 +2309,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2289,9 +2352,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2300,14 +2363,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2343,9 +2406,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2354,14 +2417,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2399,7 +2462,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -2408,14 +2471,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2451,9 +2514,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2462,14 +2525,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2505,9 +2568,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2516,14 +2579,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2559,9 +2622,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2570,14 +2633,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2613,9 +2676,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2624,14 +2687,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2667,9 +2730,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2678,14 +2741,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2721,9 +2784,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2732,14 +2795,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2775,9 +2838,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2786,14 +2849,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2829,9 +2892,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2840,14 +2903,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2885,7 +2948,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -2894,14 +2957,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2937,9 +3000,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -2948,14 +3011,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2991,9 +3054,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3002,14 +3065,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3045,9 +3108,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3056,14 +3119,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3099,9 +3162,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3110,14 +3173,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3153,9 +3216,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3164,14 +3227,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3207,9 +3270,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3218,14 +3281,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3261,9 +3324,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3272,14 +3335,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3315,9 +3378,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3326,14 +3389,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3371,7 +3434,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3380,14 +3443,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3423,9 +3486,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3434,14 +3497,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3477,9 +3540,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3488,14 +3551,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3531,9 +3594,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3542,14 +3605,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3585,9 +3648,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3596,14 +3659,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3639,9 +3702,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3650,14 +3713,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3693,9 +3756,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3704,14 +3767,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3747,9 +3810,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3758,14 +3821,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3801,9 +3864,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3812,14 +3875,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3857,7 +3920,7 @@
             "position": {
                 "x": 0.0,
                 "y": -10.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -3866,14 +3929,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3909,7 +3972,7 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -3920,14 +3983,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -3963,7 +4026,7 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -3974,14 +4037,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4017,7 +4080,7 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -4028,14 +4091,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4071,7 +4134,7 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -4082,14 +4145,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4125,7 +4188,7 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -4136,14 +4199,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4179,7 +4242,7 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -4190,14 +4253,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4233,7 +4296,7 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -4244,14 +4307,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4287,7 +4350,7 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -10.0,
                 "z": 0.0
             },
@@ -4298,14 +4361,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4352,14 +4415,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4395,9 +4458,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4406,14 +4469,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4449,9 +4512,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4460,14 +4523,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4503,9 +4566,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4514,14 +4577,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4557,9 +4620,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4568,14 +4631,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4611,9 +4674,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4622,14 +4685,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4665,9 +4728,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4676,14 +4739,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4719,9 +4782,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4730,14 +4793,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4773,9 +4836,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4784,14 +4847,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4829,7 +4892,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -4838,14 +4901,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4881,9 +4944,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -4892,14 +4955,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4935,9 +4998,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -4946,14 +5009,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -4989,9 +5052,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -5000,14 +5063,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5043,9 +5106,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -5054,14 +5117,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5097,9 +5160,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -5108,14 +5171,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5151,9 +5214,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -5162,14 +5225,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5205,9 +5268,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -5216,14 +5279,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5259,9 +5322,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -5270,14 +5333,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5315,7 +5378,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -5324,14 +5387,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5367,9 +5430,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5378,14 +5441,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5421,9 +5484,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5432,14 +5495,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5475,9 +5538,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5486,14 +5549,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5529,9 +5592,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5540,14 +5603,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5583,9 +5646,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5594,14 +5657,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5637,9 +5700,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5648,14 +5711,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5691,9 +5754,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5702,14 +5765,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5745,9 +5808,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5756,14 +5819,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5801,7 +5864,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -5810,14 +5873,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5853,9 +5916,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -5864,14 +5927,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5907,9 +5970,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -5918,14 +5981,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5961,9 +6024,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -5972,14 +6035,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6015,9 +6078,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -6026,14 +6089,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6069,9 +6132,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -6080,14 +6143,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6123,9 +6186,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -6134,14 +6197,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6177,9 +6240,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -6188,14 +6251,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6231,9 +6294,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -6242,14 +6305,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6287,7 +6350,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -6296,14 +6359,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6339,9 +6402,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6350,14 +6413,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6393,9 +6456,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6404,14 +6467,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6447,9 +6510,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6458,14 +6521,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6501,9 +6564,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6512,14 +6575,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6555,9 +6618,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6566,14 +6629,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6609,9 +6672,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6620,14 +6683,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6663,9 +6726,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6674,14 +6737,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6717,9 +6780,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6728,14 +6791,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6773,7 +6836,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -6782,14 +6845,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6825,9 +6888,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -6836,14 +6899,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6879,9 +6942,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -6890,14 +6953,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6933,9 +6996,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -6944,14 +7007,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6987,9 +7050,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -6998,14 +7061,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7041,9 +7104,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -7052,14 +7115,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7095,9 +7158,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -7106,14 +7169,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7149,9 +7212,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -7160,14 +7223,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7203,9 +7266,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -7214,14 +7277,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7259,7 +7322,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -7268,14 +7331,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7311,9 +7374,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7322,14 +7385,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7365,9 +7428,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7376,14 +7439,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7419,9 +7482,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7430,14 +7493,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7473,9 +7536,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7484,14 +7547,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7527,9 +7590,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7538,14 +7601,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7581,9 +7644,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7592,14 +7655,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7635,9 +7698,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7646,14 +7709,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7689,9 +7752,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7700,14 +7763,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7745,7 +7808,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7754,14 +7817,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7797,9 +7860,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -12.399999618530274,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7808,14 +7871,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7851,9 +7914,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -9.300000190734864,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7862,14 +7925,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7905,9 +7968,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -6.199999809265137,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7916,14 +7979,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7959,9 +8022,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -3.0999999046325685,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -7970,14 +8033,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8013,9 +8076,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -8024,14 +8087,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8067,9 +8130,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -8078,14 +8141,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8121,9 +8184,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -8132,14 +8195,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8175,9 +8238,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -8186,14 +8249,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8231,7 +8294,7 @@
             "position": {
                 "x": 0.0,
                 "y": -5.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -8240,14 +8303,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8283,7 +8346,7 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8294,14 +8357,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8337,7 +8400,7 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8348,14 +8411,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8391,7 +8454,7 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8402,14 +8465,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8445,7 +8508,7 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8456,14 +8519,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8499,7 +8562,7 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8510,14 +8573,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8553,7 +8616,7 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8564,14 +8627,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8607,7 +8670,7 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8618,14 +8681,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8661,7 +8724,7 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": -5.0,
                 "z": 0.0
             },
@@ -8672,14 +8735,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8726,14 +8789,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8769,9 +8832,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -8780,14 +8843,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8823,9 +8886,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -8834,14 +8897,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8877,9 +8940,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -8888,14 +8951,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8931,9 +8994,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -8942,14 +9005,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8985,9 +9048,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -8996,14 +9059,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9039,9 +9102,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -9050,14 +9113,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9093,9 +9156,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -9104,14 +9167,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9147,9 +9210,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -9158,14 +9221,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9203,7 +9266,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 8.399999618530274
+                "z": 12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -9212,14 +9275,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9255,9 +9318,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9266,14 +9329,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9309,9 +9372,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9320,14 +9383,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9363,9 +9426,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9374,14 +9437,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9417,9 +9480,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9428,14 +9491,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9471,9 +9534,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9482,14 +9545,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9525,9 +9588,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9536,14 +9599,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9579,9 +9642,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9590,14 +9653,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9633,9 +9696,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9644,14 +9707,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9689,7 +9752,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 6.300000190734863
+                "z": 9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -9698,14 +9761,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9741,9 +9804,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -9752,14 +9815,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9795,9 +9858,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -9806,14 +9869,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9849,9 +9912,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -9860,14 +9923,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9903,9 +9966,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -9914,14 +9977,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9957,9 +10020,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -9968,14 +10031,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10011,9 +10074,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -10022,14 +10085,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10065,9 +10128,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -10076,14 +10139,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10119,9 +10182,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -10130,14 +10193,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10175,7 +10238,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 4.199999809265137
+                "z": 6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -10184,14 +10247,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10227,9 +10290,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10238,14 +10301,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10281,9 +10344,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10292,14 +10355,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10335,9 +10398,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10346,14 +10409,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10389,9 +10452,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10400,14 +10463,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10443,9 +10506,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10454,14 +10517,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10497,9 +10560,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10508,14 +10571,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10551,9 +10614,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10562,14 +10625,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10605,9 +10668,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10616,14 +10679,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10661,7 +10724,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 2.0999999046325685
+                "z": -12.399999618530274
             },
             "orientation": {
                 "x": 0.0,
@@ -10670,14 +10733,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10713,9 +10776,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -10724,14 +10787,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10767,9 +10830,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -10778,14 +10841,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10821,9 +10884,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -10832,14 +10895,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10875,9 +10938,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -10886,14 +10949,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10929,9 +10992,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -10940,14 +11003,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10983,9 +11046,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -10994,14 +11057,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11037,9 +11100,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -11048,14 +11111,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11091,9 +11154,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -11102,14 +11165,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11147,7 +11210,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": -8.399999618530274
+                "z": -9.300000190734864
             },
             "orientation": {
                 "x": 0.0,
@@ -11156,14 +11219,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11199,9 +11262,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11210,14 +11273,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11253,9 +11316,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11264,14 +11327,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11307,9 +11370,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11318,14 +11381,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11361,9 +11424,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11372,14 +11435,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11415,9 +11478,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11426,14 +11489,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11469,9 +11532,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11480,14 +11543,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11523,9 +11586,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11534,14 +11597,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11577,9 +11640,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11588,14 +11651,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11633,7 +11696,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": -6.300000190734863
+                "z": -6.199999809265137
             },
             "orientation": {
                 "x": 0.0,
@@ -11642,14 +11705,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11685,9 +11748,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -11696,14 +11759,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11739,9 +11802,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -11750,14 +11813,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11793,9 +11856,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -11804,14 +11867,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11847,9 +11910,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -11858,14 +11921,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11901,9 +11964,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -11912,14 +11975,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -11955,9 +12018,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -11966,14 +12029,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12009,9 +12072,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12020,14 +12083,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12063,9 +12126,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12074,14 +12137,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12119,7 +12182,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": -4.199999809265137
+                "z": -3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12128,14 +12191,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12171,9 +12234,9 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12182,14 +12245,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12225,9 +12288,9 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12236,14 +12299,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12279,9 +12342,9 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12290,14 +12353,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12333,9 +12396,9 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12344,14 +12407,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12387,9 +12450,9 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12398,14 +12461,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12441,9 +12504,9 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12452,14 +12515,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12495,9 +12558,9 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12506,14 +12569,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12549,9 +12612,9 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12560,14 +12623,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12605,7 +12668,7 @@
             "position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": -2.0999999046325685
+                "z": 3.0999999046325685
             },
             "orientation": {
                 "x": 0.0,
@@ -12614,14 +12677,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12657,7 +12720,7 @@
         },
         "transform": {
             "position": {
-                "x": -8.399999618530274,
+                "x": -3.0999999046325685,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -12668,14 +12731,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12711,7 +12774,7 @@
         },
         "transform": {
             "position": {
-                "x": -6.300000190734863,
+                "x": -6.199999809265137,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -12722,14 +12785,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12765,7 +12828,7 @@
         },
         "transform": {
             "position": {
-                "x": -4.199999809265137,
+                "x": -9.300000190734864,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -12776,14 +12839,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12819,7 +12882,7 @@
         },
         "transform": {
             "position": {
-                "x": -2.0999999046325685,
+                "x": -12.399999618530274,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -12830,14 +12893,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12873,7 +12936,7 @@
         },
         "transform": {
             "position": {
-                "x": 8.399999618530274,
+                "x": 12.399999618530274,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -12884,14 +12947,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12927,7 +12990,7 @@
         },
         "transform": {
             "position": {
-                "x": 6.300000190734863,
+                "x": 9.300000190734864,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -12938,14 +13001,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12981,7 +13044,7 @@
         },
         "transform": {
             "position": {
-                "x": 4.199999809265137,
+                "x": 6.199999809265137,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -12992,14 +13055,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -13035,7 +13098,7 @@
         },
         "transform": {
             "position": {
-                "x": 2.0999999046325685,
+                "x": 3.0999999046325685,
                 "y": 0.0,
                 "z": 0.0
             },
@@ -13046,14 +13109,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -13100,14 +13163,14 @@
                 "w": 1.0
             },
             "scale": {
-                "x": 2.0,
+                "x": 3.0,
                 "y": 0.20000000298023225,
-                "z": 2.0
+                "z": 3.0
             }
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "Default-Material.mat",
+            "material": "bluemarble.mat",
             "renderScale": 1
         },
         "physics": {
@@ -13119,69 +13182,6 @@
         },
         "components": [
             
-        ]
-    },
-    {
-        "name": "Player",
-        "isStatic": false,
-        "tag": "Player",
-        "collider": {
-            "type": "capsule",
-            "size": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "center": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "radius": 0.5,
-            "height": 1.0,
-            "isTrigger": false
-        },
-        "transform": {
-            "position": {
-                "x": 0.0,
-                "y": 2.0,
-                "z": 0.0
-            },
-            "orientation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0,
-                "w": 1.0
-            },
-            "scale": {
-                "x": 0.5,
-                "y": 0.5,
-                "z": 0.5
-            }
-        },
-        "render": {
-            "mesh": "Capsule.msh",
-            "material": "playerMat.mat",
-            "renderScale": 1
-        },
-        "physics": {
-            "mass": 3.0,
-            "drag": 0.0,
-            "angularDrag": 0.05000000074505806,
-            "useGravity": true,
-            "isKinematic": false
-        },
-        "components": [
-            {
-                "name": "Player"
-            },
-            {
-                "name": "ScoreComponent"
-            },
-            {
-                "name": "SetListener",
-                "ID": 0
-            }
         ]
     },
     {
