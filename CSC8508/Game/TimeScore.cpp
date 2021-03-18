@@ -1,12 +1,13 @@
 #include"TimeScore.h"
 
-NCL::CSC8508::TimeScoreComponent::TimeScoreComponent(GameObject* object) : Component(object)
+NCL::CSC8508::TimeScoreComponent::TimeScoreComponent(GameObject* object) : Component("TimeScoreComponent", object)
 {
 	timeScore = 0;
 }
 
 void NCL::CSC8508::TimeScoreComponent::UpdateScore(float dt)
 {
+	std::cout << "时间得分";
 	getTime.Tick();
 
 	if (num == 1) {

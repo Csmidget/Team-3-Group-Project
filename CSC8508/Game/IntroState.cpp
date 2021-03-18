@@ -53,9 +53,9 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 
 void IntroState::OnAwake() {
 	game->InitIntroWorld();
-	openCube1 = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), 0.0f, false, false);
-	openCube2 = game->AddButtonToWorld(Vector3(0, -10, 0), Vector3(8, 2, 0), 0.0f, false, false);
-	exitCube = game->AddButtonToWorld(Vector3(0, -20, 0), Vector3(8, 2, 0), 0.0f, false, false);
+	openCube1 = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), 0.0f, false);
+	openCube2 = game->AddButtonToWorld(Vector3(0, -10, 0), Vector3(8, 2, 0), 0.0f, false);
+	exitCube = game->AddButtonToWorld(Vector3(0, -20, 0), Vector3(8, 2, 0), 0.0f, false);
 	Window::GetWindow()->ShowOSPointer(true);
 	Window::GetWindow()->LockMouseToWindow(false);
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "../Engine/Component.h"
 #include "../Engine/PhysicsSystem.h"
+#include "Game.h"
 namespace NCL {
 	namespace CSC8508 {
 
