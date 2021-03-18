@@ -8,6 +8,7 @@
 #include "../../Common/Window.h"
 #include "../../Common/Maths.h"
 #include "CameraComponent.h"
+#include "PlayerAnimComponent.h"
 
 #include"../Audio/SoundManager.h"
 #include <algorithm>
@@ -33,7 +34,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	pitch = 20.0f;
 	yaw = 0.0f;
 	cameraDistance = 10.0f;
-	jumping = false;
+
 	lastCollisionTimer = 0.f;
 	lockOrientation = false;
 	physicsObject = object->GetPhysicsObject();
@@ -46,6 +47,8 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	JumpSound->Set3D(false);
 	JumpSound->SetVolume(0.4f);
 
+	gameObject->AddComponent<PlayerAnimComponent>(game);
+
 	this->game = game;
 }
 
@@ -54,6 +57,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 void PlayerComponent::Update(float dt) {
 	lastCollisionTimer += dt;
 
+	currentVelocity = physicsObject->body->getLinearVelocity();
 	physicsObject->SetAngularVelocity(Vector3(0, 0, 0));
 
 	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
@@ -67,21 +71,32 @@ void PlayerComponent::Update(float dt) {
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 {
-	movementState = PlayerMovementState::WALKING;
+	movementState = IdleOrRunning();
 	lastCollisionTimer = 0.0f;
-	jumping = false;
+
 }
 
 void NCL::CSC8508::PlayerComponent::OnCollisionStay(GameObject* otherObject)
 {
-	movementState = PlayerMovementState::WALKING;
+	movementState = IdleOrRunning();
 	lastCollisionTimer = 0.0f;
 }
 
 void NCL::CSC8508::PlayerComponent::OnCollisionEnd(GameObject* otherObject)
 {
 	movementState = PlayerMovementState::JUMP_ONE;
-	jumping = true;
+
+}
+
+PlayerMovementState NCL::CSC8508::PlayerComponent::IdleOrRunning()
+{
+	if (currentVelocity.Length() <= 1.0f)
+	{
+		return PlayerMovementState::IDLE;
+	}
+	else {
+		return PlayerMovementState::WALKING;
+	}
 }
 
 void NCL::CSC8508::PlayerComponent::CameraMovement()
@@ -113,19 +128,19 @@ void NCL::CSC8508::PlayerComponent::Movement()
 {
 	//Update movement
 	direction = Vector3(0, 0, 0);
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::W))
+	if (Window::GetKeyboard()->KeyHeld(KeyboardKeys::W))
 	{
 		direction += Vector3(0, 0, -1);
 	}
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::S))
+	if (Window::GetKeyboard()->KeyHeld(KeyboardKeys::S))
 	{
 		direction += Vector3(0, 0, 1);
 	}
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::A))
+	if (Window::GetKeyboard()->KeyHeld(KeyboardKeys::A))
 	{
 		direction += Vector3(-1, 0, 0);
 	}
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::D))
+	if (Window::GetKeyboard()->KeyHeld(KeyboardKeys::D))
 	{
 		direction += Vector3(1, 0, 0);
 	}
@@ -142,7 +157,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::SPACE))
 		{
 			JumpSound->Play();
-			movementState = (PlayerMovementState)(movementState + 1);
+			movementState = (movementState == PlayerMovementState::JUMP_ONE ? PlayerMovementState::JUMP_TWO : PlayerMovementState::JUMP_ONE);
 			Vector3 currentForce = physicsObject->body->getForce();
 			physicsObject->body->clearForces();
 			physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
@@ -166,7 +181,6 @@ void NCL::CSC8508::PlayerComponent::Jump()
 
 void NCL::CSC8508::PlayerComponent::AccelerateTo(Vector3 targetVelocity, float dt)
 {
-	Vector3 currentVelocity = physicsObject->body->getLinearVelocity();
 	Vector3 currentVelocityXZ = Vector3(currentVelocity.x, 0, currentVelocity.z);
 	Vector3 delta = targetVelocity - currentVelocityXZ;
 	Vector3 deltaAccel = (targetVelocity - currentVelocityXZ) / dt;

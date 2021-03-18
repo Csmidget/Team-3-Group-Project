@@ -60,8 +60,7 @@ namespace NCL {
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
 		private:
-			void TestClient();
-			void TestServer();
+		
 
 			void StartAsServer();
 			void StartAsClient();
@@ -72,9 +71,10 @@ namespace NCL {
 			void BroadcastSnapshot(bool deltaFrame);
 			void UpdateMinimumState();
 
+			void Restart();
+
 
 			bool const OFFLINE_MODE = true;
-			bool const TEST_MODE = false;
 			bool isClient = false;
 
 			GameServer* thisServer;
@@ -82,7 +82,6 @@ namespace NCL {
 			float timeToNextPacket;
 			int packetsToSnapshot;
 
-			std::vector<NetworkObject*> networkObjects;
 
 			std::map<int, ClientPlayer*> serverPlayers;
 			
