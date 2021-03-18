@@ -17,7 +17,8 @@ namespace NCL {
 		{
 			WALKING,
 			JUMP_ONE,
-			JUMP_TWO
+			JUMP_TWO,
+			IDLE
 		};
 
 
@@ -44,6 +45,7 @@ namespace NCL {
 			PlayerMovementState movementState;
 			//Maths::Vector3 dir;
 			Maths::Vector3 direction;
+			Maths::Vector3 currentVelocity;
 			PhysicsObject* physicsObject;
 			Audio::SoundInstance* JumpSound;
 
@@ -63,7 +65,6 @@ namespace NCL {
 			float jump;
 			float MAX_AIR_SPEED;
 			int jumpCounter;
-			bool jumping;
 			float lastCollisionTimer;
 
 		
@@ -71,7 +72,7 @@ namespace NCL {
 			Game* game;
 			CameraComponent* camera;
 			
-
+			void IdleCheck();
 			void CameraMovement();
 			void Movement();
 			void Jump();
