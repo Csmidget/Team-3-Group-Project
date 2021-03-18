@@ -200,7 +200,7 @@ void Game::InitWorld(std::string levelName) {
 	//physics->addhingeconstraint(testA->GetPhysicsObject()->body, Vector3(1.0f, 2.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f));
 	//world->Start();
 
-	AddFloorToWorld(Vector3(0, 0, 0));
+	//AddFloorToWorld(Vector3(0, 0, 0));
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 	InitNetworkPlayers();

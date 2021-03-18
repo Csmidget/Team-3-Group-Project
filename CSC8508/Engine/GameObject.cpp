@@ -93,6 +93,9 @@ std::vector<std::string> GameObject::DebugInfo() const {
 	auto transformInfo = transform.GetDebugInfo();
 	info.insert(info.end(), transformInfo.begin(), transformInfo.end());
 
+	auto physicsInfo = physicsObject->body->debugInfo();
+	info.insert(info.end(), physicsInfo.begin(), physicsInfo.end());
+
 	for (auto comp : components) {
 		auto compInfo = comp->GetDebugInfo();
 		info.insert(info.end(), compInfo.begin(), compInfo.end());

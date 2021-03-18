@@ -146,14 +146,11 @@ void RigidBody::setTransform()
 {
 	if (body)
 	{
-		//worldRef->removeRigidBody(this);
-
 		btQuaternion rotation = convertQuaternion(transform->GetOrientation());
 
 		NCL::Maths::Vector3 SetPosition = transform->GetPosition();
 		btVector3 position = convertVector3(SetPosition);
-			//btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
-
+		
 		btTransform newTransform;
 		newTransform.setOrigin(position);
 		newTransform.setRotation(rotation);
@@ -267,10 +264,8 @@ void RigidBody::makeKinematic()
 
 std::vector<std::string> RigidBody::debugInfo()
 {
-	
 	vector<std::string> returnInfo;
 	returnInfo.push_back("Physics Info");
-	//Vector3 mass = convertbtVector3();
 
 	std::stringstream stream;
 	stream << std::fixed << std::setprecision(2);
@@ -278,10 +273,17 @@ std::vector<std::string> RigidBody::debugInfo()
 	returnInfo.push_back(stream.str());
 	stream.str("");
 
-	Vector3 force = convertbtVector3(body->getTotalForce());
-	Debug::DrawLine(transform->GetPosition(), force.Normalised() * 10, NCL::Maths::Vector4(1, 0, 0, 1));
+	Vector3 force = convertbtVector3(body->getLinearVelocity());
 
-	stream << "  Force Vector: " << force.x << "," << force.y << "," << force.z;
+	if(force.Length() > 0)
+		Debug::DrawLine(transform->GetPosition(), transform->GetPosition() + force.Normalised(), NCL::Maths::Vector4(1, 0, 0, 1));
+
+	
+	stream << "  Linear Velocity: " << force.x << "," << force.y << "," << force.z;
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	stream << "  Velocity Magnitude: " << force.Length();
 	returnInfo.push_back(stream.str());
 	stream.str("");
 
@@ -289,22 +291,22 @@ std::vector<std::string> RigidBody::debugInfo()
 	switch (shape)
 	{
 	case BOX_SHAPE_PROXYTYPE: 
-		stream << "Collision Shape:  Box";
+		stream << "  Collision Shape:  Box";
 		break;
 	case SPHERE_SHAPE_PROXYTYPE:
-		stream << "Collision Shape:  Sphere";
+		stream << "  Collision Shape:  Sphere";
 		break;
 	case CAPSULE_SHAPE_PROXYTYPE:
-		stream << "Collision Shape:  Capsule";
+		stream << "  Collision Shape:  Capsule";
 		break;
 	case CONE_SHAPE_PROXYTYPE:
-		stream << "Collision Shape:  Cone";
+		stream << "  Collision Shape:  Cone";
 		break;
 	case CYLINDER_SHAPE_PROXYTYPE:
-		stream << "Collision Shape:  Cylinder";
+		stream << "  Collision Shape:  Cylinder";
 		break;
 	default:
-		stream << "Collision Shape:  none Primitive";
+		stream << "  Collision Shape:  none Primitive";
 		break;
 	}
 	

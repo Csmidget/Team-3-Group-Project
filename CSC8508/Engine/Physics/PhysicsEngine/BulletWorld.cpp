@@ -104,7 +104,8 @@ void BulletWorld::Update(float dt)
 		i->updateTransform();
 	}
 	
-
+	
+	//dynamicsWorld->
 }
 
 //checks all manifolds for new and expired manifolds to activate the Oncollision end and begin functions

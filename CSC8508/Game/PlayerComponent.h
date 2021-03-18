@@ -49,6 +49,7 @@ namespace NCL {
 
 			bool lockOrientation;
 
+			float speed;
 			float yaw;
 			float pitch;
 			float cameraDistance;
