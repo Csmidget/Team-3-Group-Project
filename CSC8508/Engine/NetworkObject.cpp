@@ -1,4 +1,5 @@
 #include "NetworkObject.h"
+#include "../Game/NetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -42,7 +43,7 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 
 	Vector3		fullPos			= lastFullState.position;
 	Quaternion  fullOrientation = lastFullState.orientation;
-	orientation = fullOrientation;
+	object.GetComponent<NetworkPlayerComponent>()->SetOrientation(fullOrientation);
 
 	fullPos.x += p.pos[0];
 	fullPos.y += p.pos[1];
@@ -52,7 +53,6 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 	fullOrientation.y += ((float)p.orientation[1]) / 127.0f;
 	fullOrientation.z += ((float)p.orientation[2]) / 127.0f;
 	fullOrientation.w += ((float)p.orientation[3]) / 127.0f;
-	std::cout << fullOrientation << std::endl;
 
 
 	object.GetTransform().SetPosition(fullPos).SetOrientation(fullOrientation);
@@ -64,13 +64,13 @@ bool NetworkObject::ReadFullPacket(FullPacket &p) {
 //		return false; // received an 'old' packet, ignore!
 //	}
 	lastFullState = p.fullState;
-	orientation = lastFullState.orientation;
+
+	object.GetComponent<NetworkPlayerComponent>()->SetOrientation(lastFullState.orientation);
 
 	object.GetTransform()
 		.SetPosition(lastFullState.position)
 		.SetOrientation(lastFullState.orientation);
 	stateHistory.emplace_back(lastFullState);
-	std::cout << lastFullState.orientation << std::endl;
 
 	return true;
 }
