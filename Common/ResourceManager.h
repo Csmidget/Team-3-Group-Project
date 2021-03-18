@@ -7,6 +7,7 @@ namespace NCL {
 
 	class MeshGeometry;
 	class MeshMaterial;
+	class MeshAnimation;
 
 	namespace Rendering {
 	
@@ -22,6 +23,7 @@ namespace NCL {
 			virtual TextureBase* LoadTexture(std::string textureName, unsigned int flags = 0, bool linearFilter = true, bool aniso = true) = 0;
 			virtual TextureBase* LoadCubemap(std::string xPos, std::string xNeg, std::string yPos, std::string yNeg, std::string zPos, std::string zNeg, unsigned int flags = 0) = 0;
 			virtual MeshMaterial* LoadMaterial(std::string fileName) = 0;
+			virtual MeshAnimation* LoadAnimation(std::string fileName) = 0;
 		};
 	}
 }

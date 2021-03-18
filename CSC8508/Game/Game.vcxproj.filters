@@ -36,9 +36,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RespawningObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MoveComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -102,7 +99,10 @@
     <ClCompile Include="TeleporterComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="TimeScore.cpp">
+    <ClCompile Include="DebugState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAnimComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -111,9 +111,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawningObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MoveComponent.h">
@@ -179,7 +176,10 @@
     <ClInclude Include="TeleporterComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="TimeScore.h">
+    <ClInclude Include="DebugState.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAnimComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -188,5 +188,6 @@
     <None Include="..\..\Assets\Shaders\GameTechVert.glsl" />
     <None Include="..\..\Assets\Shaders\GameTechShadowGeom.glsl" />
     <None Include="packages.config" />
+    <None Include="..\..\Assets\Shaders\GameTechShadowFrag.glsl" />
   </ItemGroup>
 </Project>

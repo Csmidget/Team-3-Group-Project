@@ -159,7 +159,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>Common.lib;BulletDynamics.lib;LinearMath.lib;BulletCollision.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug;$(SolutionDir)lib\Bullet\BulletRelease;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\Bullet\BulletRelease;$(SolutionDir)x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

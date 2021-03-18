@@ -6,16 +6,15 @@
 
 namespace NCL {
 	namespace CSC8508 {
-		class GameWorld;
+		class NetworkManager;
 		class GameServer : public NetworkBase {
 		public:
-			GameServer(int onPort, int maxClients);
+			GameServer(int onPort, int maxClients, NetworkManager* manager);
 			~GameServer();
 
 			bool Initialise();
 			void Shutdown();
 
-			void SetGameWorld(GameWorld &g);
 
 			//void ThreadedUpdate();
 
@@ -28,7 +27,7 @@ namespace NCL {
 			int			port;
 			int			clientMax;
 			int			clientCount;
-			GameWorld*	gameWorld;
+			NetworkManager* manager;
 
 			//std::atomic<bool> threadAlive;
 
@@ -38,6 +37,9 @@ namespace NCL {
 
 			int incomingDataRate;
 			int outgoingDataRate;
+
+			void SendGlobalLobby();
+
 		};
 	}
 }

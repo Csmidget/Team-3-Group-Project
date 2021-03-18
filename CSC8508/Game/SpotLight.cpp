@@ -28,6 +28,35 @@ void SpotLight::render(NCL::Rendering::OGLShader* lightshader)
 		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("spotLight[" + std::to_string(i) + "].quadratic").c_str()), quadratic);
 		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("spotLight[" + std::to_string(i) + "].cutOff").c_str()), glm::cos(glm::radians(12.5f)));
 		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("spotLight[" + std::to_string(i) + "].outerCutOff").c_str()), glm::cos(glm::radians(15.0f)));
+		glUniform1f(glGetUniformLocation(lightshader->GetProgramID(), ("spotLight[" + std::to_string(i) + "].farPlane").c_str()), farPlane);
+		glUniformMatrix4fv(glGetUniformLocation(lightshader->GetProgramID(), ("spotLight[" + std::to_string(i) + "].shadowVP").c_str()), 1, false, glm::value_ptr(getLightVPMatrix(i)));
 	}
+}
 
+int SpotLight::getSpotNumber()
+{
+	return position.size();
+}
+
+std::vector<glm::vec3> SpotLight::getPos()
+{
+	return position;
+}
+
+float SpotLight::getFarPlane()
+{
+	return farPlane;
+}
+
+glm::mat4 SpotLight::getLightVPMatrix(int idx)
+{
+	glm::vec3 f = direct;
+	glm::vec3 u = glm::cross(f, glm::vec3(f.y, f.z, f.x));
+
+	glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), 1.0f, 0.1f, farPlane);
+
+	//glm::mat4 shadowProj = glm::perspective(glm::radians(35.0f), 1.0f, 0.1f, farPlane);
+	//glm::mat4 shadowView = glm::lookAt(position[idx], position[idx] + glm::normalize(f), glm::normalize(u));
+	glm::mat4 shadowView = glm::lookAt(glm::vec3(0, 10, 0), glm::vec3(0, 0, 0), glm::vec3(0, 0, -1));
+	return shadowProj * shadowView;
 }

@@ -6,10 +6,13 @@ using namespace CSC8508;
 NCL::CSC8508::ClientPlayer::ClientPlayer(std::string clientName, GameObject& o, int id) : NetworkObject(o, id) 
 {
 	this->clientName = clientName;
+	playerID = id;
 }
 
 void NCL::CSC8508::ClientPlayer::Update(GamePacket& p)
 {
+	object.GetPhysicsObject()->SetAngularVelocity(Vector3(0, 0, 0));
+
 	ReadPacket(p);
 }
 

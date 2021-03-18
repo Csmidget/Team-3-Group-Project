@@ -90,6 +90,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)CSC8508\Engine\Audio\External\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)CSC8508\Engine\Audio\External\lib;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

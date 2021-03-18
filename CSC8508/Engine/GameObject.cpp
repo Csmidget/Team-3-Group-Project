@@ -39,8 +39,12 @@ void GameObject::Start() {
 void GameObject::Update(float dt)
 {
 	for (auto component : components) {
-		component->Update(dt);
+		if (component->IsEnabled())
+			component->Update(dt);
 	}
+
+	if(renderObject)
+		renderObject->Update(dt);
 
 	OnUpdate(dt);
 }
@@ -81,6 +85,22 @@ bool GameObject::GetBroadphaseAABB(Vector3&outSize) const {
 	return true;
 }
 
+std::vector<std::string> GameObject::DebugInfo() const {
+	std::vector<std::string> info;
+
+	info.push_back("Name: " + name);
+	
+	auto transformInfo = transform.GetDebugInfo();
+	info.insert(info.end(), transformInfo.begin(), transformInfo.end());
+
+	for (auto comp : components) {
+		auto compInfo = comp->GetDebugInfo();
+		info.insert(info.end(), compInfo.begin(), compInfo.end());
+	}
+
+	return info;
+}
+
 void GameObject::UpdateBroadphaseAABB() {
 	if (!boundingVolume) {
 		return;
@@ -115,28 +135,28 @@ void GameObject::SetGameWorld(GameWorld* newWorld) {
 	world = newWorld;
 }
 
-void GameObject::PrintDebugInfo() const {
-	int currLine = 0;
-	float lineSpacing = 3;
-
-	std::stringstream stream;
-
-	stream << "Name: " << name;
-	Debug::Print(stream.str(), Vector2(1, ++currLine * lineSpacing));
-	stream.str("");
-	stream << "Static: " << (isStatic ? "True":"False");
-	Debug::Print(stream.str(), Vector2(1, ++currLine * lineSpacing));
-	stream.str("");
-
-	transform.PrintDebugInfo(++currLine, lineSpacing);
-
-	if (physicsObject) {
-		physicsObject->PrintDebugInfo(++currLine, lineSpacing);
-	}
-
-	if (boundingVolume) {
-		boundingVolume->PrintDebugInfo(++currLine, lineSpacing);
-	}
-
-	ObjectSpecificDebugInfo(++currLine,lineSpacing);
-}
+//void GameObject::PrintDebugInfo() const {
+//	int currLine = 0;
+//	float lineSpacing = 3;
+//
+//	std::stringstream stream;
+//
+//	stream << "Name: " << name;
+//	Debug::Print(stream.str(), Vector2(1, ++currLine * lineSpacing));
+//	stream.str("");
+//	stream << "Static: " << (isStatic ? "True":"False");
+//	Debug::Print(stream.str(), Vector2(1, ++currLine * lineSpacing));
+//	stream.str("");
+//
+//	transform.PrintDebugInfo(++currLine, lineSpacing);
+//
+//	if (physicsObject) {
+//		physicsObject->PrintDebugInfo(++currLine, lineSpacing);
+//	}
+//
+//	if (boundingVolume) {
+//		boundingVolume->PrintDebugInfo(++currLine, lineSpacing);
+//	}
+//
+//	ObjectSpecificDebugInfo(++currLine,lineSpacing);
+//}

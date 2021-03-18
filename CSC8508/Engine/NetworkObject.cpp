@@ -13,12 +13,13 @@ NetworkObject::~NetworkObject()	{
 }
 
 bool NetworkObject::ReadPacket(GamePacket& p) {
-	if (p.type == Delta_State) {
+	if (p.type == Player_Delta_State) {
 		return ReadDeltaPacket((DeltaPacket&)p);
 	}
-	if (p.type == Full_State) {
+	if (p.type == Player_Full_State) {
 		return ReadFullPacket((FullPacket&)p);
 	}
+
 	return false; //this isn't a packet we care about!
 }
 
@@ -50,18 +51,19 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 	fullOrientation.y += ((float)p.orientation[1]) / 127.0f;
 	fullOrientation.z += ((float)p.orientation[2]) / 127.0f;
 	fullOrientation.w += ((float)p.orientation[3]) / 127.0f;
+	std::cout << fullOrientation << std::endl;
+
 
 	object.GetTransform()
 		.SetPosition(fullPos)
 		.SetOrientation(fullOrientation);
-
 	return true;
 }
 
 bool NetworkObject::ReadFullPacket(FullPacket &p) {
-	if (p.fullState.stateID < lastFullState.stateID) {
-		return false; // received an 'old' packet, ignore!
-	}
+	//if (p.fullState.stateID < lastFullState.stateID) {
+//		return false; // received an 'old' packet, ignore!
+//	}
 	lastFullState = p.fullState;
 
 	object.GetTransform()
@@ -69,6 +71,7 @@ bool NetworkObject::ReadFullPacket(FullPacket &p) {
 		.SetOrientation(lastFullState.orientation);
 
 	stateHistory.emplace_back(lastFullState);
+	std::cout << lastFullState.orientation << std::endl;
 
 	return true;
 }

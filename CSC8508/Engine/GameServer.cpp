@@ -1,15 +1,16 @@
 #include "GameServer.h"
-#include "GameWorld.h"
+#include "NetworkManager.h"
 #include <iostream>
 
 using namespace NCL;
 using namespace CSC8508;
 
-GameServer::GameServer(int onPort, int maxClients)	{
+GameServer::GameServer(int onPort, int maxClients, NetworkManager* manager)	{
 	port		= onPort;
 	clientMax	= maxClients;
 	clientCount = 0;
 	netHandle	= nullptr;
+	this->manager = manager;
 	//threadAlive = false;
 
 	Initialise();
@@ -73,8 +74,12 @@ void GameServer::UpdateServer() {
 
 		if (type == ENetEventType::ENET_EVENT_TYPE_CONNECT) {
 			std::cout << "Server: New client connected" << std::endl;
+			std::cout << "Peer ID = " << std::to_string(peer)<<std::endl;
 			NewPlayerPacket player(peer);
 			SendGlobalPacket(player);
+			manager->AddPlayerToLobby(peer);
+			SendGlobalLobby();
+			
 		}
 		else if (type == ENetEventType::ENET_EVENT_TYPE_DISCONNECT) {
 			std::cout << "Server: A client has disconnected" << std::endl;
@@ -84,9 +89,26 @@ void GameServer::UpdateServer() {
 		else if (type == ENetEventType::ENET_EVENT_TYPE_RECEIVE) {
 			GamePacket* packet = (GamePacket*)event.packet->data;
 			ProcessPacket(packet, peer);
+			manager->UpdateServerPlayer(peer, packet);
 		}
 		enet_packet_destroy(event.packet);
 	}
+
+}
+
+void NCL::CSC8508::GameServer::SendGlobalLobby()
+{
+	std::queue<int> lobby = *manager->GetPlayerLobby();
+	int playerIDs[8]{ -1,-1,-1,-1,-1,-1,-1,-1 };
+
+	for (int i = 0; i < 8; i++) {
+		if (lobby.empty()) break;
+		playerIDs[i] = lobby.front();
+		lobby.pop();
+	}
+
+	PlayerCountPacket packet(playerIDs);
+	SendGlobalPacket(packet);
 }
 
 //void GameServer::ThreadedUpdate() {
@@ -97,6 +119,3 @@ void GameServer::UpdateServer() {
 
 //Second networking tutorial stuff
 
-void GameServer::SetGameWorld(GameWorld &g) {
-	gameWorld = &g;
-}

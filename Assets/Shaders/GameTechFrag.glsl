@@ -18,6 +18,8 @@ struct DirLight {
 struct PointLight {
     vec3 position;
     
+    float farPlane;
+
     float constant;
     float linear;
     float quadratic;
@@ -25,6 +27,8 @@ struct PointLight {
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
+
+    samplerCube shadowMap;
 };
 
 struct SpotLight {
@@ -33,13 +37,18 @@ struct SpotLight {
     float cutOff;
     float outerCutOff;
   
+    float farPlane;
+
     float constant;
     float linear;
     float quadratic;
   
     vec3 ambient;
     vec3 diffuse;
-    vec3 specular;       
+    vec3 specular;
+
+    mat4 shadowVP;
+    sampler2D shadowMap;
 };
 
 #define NR_POINT_LIGHTS 4
@@ -51,16 +60,18 @@ in vec2 TexCoords;
 uniform vec3 viewPos;
 uniform DirLight dirLight;
 uniform PointLight pointLights[NR_POINT_LIGHTS];
+
 uniform SpotLight spotLight[NR_POINT_LIGHTS];
 uniform Material material;
 
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
-vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
-vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 CalcPointLight(PointLight light,float shadowed, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 CalcSpotLight(SpotLight light, float shadowed, vec3 normal, vec3 fragPos, vec3 viewDir);
 
-// ¼ÆËãµã¹âÔ´ÒõÓ°
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ó°
 float ShadowCalculation(vec3 fragPos, PointLight light);
+float ShadowCalculation(vec3 fragPos, SpotLight light);
 
 void main()
 {    
@@ -69,48 +80,109 @@ void main()
     vec3 viewDir = normalize(viewPos - FragPos);
     
 
-    // ×îÖÕµÄÑÕÉ«¼ÆËã
+    // ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
     vec3 result = vec3(0.0f);
-    // ¼ÆËãµã¹âÔ´
-    for(int i = 0; i < 3; i++)
-        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);  
-    // ¼ÆËã¾Û¹âµÆ
-    for(int i = 0; i < 3; i++)
-        result += CalcSpotLight(spotLight[i], norm, FragPos, viewDir);    
-  
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
+
+    /*
+    for(int i = 0; i < 1; i++)
+    {
+        float shadow=ShadowCalculation(FragPos,pointLights[i]);
+        shadow=clamp(1.0-shadow,0.0,1.0);
+        //float shadow=1.0;
+        result += CalcPointLight(pointLights[i],shadow, norm, FragPos, viewDir);  
+    }
+    */
+
+    {
+        float shadow=ShadowCalculation(FragPos,pointLights[0]);
+        shadow=clamp(1.0-shadow,0.0,1.0);
+        //float shadow=1.0;
+        result += CalcPointLight(pointLights[0],shadow, norm, FragPos, viewDir);  
+    }
+    {
+        float shadow=ShadowCalculation(FragPos,pointLights[1]);
+        shadow=clamp(1.0-shadow,0.0,1.0);
+        //float shadow=1.0;
+        result += CalcPointLight(pointLights[1],shadow, norm, FragPos, viewDir);  
+    }
+
+    // ï¿½ï¿½ï¿½ï¿½Û¹ï¿½ï¿½
+    for(int i = 0; i < 1; i++)
+    {
+        //float shadow=ShadowCalculation(FragPos,spotLight[i]);
+        //shadow=clamp(1.0-shadow,0.0,1.0);
+        float shadow=1.0;
+        result += CalcSpotLight(spotLight[i],shadow, norm, FragPos, viewDir);    
+    }
 
     FragColor = vec4(result, 1.0);
 }
 
 
+float linearDepth(float depthSample,float zNear,float zFar)
+{
+    depthSample = 2.0 * depthSample - 1.0;
+    float zLinear = 2.0 * zNear * zFar / (zFar + zNear - depthSample * (zFar - zNear));
+    return zLinear;
+}
 
+float ShadowCalculation(vec3 fragPos, SpotLight light)
+{
+    vec2 sampleOffsetDirections[9] = vec2[]
+    (
+       vec2(-1, 1), vec2(0, 1), vec2(1, 1),
+       vec2(-1, 0), vec2(0, 0), vec2(1, 0),
+       vec2(-1, -1), vec2(0, -0), vec2(1,-0)
+    );
+ 
+     vec4 shadowCoord = light.shadowVP*vec4(fragPos,1.0);
+    shadowCoord.xyz/=shadowCoord.w;
+    shadowCoord.xy=shadowCoord.xy*0.5+0.5;
+    vec3 fragToLight = fragPos - light.position;
+    float fragDepth = length(fragToLight);
+    //float texelSize = (1.0 + (fragDepth / light.farPlane)) / 5000.0;
+    float texelSize = 0.0;
+    float bias = 0.05;
+    float shadow = 0;
+    for(int i = 0; i < 9; i++)
+    {
+        float closestDepth = texture(light.shadowMap, shadowCoord.xy + sampleOffsetDirections[i] * texelSize).r;
+        closestDepth *= light.farPlane;
+        if(fragDepth - bias > closestDepth)
+            shadow += 0.93f;
+    }
+    shadow /= 9;
+    return shadow;
+    //return 0.0;
+}
 
-//float ShadowCalculation(vec3 fragPos, PointLight light)
-//{
-//    vec3 sampleOffsetDirections[20] = vec3[]
-//    (
-//       vec3(1, 1, 1), vec3(1, -1, 1), vec3(-1, -1, 1), vec3(-1, 1, 1), 
-//       vec3(1, 1, -1), vec3(1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
-//       vec3(1, 1, 0), vec3(1, -1, 0), vec3(-1, -1, 0), vec3(-1, 1, 0),
-//       vec3(1, 0, 1), vec3(-1, 0, 1), vec3(1, 0, -1), vec3(-1, 0, -1),
-//       vec3(0, 1, 1), vec3(0, -1, 1), vec3(0, -1, -1), vec3(0, 1, -1)
-//    );
-// 
-//    vec3 fragToLight = fragPos - light.position;
-//    float fragDepth = length(fragToLight);
-//    float texelSize = texelSize = (1.0 + (fragDepth / light.farPlane)) / 25.0;
-//    float bias = 0.0004;
-//    float shadow = 0;
-//    for(int i = 0; i < 20; i++)
-//    {
-//        float closestDepth = texture(shadowMap, fragToLight + sampleOffsetDirections[i] * texelSize).r;
-//        closestDepth *= light.farPlane;
-//        if(fragDepth - bias > closestDepth)
-//            shadow += 0.93f;
-//    }
-//    shadow /= 20;
-//    return shadow;
-//}
+float ShadowCalculation(vec3 fragPos, PointLight light)
+{
+    vec3 sampleOffsetDirections[20] = vec3[]
+    (
+       vec3(1, 1, 1), vec3(1, -1, 1), vec3(-1, -1, 1), vec3(-1, 1, 1), 
+       vec3(1, 1, -1), vec3(1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
+       vec3(1, 1, 0), vec3(1, -1, 0), vec3(-1, -1, 0), vec3(-1, 1, 0),
+       vec3(1, 0, 1), vec3(-1, 0, 1), vec3(1, 0, -1), vec3(-1, 0, -1),
+       vec3(0, 1, 1), vec3(0, -1, 1), vec3(0, -1, -1), vec3(0, 1, -1)
+    );
+ 
+    vec3 fragToLight = fragPos - light.position;
+    float fragDepth = length(fragToLight);
+    float texelSize = (1.0 + (fragDepth / light.farPlane)) / 50.0;
+    float bias = 0.05;
+    float shadow = 0;
+    for(int i = 0; i < 20; i++)
+    {
+        float closestDepth = texture(light.shadowMap, fragToLight + sampleOffsetDirections[i] * texelSize).r;
+        closestDepth *= light.farPlane;
+        if(fragDepth - bias > closestDepth)
+            shadow += 0.93f;
+    }
+    shadow /= 20;
+    return shadow;
+}
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
 {
@@ -128,7 +200,7 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
 }
 
 
-vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
+vec3 CalcPointLight(PointLight light,float shadowed, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
     vec3 lightDir = normalize(light.position - fragPos);
 
@@ -146,11 +218,11 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     ambient *= attenuation;
     diffuse *= attenuation;
     specular *= attenuation;
-    return (ambient + diffuse + specular);
+    return (ambient + diffuse + specular)*shadowed;
 }
 
 
-vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
+vec3 CalcSpotLight(SpotLight light,float shadowed, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
     vec3 lightDir = normalize(light.position - fragPos);
 
@@ -172,5 +244,5 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     ambient *= attenuation * intensity;
     diffuse *= attenuation * intensity;
     specular *= attenuation * intensity;
-    return (ambient + diffuse + specular);
+    return (ambient + diffuse + specular)*shadowed;
 }

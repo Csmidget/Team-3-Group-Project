@@ -11,6 +11,7 @@ using namespace std;
 #include <thread>
 #include <string>
 #include <iostream>
+#include <queue>
 //#include "../Game/NetworkPlayer.h"
 
 class TestPacketReceiver : public PacketReceiver {
@@ -31,21 +32,35 @@ public:
 };
 namespace NCL {
 	namespace CSC8508 {
+
 		class NetworkManager : public PacketReceiver
 		{
-
 		public:
 			NetworkManager();
+
 			~NetworkManager();
 
 			void Update(float dt);
 
 			void ReceivePacket(int type, GamePacket* payload, int source) override;
 			//void OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b);
+	
+			void AddPlayerToLobby(int id);
+
+			std::queue<int>* GetPlayerLobby() {
+				return &playerLobby;
+			}
+
+			void AddPlayerToGame(int id, GameObject* object) {
+				serverPlayers.emplace(id, new ClientPlayer("Client", *object, id));
+			}
+			
+			void SetLocalPlayer(GameObject* object) { localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
+			
+			void UpdateServerPlayer(int id, GamePacket* packet);
 
 		private:
-			void TestClient();
-			void TestServer();
+		
 
 			void StartAsServer();
 			void StartAsClient();
@@ -58,18 +73,24 @@ namespace NCL {
 
 
 			bool const OFFLINE_MODE = true;
-			bool const TEST_MODE = true;
-			bool isClient = true;
+			bool isClient = false;
 
 			GameServer* thisServer;
 			GameClient* thisClient;
 			float timeToNextPacket;
 			int packetsToSnapshot;
 
-			std::vector<NetworkObject*> networkObjects;
 
 			std::map<int, ClientPlayer*> serverPlayers;
-			GameObject* localPlayer;
+			
+			ClientPlayer* localPlayer;
+
+			std::queue<int> playerLobby;
+
+			int stateID = 0;
+
+			const int MAX_CLIENTS = 8;
+
 		};
 
 	}
