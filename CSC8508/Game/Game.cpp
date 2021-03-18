@@ -174,7 +174,10 @@ void Game::InitNetworkPlayers()
 }
 
 void Game::InitWorld() {
-	InitWorld("DesouzaTest.json");
+
+	InitWorld("AshmanTest.json");
+	//InitWorld("CharlesTest.json");
+
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -183,13 +186,7 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
-	
-	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	//player->AddComponent<PlayerComponent>(this);
-	
-	//world->Start();
 
-	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
