@@ -3,6 +3,7 @@
 NCL::CSC8508::DisappearingPlatformComponent::DisappearingPlatformComponent(GameObject* object) : Component("DisappearingPlatform", object)
 {
 	timer = MAX_TIMER;
+	collided = false;
 }
 
 void NCL::CSC8508::DisappearingPlatformComponent::Update(float dt)
