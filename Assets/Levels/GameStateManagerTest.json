@@ -1,16 +1,60 @@
 [
     {
-        "name": "GameStateManager",
-        "isStatic": true,
+        "name": "GameManager",
+        "isStatic": false,
         "tag": "GameStateManager",
-      
+        "collider": {
+            "type": "none",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 10.637395858764649,
+                "y": -6.622330665588379,
+                "z": -9.725732803344727
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "",
+            "material": "",
+            "renderScale": 0
+        },
+        "physics": {
+            "mass": -1.0,
+            "drag": 0.0,
+            "angularDrag": 0.0,
+            "useGravity": false,
+            "isKinematic": false
+        },
         "components": [
             {
-            "name" : "GameStateManager"
-        }
-
+                "name": "GameStateManager"
+            }
         ]
-    },{
+    }, {
         "name": "Player",
         "isStatic": false,
         "tag": "Player",
@@ -34,7 +78,7 @@
             "position": {
                 "x": 5.190000057220459,
                 "y": 1.5720000267028809,
-                "z": 5.179999828338623
+                "z": 9.119998931884766
             },
             "orientation": {
                 "x": 0.0,
@@ -49,9 +93,10 @@
             }
         },
         "render": {
-            "mesh": "Capsule.msh",
-            "material": "playerMat.mat",
-            "renderScale": 1
+            "mesh": "MaleFreeSimpleMovement1.msh",
+            "material": "MaleFreeSimpleMovement1.mat",
+            "renderScale": 1,
+            "animation": "midair.anm"
         },
         "physics": {
             "mass": 3.0,

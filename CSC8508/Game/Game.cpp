@@ -220,7 +220,8 @@ void Game::InitNetworkPlayers()
 void Game::InitWorld() {
 
 
-	InitWorld("DesouzaTest.json");
+	//InitWorld("DesouzaTest.json");
+	InitWorld("GameStateManagerTest.json");
 	//InitWorld("CharlesTest.json");
 
 
