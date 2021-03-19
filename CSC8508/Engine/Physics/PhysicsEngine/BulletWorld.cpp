@@ -10,11 +10,11 @@ using namespace physics;
 BulletWorld::BulletWorld()
 {
 	//creates the bulletworld wwith default parameters
-	collisionConfiguration	=	new btDefaultCollisionConfiguration();
-	dispatcher				=	new btCollisionDispatcher(collisionConfiguration);
-	overlappingPairCache	=	new btDbvtBroadphase();
-	solver					=	new btSequentialImpulseConstraintSolver;
-	dynamicsWorld			=	new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
+	collisionConfiguration = new btDefaultCollisionConfiguration();
+	dispatcher = new btCollisionDispatcher(collisionConfiguration);
+	overlappingPairCache = new btDbvtBroadphase();
+	solver = new btSequentialImpulseConstraintSolver;
+	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
 	dynamicsWorld->setGravity(btVector3(0, -20.0f, 0));
 	dynamicsWorld->setInternalTickCallback((btInternalTickCallback)tickCallBack, this, true);
@@ -38,11 +38,11 @@ void BulletWorld::setGravity(NCL::Maths::Vector3 force)
 	dynamicsWorld->setGravity(convertVector3(force));
 }
 
-void BulletWorld::addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point){
+void BulletWorld::addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point) {
 
 	//btVector3 pivot(1, 5, 1);// = convertVector3(point);
 	btVector3 pivot = convertVector3(point);
-	btTypedConstraint* p2p = new btPoint2PointConstraint(*bodyA ->returnBody(), pivot);
+	btTypedConstraint* p2p = new btPoint2PointConstraint(*bodyA->returnBody(), pivot);
 	p2p->setBreakingImpulseThreshold((btScalar)10000.2);
 	dynamicsWorld->addConstraint(p2p);
 }
@@ -62,8 +62,8 @@ void BulletWorld::addhingeconstraint(RigidBody* doorbody, NCL::Maths::Vector3 po
 
 
 //cast a ray between to points and returns the hit gameobject or nullptr if nothing is hit
-GameObject* BulletWorld::rayIntersect(	NCL::Maths::Vector3 from, NCL::Maths::Vector3 to,
-								/*OUT*/ NCL::Maths::Vector3 pointHit)
+GameObject* BulletWorld::rayIntersect(NCL::Maths::Vector3 from, NCL::Maths::Vector3 to,
+	/*OUT*/ NCL::Maths::Vector3 pointHit)
 {
 	btVector3 btFrom = convertVector3(from);
 	btVector3 btTo = convertVector3(to);
@@ -91,27 +91,16 @@ void BulletWorld::removeRigidBody(RigidBody* body)
 	rigidList.erase(std::remove(rigidList.begin(), rigidList.end(), body), rigidList.end());
 }
 
-void BulletWorld::addUpdateObject(GameObject* object)
-{
-	updateList.push_back(object);
-}
-
-void BulletWorld::removeUpdateObject(GameObject* object)
-{
-	updateList.erase(std::remove(updateList.begin(), updateList.end(), object), updateList.end());
-}
-
 //steps simulation and sets the transform based on bullet physics
 void BulletWorld::Update(float dt)
 {
 	dynamicsWorld->stepSimulation((btScalar)dt, 4);
-	checkCollisions();
 
 	for (auto i : rigidList)
 	{
 		i->updateTransform();
 	}
-	
+
 }
 
 //checks all manifolds for new and expired manifolds to activate the Oncollision end and begin functions
@@ -144,7 +133,7 @@ void BulletWorld::checkCollisions()
 			((GameObject*)obA->getUserPointer())->OnCollisionStay(((GameObject*)obB->getUserPointer()));
 			((GameObject*)obB->getUserPointer())->OnCollisionStay(((GameObject*)obA->getUserPointer()));
 		}
-		
+
 	}
 	for (int j = 0; j < contactList.size(); j++)
 	{
@@ -176,13 +165,12 @@ void BulletWorld::checkCollisions()
 //dispatcher etc may need to be reset manually here
 void BulletWorld::clear()
 {
-	for (auto  i: rigidList)
+	for (auto i : rigidList)
 	{
 		removeRigidBody(i);
 	}
 	rigidList.clear();
 	contactList.clear();
-	updateList.clear();
 }
 
 
@@ -199,6 +187,7 @@ void BulletWorld::updateObjects(float dt)
 	{
 		i->returnBody()->applyDamping((btScalar)dt);
 		i->returnBody()->integrateVelocities((btScalar)dt);
-		((GameObject*)i->returnBody()->getUserPointer())->fixedUpdate((btScalar)dt);
+		((GameObject*)i->returnBody()->getUserPointer())->fixedUpdate(dt);
 	}
+	checkCollisions();
 }

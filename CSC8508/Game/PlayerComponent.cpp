@@ -23,7 +23,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	receiveInputs = true;
 
 	speed = 1.0f;
-	jump = 20.f;
+	jump = 200.f;
 	//jump = 110.f;
 
 	MAX_WALKING_SPEED = 10.f;
@@ -167,9 +167,9 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		if (jumpCounter > 0)
 		{
 			//std::cout << "Jumping" << std::endl;
-			//physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * 3);
+			physicsObject->body->addForce(transform->GetOrientation() * Vector3(0, 1, 0) * jump * 3);
 
-			physicsObject->body->addImpulse(Vector3(0, 1, 0) * jump);
+		//	physicsObject->body->addImpulse(Vector3(0, 1, 0) * jump);
 			//std::cout << physicsObject->GetForce() << std::endl;
 			jumpCounter--;
 		}
