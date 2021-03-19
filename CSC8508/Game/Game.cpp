@@ -10,6 +10,8 @@
 #include"PlaySound.h"
 #include "ScoreComponent.h"
 #include "RingComponenet.h"
+#include "TimeScoreComponent.h"
+#include "GrideComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -79,7 +81,7 @@ bool Game::UpdateGame(float dt) {
 		return false;
 
 	UpdateKeys();
-
+	
 	if (!paused) {
 		physics->Update(dt);
 
@@ -193,8 +195,9 @@ void Game::InitWorld(std::string levelName) {
 	
 	//auto player = AddCapsuleToWorld(Vector3(0, 5.f, 5), 1.0f, 0.5f, 3.f, true);
 		
-	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	//player->AddComponent<PlayerComponent>(this);
+//	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f);
+//	player->AddComponent<GrideComponent>(this);
+	//player->HasTag("Player");
 	//AddFloorToWorld(Vector3(0, 0, 0));
 	//GameObject* testA = AddCubeToWorld(Vector3(1, 5, 1), Vector3(1, 1, 1));
 	//GameObject* testB = AddCubeToWorld(Vector3(5, 5, 5), Vector3(1, 1, 1));

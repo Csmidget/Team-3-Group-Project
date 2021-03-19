@@ -8,6 +8,7 @@ namespace NCL {
 		class Game;
 		class GameWorld;
 		class GameObject;
+		
 
 		class IntroState : public PushdownState {
 
@@ -16,15 +17,19 @@ namespace NCL {
 			void OnAwake() override;
 			void OnSleep() override;
 
+
 		public:
 			IntroState(Game* game);
+			bool confrontation;
 
 		protected:
 			Game* game;
 			GameWorld* world;
 
-			GameObject* openCube;
+			GameObject* openCube1;
+			GameObject* openCube2;
 			GameObject* exitCube;
+
 		};
 	}
 }
