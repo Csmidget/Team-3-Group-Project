@@ -29,6 +29,7 @@ NetworkManager::NetworkManager()
 NetworkManager::NetworkManager(bool server) {
 
 	NetworkBase::Initialise();
+	isClient = !server;
 	server ? StartAsServer() : StartAsClient();
 }
 
