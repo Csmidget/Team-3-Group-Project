@@ -154,6 +154,7 @@
     <ClCompile Include="BonusComponent.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="DebugState.cpp" />
+    <ClCompile Include="DisappearingPlatformComponent.cpp" />
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameStateManagerComponent.cpp" />
     <ClCompile Include="GameTechRenderer.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="BonusComponent.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="DebugState.h" />
+    <ClInclude Include="DisappearingPlatformComponent.h" />
     <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameStateManagerComponent.h" />
     <ClInclude Include="GameTechRenderer.h" />

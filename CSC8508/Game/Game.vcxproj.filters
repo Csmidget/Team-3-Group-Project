@@ -111,6 +111,9 @@
     <ClCompile Include="GrideComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="DisappearingPlatformComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -192,6 +195,9 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="GrideComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DisappearingPlatformComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
