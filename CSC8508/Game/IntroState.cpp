@@ -1,5 +1,6 @@
 #include "IntroState.h"
 #include "PlayState.h"
+#include "LobbyState.h"
 #include "Game.h"
 #include "../Engine/GameWorld.h"
 #include "../Engine/Debug.h"
@@ -29,7 +30,7 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 	Debug::Print("Multi - Server", Vector2(42, 66.5));
 	Debug::Print("Click to Exit", Vector2(43, 82.5));
 
-	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
+	if (Window::GetMouse()->ButtonPressed(NCL::MouseButtons::LEFT)) {
 
 		Ray ray = CollisionDetection::BuildRayFromMouse(*CameraComponent::GetMain()->GetCamera());
 
@@ -41,14 +42,12 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 				return PushdownResult::Push;
 			}
 			if (hitObject == clientCube) {
-				game->EnableNetworking(false);
-				*newState = new PlayState(game);
+				*newState = new LobbyState(game,true);
 				return PushdownResult::Push;
 				confrontation = true;
 			}
 			if (hitObject == serverCube) {
-				game->EnableNetworking(true);
-				*newState = new PlayState(game);
+				*newState = new LobbyState(game,false);
 				return PushdownResult::Push;
 				confrontation = true;
 			}

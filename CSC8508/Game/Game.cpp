@@ -103,10 +103,10 @@ bool Game::UpdateGame(float dt) {
 	return true;
 }
 
-void Game::EnableNetworking(bool server) {
+void Game::EnableNetworking(bool client) {
 
 	if (!networkManager)
-		networkManager = new NetworkManager(server);
+		networkManager = new NetworkManager(client);
 	else {
 		std::cout << "Attempted to enable networking whilst network manager is already active.\n";
 	}
@@ -229,9 +229,6 @@ void Game::InitWorld(std::string levelName) {
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
-
-	//if(networkManager)
-	//	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();

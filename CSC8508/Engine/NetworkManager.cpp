@@ -26,11 +26,11 @@ NetworkManager::NetworkManager()
 	
 }
 
-NetworkManager::NetworkManager(bool server) {
+NetworkManager::NetworkManager(bool client) {
 
 	NetworkBase::Initialise();
-	isClient = !server;
-	server ? StartAsServer() : StartAsClient();
+	isClient = client;
+	client ? StartAsClient() : StartAsServer();
 }
 
 NetworkManager::~NetworkManager()
@@ -130,12 +130,18 @@ void NCL::CSC8508::NetworkManager::StartAsServer()
 void NCL::CSC8508::NetworkManager::StartAsClient()
 {
 	thisClient = new GameClient(this);
-	thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort());
-	thisClient->RegisterPacketHandler(Delta_State, this);
-	thisClient->RegisterPacketHandler(Full_State, this);
-	thisClient->RegisterPacketHandler(Player_Connected, this);
-	thisClient->RegisterPacketHandler(Player_Disconnected, this);
-	thisClient->RegisterPacketHandler(Player_Count, this);
+
+	if (thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort())) {
+		thisClient->RegisterPacketHandler(Delta_State, this);
+		thisClient->RegisterPacketHandler(Full_State, this);
+		thisClient->RegisterPacketHandler(Player_Connected, this);
+		thisClient->RegisterPacketHandler(Player_Disconnected, this);
+		thisClient->RegisterPacketHandler(Player_Count, this);
+	}
+	else {
+		std::cout << "failed to setup client";
+	}
+
 
 }
 
@@ -160,7 +166,6 @@ void NetworkManager::UpdateAsClient(float dt)
 	if (!thisClient) return;
 	thisClient->UpdateClient();
 	
-
 	GamePacket* newPacket;
 
 	if (!localPlayer) return;
