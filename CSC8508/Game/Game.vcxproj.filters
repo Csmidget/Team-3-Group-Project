@@ -114,6 +114,9 @@
     <ClCompile Include="DisappearingPlatformComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="LobbyState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="DisappearingPlatformComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyState.h">
+      <Filter>State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
