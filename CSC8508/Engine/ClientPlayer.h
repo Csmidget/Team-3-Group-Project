@@ -13,7 +13,6 @@ namespace NCL {
 			ClientPlayer(std::string clientName, GameObject& o, int id);
 
 			void Update(GamePacket& p) override;
-			void Update(float dt);
 			int GetPlayerID() const { return playerID; }
 		protected:
 

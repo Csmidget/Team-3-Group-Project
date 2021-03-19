@@ -16,9 +16,10 @@ namespace NCL {
 				void SetOrientation(Maths::Quaternion orientation) {
 					this->orientation = orientation;
 				};
-
+				void SetScore(int score) { this->score = score; };
 			private:
 				Maths::Quaternion orientation;
+				int score;
 		};
 
 	}

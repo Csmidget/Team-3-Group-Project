@@ -14,10 +14,7 @@ void NCL::CSC8508::ClientPlayer::Update(GamePacket& p)
 	ReadPacket(p);
 }
 
-void NCL::CSC8508::ClientPlayer::Update(float dt)
-{
 
-}
 
 
 bool NCL::CSC8508::ClientPlayer::WriteDeltaPacket(GamePacket** p, int stateID)

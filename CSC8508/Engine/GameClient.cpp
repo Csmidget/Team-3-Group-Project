@@ -57,7 +57,8 @@ void GameClient::UpdateClient() {
 
 			if (packet->type == Player_Connected) 
 				if(id==-1) id = ((NewPlayerPacket*)packet)->playerID;
-			if (packet->type == Player_Count) UpdateClientLobby(((PlayerCountPacket*)packet)->playerIDs);
+			if (packet->type == Player_Count) 
+				UpdateClientLobby(((PlayerCountPacket*)packet)->playerIDs);
 			
 			if (packet->type == Player_Delta_State || packet->type == Player_Full_State) {
 				int peer = packet->type == Player_Delta_State ? ((PlayerDeltaPacket*)packet)->playerID : ((PlayerFullPacket*)packet)->playerID;

@@ -44,14 +44,7 @@ void NetworkManager::Update(float dt)
 		timeToNextPacket += 1.0f / 20.0f; //20hz server/client update
 	}
 
-	if (!serverPlayers.empty()) {
-
-		for (pair<int, ClientPlayer*> client : serverPlayers) 
-			client.second->Update(dt);
-		
-		
-
-	}
+	
 
 	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::R)) Restart();
 }
