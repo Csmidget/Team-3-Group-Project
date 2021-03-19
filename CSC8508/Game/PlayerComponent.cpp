@@ -8,6 +8,7 @@
 #include "../../Common/Window.h"
 #include "../../Common/Maths.h"
 #include "CameraComponent.h"
+#include "PlayerAnimComponent.h"
 
 #include"../Audio/SoundManager.h"
 #include <algorithm>
@@ -44,6 +45,8 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	JumpSound->Set3D(false);
 	JumpSound->SetVolume(0.4f);
 
+	gameObject->AddComponent<PlayerAnimComponent>(game);
+
 	this->game = game;
 }
 
@@ -58,7 +61,6 @@ void PlayerComponent::Update(float dt) {
 	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
 	transform->SetOrientation(orientation);
 
-	IdleCheck();
 	if (receiveInputs)
 	{
 		UpdateControls(dt);
@@ -67,14 +69,14 @@ void PlayerComponent::Update(float dt) {
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 {
-	movementState = PlayerMovementState::WALKING;
+	movementState = IdleOrRunning();
 	lastCollisionTimer = 0.0f;
 
 }
 
 void NCL::CSC8508::PlayerComponent::OnCollisionStay(GameObject* otherObject)
 {
-	movementState = PlayerMovementState::WALKING;
+	movementState = IdleOrRunning();
 	lastCollisionTimer = 0.0f;
 }
 
@@ -84,11 +86,14 @@ void NCL::CSC8508::PlayerComponent::OnCollisionEnd(GameObject* otherObject)
 
 }
 
-void NCL::CSC8508::PlayerComponent::IdleCheck()
+PlayerMovementState NCL::CSC8508::PlayerComponent::IdleOrRunning()
 {
-	if (currentVelocity.Length() <= 0.1f)
+	if (currentVelocity.Length() <= 1.0f)
 	{
-		movementState = PlayerMovementState::IDLE;
+		return PlayerMovementState::IDLE;
+	}
+	else {
+		return PlayerMovementState::WALKING;
 	}
 }
 

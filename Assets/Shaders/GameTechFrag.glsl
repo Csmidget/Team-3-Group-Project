@@ -69,7 +69,7 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light,float shadowed, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec3 CalcSpotLight(SpotLight light, float shadowed, vec3 normal, vec3 fragPos, vec3 viewDir);
 
-// ¼ÆËãµã¹âÔ´ÒõÓ°
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ó°
 float ShadowCalculation(vec3 fragPos, PointLight light);
 float ShadowCalculation(vec3 fragPos, SpotLight light);
 
@@ -80,9 +80,9 @@ void main()
     vec3 viewDir = normalize(viewPos - FragPos);
     
 
-    // ×îÖÕµÄÑÕÉ«¼ÆËã
+    // ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
     vec3 result = vec3(0.0f);
-    // ¼ÆËãµã¹âÔ´
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 
     /*
     for(int i = 0; i < 1; i++)
@@ -107,7 +107,7 @@ void main()
         result += CalcPointLight(pointLights[1],shadow, norm, FragPos, viewDir);  
     }
 
-    // ¼ÆËã¾Û¹âµÆ
+    // ï¿½ï¿½ï¿½ï¿½Û¹ï¿½ï¿½
     for(int i = 0; i < 1; i++)
     {
         //float shadow=ShadowCalculation(FragPos,spotLight[i]);

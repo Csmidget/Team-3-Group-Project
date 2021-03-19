@@ -66,6 +66,9 @@ namespace NCL {
 			//'up' as the...up axis (pointing towards the top of the screen)
 			static Matrix4 BuildViewMatrix(const Vector3& from, const Vector3& lookingAt, const Vector3& up);
 
+			static Matrix4 LerpTransforms(float p, const Matrix4& mat1, const Matrix4& mat2);
+
+
 			void    Invert();
 			Matrix4 Inverse() const;
 

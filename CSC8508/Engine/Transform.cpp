@@ -46,7 +46,6 @@ Transform& Transform::SetOrientation(const Quaternion& worldOrientation, bool up
 
 	if (updatePhysics && gameObject->GetPhysicsObject())
 		gameObject->GetPhysicsObject()->body->setTransform();
-
 	UpdateMatrix();
 	return *this;
 }

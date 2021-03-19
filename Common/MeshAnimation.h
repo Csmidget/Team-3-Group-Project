@@ -29,6 +29,7 @@ public:
 	}
 
 	const Matrix4* GetJointData(unsigned int frame) const;
+	std::vector<Matrix4> GenerateRelativeJoints(const std::vector<Matrix4>& invBindPose);
 
 protected:
 	unsigned int	jointCount;

@@ -28,6 +28,7 @@ https://research.ncl.ac.uk/game/
 namespace NCL {
 	class MeshGeometry;
 	class MeshMaterial;
+	class MeshAnimation;
 
 	namespace Maths {
 		class Matrix4;
@@ -88,6 +89,9 @@ namespace NCL {
 			HDC		deviceContext;		//...Device context?
 			HGLRC	renderContext;		//Permanent Rendering Context		
 #endif
+
+			OGLShader* boundShader;
+			
 		private:
 			struct DebugString {
 				Maths::Vector4 colour;
@@ -107,7 +111,7 @@ namespace NCL {
 
 			OGLMesh*		boundMesh;
 			MeshMaterial*	boundMaterial;
-			OGLShader*		boundShader;
+			MeshAnimation*	boundAnimation;
 
 			OGLShader*  debugShader;
 			SimpleFont* font;

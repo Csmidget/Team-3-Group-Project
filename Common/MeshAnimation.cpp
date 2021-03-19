@@ -47,6 +47,21 @@ MeshAnimation::~MeshAnimation() {
 
 }
 
+std::vector<Matrix4> MeshAnimation::GenerateRelativeJoints(const std::vector<Matrix4>& invBindPose) {
+
+	std::vector<Matrix4> relativeJoints;
+
+	relativeJoints.reserve(frameCount * jointCount);
+	for (unsigned int f = 0; f < frameCount; ++f) {
+		for (unsigned int i = 0; i < jointCount; ++i)
+		{
+			relativeJoints.emplace_back(allJoints[f * jointCount + i] * invBindPose[i]);
+		}
+	}
+
+	return relativeJoints;
+}
+
 const Matrix4* MeshAnimation::GetJointData(unsigned int frame) const {
 	if (frame >= frameCount) {
 		return nullptr;

@@ -60,8 +60,7 @@ namespace NCL {
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
 		private:
-			void TestClient();
-			void TestServer();
+		
 
 			void StartAsServer();
 			void StartAsClient();
@@ -72,17 +71,16 @@ namespace NCL {
 			void BroadcastSnapshot(bool deltaFrame);
 			void UpdateMinimumState();
 
+			void Restart();
 
-			bool const OFFLINE_MODE = false;
-
-			bool isClient = true;
+			bool const OFFLINE_MODE = true;
+			bool isClient = false;
 
 			GameServer* thisServer;
 			GameClient* thisClient;
 			float timeToNextPacket;
 			int packetsToSnapshot;
 
-			std::vector<NetworkObject*> networkObjects;
 
 			std::map<int, ClientPlayer*> serverPlayers;
 			
@@ -91,6 +89,9 @@ namespace NCL {
 			std::queue<int> playerLobby;
 
 			int stateID = 0;
+
+			const int MAX_CLIENTS = 8;
+
 		};
 
 	}

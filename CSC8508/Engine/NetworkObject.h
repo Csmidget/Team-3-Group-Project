@@ -55,7 +55,7 @@ namespace NCL {
 				size = sizeof(ClientPacket);
 			}
 		};
-
+	
 
 
 		class NetworkObject
@@ -93,6 +93,7 @@ namespace NCL {
 			int fullErrors;
 
 			GameObject& object;
+			Quaternion orientation;
 
 			int networkID;
 		};
