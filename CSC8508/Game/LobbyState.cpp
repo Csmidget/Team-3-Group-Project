@@ -13,7 +13,7 @@ LobbyState::LobbyState(Game* game, bool client) {
 }
 
 LobbyState::~LobbyState() {
-//	game->DisableNetworking();
+	game->DisableNetworking();
 }
 
 PushdownState::PushdownResult LobbyState::OnUpdate(float dt, PushdownState** newState) {
