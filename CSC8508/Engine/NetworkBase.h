@@ -92,7 +92,7 @@ struct PlayerFinishedPacket : public GamePacket {
 		playerID = id;
 		score = finalScore;
 		type = BasicNetworkMessages::Player_Finished;
-		size = sizeof(int);
+		size = sizeof(int) *2;
 
 	}
 

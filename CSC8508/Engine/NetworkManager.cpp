@@ -58,7 +58,7 @@ void NetworkManager::Update(float dt)
 
 void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, int source)
 {
-	std::cout << "SOME SORT OF PACKET RECEIVED" << std::endl;
+	//std::cout << "SOME SORT OF PACKET RECEIVED" << std::endl;
 	if (type == Received_State) {	//Server version of the game receives these from players
 		ClientPacket* realPacket = (ClientPacket*)payload;
 	}
