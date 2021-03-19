@@ -157,6 +157,7 @@
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameStateManagerComponent.cpp" />
     <ClCompile Include="GameTechRenderer.cpp" />
+    <ClCompile Include="GrideComponent.cpp" />
     <ClCompile Include="IntroState.cpp" />
     <ClCompile Include="JSONComponentFactory.cpp" />
     <ClCompile Include="JSONLevelFactory.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="GameStateManagerComponent.h" />
     <ClInclude Include="GameTechRenderer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GrideComponent.h" />
     <ClInclude Include="IntroState.h" />
     <ClInclude Include="JSONComponentFactory.h" />
     <ClInclude Include="JSONLevelFactory.h" />

@@ -22,10 +22,10 @@ IntroState::IntroState(Game* game) {
 }
 
 PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** newState) {
-	Debug::Print("Game of Team 3!", Vector2(42, 30));
-	Debug::Print("Single Mode", Vector2(42, 50));
-	Debug::Print("Confrontation", Vector2(42, 70));
-	Debug::Print("Click to Exit", Vector2(43, 90));
+	Debug::Print("Game of Team 3!", Vector2(42, 20));
+	Debug::Print("Single Mode", Vector2(43.5, 40));
+	Debug::Print("Confrontation", Vector2(43, 60));
+	Debug::Print("Click to Exit", Vector2(43, 80));
 
 	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
 
@@ -53,9 +53,9 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 
 void IntroState::OnAwake() {
 	game->InitIntroWorld();
-	openCube1 = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), 0.0f, false);
-	openCube2 = game->AddButtonToWorld(Vector3(0, -10, 0), Vector3(8, 2, 0), 0.0f, false);
-	exitCube = game->AddButtonToWorld(Vector3(0, -20, 0), Vector3(8, 2, 0), 0.0f, false);
+	openCube1 = game->AddButtonToWorld(Vector3(0, 5, 0), Vector3(8, 2, 0), 0.0f, false);
+	openCube2 = game->AddButtonToWorld(Vector3(0, -5, 0), Vector3(8, 2, 0), 0.0f, false);
+	exitCube = game->AddButtonToWorld(Vector3(0, -15, 0), Vector3(8, 2, 0), 0.0f, false);
 	Window::GetWindow()->ShowOSPointer(true);
 	Window::GetWindow()->LockMouseToWindow(false);
 }
