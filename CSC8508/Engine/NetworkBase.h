@@ -17,7 +17,8 @@ enum BasicNetworkMessages {
 	Player_Connected,
 	Player_Disconnected,
 	Shutdown,
-	Player_Count
+	Player_Count,
+	Player_Finished
 };
 
 struct GamePacket {
@@ -79,6 +80,19 @@ struct PlayerCountPacket : public GamePacket {
 		type = BasicNetworkMessages::Player_Count;
 		for (int i = 0; i < 8; i++) playerIDs[i] = ids[i];
 		size = sizeof(int) * 8;
+
+	}
+
+};
+
+struct PlayerFinishedPacket : public GamePacket {
+	int playerID;
+	int score;
+	PlayerFinishedPacket(int id, int finalScore) {
+		playerID = id;
+		score = finalScore;
+		type = BasicNetworkMessages::Player_Finished;
+		size = sizeof(int);
 
 	}
 

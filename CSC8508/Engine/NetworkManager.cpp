@@ -104,6 +104,15 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 
 
 
+
+
+void NCL::CSC8508::NetworkManager::SetLocalPlayer(GameObject* object, bool* isLocalFinished, int* localScore)
+{
+	ClientPlayer* player = new ClientPlayer("Me", *object, thisClient ? thisClient->GetID() : 0);
+	localPlayer = new LocalPlayer(player, isLocalFinished, localScore);
+
+}
+
 void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet)
 {
 	std::map<int, ClientPlayer*>::iterator it;
@@ -157,8 +166,9 @@ void NetworkManager::UpdateAsClient(float dt)
 	GamePacket* newPacket;
 
 	if (!localPlayer) return;
-	localPlayer->WritePacket(&newPacket, dt, stateID);
+	localPlayer->player->WritePacket(&newPacket, dt, stateID);
 	thisClient->SendPacket(*newPacket);
+	
 	//stateID++;
 	delete newPacket;
 }

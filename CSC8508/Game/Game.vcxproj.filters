@@ -105,9 +105,6 @@
     <ClCompile Include="PlayerAnimComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkPlayerComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TimeScoreComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -119,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="LobbyState.cpp">
       <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkPlayerComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,9 +197,6 @@
     <ClInclude Include="PlayerAnimComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="NetworkPlayerComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TimeScoreComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -211,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="LobbyState.h">
       <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkPlayerComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

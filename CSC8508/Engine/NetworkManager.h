@@ -12,7 +12,6 @@ using namespace std;
 #include <string>
 #include <iostream>
 #include <queue>
-//#include "../Game/NetworkPlayer.h"
 
 class TestPacketReceiver : public PacketReceiver {
 public:
@@ -32,6 +31,18 @@ public:
 };
 namespace NCL {
 	namespace CSC8508 {
+
+		struct LocalPlayer {
+			LocalPlayer(ClientPlayer* localPlayer, bool* isLocalFinished, int* localScore) {
+				player = localPlayer;
+				isFinished = isLocalFinished;
+				score= localScore;
+			}
+			ClientPlayer* player;
+			bool* isFinished;
+			int* score;
+
+		};
 
 		class NetworkManager : public PacketReceiver
 		{
@@ -56,7 +67,7 @@ namespace NCL {
 				serverPlayers.emplace(id, new ClientPlayer("Client", *object, id));
 			}
 			
-			void SetLocalPlayer(GameObject* object) { localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
+			void SetLocalPlayer(GameObject* object, bool* isLocalFinished, int* localScore); //{ localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
 			
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
@@ -86,7 +97,10 @@ namespace NCL {
 
 			std::map<int, ClientPlayer*> serverPlayers;
 			
-			ClientPlayer* localPlayer;
+//			ClientPlayer* localPlayer;
+//			GameStateManagerComponent* gameState;
+
+			LocalPlayer* localPlayer;
 
 			std::queue<int> playerLobby;
 
