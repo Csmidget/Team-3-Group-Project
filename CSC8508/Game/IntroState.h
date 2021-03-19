@@ -23,7 +23,9 @@ namespace NCL {
 			Game* game;
 			GameWorld* world;
 
-			GameObject* openCube;
+			GameObject* singleCube;
+			GameObject* clientCube;
+			GameObject* serverCube;
 			GameObject* exitCube;
 		};
 	}

@@ -36,7 +36,7 @@ Game::Game() {
 	renderer = new GameTechRenderer(*world, *resourceManager);
 	physics		= new physics::BulletWorld();
 	gameStateMachine = new PushdownMachine(new IntroState(this));
-	networkManager = new NetworkManager();
+	//networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
