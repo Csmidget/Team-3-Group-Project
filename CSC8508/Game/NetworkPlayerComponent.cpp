@@ -19,4 +19,7 @@ void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 
 }
 
+void NCL::CSC8508::NetworkPlayerComponent::Finish() {
+	isLevelFinished = true;
+}
 

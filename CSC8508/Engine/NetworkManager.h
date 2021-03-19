@@ -80,6 +80,8 @@ namespace NCL {
 			void UpdateAsServer(float dt);
 			void UpdateAsClient(float dt);
 
+			void UpdateLocalPlayer(float dt);
+
 			void BroadcastSnapshot(bool deltaFrame);
 			void UpdateMinimumState();
 

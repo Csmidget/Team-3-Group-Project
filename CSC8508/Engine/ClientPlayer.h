@@ -16,6 +16,8 @@ namespace NCL {
 			int GetPlayerID() const { return playerID; }
 		protected:
 
+			bool ReadPlayerFinishedPacket(PlayerFinishedPacket& p) override;
+
 			bool WriteDeltaPacket(GamePacket** p, int stateID) override;
 			bool WriteFullPacket(GamePacket** p) override;
 

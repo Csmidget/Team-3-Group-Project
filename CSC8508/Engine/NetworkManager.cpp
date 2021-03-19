@@ -166,11 +166,26 @@ void NetworkManager::UpdateAsClient(float dt)
 	GamePacket* newPacket;
 
 	if (!localPlayer) return;
-	localPlayer->player->WritePacket(&newPacket, dt, stateID);
-	thisClient->SendPacket(*newPacket);
-	
-	//stateID++;
+	UpdateLocalPlayer(dt);
+}
+
+void NCL::CSC8508::NetworkManager::UpdateLocalPlayer(float dt)
+{
+	GamePacket* newPacket;
+
+	if (!*(localPlayer->isFinished)) {		//Update Positions and Orientations
+
+		localPlayer->player->WritePacket(&newPacket, dt, stateID);
+		thisClient->SendPacket(*newPacket);
+	}
+	else {	//Update Finish Status
+		newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), *localPlayer->score);
+		thisClient->SendPacket(*newPacket);
+	}
+
 	delete newPacket;
+
+
 }
 
 void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)

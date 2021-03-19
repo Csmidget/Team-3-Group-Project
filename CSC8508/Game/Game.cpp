@@ -197,7 +197,7 @@ void Game::InitNetworkPlayers()
 	bool* isFinished = nullptr;
 	gameState->SetIsGameFinished(isFinished);
 
-	int* playerScore = nullptr;;
+	int* playerScore = nullptr;
 	gameState->SetClientScore(playerScore);
 
 	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"), isFinished, playerScore);

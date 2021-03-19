@@ -20,6 +20,9 @@ bool NetworkObject::ReadPacket(GamePacket& p) {
 	if (p.type == Player_Full_State) {
 		return ReadFullPacket((FullPacket&)p);
 	}
+	if (p.type == Player_Finished) {
+		return ReadPlayerFinishedPacket((PlayerFinishedPacket&)p);
+	}
 
 	return false; //this isn't a packet we care about!
 }
@@ -73,6 +76,11 @@ bool NetworkObject::ReadFullPacket(FullPacket &p) {
 	stateHistory.emplace_back(lastFullState);
 
 	return true;
+}
+
+bool NCL::CSC8508::NetworkObject::ReadPlayerFinishedPacket(PlayerFinishedPacket& p)
+{
+	return false;
 }
 
 bool NetworkObject::WriteDeltaPacket(GamePacket**p, int stateID) {
