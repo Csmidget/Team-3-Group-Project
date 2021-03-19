@@ -164,6 +164,7 @@
     <ClCompile Include="JSONLevelFactory.cpp" />
     <ClCompile Include="JSONShared.cpp" />
     <ClCompile Include="LobbyState.cpp" />
+    <ClCompile Include="LocalNetworkPlayerComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="JSONLevelFactory.h" />
     <ClInclude Include="JSONShared.h" />
     <ClInclude Include="LobbyState.h" />
+    <ClInclude Include="LocalNetworkPlayerComponent.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="NetworkPlayerComponent.h" />
     <ClInclude Include="PauseState.h" />

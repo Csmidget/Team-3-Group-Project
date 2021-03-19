@@ -194,13 +194,9 @@ void Game::InitNetworkPlayers()
 	GameObject* player = world->GetObjectWithTag("Player");
 	GameStateManagerComponent* gameState = world->GetObjectWithTag("GameStateManager")->GetComponent<GameStateManagerComponent>();
 	
-	bool* isFinished = nullptr;
-	gameState->SetIsGameFinished(isFinished);
 
-	int* playerScore = nullptr;
-	gameState->SetClientScore(playerScore);
 
-	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"), isFinished, playerScore);
+	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {

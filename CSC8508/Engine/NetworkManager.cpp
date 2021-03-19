@@ -106,10 +106,10 @@ void NCL::CSC8508::NetworkManager::AddPlayerToLobby(int id)
 
 
 
-void NCL::CSC8508::NetworkManager::SetLocalPlayer(GameObject* object, bool* isLocalFinished, int* localScore)
+void NCL::CSC8508::NetworkManager::SetLocalPlayer(GameObject* object)
 {
 	ClientPlayer* player = new ClientPlayer("Me", *object, thisClient ? thisClient->GetID() : 0);
-	localPlayer = new LocalPlayer(player, isLocalFinished, localScore);
+	localPlayer = new LocalPlayer(player);
 
 }
 
@@ -173,13 +173,13 @@ void NCL::CSC8508::NetworkManager::UpdateLocalPlayer(float dt)
 {
 	GamePacket* newPacket;
 
-	if (!*(localPlayer->isFinished)) {		//Update Positions and Orientations
+	if (!localPlayer->isFinished) {		//Update Positions and Orientations
 
 		localPlayer->player->WritePacket(&newPacket, dt, stateID);
 		thisClient->SendPacket(*newPacket);
 	}
 	else {	//Update Finish Status
-		newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), *localPlayer->score);
+		newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), localPlayer->score);
 		thisClient->SendPacket(*newPacket);
 	}
 

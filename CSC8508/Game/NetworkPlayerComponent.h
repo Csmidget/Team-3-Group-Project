@@ -17,9 +17,9 @@ namespace NCL {
 					this->orientation = orientation;
 				};
 				void SetScore(int score) { this->score = score; };
+				void Finish() { isLevelFinished = true; }
 				bool isFinished() { return isLevelFinished; }
-				void Finish();
-
+		
 
 			private:
 				Maths::Quaternion orientation;

@@ -120,6 +120,9 @@
     <ClCompile Include="NetworkPlayerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="LocalNetworkPlayerComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="NetworkPlayerComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNetworkPlayerComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

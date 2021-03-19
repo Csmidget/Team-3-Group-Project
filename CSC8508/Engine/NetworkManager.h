@@ -33,14 +33,14 @@ namespace NCL {
 	namespace CSC8508 {
 
 		struct LocalPlayer {
-			LocalPlayer(ClientPlayer* localPlayer, bool* isLocalFinished, int* localScore) {
+			LocalPlayer(ClientPlayer* localPlayer) {
 				player = localPlayer;
-				isFinished = isLocalFinished;
-				score= localScore;
+				isFinished = false;
+				score= 0;
 			}
 			ClientPlayer* player;
-			bool* isFinished;
-			int* score;
+			bool isFinished;
+			int score;
 
 		};
 
@@ -67,8 +67,9 @@ namespace NCL {
 				serverPlayers.emplace(id, new ClientPlayer("Client", *object, id));
 			}
 			
-			void SetLocalPlayer(GameObject* object, bool* isLocalFinished, int* localScore); //{ localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
-			
+			void SetLocalPlayer(GameObject* object); //{ localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
+			LocalPlayer* GetLocalPlayer() { return localPlayer; }
+
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
 		private:
