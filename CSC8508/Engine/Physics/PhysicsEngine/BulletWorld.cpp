@@ -198,7 +198,7 @@ void BulletWorld::updateObjects(float dt)
 	for (auto i : rigidList)
 	{
 		i->returnBody()->applyDamping((btScalar)dt);
-		//i->returnBody()->integrateVelocities((btScalar)dt);
+		i->returnBody()->integrateVelocities((btScalar)dt);
 		((GameObject*)i->returnBody()->getUserPointer())->fixedUpdate((btScalar)dt);
 	}
 }
