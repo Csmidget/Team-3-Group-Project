@@ -23,7 +23,7 @@ bool NCL::CSC8508::ClientPlayer::ReadPlayerFinishedPacket(PlayerFinishedPacket& 
 	if (p.playerID == this->playerID) {
 		object.GetComponent<NetworkPlayerComponent>()->SetScore(p.score);
 		object.GetComponent<NetworkPlayerComponent>()->Finish();
-
+		std::cout << "Peer " << p.playerID << " has finished the level and scored " << p.score << std::endl;
 	}
 
 
