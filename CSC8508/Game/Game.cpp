@@ -29,6 +29,7 @@
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
 #include "NetworkPlayerComponent.h"
 #include "GameStateManagerComponent.h"
+#include "LocalNetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -191,12 +192,11 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitNetworkPlayers()
 {
+
 	GameObject* player = world->GetObjectWithTag("Player");
-	GameStateManagerComponent* gameState = world->GetObjectWithTag("GameStateManager")->GetComponent<GameStateManagerComponent>();
-	
+	networkManager->SetLocalPlayer(player);
+	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
 
-
-	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
