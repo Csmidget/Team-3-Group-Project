@@ -80,6 +80,10 @@ bool Game::UpdateGame(float dt) {
 	if (gameStateMachine->Update(dt) == false)
 		return false;
 
+	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
+		InitNetworkPlayers();
+	}
+
 	UpdateKeys();
 	
 	if (!paused) {
@@ -226,8 +230,8 @@ void Game::InitWorld(std::string levelName) {
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 
-	if(networkManager)
-		InitNetworkPlayers();
+	//if(networkManager)
+	//	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
