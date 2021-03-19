@@ -13,10 +13,6 @@ GameClient::GameClient(NetworkManager* manager)	{
 }
 
 GameClient::~GameClient()	{
-	//threadAlive = false;
-	//updateThread.join();
-
-	enet_host_destroy(netHandle);
 }
 
 bool GameClient::Connect(uint8_t a, uint8_t b, uint8_t c, uint8_t d, int portNum) {

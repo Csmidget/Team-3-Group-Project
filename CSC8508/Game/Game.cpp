@@ -10,6 +10,8 @@
 #include"PlaySound.h"
 #include "ScoreComponent.h"
 #include "RingComponenet.h"
+#include "TimeScoreComponent.h"
+#include "GrideComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -37,7 +39,7 @@ Game::Game() {
 	renderer = new GameTechRenderer(*world, *resourceManager);
 	physics		= new physics::BulletWorld();
 	gameStateMachine = new PushdownMachine(new IntroState(this));
-	networkManager = new NetworkManager();
+	//networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
@@ -79,8 +81,12 @@ bool Game::UpdateGame(float dt) {
 	if (gameStateMachine->Update(dt) == false)
 		return false;
 
-	UpdateKeys();
+	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
+		InitNetworkPlayers();
+	}
 
+	UpdateKeys();
+	
 	if (!paused) {
 		physics->Update(dt);
 
@@ -88,13 +94,34 @@ bool Game::UpdateGame(float dt) {
 	}
 
 	renderer->Update(dt);
-	networkManager->Update(dt);
+
+	if(networkManager)
+		networkManager->Update(dt);
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
 	return true;
 }
+
+void Game::EnableNetworking(bool client) {
+
+	if (!networkManager)
+		networkManager = new NetworkManager(client);
+	else {
+		std::cout << "Attempted to enable networking whilst network manager is already active.\n";
+	}
+}
+void Game::DisableNetworking() {
+	if (networkManager) {
+		delete networkManager;
+		networkManager = nullptr;
+	}
+	else {
+		std::cout << "Attempted to disable networking whilst no network manager is active.";
+	}
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -181,8 +208,12 @@ void Game::InitNetworkPlayers()
 }
 
 void Game::InitWorld() {
-	InitWorld("DesouzaTest.json");
+
+
+	InitWorld("AshmanTest.json");
 	//InitWorld("CharlesTest.json");
+
+
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -192,8 +223,9 @@ void Game::InitWorld(std::string levelName) {
 
 	InitFromJSON(levelName);
 		
-	//auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f, true);
-	//player->AddComponent<PlayerComponent>(this);
+//	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f);
+//	player->AddComponent<GrideComponent>(this);
+	//player->HasTag("Player");
 	//AddFloorToWorld(Vector3(0, 0, 0));
 	//GameObject* testA = AddCubeToWorld(Vector3(1, 5, 1), Vector3(1, 1, 1));
 	//GameObject* testB = AddCubeToWorld(Vector3(5, 5, 5), Vector3(1, 1, 1));
@@ -202,7 +234,6 @@ void Game::InitWorld(std::string levelName) {
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
-	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();

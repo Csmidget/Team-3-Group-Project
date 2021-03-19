@@ -4,6 +4,7 @@
 #include "../Engine/GameObject.h"
 #include "../Engine/GameWorld.h"
 #include "ScoreComponent.h";
+#include "TimeScoreComponent.h"
 namespace NCL {
 
 	namespace CSC8508 {

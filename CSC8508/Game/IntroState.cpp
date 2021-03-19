@@ -1,5 +1,6 @@
 #include "IntroState.h"
 #include "PlayState.h"
+#include "LobbyState.h"
 #include "Game.h"
 #include "../Engine/GameWorld.h"
 #include "../Engine/Debug.h"
@@ -15,25 +16,40 @@ using namespace CSC8508;
 IntroState::IntroState(Game* game) {
 	this->game = game;
 	this->world = game->GetWorld();
-	openCube = nullptr;
+	singleCube = nullptr;
+	clientCube = nullptr;
+	serverCube = nullptr;
 	exitCube = nullptr;
+	confrontation = false;
 }
 
 PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** newState) {
-	Debug::Print("Game of Team 3!", Vector2(42, 30));
-	Debug::Print("Click to Start", Vector2(42, 50));
-	Debug::Print("Click to Exit", Vector2(43, 70));
+	Debug::Print("Game of Team 3!", Vector2(42, 20));
+	Debug::Print("Single Mode", Vector2(43.5, 34.5));
+	Debug::Print("Multi - Client", Vector2(42, 50.5));
+	Debug::Print("Multi - Server", Vector2(42, 66.5));
+	Debug::Print("Click to Exit", Vector2(43, 82.5));
 
-	if (Window::GetMouse()->ButtonDown(NCL::MouseButtons::LEFT)) {
+	if (Window::GetMouse()->ButtonPressed(NCL::MouseButtons::LEFT)) {
 
 		Ray ray = CollisionDetection::BuildRayFromMouse(*CameraComponent::GetMain()->GetCamera());
 
 		RayCollision closestCollision;
 		if (world->Raycast(ray, closestCollision, true)) {
 			GameObject* hitObject = (GameObject*)closestCollision.node;
-			if (hitObject == openCube) {
+			if (hitObject == singleCube) {
 				*newState = new PlayState(game);
 				return PushdownResult::Push;
+			}
+			if (hitObject == clientCube) {
+				*newState = new LobbyState(game,true);
+				return PushdownResult::Push;
+				confrontation = true;
+			}
+			if (hitObject == serverCube) {
+				*newState = new LobbyState(game,false);
+				return PushdownResult::Push;
+				confrontation = true;
 			}
 			if (hitObject == exitCube) {
 				return PushdownResult::Pop;
@@ -45,8 +61,10 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 
 void IntroState::OnAwake() {
 	game->InitIntroWorld();
-	openCube = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), 0.0f, false);
-	exitCube = game->AddButtonToWorld(Vector3(0, -10, 0), Vector3(8, 2, 0), 0.0f, false);
+	singleCube = game->AddButtonToWorld(Vector3(0, 8, 0), Vector3(8, 2, 0), 0.0f, false);
+	clientCube = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), 0.0f, false);
+	serverCube = game->AddButtonToWorld(Vector3(0, -8, 0), Vector3(8, 2, 0), 0.0f, false);
+	exitCube = game->AddButtonToWorld(Vector3(0, -16, 0), Vector3(8, 2, 0), 0.0f, false);
 	Window::GetWindow()->ShowOSPointer(true);
 	Window::GetWindow()->LockMouseToWindow(false);
 }
