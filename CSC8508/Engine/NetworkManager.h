@@ -37,6 +37,7 @@ namespace NCL {
 		{
 		public:
 			NetworkManager();
+			NetworkManager(bool client);
 
 			~NetworkManager();
 
@@ -73,7 +74,8 @@ namespace NCL {
 
 			void Restart();
 
-			bool const OFFLINE_MODE = true;
+
+			bool const OFFLINE_MODE = false;
 			bool isClient = false;
 
 			GameServer* thisServer;

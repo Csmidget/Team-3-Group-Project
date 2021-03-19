@@ -141,16 +141,19 @@ void DebugState::OnAwake() {
 	playerComponents = game->GetWorld()->GetComponentsOfType<PlayerComponent>();
 
 	for (int i = playerComponents.size() - 1; i >= 0; --i) {
-		if (!playerComponents[i]->IsEnabled())
+		if (!playerComponents[i]->receiveInputs)
 			playerComponents.erase(playerComponents.begin() + i);
 
-		playerComponents[i]->SetEnabled(false);
+		//playerComponents[i]->SetEnabled(false);
+		playerComponents[i]->receiveInputs = false;
+
 	}
 }
 
 void DebugState::OnSleep() {
 	for (auto comp : playerComponents) {
-		comp->SetEnabled(true);
+		//comp->SetEnabled(true);
+		comp->receiveInputs = true;
 	}
 
 	CameraComponent::SetMain(oldMain);
