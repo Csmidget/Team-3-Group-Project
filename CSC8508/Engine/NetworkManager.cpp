@@ -127,6 +127,7 @@ void NCL::CSC8508::NetworkManager::StartAsServer()
 {
 	thisServer = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS,  this);
 	thisServer->RegisterPacketHandler(Received_State, this);
+	thisServer->RegisterPacketHandler(Player_Finished, this);
 }
 
 void NCL::CSC8508::NetworkManager::StartAsClient()
