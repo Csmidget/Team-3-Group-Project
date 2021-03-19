@@ -131,7 +131,7 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 {
 	thisClient = new GameClient(this);
 
-	thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort()))
+	thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort()));
 	thisClient->RegisterPacketHandler(Delta_State, this);
 	thisClient->RegisterPacketHandler(Full_State, this);
 	thisClient->RegisterPacketHandler(Player_Connected, this);
