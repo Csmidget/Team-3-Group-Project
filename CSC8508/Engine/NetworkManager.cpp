@@ -26,6 +26,12 @@ NetworkManager::NetworkManager()
 	
 }
 
+NetworkManager::NetworkManager(bool server) {
+
+	NetworkBase::Initialise();
+	server ? StartAsServer() : StartAsClient();
+}
+
 NetworkManager::~NetworkManager()
 {
 	NetworkBase::Destroy();

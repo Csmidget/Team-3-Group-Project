@@ -89,13 +89,34 @@ bool Game::UpdateGame(float dt) {
 	}
 
 	renderer->Update(dt);
-	networkManager->Update(dt);
+
+	if(networkManager)
+		networkManager->Update(dt);
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
 	return true;
 }
+
+void Game::EnableNetworking(bool server) {
+
+	if (!networkManager)
+		networkManager = new NetworkManager(server);
+	else {
+		std::cout << "Attempted to enable networking whilst network manager is already active.\n";
+	}
+}
+void Game::DisableNetworking() {
+	if (networkManager) {
+		delete networkManager;
+		networkManager = nullptr;
+	}
+	else {
+		std::cout << "Attempted to disable networking whilst no network manager is active.";
+	}
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -204,7 +225,9 @@ void Game::InitWorld(std::string levelName) {
 	//world->Start();
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
-	InitNetworkPlayers();
+
+	if(networkManager)
+		InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();

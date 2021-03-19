@@ -26,6 +26,9 @@ namespace NCL {
 			void InitWorld();
 			void InitWorld(std::string levelName);
 			void InitIntroWorld();
+
+			void EnableNetworking(bool server);
+			void DisableNetworking();
 			
 			virtual bool UpdateGame(float dt);
 

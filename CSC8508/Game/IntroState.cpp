@@ -41,6 +41,13 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 				return PushdownResult::Push;
 			}
 			if (hitObject == clientCube) {
+				game->EnableNetworking(false);
+				*newState = new PlayState(game);
+				return PushdownResult::Push;
+				confrontation = true;
+			}
+			if (hitObject == serverCube) {
+				game->EnableNetworking(true);
 				*newState = new PlayState(game);
 				return PushdownResult::Push;
 				confrontation = true;

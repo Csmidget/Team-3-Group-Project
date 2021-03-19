@@ -37,6 +37,7 @@ namespace NCL {
 		{
 		public:
 			NetworkManager();
+			NetworkManager(bool server);
 
 			~NetworkManager();
 
