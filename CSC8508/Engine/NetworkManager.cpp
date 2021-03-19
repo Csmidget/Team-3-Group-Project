@@ -131,17 +131,12 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 {
 	thisClient = new GameClient(this);
 
-	if (thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort())) {
-		thisClient->RegisterPacketHandler(Delta_State, this);
-		thisClient->RegisterPacketHandler(Full_State, this);
-		thisClient->RegisterPacketHandler(Player_Connected, this);
-		thisClient->RegisterPacketHandler(Player_Disconnected, this);
-		thisClient->RegisterPacketHandler(Player_Count, this);
-	}
-	else {
-		std::cout << "failed to setup client";
-	}
-
+	thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort()))
+	thisClient->RegisterPacketHandler(Delta_State, this);
+	thisClient->RegisterPacketHandler(Full_State, this);
+	thisClient->RegisterPacketHandler(Player_Connected, this);
+	thisClient->RegisterPacketHandler(Player_Disconnected, this);
+	thisClient->RegisterPacketHandler(Player_Count, this);
 
 }
 
