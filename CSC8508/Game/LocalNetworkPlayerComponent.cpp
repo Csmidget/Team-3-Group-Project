@@ -8,7 +8,7 @@ NCL::CSC8508::LocalNetworkPlayerComponent::LocalNetworkPlayerComponent(GameObjec
 
 void NCL::CSC8508::LocalNetworkPlayerComponent::Update(float dt)
 {
-	if (!localPlayer || score) return;
+	if (!localPlayer || !score) return;
 	localPlayer->score = score->GetScore();
 	localPlayer->isFinished = score->IsFinished();
 }
