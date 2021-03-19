@@ -13,7 +13,7 @@ LobbyState::LobbyState(Game* game, bool client) {
 }
 
 LobbyState::~LobbyState() {
-	game->DisableNetworking();
+//	game->DisableNetworking();
 }
 
 PushdownState::PushdownResult LobbyState::OnUpdate(float dt, PushdownState** newState) {
@@ -39,5 +39,8 @@ PushdownState::PushdownResult LobbyState::OnUpdate(float dt, PushdownState** new
 
 void LobbyState::OnAwake() {
 	game->InitWorld("CharlesTest.json");
+
+	if (gameStarted)
+		game->DisableNetworking();
 }
 
