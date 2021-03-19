@@ -42,6 +42,7 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 
 	Vector3		fullPos			= lastFullState.position;
 	Quaternion  fullOrientation = lastFullState.orientation;
+	orientation = fullOrientation;
 
 	fullPos.x += p.pos[0];
 	fullPos.y += p.pos[1];
@@ -54,9 +55,7 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 	std::cout << fullOrientation << std::endl;
 
 
-	object.GetTransform()
-		.SetPosition(fullPos)
-		.SetOrientation(fullOrientation);
+	object.GetTransform().SetPosition(fullPos).SetOrientation(fullOrientation);
 	return true;
 }
 
@@ -65,11 +64,11 @@ bool NetworkObject::ReadFullPacket(FullPacket &p) {
 //		return false; // received an 'old' packet, ignore!
 //	}
 	lastFullState = p.fullState;
+	orientation = lastFullState.orientation;
 
 	object.GetTransform()
 		.SetPosition(lastFullState.position)
 		.SetOrientation(lastFullState.orientation);
-
 	stateHistory.emplace_back(lastFullState);
 	std::cout << lastFullState.orientation << std::endl;
 

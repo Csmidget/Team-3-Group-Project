@@ -19,6 +19,7 @@ IntroState::IntroState(Game* game) {
 	clientCube = nullptr;
 	serverCube = nullptr;
 	exitCube = nullptr;
+	confrontation = false;
 }
 
 PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** newState) {

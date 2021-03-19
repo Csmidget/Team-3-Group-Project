@@ -157,6 +157,7 @@
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameStateManagerComponent.cpp" />
     <ClCompile Include="GameTechRenderer.cpp" />
+    <ClCompile Include="GrideComponent.cpp" />
     <ClCompile Include="IntroState.cpp" />
     <ClCompile Include="JSONComponentFactory.cpp" />
     <ClCompile Include="JSONLevelFactory.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RespawnComponent.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="TimeScoreComponent.cpp" />
     <ClCompile Include="SetListener.cpp" />
     <ClCompile Include="RingComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
@@ -186,6 +188,7 @@
     <ClInclude Include="GameStateManagerComponent.h" />
     <ClInclude Include="GameTechRenderer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GrideComponent.h" />
     <ClInclude Include="IntroState.h" />
     <ClInclude Include="JSONComponentFactory.h" />
     <ClInclude Include="JSONLevelFactory.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="RespawnComponent.h" />
     <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="TimeScoreComponent.h" />
     <ClInclude Include="SetListener.h" />
     <ClInclude Include="RingComponenet.h" />
     <ClInclude Include="Shadow.h" />
