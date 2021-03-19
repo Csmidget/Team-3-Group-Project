@@ -1,4 +1,5 @@
 #include "DisappearingPlatformComponent.h"
+#include "../Engine/GameObject.h"
 
 NCL::CSC8508::DisappearingPlatformComponent::DisappearingPlatformComponent(GameObject* object) : Component("DisappearingPlatform", object)
 {
@@ -11,7 +12,7 @@ void NCL::CSC8508::DisappearingPlatformComponent::Update(float dt)
 	if (collided)
 	{
 		timer -= dt;
-		//start disappearing
+		Disappear();
 	}
 }
 
@@ -26,4 +27,6 @@ void NCL::CSC8508::DisappearingPlatformComponent::OnCollisionBegin(GameObject* o
 void NCL::CSC8508::DisappearingPlatformComponent::Disappear()
 {
 
+	if(timer <= 0.f)
+		
 }
