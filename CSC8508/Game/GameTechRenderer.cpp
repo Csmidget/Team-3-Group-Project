@@ -157,7 +157,7 @@ void GameTechRenderer::RenderFrame() {
 	if (CameraComponent::GetMain() == nullptr)
 		return;
 
-	//RenderShadowMap();// ‰÷»æ“ı”∞
+	RenderShadowMap();// ‰÷»æ“ı”∞
 	glEnable(GL_CULL_FACE);
 	glClearColor(1, 1, 1, 1);
 	RenderSkybox();		// ªÊ÷∆ÃÏø’∫–
