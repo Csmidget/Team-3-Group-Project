@@ -27,6 +27,6 @@ void NCL::CSC8508::DisappearingPlatformComponent::OnCollisionBegin(GameObject* o
 void NCL::CSC8508::DisappearingPlatformComponent::Disappear()
 {
 
-	if(timer <= 0.f)
-		
+	if (timer <= 0.f)
+		;
 }
