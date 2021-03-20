@@ -24,7 +24,7 @@ bool NCL::CSC8508::ClientPlayer::ReadPlayerFinishedPacket(PlayerFinishedPacket& 
 		if (player->isFinished()) return true;
 		player->SetScore(p.score);
 		player->Finish();
-		std::cout << "Peer " << p.playerID << " has finished the level and scored " << p.score << std::endl;
+		std::cout << "Player " << p.playerID << " has finished the level and scored " << p.score << std::endl;
 	}
 
 
