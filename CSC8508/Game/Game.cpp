@@ -209,8 +209,8 @@ void Game::InitNetworkPlayers()
 void Game::InitWorld() {
 
 
-	InitWorld("AshmanTest.json");
-	//InitWorld("CharlesTest.json");
+	//InitWorld("AshmanTest.json");
+	InitWorld("CharlesTest.json");
 
 
 }
