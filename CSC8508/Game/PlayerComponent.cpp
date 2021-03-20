@@ -23,7 +23,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	receiveInputs = true;
 
 	speed = 1.0f;
-	jump = 5.f;
+	jump = 10.f;
 	//jump = 110.f;
 
 	MAX_WALKING_SPEED = 10.f;
