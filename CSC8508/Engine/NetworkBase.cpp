@@ -13,9 +13,7 @@ NetworkBase::~NetworkBase()	{
 }
 
 void NetworkBase::Initialise() {
-	if (enet_initialize() != 0) {
-		std::cout << "Failed to init NetworkBase\n";
-	}
+	enet_initialize();
 }
 
 void NetworkBase::Destroy() {

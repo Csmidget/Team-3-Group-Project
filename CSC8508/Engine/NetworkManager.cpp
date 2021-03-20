@@ -26,13 +26,6 @@ NetworkManager::NetworkManager()
 	
 }
 
-NetworkManager::NetworkManager(bool client) {
-
-	NetworkBase::Initialise();
-	isClient = client;
-	client ? StartAsClient() : StartAsServer();
-}
-
 NetworkManager::~NetworkManager()
 {
 	NetworkBase::Destroy();
@@ -130,7 +123,6 @@ void NCL::CSC8508::NetworkManager::StartAsServer()
 void NCL::CSC8508::NetworkManager::StartAsClient()
 {
 	thisClient = new GameClient(this);
-
 	thisClient->Connect(80, 5, 123, 22, NetworkBase::GetDefaultPort());
 	thisClient->RegisterPacketHandler(Delta_State, this);
 	thisClient->RegisterPacketHandler(Full_State, this);
@@ -161,6 +153,7 @@ void NetworkManager::UpdateAsClient(float dt)
 	if (!thisClient) return;
 	thisClient->UpdateClient();
 	
+
 	GamePacket* newPacket;
 
 	if (!localPlayer) return;

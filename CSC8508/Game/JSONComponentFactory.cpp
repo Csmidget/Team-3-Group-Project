@@ -13,8 +13,6 @@
 #include "Game.h"
 #include "BonusComponent.h"
 #include "GameStateManagerComponent.h"
-#include"DisappearingPlatformComponent.h"
-#include"TimeScoreComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -40,8 +38,6 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Teleporter")	return gameObject->AddComponent<TeleporterComponent>(JsonToVector3(componentJson["target"]));
 
 	if (name == "Ring")			return gameObject->AddComponent<RingComponent>(10);
-	if (name == "DisappearingPlatform")			return gameObject->AddComponent<DisappearingPlatformComponent>();
-	if (name == "TimeScoreComponent")			return gameObject->AddComponent<TimeScoreComponent>();
 
 	return nullptr;
 }

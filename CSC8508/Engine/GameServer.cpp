@@ -26,6 +26,7 @@ void GameServer::Shutdown() {
 	//threadAlive = false;
 	//updateThread.join();
 
+	enet_host_destroy(netHandle);
 	netHandle = nullptr;
 }
 

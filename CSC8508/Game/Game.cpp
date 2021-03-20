@@ -38,7 +38,7 @@ Game::Game() {
 	renderer = new GameTechRenderer(*world, *resourceManager);
 	physics		= new physics::BulletWorld();
 	gameStateMachine = new PushdownMachine(new IntroState(this));
-	//networkManager = new NetworkManager();
+	networkManager = new NetworkManager();
 
 	forceMagnitude = 10.0f;
 	useGravity = false;
@@ -81,11 +81,6 @@ bool Game::UpdateGame(float dt) {
 		return false;
 
 	
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
-		InitNetworkPlayers();
-	}
-
-	UpdateKeys();
 	
 	if (!paused) {
 		physics->Update(dt);
@@ -95,34 +90,13 @@ bool Game::UpdateGame(float dt) {
 
 	UpdateKeys();
 	renderer->Update(dt);
-
-	if(networkManager)
-		networkManager->Update(dt);
+	networkManager->Update(dt);
 
 	Debug::FlushRenderables(dt);
 	renderer->Render();
 	Audio::SoundManager::Update();
 	return true;
 }
-
-void Game::EnableNetworking(bool client) {
-
-	if (!networkManager)
-		networkManager = new NetworkManager(client);
-	else {
-		std::cout << "Attempted to enable networking whilst network manager is already active.\n";
-	}
-}
-void Game::DisableNetworking() {
-	if (networkManager) {
-		delete networkManager;
-		networkManager = nullptr;
-	}
-	else {
-		std::cout << "Attempted to disable networking whilst no network manager is active.";
-	}
-}
-
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -209,12 +183,8 @@ void Game::InitNetworkPlayers()
 }
 
 void Game::InitWorld() {
-
-
-	InitWorld("AshmanTest.json");
+	InitWorld("DesouzaTest.json");
 	//InitWorld("CharlesTest.json");
-
-
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -239,6 +209,7 @@ void Game::InitWorld(std::string levelName) {
 	//AddFloorToWorld(Vector3(0, 0, 0));
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
+	InitNetworkPlayers();
 
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
