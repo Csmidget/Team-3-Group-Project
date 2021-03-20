@@ -17,6 +17,7 @@ namespace NCL {
 					this->orientation = orientation;
 				};
 				void SetScore(int score) { this->score = score; };
+				int GetScore() const { return score; }
 				void Finish() { isLevelFinished = true; }
 				bool isFinished() { return isLevelFinished; }
 		

@@ -121,7 +121,7 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="LocalNetworkPlayerComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,7 +216,7 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="LocalNetworkPlayerComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

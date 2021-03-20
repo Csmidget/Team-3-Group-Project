@@ -1,5 +1,4 @@
 #include "ClientPlayer.h"
-#include "../Game/NetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -21,7 +20,7 @@ void NCL::CSC8508::ClientPlayer::Update(GamePacket& p)
 bool NCL::CSC8508::ClientPlayer::ReadPlayerFinishedPacket(PlayerFinishedPacket& p)
 {
 	if (p.playerID == this->playerID) {
-		NetworkPlayerComponent* player = object.GetComponent<NetworkPlayerComponent>();
+		NetworkPlayerComponent* player = GetNetworkPlayerComponent();
 		if (player->isFinished()) return true;
 		player->SetScore(p.score);
 		player->Finish();

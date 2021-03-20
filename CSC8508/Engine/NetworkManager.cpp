@@ -196,7 +196,13 @@ void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)
 		serverPlayers.at(i)->WritePacket(&newPacket, deltaFrame, stateID);
 		thisServer->SendGlobalPacket(*newPacket);
 		delete newPacket;
-		
+
+		NetworkPlayerComponent* player = serverPlayers.at(i)->GetNetworkPlayerComponent();
+		if (player->isFinished()) {
+			newPacket = new PlayerFinishedPacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore());
+			thisServer->SendGlobalPacket(*newPacket);
+			delete newPacket;
+		}
 
 	}
 	//stateID++;
