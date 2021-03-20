@@ -31,6 +31,7 @@ namespace NCL {
 
 			void fixedUpdate(float dt);
 			void UpdateControls(float dt);
+			void Update(float dt) override;
 			void OnCollisionBegin(GameObject* otherObject) override;
 			void OnCollisionStay(GameObject* otherObject) override;
 			void OnCollisionEnd(GameObject* otherObject) override;

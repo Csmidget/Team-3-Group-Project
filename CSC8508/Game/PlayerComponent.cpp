@@ -60,13 +60,17 @@ void PlayerComponent::fixedUpdate(float dt) {
 	currentVelocity = physicsObject->body->getLinearVelocity();
 	physicsObject->SetAngularVelocity(Vector3(0, 0, 0));
 
-	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
-	transform->SetOrientation(orientation);
-
 	if (receiveInputs)
 	{
 		UpdateControls(dt);
 	}
+
+}
+
+void PlayerComponent::Update(float dt) {
+
+	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
+	transform->SetOrientation(orientation);
 }
 
 void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
