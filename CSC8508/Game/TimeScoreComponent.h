@@ -1,7 +1,6 @@
 #pragma once
 #include "../Engine/Component.h"
-#include "../Engine/PhysicsSystem.h"
-#include "Game.h"
+
 namespace NCL {
 	namespace CSC8508 {
 
@@ -9,13 +8,11 @@ namespace NCL {
 		{
 			public:
 				TimeScoreComponent(GameObject* object);
-				GameTimer getTime;
-				int nowTime;
-				int nextTime;
-				int num;
-				int UpdateScore(float dt);
 
-			private:
+				void Update(float dt) override;
+				int GetScore() const;
+
+			protected:
 				float timeScore;
 		};
 

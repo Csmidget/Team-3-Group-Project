@@ -59,6 +59,11 @@ void PlayerComponent::fixedUpdate(float dt) {
 	currentVelocity = physicsObject->body->getLinearVelocity();
 
 
+	AccelerateTo(direction * MAX_WALKING_SPEED, dt);
+}
+
+void PlayerComponent::Update(float dt) {
+
 	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
 	transform->SetOrientation(orientation);
 
@@ -195,8 +200,6 @@ void PlayerComponent::UpdateControls(float dt)
 {
 	CameraMovement();
 	Movement();
-
-	AccelerateTo(direction * MAX_WALKING_SPEED, dt);
 
 	Jump();
 }

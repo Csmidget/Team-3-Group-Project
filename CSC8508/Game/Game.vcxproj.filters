@@ -36,9 +36,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="JSONLevelFactory.cpp">
       <Filter>JSON</Filter>
     </ClCompile>
@@ -108,9 +105,6 @@
     <ClCompile Include="TimeScoreComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="GrideComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="DisappearingPlatformComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -124,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="JSONShared.h">
       <Filter>JSON</Filter>
@@ -144,9 +135,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="PlaySound.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RingComponenet.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="GameStateManagerComponent.h">
@@ -197,14 +185,14 @@
     <ClInclude Include="TimeScoreComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="GrideComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="DisappearingPlatformComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="LobbyState.h">
       <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="RingComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,10 +9,8 @@
 #include"SetListener.h"
 #include"PlaySound.h"
 #include "ScoreComponent.h"
-#include "RingComponenet.h"
+#include "RingComponent.h"
 #include "TimeScoreComponent.h"
-#include "GrideComponent.h"
-#include "MoveComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -221,9 +219,7 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
-	
-	auto sphere = AddSphereToWorld(Vector3(5, 10, 0), 2.f, 0.5f);
-	sphere->AddComponent<MoveComponent>(Vector3(1, 0, 0), 3.5f);
+
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
 }
