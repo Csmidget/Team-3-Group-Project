@@ -9,9 +9,8 @@
 #include"SetListener.h"
 #include"PlaySound.h"
 #include "ScoreComponent.h"
-#include "RingComponenet.h"
+#include "RingComponent.h"
 #include "TimeScoreComponent.h"
-#include "GrideComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -27,9 +26,6 @@
 #include "../../Common/TextureLoader.h"
 #include "../../Common/ShaderBase.h"
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
-#include "NetworkPlayerComponent.h"
-#include "GameStateManagerComponent.h"
-#include "LocalNetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -83,6 +79,7 @@ bool Game::UpdateGame(float dt) {
 	if (gameStateMachine->Update(dt) == false)
 		return false;
 
+	
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
 		InitNetworkPlayers();
 	}
@@ -95,6 +92,7 @@ bool Game::UpdateGame(float dt) {
 		world->UpdateWorld(dt);
 	}
 
+	UpdateKeys();
 	renderer->Update(dt);
 
 	if(networkManager)
@@ -192,18 +190,14 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitNetworkPlayers()
 {
-
-	GameObject* player = world->GetObjectWithTag("Player");
-	networkManager->SetLocalPlayer(player);
-	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
-
+	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
 		
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		player->AddComponent<NetworkPlayerComponent>();
+		
 
 		networkManager->AddPlayerToGame(lobby->front(), player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;
@@ -216,8 +210,7 @@ void Game::InitNetworkPlayers()
 void Game::InitWorld() {
 
 
-	//InitWorld("DesouzaTest.json");
-	InitWorld("GameStateManagerTest.json");
+	InitWorld("DesouzaTest.json");
 	//InitWorld("CharlesTest.json");
 
 
@@ -229,6 +222,8 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
+	
+	//auto player = AddCapsuleToWorld(Vector3(0, 5.f, 5), 1.0f, 0.5f, 3.f, true);
 		
 //	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f);
 //	player->AddComponent<GrideComponent>(this);
@@ -239,6 +234,8 @@ void Game::InitWorld(std::string levelName) {
 	//physics->addpointconstraint(testB->GetPhysicsObject()->body, Vector3(1, 5, 1));
 	//physics->addhingeconstraint(testA->GetPhysicsObject()->body, Vector3(1.0f, 2.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f));
 	//world->Start();
+
+	//AddFloorToWorld(Vector3(0, 0, 0));
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 

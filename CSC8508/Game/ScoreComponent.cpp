@@ -1,7 +1,7 @@
 #include "ScoreComponent.h"
 #include "../Engine/GameObject.h"
 #include "BonusComponent.h"
-#include "RingComponenet.h"
+#include "RingComponent.h"
 
 NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component("ScoreComponent", object)
 {
