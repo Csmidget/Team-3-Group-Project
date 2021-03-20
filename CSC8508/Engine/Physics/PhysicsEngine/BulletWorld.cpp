@@ -18,6 +18,8 @@ BulletWorld::BulletWorld()
 
 	dynamicsWorld->setGravity(btVector3(0, -20.0f, 0));
 	dynamicsWorld->setInternalTickCallback((btInternalTickCallback)tickCallBack, this, true);
+
+	physicsTimer = 0.0f;
 }
 
 BulletWorld::~BulletWorld()
@@ -59,8 +61,6 @@ void BulletWorld::addhingeconstraint(RigidBody* doorbody, NCL::Maths::Vector3 po
 	dynamicsWorld->addConstraint(doorhinge);
 }
 
-
-
 //cast a ray between to points and returns the hit gameobject or nullptr if nothing is hit
 GameObject* BulletWorld::rayIntersect(NCL::Maths::Vector3 from, NCL::Maths::Vector3 to,
 	/*OUT*/ NCL::Maths::Vector3 pointHit)
@@ -94,13 +94,15 @@ void BulletWorld::removeRigidBody(RigidBody* body)
 //steps simulation and sets the transform based on bullet physics
 void BulletWorld::Update(float dt)
 {
-	dynamicsWorld->stepSimulation((btScalar)dt, 4);
+	physicsTimer += dt;
+	dynamicsWorld->stepSimulation((btScalar)dt, 10);
 
 	for (auto i : rigidList)
 	{
+		i->returnBody()->applyDamping((btScalar)dt);
+		//i->returnBody()->integrateVelocities((btScalar)dt);
 		i->updateTransform();
-	}
-
+	}	
 }
 
 //checks all manifolds for new and expired manifolds to activate the Oncollision end and begin functions
@@ -183,10 +185,9 @@ void BulletWorld::tickCallBack(btDynamicsWorld* world, btScalar timeStep)
 
 void BulletWorld::updateObjects(float dt)
 {
+	//dynamicsWorld->clearForces();
 	for (auto i : rigidList)
 	{
-		i->returnBody()->applyDamping((btScalar)dt);
-		i->returnBody()->integrateVelocities((btScalar)dt);
 		((GameObject*)i->returnBody()->getUserPointer())->fixedUpdate(dt);
 	}
 	checkCollisions();

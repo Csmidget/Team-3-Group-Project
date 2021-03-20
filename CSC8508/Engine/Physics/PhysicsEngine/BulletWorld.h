@@ -61,6 +61,9 @@ namespace NCL
 				static void tickCallBack(btDynamicsWorld* world, btScalar timeStep);
 				void updateObjects(float dt);
 
+				float physicsTimer;
+				float accumulator;
+
 				btDefaultCollisionConfiguration* collisionConfiguration;
 				btCollisionDispatcher* dispatcher;
 				btBroadphaseInterface* overlappingPairCache;

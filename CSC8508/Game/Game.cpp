@@ -80,7 +80,7 @@ bool Game::UpdateGame(float dt) {
 	if (gameStateMachine->Update(dt) == false)
 		return false;
 
-	UpdateKeys();
+	
 	
 	if (!paused) {
 		physics->Update(dt);
@@ -88,6 +88,7 @@ bool Game::UpdateGame(float dt) {
 		world->UpdateWorld(dt);
 	}
 
+	UpdateKeys();
 	renderer->Update(dt);
 	networkManager->Update(dt);
 
