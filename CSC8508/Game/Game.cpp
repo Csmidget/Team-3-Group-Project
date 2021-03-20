@@ -26,6 +26,7 @@
 #include "../../Common/TextureLoader.h"
 #include "../../Common/ShaderBase.h"
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
+#include "LocalNetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -80,9 +81,9 @@ bool Game::UpdateGame(float dt) {
 		return false;
 
 	
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
-		InitNetworkPlayers();
-	}
+	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
+		//InitNetworkPlayers();
+	//}
 
 	UpdateKeys();
 	
@@ -190,14 +191,17 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitNetworkPlayers()
 {
-	networkManager->SetLocalPlayer(world->GetObjectWithTag("Player"));
+	GameObject* player = world->GetObjectWithTag("Player");
+	networkManager->SetLocalPlayer(player);
+	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
+
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
-		
+
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		
+		player->AddComponent<NetworkPlayerComponent>();
 
 		networkManager->AddPlayerToGame(lobby->front(), player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;

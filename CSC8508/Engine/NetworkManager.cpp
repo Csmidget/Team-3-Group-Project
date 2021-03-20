@@ -199,7 +199,7 @@ void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)
 		delete newPacket;
 
 		NetworkPlayerComponent* player = serverPlayers.at(i)->GetNetworkPlayerComponent();
-		if (player->isFinished()) {
+		if (player && player->isFinished()) {
 			newPacket = new PlayerFinishedPacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore());
 			thisServer->SendGlobalPacket(*newPacket);
 			delete newPacket;
