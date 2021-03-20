@@ -34,6 +34,8 @@ namespace NCL {
 
 			virtual void OnUpdate(float dt) {};
 
+			void fixedUpdate(float dt);
+
 			void PrintDebugInfo() const;
 			
 			//Override to add debug info
