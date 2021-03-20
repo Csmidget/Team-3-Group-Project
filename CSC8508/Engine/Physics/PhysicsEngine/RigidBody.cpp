@@ -1,5 +1,9 @@
 #include "RigidBody.h"
 #include "BulletWorld.h"
+#include "../../CSC8508/Engine/Debug.h"
+
+#include <sstream>
+#include <iomanip>
 
 using namespace NCL;
 using namespace CSC8508;
@@ -104,7 +108,7 @@ void RigidBody::addImpulse(NCL::Maths::Vector3 force)
 	if (body)
 	{
 		btVector3 pushForce = convertVector3(force);
-		body->applyCentralPushImpulse(pushForce);
+		body->applyCentralImpulse(pushForce);
 		body->activate();
 	}
 }
@@ -142,14 +146,11 @@ void RigidBody::setTransform()
 {
 	if (body)
 	{
-		NCL::Maths::Vector3 eulerAngles = transform->GetOrientation().ToEuler();
-
-		btQuaternion rotation;
-		rotation.setEulerZYX(eulerAngles.z, eulerAngles.y, eulerAngles.x);
+		btQuaternion rotation = convertQuaternion(transform->GetOrientation());
 
 		NCL::Maths::Vector3 SetPosition = transform->GetPosition();
-		btVector3 position = btVector3(SetPosition.x, SetPosition.y, SetPosition.z);
-
+		btVector3 position = convertVector3(SetPosition);
+		
 		btTransform newTransform;
 		newTransform.setOrigin(position);
 		newTransform.setRotation(rotation);
@@ -259,4 +260,58 @@ void RigidBody::makeKinematic()
 		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	}
 
+}
+
+std::vector<std::string> RigidBody::debugInfo()
+{
+	vector<std::string> returnInfo;
+	returnInfo.push_back("Physics Info");
+
+	std::stringstream stream;
+	stream << std::fixed << std::setprecision(2);
+	stream << "  Mass: " << body->getMass();
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	Vector3 force = convertbtVector3(body->getLinearVelocity());
+
+	if(force.Length() > 0)
+		Debug::DrawLine(transform->GetPosition(), transform->GetPosition() + force.Normalised(), NCL::Maths::Vector4(1, 0, 0, 1));
+
+	
+	stream << "  Linear Velocity: " << force.x << "," << force.y << "," << force.z;
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	stream << "  Velocity Magnitude: " << force.Length();
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	int shape = colShape->getShapeType();
+	switch (shape)
+	{
+	case BOX_SHAPE_PROXYTYPE: 
+		stream << "  Collision Shape:  Box";
+		break;
+	case SPHERE_SHAPE_PROXYTYPE:
+		stream << "  Collision Shape:  Sphere";
+		break;
+	case CAPSULE_SHAPE_PROXYTYPE:
+		stream << "  Collision Shape:  Capsule";
+		break;
+	case CONE_SHAPE_PROXYTYPE:
+		stream << "  Collision Shape:  Cone";
+		break;
+	case CYLINDER_SHAPE_PROXYTYPE:
+		stream << "  Collision Shape:  Cylinder";
+		break;
+	default:
+		stream << "  Collision Shape:  none Primitive";
+		break;
+	}
+	
+	returnInfo.push_back(stream.str());
+	stream.str("");
+
+	return returnInfo;
 }
