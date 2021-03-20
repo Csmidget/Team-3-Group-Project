@@ -16,7 +16,7 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt)
 {
 	if (clientPlayerID < players.size() && clientPlayerID >= 0) {
 		int score = players.at(clientPlayerID)->GetComponent<ScoreComponent>()->GetScore();
-		int timeScore = players.at(clientPlayerID)->GetComponent<TimeScoreComponent>()->UpdateScore(0);
+		int timeScore = players.at(clientPlayerID)->GetComponent<TimeScoreComponent>()->GetScore();
 		Debug::Print("Score: " + std::to_string(score + timeScore), Vector2(75, 95));
 		if (clientScore) *clientScore = score;
 	
