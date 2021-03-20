@@ -15,6 +15,7 @@ namespace NCL {
 			virtual ~Component() {};
 			virtual void Start() {};
 			virtual void Update(float dt) {};
+			virtual void fixedUpdate(float dt) {};
 			virtual void OnCollisionBegin(GameObject* otherObject) {};
 			virtual void OnCollisionStay(GameObject* otherObject) {};
 			virtual void OnCollisionEnd(GameObject* otherObject) {};

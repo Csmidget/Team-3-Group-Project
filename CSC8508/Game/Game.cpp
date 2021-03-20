@@ -79,6 +79,7 @@ bool Game::UpdateGame(float dt) {
 	if (gameStateMachine->Update(dt) == false)
 		return false;
 
+	
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
 		InitNetworkPlayers();
 	}
@@ -91,6 +92,7 @@ bool Game::UpdateGame(float dt) {
 		world->UpdateWorld(dt);
 	}
 
+	UpdateKeys();
 	renderer->Update(dt);
 
 	if(networkManager)
@@ -220,6 +222,8 @@ void Game::InitWorld(std::string levelName) {
 	InitCamera();
 
 	InitFromJSON(levelName);
+	
+	//auto player = AddCapsuleToWorld(Vector3(0, 5.f, 5), 1.0f, 0.5f, 3.f, true);
 		
 //	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f);
 //	player->AddComponent<GrideComponent>(this);
@@ -230,6 +234,8 @@ void Game::InitWorld(std::string levelName) {
 	//physics->addpointconstraint(testB->GetPhysicsObject()->body, Vector3(1, 5, 1));
 	//physics->addhingeconstraint(testA->GetPhysicsObject()->body, Vector3(1.0f, 2.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f));
 	//world->Start();
+
+	//AddFloorToWorld(Vector3(0, 0, 0));
 
 	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
 

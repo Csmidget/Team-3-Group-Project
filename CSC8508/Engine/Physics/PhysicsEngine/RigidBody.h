@@ -55,6 +55,8 @@ namespace NCL
 				void clearForces();
 				NCL::Maths::Vector3 getLinearVelocity();
 
+				std::vector<std::string> debugInfo();
+
 			private:
 
 				btScalar linearDamping = 0.05f;

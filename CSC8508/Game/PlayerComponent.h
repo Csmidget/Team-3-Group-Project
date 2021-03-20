@@ -29,7 +29,7 @@ namespace NCL {
 		
 			bool receiveInputs;
 
-			void Update(float dt);
+			void fixedUpdate(float dt);
 			void UpdateControls(float dt);
 			void OnCollisionBegin(GameObject* otherObject) override;
 			void OnCollisionStay(GameObject* otherObject) override;
@@ -51,6 +51,7 @@ namespace NCL {
 
 			bool lockOrientation;
 
+			float speed;
 			float yaw;
 			float pitch;
 			float cameraDistance;
