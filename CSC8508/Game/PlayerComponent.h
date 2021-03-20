@@ -63,7 +63,7 @@ namespace NCL {
 			const float MAX_ACCELERATION = 100.f;
 			const float MAX_DECELERATION = 80.f;
 
-
+			bool recquestedJump;
 			float jump;
 			float MAX_AIR_SPEED;
 			int jumpCounter;
@@ -76,7 +76,7 @@ namespace NCL {
 			
 			PlayerMovementState IdleOrRunning();
 			void CameraMovement();
-			void Movement();
+			void PlayerInputs();
 			void Jump();
 			void AccelerateTo(Maths::Vector3 targetVelocity, float dt);
 
