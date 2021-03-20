@@ -26,6 +26,10 @@ namespace NCL {
 			void InitWorld();
 			void InitWorld(std::string levelName);
 			void InitIntroWorld();
+			void InitNetworkPlayers();
+
+			void EnableNetworking(bool client);
+			void DisableNetworking();
 			
 			virtual bool UpdateGame(float dt);
 
@@ -66,7 +70,6 @@ namespace NCL {
 						
 			void InitFromJSON(std::string fileName);
 
-			void InitNetworkPlayers();
 
 			GameTechRenderer*	renderer;
 			GameWorld*			world;
