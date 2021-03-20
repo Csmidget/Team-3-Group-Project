@@ -22,7 +22,6 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	movementState = PlayerMovementState::WALKING;
 	receiveInputs = true;
 
-	speed = 1.0f;
 	jump = 10.f;
 	//jump = 110.f;
 
@@ -58,7 +57,7 @@ void PlayerComponent::fixedUpdate(float dt) {
 	lastCollisionTimer += dt;
 
 	currentVelocity = physicsObject->body->getLinearVelocity();
-	physicsObject->SetAngularVelocity(Vector3(0, 0, 0));
+
 
 	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
 	transform->SetOrientation(orientation);
@@ -158,9 +157,9 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		{
 			JumpSound->Play();
 			movementState = (movementState == PlayerMovementState::JUMP_ONE ? PlayerMovementState::JUMP_TWO : PlayerMovementState::JUMP_ONE);
-			Vector3 currentForce = physicsObject->body->getForce();
-			physicsObject->body->clearForces();
-			physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
+			//Vector3 currentForce = physicsObject->body->getForce();
+			//physicsObject->body->clearForces();
+			//physicsObject->body->addForce(Vector3(currentForce.x, 0, currentForce.z));
 			//physicsObject->body->addImpulse(Vector3(0, 1, 0) /** 10*/);
 			jumpCounter = 3;
 		}
@@ -183,11 +182,11 @@ void NCL::CSC8508::PlayerComponent::AccelerateTo(Vector3 targetVelocity, float d
 {
 	Vector3 currentVelocityXZ = Vector3(currentVelocity.x, 0, currentVelocity.z);
 	Vector3 delta = targetVelocity - currentVelocityXZ;
-	Vector3 deltaAccel = (targetVelocity - currentVelocityXZ) / dt;
+	Vector3 deltaAccel = delta / dt;
 	float accelMag = std::min(deltaAccel.Length(), (Vector3::Dot(currentVelocityXZ, delta) > 0 ? MAX_ACCELERATION : MAX_DECELERATION));
-
 	Vector3 acceleration = deltaAccel.Normalised() * accelMag;
-	physicsObject->body->addForce(acceleration / physicsObject->GetInverseMass()  );
+
+	physicsObject->body->addForce(acceleration * physicsObject->body->returnBody()->getMass());
 }
 
 

@@ -13,7 +13,7 @@ using namespace CSC8508;
 
 PlayState::PlayState(Game* game) {
 	this->game = game;
-	game->InitWorld("DesouzaTest.json");
+	game->InitWorld("CharlesTest.json");
 	
 	GameStateManagerComponent* gameState = GetGameStateManager();
 	if (!gameState) return;

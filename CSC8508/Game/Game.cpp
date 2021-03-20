@@ -12,6 +12,7 @@
 #include "RingComponenet.h"
 #include "TimeScoreComponent.h"
 #include "GrideComponent.h"
+#include "MoveComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"
@@ -210,11 +211,8 @@ void Game::InitNetworkPlayers()
 
 void Game::InitWorld() {
 
-
-	InitWorld("DesouzaTest.json");
+	InitWorld("AshmanTest.json");
 	//InitWorld("CharlesTest.json");
-
-
 }
 
 void Game::InitWorld(std::string levelName) {
@@ -224,22 +222,8 @@ void Game::InitWorld(std::string levelName) {
 
 	InitFromJSON(levelName);
 	
-	//auto player = AddCapsuleToWorld(Vector3(0, 5.f, 5), 1.0f, 0.5f, 3.f, true);
-		
-//	auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 1.0f, 0.5f, 3.f);
-//	player->AddComponent<GrideComponent>(this);
-	//player->HasTag("Player");
-	//AddFloorToWorld(Vector3(0, 0, 0));
-	//GameObject* testA = AddCubeToWorld(Vector3(1, 5, 1), Vector3(1, 1, 1));
-	//GameObject* testB = AddCubeToWorld(Vector3(5, 5, 5), Vector3(1, 1, 1));
-	//physics->addpointconstraint(testB->GetPhysicsObject()->body, Vector3(1, 5, 1));
-	//physics->addhingeconstraint(testA->GetPhysicsObject()->body, Vector3(1.0f, 2.0f, 1.0f), Vector3(0.0f, 1.0f, 0.0f));
-	//world->Start();
-
-	//AddFloorToWorld(Vector3(0, 0, 0));
-
-	//world->AddKillPlane(new Plane(Vector3(0, 1, 0), Vector3(0, -5, 0)));
-
+	auto sphere = AddSphereToWorld(Vector3(5, 10, 0), 2.f, 0.5f);
+	sphere->AddComponent<MoveComponent>(Vector3(1, 0, 0), 3.5f);
 	//Tick the timer so that the load time isn't factored into any time related calculations
 	Window::TickTimer();
 }

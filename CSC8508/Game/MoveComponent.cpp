@@ -23,5 +23,5 @@ void MoveComponent::Update(float dt) {
 		flip = !flip;
 	}
 
-	flip ?	physicsObject->AddForce(-dir) : physicsObject->AddForce(dir);
+	flip ?	physicsObject->body->addForce(-dir * 3) : physicsObject->body->addForce(dir * 3);
 }
