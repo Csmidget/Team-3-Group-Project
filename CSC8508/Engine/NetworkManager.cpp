@@ -140,6 +140,7 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 	thisClient->RegisterPacketHandler(Player_Connected, this);
 	thisClient->RegisterPacketHandler(Player_Disconnected, this);
 	thisClient->RegisterPacketHandler(Player_Count, this);
+	thisClient->RegisterPacketHandler(Player_Finished, this);
 
 }
 
