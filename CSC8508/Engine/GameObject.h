@@ -146,8 +146,12 @@ namespace NCL {
 
 			template<typename T>
 			void RemoveComponent() {
-				//erase-remove idiom
-				components.erase(std::remove_if(components.begin(), components.end(), [](Component* c) {return dynamic_cast<T*>(c) != nullptr; }));
+				for (int i = components.size() - 1; i >= 0; --i) {
+					if (dynamic_cast<T*>(components[i]) != nullptr) {
+						delete components[i];
+						components.erase(components.begin() + i);
+					}
+				}
 			}
 
 		protected:

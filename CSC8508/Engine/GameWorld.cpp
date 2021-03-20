@@ -46,6 +46,10 @@ void GameWorld::ClearAndErase() {
 	Clear();
 }
 
+void GameWorld::ForceClearAndErase() {
+	
+}
+
 std::vector<GameObject*> GameWorld::GetObjectsWithTag(std::string tag) const {
 	std::vector<GameObject*> objectsWithTag;
 	for (auto go : gameObjects)

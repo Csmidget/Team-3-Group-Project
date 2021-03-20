@@ -23,6 +23,7 @@ namespace NCL {
 
 			void Clear();
 			void ClearAndErase();
+			void ForceClearAndErase();
 
 			std::vector<GameObject*> GetObjectsWithTag(std::string tag) const;
 			GameObject* GetObjectWithTag(std::string tag) const;
