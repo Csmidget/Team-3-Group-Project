@@ -9,9 +9,8 @@
 #include"SetListener.h"
 #include"PlaySound.h"
 #include "ScoreComponent.h"
-#include "RingComponenet.h"
+#include "RingComponent.h"
 #include "TimeScoreComponent.h"
-#include "GrideComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/PhysicsSystem.h"

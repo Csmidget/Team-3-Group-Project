@@ -1,12 +1,11 @@
 #include "JsonComponentFactory.h"
 #include "JSONShared.h"
 
-#include "MoveComponent.h"
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
 #include"PlaySound.h"
 #include"SetListener.h"
-#include "RingComponenet.h"
+#include "RingComponent.h"
 #include "TeleporterComponent.h"
 
 #include "../Engine/GameObject.h"
@@ -26,10 +25,9 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	
 	std::string name = componentJson["name"];
 
-	if (name == "Move")			return gameObject->AddComponent<MoveComponent>(JsonToVector3(componentJson["force"]), componentJson["time"]);
 	if (name == "Player")		return gameObject->AddComponent<PlayerComponent>(game);
 	if (name == "Respawn")		return gameObject->AddComponent<RespawnComponent>();
-	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
+//	if (name == "Bonus")		return gameObject->AddComponent<BonusComponent>(componentJson["reward"]);
 	if (name == "GameStateManager")		return gameObject->AddComponent<GameStateManagerComponent>(game->GetWorld());
 	if (name == "ScoreComponent")		return gameObject->AddComponent<ScoreComponent>();
 	

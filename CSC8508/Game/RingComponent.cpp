@@ -1,4 +1,4 @@
-#include "RingComponenet.h"
+#include "RingComponent.h"
 #include "../Engine/GameObject.h"
 
 using namespace NCL;
