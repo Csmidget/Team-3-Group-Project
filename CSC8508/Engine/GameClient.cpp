@@ -65,7 +65,7 @@ void GameClient::UpdateClient() {
 
 			if (packet->type == Player_Finished) manager->UpdateServerPlayer(((PlayerFinishedPacket*)packet)->playerID, packet);
 			
-
+			if (packet->type == Exit_Lobby) manager->ActivateExitLobby();
 
 		}
 		enet_packet_destroy(event.packet);

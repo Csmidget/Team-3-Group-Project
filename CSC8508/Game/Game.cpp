@@ -211,6 +211,17 @@ void Game::InitNetworkPlayers()
 
 }
 
+bool NCL::CSC8508::Game::IsExitLobbyTime()
+{
+	if (networkManager->IsClient())
+		return networkManager->IsExitLobbyTime();
+	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
+		networkManager->ActivateExitLobby();
+		return true;
+	}
+	return false;
+}
+
 void Game::InitWorld() {
 
 

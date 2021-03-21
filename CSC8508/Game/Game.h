@@ -27,6 +27,7 @@ namespace NCL {
 			void InitWorld(std::string levelName);
 			void InitIntroWorld();
 			void InitNetworkPlayers();
+			bool IsExitLobbyTime();
 
 			void EnableNetworking(bool client);
 			void DisableNetworking();

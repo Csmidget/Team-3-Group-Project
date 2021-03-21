@@ -72,6 +72,10 @@ namespace NCL {
 
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
+			bool IsExitLobbyTime();
+			bool IsClient() const { return isClient;  }
+			void ActivateExitLobby() { exitLobby = true; }
+
 		private:
 		
 
@@ -97,6 +101,7 @@ namespace NCL {
 			float timeToNextPacket;
 			int packetsToSnapshot;
 
+			bool exitLobby = false;
 
 			std::map<int, ClientPlayer*> serverPlayers;
 			

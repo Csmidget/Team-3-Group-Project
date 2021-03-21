@@ -18,7 +18,8 @@ enum BasicNetworkMessages {
 	Player_Disconnected,
 	Shutdown,
 	Player_Count,
-	Player_Finished
+	Player_Finished,
+	Exit_Lobby
 };
 
 struct GamePacket {
@@ -94,6 +95,13 @@ struct PlayerFinishedPacket : public GamePacket {
 		type = BasicNetworkMessages::Player_Finished;
 		size = sizeof(int) *2;
 
+	}
+
+};
+
+struct ExitLobbyPacket : public GamePacket {
+	ExitLobbyPacket() {
+		type = BasicNetworkMessages::Exit_Lobby;
 	}
 
 };

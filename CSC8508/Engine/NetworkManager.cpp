@@ -123,6 +123,13 @@ void NCL::CSC8508::NetworkManager::UpdateServerPlayer(int id, GamePacket* packet
 	if (player && packet) player->Update(*packet);
 }
 
+bool NCL::CSC8508::NetworkManager::IsExitLobbyTime()
+{
+	if (!exitLobby) return false;
+	exitLobby = false;
+	return true;
+}
+
 void NCL::CSC8508::NetworkManager::StartAsServer()
 {
 	thisServer = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS,  this);
@@ -141,6 +148,7 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 	thisClient->RegisterPacketHandler(Player_Disconnected, this);
 	thisClient->RegisterPacketHandler(Player_Count, this);
 	thisClient->RegisterPacketHandler(Player_Finished, this);
+	thisClient->RegisterPacketHandler(Exit_Lobby, this);
 
 }
 
@@ -158,6 +166,12 @@ void NetworkManager::UpdateAsServer(float dt)
 	else {
 		BroadcastSnapshot(true);
 	}
+
+	if (IsExitLobbyTime()) {
+		GamePacket* packet= new ExitLobbyPacket();
+		thisServer->SendGlobalPacket(*packet);
+		delete packet;
+	} 
 }
 
 void NetworkManager::UpdateAsClient(float dt)

@@ -23,7 +23,7 @@ PushdownState::PushdownResult LobbyState::OnUpdate(float dt, PushdownState** new
 		return PushdownResult::Pop;
 
 	//Something needs to be checked here to know when to start the game. For now we just wait for K to be pressed.
-	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K)) {
+	if (game->IsExitLobbyTime()) {
 		gameStarted = true;
 		*newState = new PlayState(game);
 		game->InitNetworkPlayers();
