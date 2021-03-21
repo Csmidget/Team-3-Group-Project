@@ -16,7 +16,10 @@ enum BasicNetworkMessages {
 	Received_State, //received from a client, informs that its received packet n
 	Player_Connected,
 	Player_Disconnected,
-	Shutdown
+	Shutdown,
+	Player_Count,
+	Player_Finished,
+	Exit_Lobby
 };
 
 struct GamePacket {
@@ -72,6 +75,37 @@ struct PlayerDisconnectPacket : public GamePacket {
 	}
 };
 
+struct PlayerCountPacket : public GamePacket {
+	int playerIDs[8];
+	PlayerCountPacket(int ids[8]) {
+		type = BasicNetworkMessages::Player_Count;
+		for (int i = 0; i < 8; i++) playerIDs[i] = ids[i];
+		size = sizeof(int) * 8;
+
+	}
+
+};
+
+struct PlayerFinishedPacket : public GamePacket {
+	int playerID;
+	int score;
+	PlayerFinishedPacket(int id, int finalScore) {
+		playerID = id;
+		score = finalScore;
+		type = BasicNetworkMessages::Player_Finished;
+		size = sizeof(int) *2;
+
+	}
+
+};
+
+struct ExitLobbyPacket : public GamePacket {
+	ExitLobbyPacket() {
+		type = BasicNetworkMessages::Exit_Lobby;
+	}
+
+};
+
 class PacketReceiver {
 public:
 	virtual void ReceivePacket(int type, GamePacket* payload, int source = -1) = 0;
@@ -89,6 +123,8 @@ public:
 	void RegisterPacketHandler(int msgID, PacketReceiver* receiver) {
 		packetHandlers.insert(std::make_pair(msgID, receiver));
 	}
+
+
 protected:
 	NetworkBase();
 	~NetworkBase();

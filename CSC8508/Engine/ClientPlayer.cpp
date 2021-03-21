@@ -6,6 +6,7 @@ using namespace CSC8508;
 NCL::CSC8508::ClientPlayer::ClientPlayer(std::string clientName, GameObject& o, int id) : NetworkObject(o, id) 
 {
 	this->clientName = clientName;
+	playerID = id;
 }
 
 void NCL::CSC8508::ClientPlayer::Update(GamePacket& p)
@@ -13,6 +14,22 @@ void NCL::CSC8508::ClientPlayer::Update(GamePacket& p)
 	ReadPacket(p);
 }
 
+
+
+
+bool NCL::CSC8508::ClientPlayer::ReadPlayerFinishedPacket(PlayerFinishedPacket& p)
+{
+	if (p.playerID == this->playerID) {
+		NetworkPlayerComponent* player = GetNetworkPlayerComponent();
+		if (player->isFinished()) return true;
+		player->SetScore(p.score);
+		player->Finish();
+		std::cout << "Player " << p.playerID << " has finished the level and scored " << p.score << std::endl;
+	}
+
+
+	return true;
+}
 
 bool NCL::CSC8508::ClientPlayer::WriteDeltaPacket(GamePacket** p, int stateID)
 {

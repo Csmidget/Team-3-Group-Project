@@ -1,18 +1,18 @@
 #include "GameClient.h"
+#include "NetworkManager.h"
+
 #include <iostream>
 #include <string>
 
 using namespace NCL;
 using namespace CSC8508;
 
-GameClient::GameClient()	{
+GameClient::GameClient(NetworkManager* manager)	{
 	netHandle = enet_host_create(nullptr, 1, 1, 0, 0);
+	this->manager = manager;
 }
 
 GameClient::~GameClient()	{
-	//threadAlive = false;
-	//updateThread.join();
-	enet_host_destroy(netHandle);
 }
 
 bool GameClient::Connect(uint8_t a, uint8_t b, uint8_t c, uint8_t d, int portNum) {
@@ -47,14 +47,40 @@ void GameClient::UpdateClient() {
 			
 		}
 		else if (event.type == ENET_EVENT_TYPE_RECEIVE) {
-			std::cout << "Client: Packet recieved..." << std::endl;
+			//std::cout << "Client: Packet recieved..." << std::endl;
 			GamePacket* packet = (GamePacket*)event.packet->data;
 			ProcessPacket(packet);
 
-			if (packet->type == Player_Connected) id = ((NewPlayerPacket*)packet)->playerID;
+			if (packet->type == Player_Connected) 
+				if(id==-1) id = ((NewPlayerPacket*)packet)->playerID;
+			if (packet->type == Player_Count) 
+				UpdateClientLobby(((PlayerCountPacket*)packet)->playerIDs);
+			
+			if (packet->type == Player_Delta_State || packet->type == Player_Full_State) {
+				int peer = packet->type == Player_Delta_State ? ((PlayerDeltaPacket*)packet)->playerID : ((PlayerFullPacket*)packet)->playerID;
+				manager->UpdateServerPlayer(peer, packet);
+
+				
+			}
+
+			if (packet->type == Player_Finished) manager->UpdateServerPlayer(((PlayerFinishedPacket*)packet)->playerID, packet);
+			
+			if (packet->type == Exit_Lobby) manager->ActivateExitLobby();
 
 		}
 		enet_packet_destroy(event.packet);
+	}
+}
+
+void NCL::CSC8508::GameClient::UpdateClientLobby(int* playerIDs)
+{
+	while (!manager->GetPlayerLobby()->empty()) //empty queue
+				manager->GetPlayerLobby()->pop();
+	for (int i = 0; i < 8; i++) {
+		int id = *(playerIDs + i);
+		if (id == -1) continue;
+
+		manager->AddPlayerToLobby(id);
 	}
 }
 

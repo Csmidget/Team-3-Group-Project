@@ -12,7 +12,6 @@ using namespace std;
 #include <string>
 #include <iostream>
 #include <queue>
-//#include "../Game/NetworkPlayer.h"
 
 class TestPacketReceiver : public PacketReceiver {
 public:
@@ -33,10 +32,23 @@ public:
 namespace NCL {
 	namespace CSC8508 {
 
+		struct LocalPlayer {
+			LocalPlayer(ClientPlayer* localPlayer) {
+				player = localPlayer;
+				isFinished = false;
+				score= 0;
+			}
+			ClientPlayer* player;
+			bool isFinished;
+			int score;
+
+		};
+
 		class NetworkManager : public PacketReceiver
 		{
 		public:
 			NetworkManager();
+			NetworkManager(bool client);
 
 			~NetworkManager();
 
@@ -55,13 +67,17 @@ namespace NCL {
 				serverPlayers.emplace(id, new ClientPlayer("Client", *object, id));
 			}
 			
-			void SetLocalPlayer(GameObject* object) { localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
-			
+			void SetLocalPlayer(GameObject* object); //{ localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
+			LocalPlayer* GetLocalPlayer() { return localPlayer; }
+
 			void UpdateServerPlayer(int id, GamePacket* packet);
 
+			bool IsExitLobbyTime();
+			bool IsClient() const { return isClient;  }
+			void ActivateExitLobby() { exitLobby = true; }
+
 		private:
-			void TestClient();
-			void TestServer();
+		
 
 			void StartAsServer();
 			void StartAsClient();
@@ -69,28 +85,37 @@ namespace NCL {
 			void UpdateAsServer(float dt);
 			void UpdateAsClient(float dt);
 
+			void UpdateLocalPlayer(float dt);
+
 			void BroadcastSnapshot(bool deltaFrame);
 			void UpdateMinimumState();
 
+			void Restart();
 
-			bool const OFFLINE_MODE = true;
-			bool const TEST_MODE = false;
-			bool isClient = true;
+
+			bool const OFFLINE_MODE = false;
+			bool isClient = false;
 
 			GameServer* thisServer;
 			GameClient* thisClient;
 			float timeToNextPacket;
 			int packetsToSnapshot;
 
-			std::vector<NetworkObject*> networkObjects;
+			bool exitLobby = false;
 
 			std::map<int, ClientPlayer*> serverPlayers;
 			
-			ClientPlayer* localPlayer;
+//			ClientPlayer* localPlayer;
+//			GameStateManagerComponent* gameState;
+
+			LocalPlayer* localPlayer;
 
 			std::queue<int> playerLobby;
 
 			int stateID = 0;
+
+			const int MAX_CLIENTS = 8;
+
 		};
 
 	}

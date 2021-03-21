@@ -55,7 +55,7 @@ namespace NCL {
 				size = sizeof(ClientPacket);
 			}
 		};
-
+	
 
 
 		class NetworkObject
@@ -81,6 +81,8 @@ namespace NCL {
 			virtual bool ReadDeltaPacket(DeltaPacket &p);
 			virtual bool ReadFullPacket(FullPacket &p);
 
+			virtual bool ReadPlayerFinishedPacket(PlayerFinishedPacket& p);
+
 			virtual bool WriteDeltaPacket(GamePacket**p, int stateID);
 			virtual bool WriteFullPacket(GamePacket**p);
 
@@ -93,6 +95,7 @@ namespace NCL {
 			int fullErrors;
 
 			GameObject& object;
+			Quaternion orientation;
 
 			int networkID;
 		};

@@ -1,5 +1,7 @@
 #pragma once
 #include "NetworkObject.h"
+#include "../Game/NetworkPlayerComponent.h"
+
 #include <string>
 
 
@@ -13,7 +15,11 @@ namespace NCL {
 			ClientPlayer(std::string clientName, GameObject& o, int id);
 
 			void Update(GamePacket& p) override;
+			int GetPlayerID() const { return playerID; }
+			NetworkPlayerComponent* GetNetworkPlayerComponent() const { return object.GetComponent<NetworkPlayerComponent>(); }
 		protected:
+
+			bool ReadPlayerFinishedPacket(PlayerFinishedPacket& p) override;
 
 			bool WriteDeltaPacket(GamePacket** p, int stateID) override;
 			bool WriteFullPacket(GamePacket** p) override;

@@ -34,6 +34,7 @@ namespace NCL
 				btRigidBody* returnBody() { return body; };
 
 				void setTransform();
+				void setOrientation();
 				void updateTransform();
 
 				void makeTrigger();
@@ -54,6 +55,8 @@ namespace NCL
 				NCL::Maths::Vector3 getForce();
 				void clearForces();
 				NCL::Maths::Vector3 getLinearVelocity();
+
+				std::vector<std::string> debugInfo();
 
 			private:
 

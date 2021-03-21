@@ -16,7 +16,8 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt)
 {
 	if (clientPlayerID < players.size() && clientPlayerID >= 0) {
 		int score = players.at(clientPlayerID)->GetComponent<ScoreComponent>()->GetScore();
-		Debug::Print("Score: " + std::to_string(score), Vector2(75, 95));
+		int timeScore = players.at(clientPlayerID)->GetComponent<TimeScoreComponent>()->GetScore();
+		Debug::Print("Score: " + std::to_string(score + timeScore), Vector2(75, 95));
 		if (clientScore) *clientScore = score;
 	
 	}
@@ -31,7 +32,10 @@ void NCL::CSC8508::GameStateManagerComponent::RefreshPlayerList()
 	players = world->GetObjectsWithTag("Player");
 
 	for (int i = 0; i < players.size(); i++)
+	{
 		players.at(i)->AddComponent<ScoreComponent>();
+		players.at(i)->AddComponent<TimeScoreComponent>();
+	}
 }
 
 bool NCL::CSC8508::GameStateManagerComponent::IsGameOver()

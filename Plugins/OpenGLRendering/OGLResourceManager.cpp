@@ -4,6 +4,7 @@
 #include "OGLTexture.h"
 
 #include "../../Common/MeshMaterial.h"
+#include "../../Common/MeshAnimation.h"
 #include "../../Common/TextureLoader.h"
 
 using namespace NCL::Rendering;
@@ -46,6 +47,21 @@ NCL::MeshGeometry* OGLResourceManager::LoadMesh(std::string fileName) {
 	loadedMeshes.emplace(fileName, mesh);
 
 	return mesh;
+}
+
+NCL::MeshAnimation* OGLResourceManager::LoadAnimation(std::string fileName) {
+
+	if (fileName.empty())
+		return nullptr;
+
+	if (loadedAnimations.find(fileName) != loadedAnimations.end())
+		return loadedAnimations[fileName];
+
+	MeshAnimation* meshAnim = new MeshAnimation(fileName);
+
+	loadedAnimations.emplace(fileName, meshAnim);
+
+	return meshAnim;
 }
 
 NCL::MeshMaterial* OGLResourceManager::LoadMaterial(std::string fileName) {

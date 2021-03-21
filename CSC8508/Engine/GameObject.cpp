@@ -43,7 +43,18 @@ void GameObject::Update(float dt)
 			component->Update(dt);
 	}
 
+	if(renderObject)
+		renderObject->Update(dt);
+
 	OnUpdate(dt);
+}
+
+void GameObject::fixedUpdate(float dt)
+{
+	for (auto component : components) {
+		if (component->IsEnabled())
+			component->fixedUpdate(dt);
+	}
 }
 
 void GameObject::OnCollisionBegin(GameObject* otherObject)
@@ -89,6 +100,9 @@ std::vector<std::string> GameObject::DebugInfo() const {
 	
 	auto transformInfo = transform.GetDebugInfo();
 	info.insert(info.end(), transformInfo.begin(), transformInfo.end());
+
+	auto physicsInfo = physicsObject->body->debugInfo();
+	info.insert(info.end(), physicsInfo.begin(), physicsInfo.end());
 
 	for (auto comp : components) {
 		auto compInfo = comp->GetDebugInfo();

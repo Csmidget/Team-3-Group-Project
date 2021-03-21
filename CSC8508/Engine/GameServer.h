@@ -37,6 +37,9 @@ namespace NCL {
 
 			int incomingDataRate;
 			int outgoingDataRate;
+
+			void SendGlobalLobby();
+
 		};
 	}
 }

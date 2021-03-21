@@ -49,16 +49,19 @@ namespace NCL {
 			//NCL::Rendering::ResourceManager* resourceManager;
 			vector<const RenderObject*> activeObjects;
 
-			OGLShader* skyboxShader;
-			OGLMesh* skyboxMesh;
+			OGLShader*	skyboxShader;
+			OGLMesh*	skyboxMesh;
 			GLuint		skyboxTex;
 
 			OGLShader* m_temp_shader = nullptr;
 
 			//shadow mapping things
 			NCL::Rendering::OGLShader* depthCubemapShader;
+			NCL::Rendering::OGLShader* depthCubemapJointShader;
 			NCL::Rendering::OGLShader* depth2DShader;
+
 			NCL::Rendering::OGLShader* lightshader;
+			NCL::Rendering::OGLShader* jointshader;
 
 			PointLight* pointlight;
 			SpotLight* spotlight;

@@ -28,8 +28,10 @@ PushdownState::PushdownResult DebugState::OnUpdate(float dt, PushdownState** new
 			auto r = CollisionDetection::BuildRayFromMouse(cam);
 			auto object = game->Raycast(r.GetPosition(), r.GetPosition() + r.GetDirection() * 1000);
 
-			if (object)
+			if (object) {
 				selectedObject = object;
+				object->GetRenderObject()->SetAnimation(nullptr);
+			}
 			else
 				selectedObject = nullptr;
 		}
@@ -51,8 +53,11 @@ PushdownState::PushdownResult DebugState::OnUpdate(float dt, PushdownState** new
 		return PushdownResult::Pop;
 	}
 
-	if (selectedObject)
+	if (selectedObject) {
+		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K))
+			selectedObject->GetRenderObject()->SetAnimation(game->GetResourceManager()->LoadAnimation("role_T.anm"));
 		DisplayDebugInfo();
+	}
 
 	return PushdownResult::NoChange;
 }
@@ -136,16 +141,19 @@ void DebugState::OnAwake() {
 	playerComponents = game->GetWorld()->GetComponentsOfType<PlayerComponent>();
 
 	for (int i = playerComponents.size() - 1; i >= 0; --i) {
-		if (!playerComponents[i]->IsEnabled())
+		if (!playerComponents[i]->receiveInputs)
 			playerComponents.erase(playerComponents.begin() + i);
 
-		playerComponents[i]->SetEnabled(false);
+		//playerComponents[i]->SetEnabled(false);
+		playerComponents[i]->receiveInputs = false;
+
 	}
 }
 
 void DebugState::OnSleep() {
 	for (auto comp : playerComponents) {
-		comp->SetEnabled(true);
+		//comp->SetEnabled(true);
+		comp->receiveInputs = true;
 	}
 
 	CameraComponent::SetMain(oldMain);

@@ -17,7 +17,8 @@ namespace NCL {
 		{
 			WALKING,
 			JUMP_ONE,
-			JUMP_TWO
+			JUMP_TWO,
+			IDLE
 		};
 
 
@@ -25,68 +26,60 @@ namespace NCL {
 
 		public:
 			PlayerComponent(GameObject* object, Game* game);
-			
-			//Testing constructor
-			PlayerComponent(GameObject* object);
-			
+		
+			bool receiveInputs;
 
-			void Update(float dt);
+			void fixedUpdate(float dt);
 			void UpdateControls(float dt);
+			void Update(float dt) override;
 			void OnCollisionBegin(GameObject* otherObject) override;
 			void OnCollisionStay(GameObject* otherObject) override;
 			void OnCollisionEnd(GameObject* otherObject) override;
 
-			void SetSpeed(float speed, float max) { this->speed = speed; this->MAX_WALKING_SPEED = max; }
-			void SetJump(float jump, float max) { this->jump = jump; this->MAX_AIR_SPEED = max;
+			PlayerMovementState GetCurrentMovementState()
+			{
+				return movementState;
 			}
+		
 		private:
 
 			PlayerMovementState movementState;
 			//Maths::Vector3 dir;
 			Maths::Vector3 direction;
+			Maths::Vector3 currentVelocity;
 			PhysicsObject* physicsObject;
 			Audio::SoundInstance* JumpSound;
 
 			bool lockOrientation;
 
+			float speed;
 			float yaw;
 			float pitch;
 			float cameraDistance;
 			const float MAX_CAMERA_DISTANCE = 18.f;
 			const float MIN_CAMERA_DISTANCE = 13.f;
 
-			float speed;
 			float MAX_WALKING_SPEED;
-			const float MAX_ACCELERATION = 10000000000000.f;
-			const float MAX_DECELERATION = 10000000000000.f;
+			const float MAX_ACCELERATION = 100.f;
+			const float MAX_DECELERATION = 80.f;
 
-
+			bool recquestedJump;
 			float jump;
 			float MAX_AIR_SPEED;
 			int jumpCounter;
-			bool jumping;
 			float lastCollisionTimer;
 
-			bool testing;
-			float testTimer;
-			bool hasJumped;
+		
 			
 			Game* game;
 			CameraComponent* camera;
 			
-
+			PlayerMovementState IdleOrRunning();
 			void CameraMovement();
-			void Movement();
+			void PlayerInputs();
 			void Jump();
-			void ClampVelocity();
 			void AccelerateTo(Maths::Vector3 targetVelocity, float dt);
 
-			void Interact();
-
-			void Testing();
-			void TestMovement();
-			void TestStaticJumping();
-			void TestRunningJump();
 		};
 
 	}
