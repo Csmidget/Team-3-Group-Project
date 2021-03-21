@@ -21,7 +21,6 @@ namespace NCL {
 			GameWorld();
 			~GameWorld();
 
-			void Clear();
 			void ClearAndErase();
 			void ForceClearAndErase();
 
@@ -99,6 +98,8 @@ namespace NCL {
 			}
 
 		protected:
+			void Clear();
+
 			std::vector<GameObject*> newGameObjects;
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;

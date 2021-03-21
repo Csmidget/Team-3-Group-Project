@@ -15,6 +15,7 @@ GameObject::GameObject(string objectName) : transform(this)	{
 	boundingVolume	= nullptr;
 	physicsObject	= nullptr;
 	renderObject	= nullptr;
+	persistent		= false;
 	collisionLayer = 0;
 }
 

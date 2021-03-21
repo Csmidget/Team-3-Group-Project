@@ -59,6 +59,14 @@ namespace NCL {
 				isActive = val;
 			}
 
+			bool IsPersistent() const {
+				return persistent;
+			}
+
+			void SetPersistence(bool val) {
+				persistent = val;
+			}
+
 			bool IsStatic() const {
 				return isStatic;
 			}
@@ -168,6 +176,7 @@ namespace NCL {
 
 			bool	isActive;
 			bool	isStatic;
+			bool	persistent;
 			int		worldID;
 			int collisionLayer;
 			string	name;
