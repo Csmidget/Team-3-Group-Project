@@ -21,8 +21,8 @@ namespace NCL {
 			GameWorld();
 			~GameWorld();
 
-			void Clear();
 			void ClearAndErase();
+			void ForceClearAndErase();
 
 			std::vector<GameObject*> GetObjectsWithTag(std::string tag) const;
 			GameObject* GetObjectWithTag(std::string tag) const;
@@ -98,6 +98,8 @@ namespace NCL {
 			}
 
 		protected:
+			void Clear();
+
 			std::vector<GameObject*> newGameObjects;
 			std::vector<GameObject*> gameObjects;
 			std::vector<Constraint*> constraints;

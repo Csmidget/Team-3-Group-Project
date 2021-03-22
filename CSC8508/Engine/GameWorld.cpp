@@ -18,8 +18,11 @@ GameWorld::GameWorld() {
 }
 
 GameWorld::~GameWorld()	{
+	ForceClearAndErase();
+
 	delete objectTree;
 	delete staticObjectTree;
+
 }
 
 void GameWorld::Clear() {
@@ -33,6 +36,27 @@ void GameWorld::Clear() {
 }
 
 void GameWorld::ClearAndErase() {
+	for (int i = gameObjects.size() - 1; i >= 0; --i) {
+		//We have to do this manually because some objects may be persistent.
+		if (!gameObjects[i]->IsPersistent()) {
+			delete gameObjects[i];
+			gameObjects.erase(gameObjects.begin() + i);
+		}
+	}
+	for (auto& i : constraints) {
+		delete i;
+	}
+	for (auto& i : killPlanes) {
+		delete i;
+	}
+	newGameObjects.clear();
+	constraints.clear();
+	killPlanes.clear();
+	staticObjectTree->Clear();
+	objectTree->Clear();
+}
+
+void GameWorld::ForceClearAndErase() {
 	for (int i = 0; i < gameObjects.size(); ++i) {
 		delete gameObjects[i];
 	}
@@ -42,7 +66,6 @@ void GameWorld::ClearAndErase() {
 	for (auto& i : killPlanes) {
 		delete i;
 	}
-
 	Clear();
 }
 

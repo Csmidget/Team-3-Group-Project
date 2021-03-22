@@ -23,9 +23,10 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	receiveInputs = true;
 
 	recquestedJump = false;
-	jump = 10.f;
 
-	MAX_WALKING_SPEED = 10.f;
+	jump = 7.5f;
+
+	MAX_WALKING_SPEED = 6.0f;
 	MAX_AIR_SPEED = 10000.f;
 
 	jumpCounter = 0;

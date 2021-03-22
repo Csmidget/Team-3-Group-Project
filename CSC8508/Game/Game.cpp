@@ -177,12 +177,13 @@ void Game::InitIntroCamera() {
 	CameraComponent::GetMain()->SetYaw(0.0f);
 }
 
-void Game::Clear() {
-	world->ClearAndErase();
-	physics->clear();
+void Game::Clear(bool force) {
+	if (force)
+		world->ForceClearAndErase();
+	else
+		world->ClearAndErase();
 
-	useGravity = true;
-	//physics->UseGravity(true);
+	physics->clear();
 }
 
 void Game::InitFromJSON(std::string fileName) {
@@ -222,14 +223,8 @@ bool NCL::CSC8508::Game::IsExitLobbyTime()
 	return false;
 }
 
-void Game::InitWorld() {
-
-	InitWorld("AshmanTest.json");
-	//InitWorld("CharlesTest.json");
-}
-
-void Game::InitWorld(std::string levelName) {
-	Clear();
+void Game::InitWorld(std::string levelName, bool forceClear) {
+	Clear(forceClear);
 
 	InitCamera();
 
@@ -240,7 +235,7 @@ void Game::InitWorld(std::string levelName) {
 }
 
 void Game::InitIntroWorld() {
-	Clear();
+	Clear(true);
 	InitIntroCamera();
 }
 
@@ -334,7 +329,7 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), resourceManager->LoadMesh("capsule.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	capsule->SetPhysicsObject(new PhysicsObject(&capsule->GetTransform(), capsule->GetBoundingVolume()));
 
-	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
+	capsule->GetPhysicsObject()->body->addCapsuleShape(radius / 2,halfHeight);
 
 	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
 													0.4f,

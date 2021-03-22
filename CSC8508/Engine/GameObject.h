@@ -59,6 +59,14 @@ namespace NCL {
 				isActive = val;
 			}
 
+			bool IsPersistent() const {
+				return persistent;
+			}
+
+			void SetPersistence(bool val) {
+				persistent = val;
+			}
+
 			bool IsStatic() const {
 				return isStatic;
 			}
@@ -146,8 +154,12 @@ namespace NCL {
 
 			template<typename T>
 			void RemoveComponent() {
-				//erase-remove idiom
-				components.erase(std::remove_if(components.begin(), components.end(), [](Component* c) {return dynamic_cast<T*>(c) != nullptr; }));
+				for (int i = components.size() - 1; i >= 0; --i) {
+					if (dynamic_cast<T*>(components[i]) != nullptr) {
+						delete components[i];
+						components.erase(components.begin() + i);
+					}
+				}
 			}
 
 		protected:
@@ -164,6 +176,7 @@ namespace NCL {
 
 			bool	isActive;
 			bool	isStatic;
+			bool	persistent;
 			int		worldID;
 			int collisionLayer;
 			string	name;
