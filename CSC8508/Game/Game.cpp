@@ -224,7 +224,7 @@ bool NCL::CSC8508::Game::IsExitLobbyTime()
 }
 
 void Game::InitWorld(std::string levelName, bool forceClear) {
-	Clear(true);
+	Clear(forceClear);
 
 	InitCamera();
 
