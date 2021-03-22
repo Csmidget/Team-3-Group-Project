@@ -3,13 +3,37 @@
 #include "BonusComponent.h"
 #include "RingComponent.h"
 
-NCL::CSC8508::ScoreComponent::ScoreComponent(GameObject* object) : Component("ScoreComponent", object)
+#include <algorithm>
+
+using namespace NCL;
+using namespace CSC8508;
+
+ScoreComponent* ScoreComponent::instance = nullptr;
+
+ScoreComponent::ScoreComponent(GameObject* object) : Component("ScoreComponent", object)
 {
+	//TODO: DESTROY IF INSTANCE ALREADY EXISTS
+	if (!instance)
+		instance = this;
+
+	gameObject->SetPersistence(true);
+
 	hasFinished = false;
 	score = 0;
 }
 
-void NCL::CSC8508::ScoreComponent::OnCollisionBegin(GameObject* otherObject)
+ScoreComponent::~ScoreComponent()
+{
+	if (instance = this)
+		instance = nullptr;
+}
+
+void ScoreComponent::AddScore(int val)
+{
+	this->score = std::max(0, (score + val));
+}
+
+void ScoreComponent::OnCollisionBegin(GameObject* otherObject)
 {
 	if (!otherObject->IsActive()) return;
 
@@ -27,5 +51,4 @@ void NCL::CSC8508::ScoreComponent::OnCollisionBegin(GameObject* otherObject)
 	}
 
 	if (otherObject->HasTag("Goal")) hasFinished = true;
-	
 }

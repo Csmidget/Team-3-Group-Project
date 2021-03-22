@@ -18,10 +18,8 @@ namespace NCL {
 
 		protected:
 			Game* game;
-			int score = 0;
-			bool isGameFinished = false;
 
-			GameStateManagerComponent* GetGameStateManager() const;
+			GameStateManagerComponent* gameStateManager;
 		};
 
 	}

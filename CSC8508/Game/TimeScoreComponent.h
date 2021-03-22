@@ -4,16 +4,20 @@
 namespace NCL {
 	namespace CSC8508 {
 
+		class ScoreComponent;
+		class Game;
+
 		class TimeScoreComponent : public Component
 		{
 			public:
-				TimeScoreComponent(GameObject* object);
+				TimeScoreComponent(GameObject* object, Game* game, int strength);
 
 				void Update(float dt) override;
-				int GetScore() const;
 
 			protected:
-				float timeScore;
+				float timer;
+				int strength;
+
 		};
 
 	}

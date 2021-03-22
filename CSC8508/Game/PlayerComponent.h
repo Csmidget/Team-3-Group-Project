@@ -12,6 +12,7 @@ namespace NCL {
 		class PhysicsObject;
 		class Game;
 		class CameraComponent;
+		class LocalNetworkPlayerComponent;
 
 		enum PlayerMovementState
 		{
@@ -31,6 +32,7 @@ namespace NCL {
 
 			void fixedUpdate(float dt);
 			void UpdateControls(float dt);
+			void Start() override;
 			void Update(float dt) override;
 			void OnCollisionBegin(GameObject* otherObject) override;
 			void OnCollisionStay(GameObject* otherObject) override;
@@ -73,7 +75,8 @@ namespace NCL {
 			
 			Game* game;
 			CameraComponent* camera;
-			
+			LocalNetworkPlayerComponent* lnpc;
+
 			PlayerMovementState IdleOrRunning();
 			void CameraMovement();
 			void PlayerInputs();

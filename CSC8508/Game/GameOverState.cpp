@@ -5,14 +5,15 @@
 #include"PlayerComponent.h"
 #include <iostream>
 #include "../Engine/Debug.h"
+#include "ScoreComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
 
-GameOverState::GameOverState(Game* game, int score) {
+GameOverState::GameOverState(Game* game) {
 
 	this->game = game;
-	gameScore = score;
+	gameScore = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
 	spectatorCamera = nullptr;
 }
 
