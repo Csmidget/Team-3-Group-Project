@@ -331,11 +331,12 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 
 	capsule->GetPhysicsObject()->body->addCapsuleShape(radius / 2,halfHeight);
 
-	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
+	capsule->GetPhysicsObject()->body->createBody(	3.0f,
 													0.4f,
 													0.4f,
 													physics);
 	capsule->GetPhysicsObject()->body->setUserPointer(capsule);
+	capsule->GetPhysicsObject()->body->setGravity(false);
 	
 	world->AddGameObject(capsule);
 
