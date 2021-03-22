@@ -85,6 +85,19 @@ namespace NCL {
 			}
 
 			template<class T>
+			T* GetComponentOfType() const {
+				static_assert(std::is_base_of<Component, T>::value, "Provided type is not a subclass of component");
+
+				std::vector<T*> components;
+				for (auto gameObject : gameObjects) {
+					T* component = gameObject->GetComponent<T>();
+					if (component != nullptr)
+						return component;
+				}
+				return nullptr;
+			}
+
+			template<class T>
 			std::vector<T*> GetComponentsOfType() const {
 				static_assert(std::is_base_of<Component, T>::value, "Provided type is not a subclass of component");
 

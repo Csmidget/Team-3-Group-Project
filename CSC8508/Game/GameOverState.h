@@ -16,7 +16,7 @@ namespace NCL {
 			void UpdateCameraControls(float dt);
 
 		public:
-			GameOverState(Game* game, int score);
+			GameOverState(Game* game);
 
 		protected:
 			Game* game;
