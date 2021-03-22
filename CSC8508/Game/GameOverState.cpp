@@ -48,23 +48,24 @@ void GameOverState::OnAwake() {
 
 void GameOverState::PrintOutcome()
 {
-	Debug::Print("Play again", Vector2(30, 10));
-	Debug::Print(gameScore > 0 ? "You win" : "You lose", Vector2(30, 30));
-	Debug::Print("Your score:" + std::to_string(gameScore), Vector2(30, 50));
-	Debug::Print("Press R to return to Menu", Vector2(30, 70));
-
-	game->getRenderer()->DrawString("Play again", Vector2(30, 10), Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
-	game->getRenderer()->DrawString(gameScore > 0 ? "You win" : "You lose", Vector2(30, 30), Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
-	//game->getRenderer()->DrawString("Your score:" + std::to_string(gameScore), Vector2(30, 50), gameScore > 0 ? Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
-	game->getRenderer()->DrawString("Play again", Vector2(30, 10), Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
+	game->getRenderer()->DrawString("Play again", Vector2(35, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+	game->getRenderer()->DrawString(ScoreComponent::instance->GetScore() > 0 ? "You win" : "You lose",
+									Vector2(35, 20), 
+									ScoreComponent::instance->GetScore() > 0 ? Vector4(0.0f, 1.0f, 0.0f, 0.0f) : Vector4(1.0f, 0.0f, 0.0f, 0.0f),
+									50.0f);
+	game->getRenderer()->DrawString("Your score: " + std::to_string(ScoreComponent::instance->GetScore()),
+									Vector2(25, 50),
+									Vector4(1.0f, 1.0f, 0.0f, 0.0f),
+									35.0f);
+	game->getRenderer()->DrawString("Press R to return to Menu", Vector2(30, 100), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
 	
-	vector<GameObject*> players = game->GetWorld()->GetObjectsWithTag("Player");
-
-	for (auto i : players)
+	auto networkPlayers = game->GetWorld()->GetComponentsOfType<NetworkPlayerComponent>();
+	for (auto i = 0; i < networkPlayers.size(); i++)
 	{
-
+		game->getRenderer()->DrawString("Player " + std::to_string(i) , Vector2(10, 55 + (i * 5)), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+		game->getRenderer()->DrawString("score: " + std::to_string(networkPlayers[i]->GetScore()), Vector2(15, 55 + (i * 5)), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+		//player->GetScore();
 	}
-
 }
 
 void GameOverState::UpdateCameraControls(float dt) {
