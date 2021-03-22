@@ -117,6 +117,9 @@
     <ClCompile Include="LocalNetworkPlayerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="HingeComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -201,9 +204,12 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="LocalNetworkPlayerComponent.h">
-     <Filter>Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="RingComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HingeComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

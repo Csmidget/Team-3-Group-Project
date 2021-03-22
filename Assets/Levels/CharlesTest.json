@@ -2196,7 +2196,7 @@
         "transform": {
             "position": {
                 "x": -2.7300000190734865,
-                "y": 10.0,
+                "y": 1.0,
                 "z": 1.4299999475479127
             },
             "orientation": {
@@ -2217,12 +2217,27 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 2.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "HingeComponent",
+                "point": {
+                "x": 0.0,
+                "y": 4.0,
+                "z": 0.0
+                },
+                "axis": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            }
+        ]
     },
     {
         "name": "Sphere (13)",
