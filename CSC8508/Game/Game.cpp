@@ -331,7 +331,7 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 
 	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
 
-	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
+	capsule->GetPhysicsObject()->body->createBody(	3.0f,
 													0.4f,
 													0.4f,
 													physics);
