@@ -155,7 +155,16 @@ void GameWorld::UpdateWorld(float dt) {
 
 	objectTree->Clear();
 	
-	for (auto g : gameObjects) {
+	for (int i = gameObjects.size() - 1; i >= 0; --i) {
+
+		auto* g = gameObjects[i];
+
+		if (g->destroy)
+		{
+			RemoveGameObject(g, true);
+			continue;
+		}
+
 		if (!g->IsStatic() && g->IsActive()) {
 			g->UpdateBroadphaseAABB();
 			Vector3 gPos = g->GetTransform().GetPosition();
