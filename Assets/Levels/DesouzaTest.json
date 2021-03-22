@@ -8734,9 +8734,6 @@
                 "name": "Player"
             },
             {
-                "name": "ScoreComponent"
-            },
-            {
                 "name": "SetListener",
                 "ID": 0
             }

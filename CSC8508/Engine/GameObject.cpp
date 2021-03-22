@@ -32,8 +32,10 @@ GameObject::~GameObject()	{
 }
 
 void GameObject::Start() {
-	for (auto component : components) {
-		component->Start();
+
+	for (int i{ 0 }; i < components.size(); ++i)
+	{
+		components[i]->Start();
 	}
 }
 

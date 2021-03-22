@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../Engine/Component.h"
 namespace NCL {
 
@@ -6,15 +7,21 @@ namespace NCL {
 		class ScoreComponent : public Component
 		{
 			public:
+
+				static ScoreComponent* instance; 
+
 				ScoreComponent(GameObject* object);
+				~ScoreComponent();
 				void OnCollisionBegin(GameObject* otherObject);
 				
-				int GetScore() const { return score; };
+				int GetScore() const { return score; }
+
+				void AddScore(int val);
+
 				bool IsFinished() const { return hasFinished; }
 			private:
-				float score;
+				int score;
 				bool hasFinished = false;
 		};
-
 	}
 }
