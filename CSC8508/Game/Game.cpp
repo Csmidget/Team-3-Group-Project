@@ -329,14 +329,13 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), resourceManager->LoadMesh("capsule.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	capsule->SetPhysicsObject(new PhysicsObject(&capsule->GetTransform(), capsule->GetBoundingVolume()));
 
-	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
+	capsule->GetPhysicsObject()->body->addCapsuleShape(radius / 2,halfHeight);
 
-	capsule->GetPhysicsObject()->body->createBody(	3.0f,
+	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
 													0.4f,
 													0.4f,
 													physics);
 	capsule->GetPhysicsObject()->body->setUserPointer(capsule);
-	capsule->GetPhysicsObject()->body->setGravity(false);
 	
 	world->AddGameObject(capsule);
 
