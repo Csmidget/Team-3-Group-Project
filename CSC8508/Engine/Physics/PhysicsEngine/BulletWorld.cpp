@@ -15,11 +15,8 @@ BulletWorld::BulletWorld()
 	overlappingPairCache = new btDbvtBroadphase();
 	solver = new btSequentialImpulseConstraintSolver;
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
-
 	dynamicsWorld->setGravity(btVector3(0, -20.0f, 0));
 	dynamicsWorld->setInternalTickCallback((btInternalTickCallback)tickCallBack, this, true);
-
-	physicsTimer = 0.0f;
 }
 
 BulletWorld::~BulletWorld()
@@ -40,25 +37,22 @@ void BulletWorld::setGravity(NCL::Maths::Vector3 force)
 	dynamicsWorld->setGravity(convertVector3(force));
 }
 
-void BulletWorld::addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point) {
-
-	//btVector3 pivot(1, 5, 1);// = convertVector3(point);
+void BulletWorld::addpointconstraint(RigidBody* bodyA, NCL::Maths::Vector3 point) 
+{
 	btVector3 pivot = convertVector3(point);
 	btTypedConstraint* p2p = new btPoint2PointConstraint(*bodyA->returnBody(), pivot);
 	p2p->setBreakingImpulseThreshold((btScalar)10000.2);
 	dynamicsWorld->addConstraint(p2p);
+	constraintList.push_back(p2p);
 }
 
-void BulletWorld::addhingeconstraint(RigidBody* doorbody, NCL::Maths::Vector3 point, NCL::Maths::Vector3 axisA) {
-
-	btHingeConstraint* doorhinge = NULL;
-	//const btVector3 pivot(1.0f, 2.0f, 1.0f);
+void BulletWorld::addhingeconstraint(RigidBody* doorbody, NCL::Maths::Vector3 point, NCL::Maths::Vector3 axisA) 
+{
 	const btVector3 pivot = convertVector3(point);
-	//btVector3 axis(0.0f, 1.0f, 0.0f);
 	btVector3 axis = convertVector3(axisA);
-	doorhinge = new btHingeConstraint(*doorbody->returnBody(), pivot, axis);
-	//doorhinge->setLimit(-3.1415 * 0.25f, 3.1415 * 0.25f);
+	btHingeConstraint* doorhinge = new btHingeConstraint(*doorbody->returnBody(), pivot, axis);;
 	dynamicsWorld->addConstraint(doorhinge);
+	constraintList.push_back(doorhinge);
 }
 
 //cast a ray between to points and returns the hit gameobject or nullptr if nothing is hit
@@ -94,9 +88,7 @@ void BulletWorld::removeRigidBody(RigidBody* body)
 //steps simulation and sets the transform based on bullet physics
 void BulletWorld::Update(float dt)
 {
-	physicsTimer += dt;
 	dynamicsWorld->stepSimulation((btScalar)dt, 10);
-
 	for (auto i : rigidList)
 	{
 		i->returnBody()->applyDamping((btScalar)dt);
