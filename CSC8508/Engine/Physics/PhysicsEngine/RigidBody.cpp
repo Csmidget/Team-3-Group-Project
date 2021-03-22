@@ -159,6 +159,18 @@ void RigidBody::setTransform()
 	}
 }
 
+void RigidBody::setOrientation()
+{
+	if (body)
+	{
+		btQuaternion rotation = convertQuaternion(transform->GetOrientation());
+
+		btTransform trans = body->getWorldTransform();
+		trans.setRotation(rotation);
+		body->setWorldTransform(trans);
+	}
+}
+
 void RigidBody::createBody(	float mass,
 							float restitution,
 							float friction,
