@@ -114,7 +114,6 @@ namespace NCL {
 
 			int stateID = 0;
 
-
 			const int MAX_CLIENTS = 8;
 
 		};
