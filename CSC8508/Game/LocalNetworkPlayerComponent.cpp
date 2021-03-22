@@ -6,10 +6,9 @@
 using namespace NCL;
 using namespace CSC8508;
 
-LocalNetworkPlayerComponent::LocalNetworkPlayerComponent(GameObject* object,Game* game, LocalPlayer* localPlayer) : Component("LocalNetworkPlayerComponent",object)
+LocalNetworkPlayerComponent::LocalNetworkPlayerComponent(GameObject* object, LocalPlayer* localPlayer) : Component("LocalNetworkPlayerComponent",object)
 {
 	this->localPlayer = localPlayer;
-	this->gameManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 }
 
 void LocalNetworkPlayerComponent::SetTransform(const Vector3& pos, const Quaternion& orientation)
@@ -24,6 +23,6 @@ void LocalNetworkPlayerComponent::Update(float dt)
 
 	localPlayer->score = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
 
-	localPlayer->isFinished = gameManager->IsGameFinished();
+	localPlayer->isFinished = GameStateManagerComponent::instance ? GameStateManagerComponent::instance->IsGameFinished() : false;
 	//localPlayer->isFinished = score->IsFinished();
 }

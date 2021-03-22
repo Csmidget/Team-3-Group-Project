@@ -198,7 +198,7 @@ void Game::InitNetworkPlayers()
 	GameObject* player = new GameObject("clientPlayer");
 	world->AddGameObject(player);
 	networkManager->SetLocalPlayer(player);
-	player->AddComponent<LocalNetworkPlayerComponent>(this, networkManager->GetLocalPlayer());
+	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
 	player->SetPersistence(true);
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
