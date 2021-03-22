@@ -39,6 +39,7 @@ namespace NCL
 
 				void makeTrigger();
 				void makeKinematic();
+				void setGravity(bool val);
 				
 				void addForce(NCL::Maths::Vector3 force);
 				void addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos);

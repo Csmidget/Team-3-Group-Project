@@ -336,6 +336,7 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 													0.4f,
 													physics);
 	capsule->GetPhysicsObject()->body->setUserPointer(capsule);
+	capsule->GetPhysicsObject()->body->setGravity(false);
 	
 	world->AddGameObject(capsule);
 
