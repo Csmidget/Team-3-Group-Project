@@ -27,6 +27,13 @@ BulletWorld::~BulletWorld()
 	delete dispatcher;
 	delete collisionConfiguration;
 
+	for (auto i : constraintList)
+	{
+		dynamicsWorld->removeConstraint(i);
+		delete i;
+	}
+
+	contactList.clear();
 	rigidList.clear();
 	contactList.clear();
 }
@@ -104,7 +111,6 @@ void BulletWorld::checkCollisions()
 	for (int i = 0; i < numManifolds; i++)
 	{
 		btPersistentManifold* contactManifold = dynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
-		//std::cout << contactManifold->getNumContacts() << std::endl;
 		if (contactManifold->getNumContacts() > 0)
 		{
 			const btCollisionObject* obA = contactManifold->getBody0();
@@ -160,11 +166,14 @@ void BulletWorld::checkCollisions()
 void BulletWorld::clear()
 {
 	for (auto i : rigidList)
-	{
 		removeRigidBody(i);
-	}
+	
+	for (auto i : constraintList)
+		dynamicsWorld->removeConstraint(i);
+
 	rigidList.clear();
 	contactList.clear();
+	constraintList.clear();
 }
 
 //callback tests
@@ -178,8 +187,7 @@ void BulletWorld::updateObjects(float dt)
 {
 	//dynamicsWorld->clearForces();
 	for (auto i : rigidList)
-	{
 		((GameObject*)i->returnBody()->getUserPointer())->fixedUpdate(dt);
-	}
+	
 	checkCollisions();
 }

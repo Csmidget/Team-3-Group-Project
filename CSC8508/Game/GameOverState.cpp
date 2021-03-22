@@ -5,6 +5,7 @@
 #include"PlayerComponent.h"
 #include <iostream>
 #include "../Engine/Debug.h"
+#include "GameTechRenderer.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -50,6 +51,19 @@ void GameOverState::PrintOutcome()
 	Debug::Print(gameScore > 0 ? "You win" : "You lose", Vector2(30, 30));
 	Debug::Print("Your score:" + std::to_string(gameScore), Vector2(30, 50));
 	Debug::Print("Press R to return to Menu", Vector2(30, 70));
+
+	game->getRenderer()->DrawString("Play again", Vector2(30, 10), Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
+	game->getRenderer()->DrawString(gameScore > 0 ? "You win" : "You lose", Vector2(30, 30), Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
+	//game->getRenderer()->DrawString("Your score:" + std::to_string(gameScore), Vector2(30, 50), gameScore > 0 ? Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
+	game->getRenderer()->DrawString("Play again", Vector2(30, 10), Vector4(1.0f, 0.0f, 0.0f, 0.0f), 50.0f);
+	
+	vector<GameObject*> players = game->GetWorld()->GetObjectsWithTag("Player");
+
+	for (auto i : players)
+	{
+
+	}
+
 }
 
 void GameOverState::UpdateCameraControls(float dt) {
