@@ -23,7 +23,8 @@ namespace NCL {
 			Game();
 			~Game();
 
-			void InitWorld(std::string levelName, bool forceClear = false);
+			void InitWorld();
+			void InitWorld(std::string levelName);
 			void InitIntroWorld();
 			void InitNetworkPlayers();
 			bool IsExitLobbyTime();
@@ -60,7 +61,7 @@ namespace NCL {
 
 			void InitIntroCamera();
 
-			void Clear(bool force);
+			void Clear();
 
 			void InitialiseAssets();
 			void InitDefaultFloor();
