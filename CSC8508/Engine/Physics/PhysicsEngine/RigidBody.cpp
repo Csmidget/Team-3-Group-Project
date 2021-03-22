@@ -82,14 +82,6 @@ void RigidBody::setLinearVelocity(NCL::Maths::Vector3 vel)
 	}
 }
 
-void RigidBody::setGravity(bool val)
-{
-	if (val)
-		body->setGravity({ 0,-20.0f,0.0f });
-	else
-		body->setGravity({ 0,0,0 });
-}
-
 void RigidBody::addForceAtPos(NCL::Maths::Vector3 force, NCL::Maths::Vector3 pos)
 {
 	if (body)
