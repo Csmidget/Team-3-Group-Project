@@ -175,6 +175,7 @@ void BulletWorld::clear()
 	contactList.clear();
 }
 
+
 //callback tests
 void BulletWorld::tickCallBack(btDynamicsWorld* world, btScalar timeStep)
 {

@@ -34,7 +34,6 @@ namespace NCL
 				btRigidBody* returnBody() { return body; };
 
 				void setTransform();
-				void setOrientation();
 				void updateTransform();
 
 				void makeTrigger();
