@@ -177,12 +177,13 @@ void Game::InitIntroCamera() {
 	CameraComponent::GetMain()->SetYaw(0.0f);
 }
 
-void Game::Clear() {
-	world->ClearAndErase();
-	physics->clear();
+void Game::Clear(bool force) {
+	if (force)
+		world->ForceClearAndErase();
+	else
+		world->ClearAndErase();
 
-	useGravity = true;
-	//physics->UseGravity(true);
+	physics->clear();
 }
 
 void Game::InitFromJSON(std::string fileName) {
@@ -228,8 +229,8 @@ void Game::InitWorld() {
 	//InitWorld("CharlesTest.json");
 }
 
-void Game::InitWorld(std::string levelName) {
-	Clear();
+void Game::InitWorld(std::string levelName, bool forceClear) {
+	Clear(forceClear);
 
 	InitCamera();
 
@@ -240,7 +241,7 @@ void Game::InitWorld(std::string levelName) {
 }
 
 void Game::InitIntroWorld() {
-	Clear();
+	Clear(true);
 	InitIntroCamera();
 }
 
