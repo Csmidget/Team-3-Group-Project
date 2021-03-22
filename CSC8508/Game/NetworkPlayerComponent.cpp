@@ -11,6 +11,12 @@ NCL::CSC8508::NetworkPlayerComponent::NetworkPlayerComponent(GameObject* object)
 
 }
 
+void NCL::CSC8508::NetworkPlayerComponent::Finish()
+{
+	if (isLevelFinished) return;
+	std::cout << "Player has finished with score " << score << std::endl;
+	isLevelFinished = true;
+}
 void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 {
 	gameObject->GetPhysicsObject()->SetAngularVelocity(Vector3(0, 0, 0));

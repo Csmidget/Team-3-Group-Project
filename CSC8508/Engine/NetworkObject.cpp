@@ -24,6 +24,10 @@ bool NetworkObject::ReadPacket(GamePacket& p) {
 		return ReadPlayerFinishedPacket((PlayerFinishedPacket&)p);
 	}
 
+	if (p.type == Player_State) {
+		return ReadPlayerStatePacket((PlayerStatePacket&)p);
+	}
+
 	return false; //this isn't a packet we care about!
 }
 

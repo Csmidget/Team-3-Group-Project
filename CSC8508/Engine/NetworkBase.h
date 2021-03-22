@@ -19,7 +19,8 @@ enum BasicNetworkMessages {
 	Shutdown,
 	Player_Count,
 	Player_Finished,
-	Exit_Lobby
+	Exit_Lobby,
+	Player_State
 };
 
 struct GamePacket {
@@ -97,6 +98,21 @@ struct PlayerFinishedPacket : public GamePacket {
 
 	}
 
+};
+
+struct PlayerStatePacket : public GamePacket {
+	int playerID;
+	int score;
+	bool isFinished;
+	//Animation Coming Soon
+
+	PlayerStatePacket(int id, int score, bool isFinished = false) {
+		playerID = id;
+		this->score = score;
+		this->isFinished = isFinished;
+		type = BasicNetworkMessages::Player_State;
+
+	}
 };
 
 struct ExitLobbyPacket : public GamePacket {

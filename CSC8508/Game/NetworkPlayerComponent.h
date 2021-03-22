@@ -18,7 +18,7 @@ namespace NCL {
 				};
 				void SetScore(int score) { this->score = score; };
 				int GetScore() const { return score; }
-				void Finish() { isLevelFinished = true; }
+				void Finish();
 				bool isFinished() { return isLevelFinished; }
 		
 

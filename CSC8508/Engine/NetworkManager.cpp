@@ -135,6 +135,7 @@ void NCL::CSC8508::NetworkManager::StartAsServer()
 	thisServer = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS,  this);
 	thisServer->RegisterPacketHandler(Received_State, this);
 	thisServer->RegisterPacketHandler(Player_Finished, this);
+	thisServer->RegisterPacketHandler(Player_State, this);
 }
 
 void NCL::CSC8508::NetworkManager::StartAsClient()
@@ -149,6 +150,7 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 	thisClient->RegisterPacketHandler(Player_Count, this);
 	thisClient->RegisterPacketHandler(Player_Finished, this);
 	thisClient->RegisterPacketHandler(Exit_Lobby, this);
+	thisClient->RegisterPacketHandler(Player_State, this);
 
 }
 
@@ -213,8 +215,13 @@ void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)
 		delete newPacket;
 
 		NetworkPlayerComponent* player = serverPlayers.at(i)->GetNetworkPlayerComponent();
-		if (player && player->isFinished()) {
+		/*if (player && player->isFinished()) {
 			newPacket = new PlayerFinishedPacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore());
+			thisServer->SendGlobalPacket(*newPacket);
+			delete newPacket;
+		}*/
+		if (player) {
+			newPacket = new PlayerStatePacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore(), player->isFinished());
 			thisServer->SendGlobalPacket(*newPacket);
 			delete newPacket;
 		}

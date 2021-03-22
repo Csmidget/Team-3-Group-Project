@@ -20,6 +20,7 @@ namespace NCL {
 		protected:
 
 			bool ReadPlayerFinishedPacket(PlayerFinishedPacket& p) override;
+			bool ReadPlayerStatePacket(PlayerStatePacket& p) override;
 
 			bool WriteDeltaPacket(GamePacket** p, int stateID) override;
 			bool WriteFullPacket(GamePacket** p) override;
