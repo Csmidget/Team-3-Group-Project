@@ -2223,20 +2223,7 @@
             "useGravity": true,
             "isKinematic": false
         },
-        "components": [
-            {
-                "name": "HingeComponent",
-                "point": {
-                "x": 0.0,
-                "y": 4.0,
-                "z": 0.0
-                },
-                "axis": {
-                    "x": 1.0,
-                    "y": 0.0,
-                    "z": 0.0
-                }
-            }
+        "components": [ 
         ]
     },
     {
