@@ -12,10 +12,11 @@ GameObject::GameObject(string objectName) : transform(this)	{
 	worldID			= -1;
 	isActive		= true;
 	isStatic		= false;
+	destroy			= false;
+	persistent		= false;
 	boundingVolume	= nullptr;
 	physicsObject	= nullptr;
 	renderObject	= nullptr;
-	persistent		= false;
 	collisionLayer = 0;
 }
 
@@ -148,29 +149,3 @@ void GameObject::SetGameWorld(GameWorld* newWorld) {
 
 	world = newWorld;
 }
-
-//void GameObject::PrintDebugInfo() const {
-//	int currLine = 0;
-//	float lineSpacing = 3;
-//
-//	std::stringstream stream;
-//
-//	stream << "Name: " << name;
-//	Debug::Print(stream.str(), Vector2(1, ++currLine * lineSpacing));
-//	stream.str("");
-//	stream << "Static: " << (isStatic ? "True":"False");
-//	Debug::Print(stream.str(), Vector2(1, ++currLine * lineSpacing));
-//	stream.str("");
-//
-//	transform.PrintDebugInfo(++currLine, lineSpacing);
-//
-//	if (physicsObject) {
-//		physicsObject->PrintDebugInfo(++currLine, lineSpacing);
-//	}
-//
-//	if (boundingVolume) {
-//		boundingVolume->PrintDebugInfo(++currLine, lineSpacing);
-//	}
-//
-//	ObjectSpecificDebugInfo(++currLine,lineSpacing);
-//}

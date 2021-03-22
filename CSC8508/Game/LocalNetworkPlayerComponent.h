@@ -22,6 +22,5 @@ namespace NCL {
 				LocalPlayer* localPlayer;
 				GameStateManagerComponent* gameManager;
 		};
-
 	}
 }
