@@ -223,12 +223,6 @@ bool NCL::CSC8508::Game::IsExitLobbyTime()
 	return false;
 }
 
-void Game::InitWorld() {
-
-	InitWorld("AshmanTest.json");
-	//InitWorld("CharlesTest.json");
-}
-
 void Game::InitWorld(std::string levelName, bool forceClear) {
 	Clear(forceClear);
 
