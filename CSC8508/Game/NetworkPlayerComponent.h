@@ -11,7 +11,7 @@ namespace NCL {
 		{
 
 			public:
-				NetworkPlayerComponent(GameObject* object);
+				NetworkPlayerComponent(GameObject* object, int id);
 				void Update(float dt);
 				void SetOrientation(Maths::Quaternion orientation) {
 					this->orientation = orientation;
@@ -26,6 +26,7 @@ namespace NCL {
 				Maths::Quaternion orientation;
 				int score;
 				bool isLevelFinished = false;
+				int playerID = -1;
 		};
 
 	}

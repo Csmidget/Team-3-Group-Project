@@ -6,9 +6,9 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace Maths;
 
-NCL::CSC8508::NetworkPlayerComponent::NetworkPlayerComponent(GameObject* object) : Component("NetworkPlayerComponent", object)
+NCL::CSC8508::NetworkPlayerComponent::NetworkPlayerComponent(GameObject* object, int id) : Component("NetworkPlayerComponent", object)
 {
-
+	playerID = id;
 }
 
 void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
@@ -22,7 +22,7 @@ void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 void NCL::CSC8508::NetworkPlayerComponent::Finish()
 {
 	if (isLevelFinished) return;
-	std::cout << "Player has finished with score " << score << std::endl;
+	std::cout << "Player "<< std::to_string(playerID)<<" has finished with score " << score << std::endl;
 	isLevelFinished = true;
 }
 
