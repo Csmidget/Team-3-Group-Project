@@ -33,6 +33,10 @@ GameObject::~GameObject()	{
 }
 
 void GameObject::SetIsActive(bool val) {
+
+	if (isActive == val)
+		return;
+
 	isActive = val;
 
 	if (physicsObject && physicsObject->body)
