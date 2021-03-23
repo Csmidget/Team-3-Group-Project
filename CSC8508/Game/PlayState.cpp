@@ -58,11 +58,6 @@ void PlayState::OnAwake() {
 
 	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
 
-	for (auto players : networkPlayers)
-		players->SetIsActive(true);
-
-
-
 	if (isNetworked)
 	{
 		if (!game->IsAllPlayersFinished()) return;
@@ -73,6 +68,9 @@ void PlayState::OnAwake() {
 		if (!gameStateManager->IsGameFinished()) return;
 		game->InitWorld(levels[levelID]);
 	}
+	
+	for (auto players : networkPlayers)
+		players->SetIsActive(true);
 
 	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 	levelID = std::min(++levelID, LEVELCOUNT);
