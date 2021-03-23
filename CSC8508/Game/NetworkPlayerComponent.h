@@ -20,6 +20,7 @@ namespace NCL {
 				int GetScore() const { return score; }
 				void Finish() { isLevelFinished = true; }
 				bool isFinished() { return isLevelFinished; }
+				void OnActive() override;
 		
 
 			private:

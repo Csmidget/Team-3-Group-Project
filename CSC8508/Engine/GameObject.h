@@ -116,7 +116,6 @@ namespace NCL {
 			void OnCollisionBegin(GameObject* otherObject);
 			void OnCollisionStay(GameObject* otherObject);
 			void OnCollisionEnd(GameObject* otherObject);
-		
 
 			bool GetBroadphaseAABB(Vector3&outsize) const;
 

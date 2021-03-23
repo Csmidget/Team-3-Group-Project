@@ -16,7 +16,9 @@ void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 	gameObject->GetPhysicsObject()->SetAngularVelocity(Vector3(0, 0, 0));
 	gameObject->GetPhysicsObject()->SetLinearVelocity(Vector3(0, 0, 0));
 	gameObject->GetTransform().SetOrientation(orientation);
-	
 }
 
-
+void NCL::CSC8508::NetworkPlayerComponent::OnActive()
+{
+	isLevelFinished = false;
+}
