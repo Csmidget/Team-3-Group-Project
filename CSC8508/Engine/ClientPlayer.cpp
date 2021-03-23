@@ -31,6 +31,16 @@ bool NCL::CSC8508::ClientPlayer::ReadPlayerFinishedPacket(PlayerFinishedPacket& 
 	return true;
 }
 
+bool NCL::CSC8508::ClientPlayer::ReadPlayerStatusPacket(PlayerStatusPacket& p)
+{
+	if (p.playerID == this->playerID) {
+		NetworkPlayerComponent* player = GetNetworkPlayerComponent();
+		player->SetScore(p.score);
+		if (p.isFinished) player->Finish();
+	}
+	return true;
+}
+
 bool NCL::CSC8508::ClientPlayer::WriteDeltaPacket(GamePacket** p, int stateID)
 {
 	PlayerDeltaPacket* dp = new PlayerDeltaPacket();
