@@ -36,8 +36,12 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 	if (isNetworked)
 	{
 		if (game->IsAllPlayersFinished())
+		{
 			timer -= dt;
-		game->getRenderer()->DrawString("Next Level: " + (int)timer, Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+			game->getRenderer()->DrawString("Next Level: " + std::to_string((int)timer), Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+		}
+		else
+			game->getRenderer()->DrawString("Waiting for other players!", Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
 
 		if (timer <= 0.0f) return PushdownResult::Pop;
 	}
