@@ -138,6 +138,11 @@ bool NCL::CSC8508::NetworkManager::IsAllPlayersFinished()
 		if (!npc->isFinished()) return false;
 
 	}
+
+	if (isClient) 
+		if (!localPlayer->isFinished) return false;
+	
+
 	std::cout << "All Players Finished " << std::endl;
 	return true;
 }
