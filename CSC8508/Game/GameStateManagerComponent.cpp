@@ -2,12 +2,26 @@
 #include "Game.h"
 #include "../Engine/GameWorld.h"
 
-NCL::CSC8508::GameStateManagerComponent::GameStateManagerComponent(GameObject* object, Game* game) : Component("GameStateManagerComponent", object)
+GameStateManagerComponent* GameStateManagerComponent::instance = nullptr;
+
+GameStateManagerComponent::GameStateManagerComponent(GameObject* object, Game* game) : Component("GameStateManagerComponent", object)
 {
+	if (instance != nullptr)
+		gameObject->Destroy();
+	else
+		instance = this;
+
 	this->game = game;
+	isGameFinished = false;
 }
 
-void NCL::CSC8508::GameStateManagerComponent::Start()
+GameStateManagerComponent::~GameStateManagerComponent()
+{
+	if (instance == this)
+		instance = nullptr;
+}
+
+void GameStateManagerComponent::Start()
 {
 
 }
@@ -22,7 +36,7 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 	//Go to next scene
 }
 
-bool NCL::CSC8508::GameStateManagerComponent::IsGameOver()
+bool GameStateManagerComponent::IsGameOver()
 {
 //	if (players.size() == 0) return false;
 //

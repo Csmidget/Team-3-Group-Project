@@ -36,7 +36,7 @@ namespace NCL {
 
 			void fixedUpdate(float dt);
 
-			void PrintDebugInfo() const;
+			void Destroy() { destroy = true; }
 			
 			//Override to add debug info
 			virtual void ObjectSpecificDebugInfo(int& currLine, float lineSpacing) const {};
@@ -177,6 +177,8 @@ namespace NCL {
 			bool	isActive;
 			bool	isStatic;
 			bool	persistent;
+			bool	destroy;
+
 			int		worldID;
 			int collisionLayer;
 			string	name;

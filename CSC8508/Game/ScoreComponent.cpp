@@ -12,8 +12,10 @@ ScoreComponent* ScoreComponent::instance = nullptr;
 
 ScoreComponent::ScoreComponent(GameObject* object) : Component("ScoreComponent", object)
 {
-	//TODO: DESTROY IF INSTANCE ALREADY EXISTS
-	if (!instance)
+
+	if (instance)
+		gameObject->Destroy();
+	else
 		instance = this;
 
 	gameObject->SetPersistence(true);

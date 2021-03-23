@@ -12,8 +12,12 @@ namespace NCL {
 
 		class GameStateManagerComponent : public Component
 		{
+
 			public:
+				static GameStateManagerComponent* instance;
+
 				GameStateManagerComponent(GameObject* object, Game* game);
+				~GameStateManagerComponent();
 				void Start();
 				void Update(float dt);
 
