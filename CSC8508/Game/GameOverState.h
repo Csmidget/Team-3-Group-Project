@@ -5,6 +5,7 @@ namespace NCL {
 
 		class Game;
 		class CameraComponent;
+		class GameStateManagerComponent;
 
 		class GameOverState : public PushdownState {
 
@@ -16,12 +17,16 @@ namespace NCL {
 			void UpdateCameraControls(float dt);
 
 		public:
-			GameOverState(Game* game, int score);
+			GameOverState(Game* game, bool isFinal, bool isNetworked = false);
 
 		protected:
 			Game* game;
 			int gameScore = 0;
-			CameraComponent* spectatorCamera;			
+			float timer;
+			CameraComponent* spectatorCamera;	
+			bool isFinal;
+			bool isNetworked;
+			GameStateManagerComponent* gameStateManager;
 		};
 
 	}

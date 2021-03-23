@@ -332,8 +332,8 @@ void GameTechRenderer::RenderCamera() {
 	int modelLocation = 0;
 
 
-	//int colourLocation = 0;
-//	int hasVColLocation = 0;
+	int colourLocation = 0;
+	int hasVColLocation = 0;
 //	int hasTexLocation = 0;
 //	int shadowLocation = 0;
 
@@ -360,8 +360,8 @@ void GameTechRenderer::RenderCamera() {
 		modelLocation = glGetUniformLocation(boundShader->GetProgramID(), "modelMatrix");
 
 		//	shadowLocation = glGetUniformLocation(lightshader->GetProgramID(), "shadowMatrix");
-		//	colourLocation = glGetUniformLocation(lightshader->GetProgramID(), "objectColour");
-		//	hasVColLocation = glGetUniformLocation(lightshader->GetProgramID(), "hasVertexColours");
+			colourLocation = glGetUniformLocation(boundShader->GetProgramID(), "objectColour");
+			hasVColLocation = glGetUniformLocation(boundShader->GetProgramID(), "hasVertexColours");
 		//	hasTexLocation = glGetUniformLocation(lightshader->GetProgramID(), "hasTexture");
 
 		/*	lightPosLocation = glGetUniformLocation(lightshader->GetProgramID(), "lightPos");
@@ -389,9 +389,9 @@ void GameTechRenderer::RenderCamera() {
 		//	Matrix4 fullShadowMat = shadowMatrix * modelMatrix;
 		//	glUniformMatrix4fv(shadowLocation, 1, false, (float*)&fullShadowMat);
 
-		//	glUniform4fv(colourLocation, 1, (float*)&i->GetColour());
+			glUniform4fv(colourLocation, 1, (float*)&i->GetColour());
 
-		//	glUniform1i(hasVColLocation, !(*i).GetMesh()->GetColourData().empty());
+			glUniform1i(hasVColLocation, !(*i).GetMesh()->GetColourData().empty());
 
 		//	glUniform1i(hasTexLocation, (OGLTexture*)(*i).GetDefaultTexture() ? 1 : 0);
 

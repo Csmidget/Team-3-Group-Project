@@ -23,14 +23,14 @@ namespace NCL {
 			Game();
 			~Game();
 
-			void InitWorld();
-			void InitWorld(std::string levelName);
+			void InitWorld(std::string levelName, bool forceClear = false);
 			void InitIntroWorld();
 			void InitNetworkPlayers();
 			bool IsExitLobbyTime();
 
 			void EnableNetworking(bool client);
 			void DisableNetworking();
+			bool IsAllPlayersFinished(); 
 			
 			virtual bool UpdateGame(float dt);
 
@@ -55,13 +55,15 @@ namespace NCL {
 			GameWorld* GetWorld() const { return world; }
 			physics::BulletWorld* GetPhysics() const { return physics; }
 
+			GameTechRenderer* getRenderer() { return renderer; }
+
 			NCL::Rendering::ResourceManager* GetResourceManager() { return resourceManager; }
 
 		protected:
 
 			void InitIntroCamera();
 
-			void Clear();
+			void Clear(bool force);
 
 			void InitialiseAssets();
 			void InitDefaultFloor();

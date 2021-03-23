@@ -38,8 +38,8 @@
             }
         },
         "render": {
-            "mesh": "MaleFreeSimpleMovement1.msh",
-            "material": "MaleFreeSimpleMovement1.mat",
+			"mesh": "polysurface1.msh",
+            "material": "free_male_1_body_lowfree_male_1_head_low.mat",
             "renderScale": 1,
             "animation": "midair.anm"
         },
@@ -59,58 +59,6 @@
                 "ID": 0
             }
         ]
-    },
-    {
-        "name": "polySurface1",
-        "isStatic": false,
-        "tag": "Untagged",
-        "collider": {
-            "type": "box",
-            "size": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 2.0
-            },
-            "center": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "radius": 0.0,
-            "height": 0.0,
-            "isTrigger": false
-        },
-        "transform": {
-            "position": {
-                "x": -0.6199569702148438,
-                "y": 0.09999847412109375,
-                "z": -15.646907806396485
-            },
-            "orientation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0,
-                "w": 1.0
-            },
-            "scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            }
-        },
-        "render": {
-            "mesh": "polySurface1.msh",
-            "material": "HairheadBody.mat",
-			"animation": "Role_T.anm",
-            "renderScale": 1
-        },
-        "physics": {
-            "mass": 0.5,
-            "drag": 0.0,
-            "angularDrag": 0.0,
-            "useGravity": false,
-            "isKinematic": false
-        }
     },
     {
         "name": "Cube (57)",
@@ -2196,7 +2144,7 @@
         "transform": {
             "position": {
                 "x": -2.7300000190734865,
-                "y": 10.0,
+                "y": 1.0,
                 "z": 1.4299999475479127
             },
             "orientation": {
@@ -2217,12 +2165,14 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 0.5,
+            "mass": 2.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [ 
+        ]
     },
     {
         "name": "Sphere (13)",

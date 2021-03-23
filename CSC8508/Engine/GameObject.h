@@ -36,7 +36,7 @@ namespace NCL {
 
 			void fixedUpdate(float dt);
 
-			void PrintDebugInfo() const;
+			void Destroy() { destroy = true; }
 			
 			//Override to add debug info
 			virtual void ObjectSpecificDebugInfo(int& currLine, float lineSpacing) const {};
@@ -55,8 +55,14 @@ namespace NCL {
 				return isActive;
 			}
 
-			void SetIsActive(bool val) {
-				isActive = val;
+			void SetIsActive(bool val);
+
+			bool IsPersistent() const {
+				return persistent;
+			}
+
+			void SetPersistence(bool val) {
+				persistent = val;
 			}
 
 			bool IsStatic() const {
@@ -110,7 +116,6 @@ namespace NCL {
 			void OnCollisionBegin(GameObject* otherObject);
 			void OnCollisionStay(GameObject* otherObject);
 			void OnCollisionEnd(GameObject* otherObject);
-		
 
 			bool GetBroadphaseAABB(Vector3&outsize) const;
 
@@ -146,8 +151,12 @@ namespace NCL {
 
 			template<typename T>
 			void RemoveComponent() {
-				//erase-remove idiom
-				components.erase(std::remove_if(components.begin(), components.end(), [](Component* c) {return dynamic_cast<T*>(c) != nullptr; }));
+				for (int i = components.size() - 1; i >= 0; --i) {
+					if (dynamic_cast<T*>(components[i]) != nullptr) {
+						delete components[i];
+						components.erase(components.begin() + i);
+					}
+				}
 			}
 
 		protected:
@@ -164,6 +173,9 @@ namespace NCL {
 
 			bool	isActive;
 			bool	isStatic;
+			bool	persistent;
+			bool	destroy;
+
 			int		worldID;
 			int collisionLayer;
 			string	name;

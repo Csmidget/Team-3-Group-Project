@@ -11,21 +11,23 @@ namespace NCL {
 		{
 
 			public:
-				NetworkPlayerComponent(GameObject* object);
+				NetworkPlayerComponent(GameObject* object, int id);
 				void Update(float dt);
 				void SetOrientation(Maths::Quaternion orientation) {
 					this->orientation = orientation;
 				};
 				void SetScore(int score) { this->score = score; };
 				int GetScore() const { return score; }
-				void Finish() { isLevelFinished = true; }
 				bool isFinished() { return isLevelFinished; }
+				void SetIsFinished(bool isFinished) ;
+				void OnActive() override;
 		
 
 			private:
 				Maths::Quaternion orientation;
 				int score;
 				bool isLevelFinished = false;
+				int playerID = -1;
 		};
 
 	}

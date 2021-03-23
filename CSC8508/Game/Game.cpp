@@ -123,6 +123,11 @@ void Game::DisableNetworking() {
 	}
 }
 
+bool NCL::CSC8508::Game::IsAllPlayersFinished()
+{
+	return !networkManager ? false : networkManager->IsAllPlayersFinished();
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -177,12 +182,14 @@ void Game::InitIntroCamera() {
 	CameraComponent::GetMain()->SetYaw(0.0f);
 }
 
-void Game::Clear() {
-	world->ClearAndErase();
-	physics->clear();
+void Game::Clear(bool force) {
+	if (force)
+		world->ForceClearAndErase();
+	else
+		world->ClearAndErase();
 
-	useGravity = true;
-	//physics->UseGravity(true);
+	physics->clear();
+	Audio::SoundManager::Update();
 }
 
 void Game::InitFromJSON(std::string fileName) {
@@ -191,19 +198,23 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitNetworkPlayers()
 {
-	GameObject* player = world->GetObjectWithTag("Player");
+//	GameObject* player = world->GetObjectWithTag("Player");
+	//networkManager->SetLocalPlayer(player);
+
+	GameObject* player = new GameObject("clientPlayer");
+	world->AddGameObject(player);
 	networkManager->SetLocalPlayer(player);
 	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
-
+	player->SetPersistence(true);
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
-
+		int playerID = lobby->front();
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		player->AddComponent<NetworkPlayerComponent>();
+		player->AddComponent<NetworkPlayerComponent>(playerID);
 
-		networkManager->AddPlayerToGame(lobby->front(), player);
+		networkManager->AddPlayerToGame(playerID, player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;
 
 		lobby->pop();
@@ -222,14 +233,8 @@ bool NCL::CSC8508::Game::IsExitLobbyTime()
 	return false;
 }
 
-void Game::InitWorld() {
-
-	InitWorld("AshmanTest.json");
-	//InitWorld("CharlesTest.json");
-}
-
-void Game::InitWorld(std::string levelName) {
-	Clear();
+void Game::InitWorld(std::string levelName, bool forceClear) {
+	Clear(forceClear);
 
 	InitCamera();
 
@@ -253,7 +258,7 @@ void Game::InitWorld(std::string levelName) {
 }
 
 void Game::InitIntroWorld() {
-	Clear();
+	Clear(true);
 	InitIntroCamera();
 }
 
@@ -347,7 +352,7 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), resourceManager->LoadMesh("capsule.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	capsule->SetPhysicsObject(new PhysicsObject(&capsule->GetTransform(), capsule->GetBoundingVolume()));
 
-	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
+	capsule->GetPhysicsObject()->body->addCapsuleShape(radius / 2,halfHeight);
 
 	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
 													0.4f,

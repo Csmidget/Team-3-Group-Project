@@ -24,13 +24,17 @@ PushdownState::PushdownResult DebugState::OnUpdate(float dt, PushdownState** new
 		Debug::Print("Hit Q to enter camera mode", Vector2(2, 90));
 
 		if (Window::GetMouse()->ButtonPressed(NCL::MouseButtons::LEFT)) {
+
+			if (selectedObject && selectedObject->GetRenderObject()) {
+				selectedObject->GetRenderObject()->SetColour(selectedColour);
+			}
+
 			const Camera& cam = (*debugCamera->GetCamera());
 			auto r = CollisionDetection::BuildRayFromMouse(cam);
 			auto object = game->Raycast(r.GetPosition(), r.GetPosition() + r.GetDirection() * 1000);
 
 			if (object) {
 				selectedObject = object;
-				object->GetRenderObject()->SetAnimation(nullptr);
 			}
 			else
 				selectedObject = nullptr;
@@ -54,8 +58,14 @@ PushdownState::PushdownResult DebugState::OnUpdate(float dt, PushdownState** new
 	}
 
 	if (selectedObject) {
+		if (selectedObject->GetRenderObject() && selectedObject->GetRenderObject()->GetColour() != Debug::GREEN) {
+			selectedColour = selectedObject->GetRenderObject()->GetColour();
+			selectedObject->GetRenderObject()->SetColour(Debug::GREEN);
+		}
+
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K))
-			selectedObject->GetRenderObject()->SetAnimation(game->GetResourceManager()->LoadAnimation("role_T.anm"));
+			selectedObject->SetIsActive(!selectedObject->IsActive());
+
 		DisplayDebugInfo();
 	}
 

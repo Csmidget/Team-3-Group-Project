@@ -5,14 +5,21 @@
 #include"PlayerComponent.h"
 #include <iostream>
 #include "../Engine/Debug.h"
+#include "GameTechRenderer.h"
+#include "ScoreComponent.h"
+#include"../Game/GameStateManagerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
 
-GameOverState::GameOverState(Game* game, int score) {
+GameOverState::GameOverState(Game* game, bool isFinal, bool isNetworked) {
 
 	this->game = game;
-	gameScore = score;
+	this->isFinal = isFinal;
+	this->isNetworked = isNetworked;
+	this->timer = 5.0f;
+	gameScore = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
+	gameStateManager = nullptr;
 	spectatorCamera = nullptr;
 }
 
@@ -22,6 +29,27 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 	UpdateCameraControls(dt);
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) return PushdownResult::Top;
+	
+	if (isFinal)
+		return PushdownResult::NoChange;
+	
+	if (isNetworked)
+	{
+		if (game->IsAllPlayersFinished())
+		{
+			timer -= dt;
+			game->getRenderer()->DrawString("Next Level: " + std::to_string((int)timer), Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+		}
+		else
+			game->getRenderer()->DrawString("Waiting for other players!", Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+
+		if (timer <= 0.0f) return PushdownResult::Pop;
+	}
+	else
+	{
+		game->getRenderer()->DrawString("Press N to go to Next Level! " + (int)timer, Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::N)) return PushdownResult::Pop;
+	}
 
 	return PushdownResult::NoChange;
 }
@@ -29,27 +57,34 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 void GameOverState::OnAwake() {
 
 	spectatorCamera = CameraComponent::GetMain();
+	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 
-	auto playerComponents = game->GetWorld()->GetComponentsOfType<PlayerComponent>();
-	auto playerObject = game->GetWorld()->GetObjectsWithTag("Player");
-
+	auto playerObject = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>();
+	
 	for (int i = 0; i<=playerObject.size() - 1; i++)
 		playerObject[i]->SetIsActive(false);
-	
-	for (int i = playerComponents.size() - 1; i >= 0; --i) {
-		if (!playerComponents[i]->IsEnabled())
-			playerComponents.erase(playerComponents.begin() + i);
-
-		playerComponents[i]->SetEnabled(false);
-	}
 }
 
 void GameOverState::PrintOutcome()
 {
-	Debug::Print("Play again", Vector2(30, 10));
-	Debug::Print(gameScore > 0 ? "You win" : "You lose", Vector2(30, 30));
-	Debug::Print("Your score:" + std::to_string(gameScore), Vector2(30, 50));
-	Debug::Print("Press R to return to Menu", Vector2(30, 70));
+	game->getRenderer()->DrawString("Play again", Vector2(35, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+	game->getRenderer()->DrawString(ScoreComponent::instance->GetScore() > 0 ? "You win" : "You lose",
+									Vector2(35, 20), 
+									ScoreComponent::instance->GetScore() > 0 ? Vector4(0.0f, 1.0f, 0.0f, 0.0f) : Vector4(1.0f, 0.0f, 0.0f, 0.0f),
+									50.0f);
+	game->getRenderer()->DrawString("Your score: " + std::to_string(ScoreComponent::instance->GetScore()),
+									Vector2(25, 50),
+									Vector4(1.0f, 1.0f, 0.0f, 0.0f),
+									35.0f);
+	game->getRenderer()->DrawString("Press R to return to Menu", Vector2(30, 100), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+	
+	auto networkPlayers = game->GetWorld()->GetComponentsOfType<NetworkPlayerComponent>();
+	for (auto i = 0; i < networkPlayers.size(); i++)
+	{
+		game->getRenderer()->DrawString("Player " + std::to_string(i) , Vector2(10, 55 + (i * 5)), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+		game->getRenderer()->DrawString("score: " + std::to_string(networkPlayers[i]->GetScore()), Vector2(15, 55 + (i * 5)), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+		//player->GetScore();
+	}
 }
 
 void GameOverState::UpdateCameraControls(float dt) {

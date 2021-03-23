@@ -23,11 +23,19 @@ bool NCL::CSC8508::ClientPlayer::ReadPlayerFinishedPacket(PlayerFinishedPacket& 
 		NetworkPlayerComponent* player = GetNetworkPlayerComponent();
 		if (player->isFinished()) return true;
 		player->SetScore(p.score);
-		player->Finish();
 		std::cout << "Player " << p.playerID << " has finished the level and scored " << p.score << std::endl;
 	}
 
+	return true;
+}
 
+bool NCL::CSC8508::ClientPlayer::ReadPlayerStatusPacket(PlayerStatusPacket& p)
+{
+	if (p.playerID == this->playerID) {
+		NetworkPlayerComponent* player = GetNetworkPlayerComponent();
+		player->SetScore(p.score);
+		player->SetIsFinished(p.isFinished);
+	}
 	return true;
 }
 

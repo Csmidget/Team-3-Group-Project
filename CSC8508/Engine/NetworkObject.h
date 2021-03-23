@@ -82,7 +82,7 @@ namespace NCL {
 			virtual bool ReadFullPacket(FullPacket &p);
 
 			virtual bool ReadPlayerFinishedPacket(PlayerFinishedPacket& p);
-
+			virtual bool ReadPlayerStatusPacket(PlayerStatusPacket& p) { return false; };
 			virtual bool WriteDeltaPacket(GamePacket**p, int stateID);
 			virtual bool WriteFullPacket(GamePacket**p);
 

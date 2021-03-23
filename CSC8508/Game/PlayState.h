@@ -1,6 +1,7 @@
 #pragma once
-
 #include "../Engine/PushdownState.h"
+#include<string>
+const int LEVELCOUNT = 3;
 
 namespace NCL {
 	namespace CSC8508 {
@@ -14,14 +15,14 @@ namespace NCL {
 			void OnAwake() override;
 
 		public:
-			PlayState(Game* game);
+			PlayState(Game* game, bool isNetworked = false);
 
 		protected:
 			Game* game;
-			int score = 0;
-			bool isGameFinished = false;
-
-			GameStateManagerComponent* GetGameStateManager() const;
+			bool isNetworked;
+			int levelID;
+			std::string* levels;
+			GameStateManagerComponent* gameStateManager;
 		};
 
 	}

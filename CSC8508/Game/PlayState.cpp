@@ -6,26 +6,29 @@
 #include "../Engine/GameWorld.h"
 #include "../Engine/Debug.h"
 #include "GameStateManagerComponent.h"
-
+#include "ScoreComponent.h"
+#include "TimeScoreComponent.h"
+#include "LocalNetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
 
-PlayState::PlayState(Game* game) {
-	this->game = game;
-	game->InitWorld("DeSouzaTest.json");
-	
-	GameStateManagerComponent* gameState = GetGameStateManager();
-	if (!gameState) return;
-	gameState->SetClientScore(&score);
-	gameState->SetIsGameFinished(&isGameFinished);
+PlayState::PlayState(Game* game, bool isNetworked) {
 
-}
+	this->isNetworked = isNetworked;
+	this->levelID = 0;
+	this->game = game;	
+	levels = new std::string[LEVELCOUNT]{ "DesouzaTest.json" , "DesouzaTest.json", "DesouzaTest.json" };
 
-GameStateManagerComponent* NCL::CSC8508::PlayState::GetGameStateManager() const
-{
-	GameObject* object = game->GetWorld()->GetObjectWithTag("GameStateManager");
-	return object ? object->GetComponent<GameStateManagerComponent>() : nullptr;	
+	game->InitWorld(levels[levelID]);
+	levelID++;
+
+	GameObject* scoreObject = new GameObject();
+	game->GetWorld()->AddGameObject(scoreObject);
+	scoreObject->AddComponent<ScoreComponent>();
+	//scoreObject->AddComponent<TimeScoreComponent>(game, 1);
+
+	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 }
 
 PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newState) {
@@ -44,17 +47,37 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::F1)) {
 		return PushdownResult::Pop;
 	}
-	if (isGameFinished) {
-
-		*newState = new GameOverState(game, score);
-		return PushdownResult::Over;
+	if (gameStateManager->IsGameFinished()) {
+		*newState = new GameOverState(game, levelID == LEVELCOUNT, isNetworked);
+		return PushdownResult::Push;
 	}
 
-	
-		
 	return PushdownResult::NoChange;
 };
 
 void PlayState::OnAwake() {
+
+	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+
+	if (isNetworked)
+	{
+		if (!game->IsAllPlayersFinished()) return;
+		game->InitWorld(levels[levelID]);		
+	}
+	else
+	{
+		if (!gameStateManager->IsGameFinished()) return;
+		game->InitWorld(levels[levelID]);
+	}
+	
+//	for (auto players : networkPlayers)
+//		players->SetIsActive(true);
+
+	auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
+	if (localPlayer)
+		localPlayer->SetGameFinished(false);
+
+	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	levelID = std::min(++levelID, LEVELCOUNT);
 
 }
