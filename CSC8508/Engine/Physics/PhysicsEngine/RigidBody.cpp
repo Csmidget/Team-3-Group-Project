@@ -34,6 +34,11 @@ RigidBody::~RigidBody()
 		delete colShape;
 }
 
+void RigidBody::setActive(bool val)
+{
+	val ? worldRef->addRigidBody(this) : worldRef->removeRigidBody(this);
+}
+
 // collisoin shapes based on several primitives. Must be called before creating a body
 
 void RigidBody::addBoxShape(NCL::Maths::Vector3 halfExtents)

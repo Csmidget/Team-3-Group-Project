@@ -17,6 +17,11 @@ void LocalNetworkPlayerComponent::SetTransform(const Vector3& pos, const Quatern
 	transform->SetOrientation(orientation);
 }
 
+void LocalNetworkPlayerComponent::SetGameFinished(bool val)
+{
+	localPlayer->isFinished = val;
+}
+
 void LocalNetworkPlayerComponent::Update(float dt)
 {
 //	if (!localPlayer || !score) return;

@@ -55,9 +55,7 @@ namespace NCL {
 				return isActive;
 			}
 
-			void SetIsActive(bool val) {
-				isActive = val;
-			}
+			void SetIsActive(bool val);
 
 			bool IsPersistent() const {
 				return persistent;
@@ -118,7 +116,6 @@ namespace NCL {
 			void OnCollisionBegin(GameObject* otherObject);
 			void OnCollisionStay(GameObject* otherObject);
 			void OnCollisionEnd(GameObject* otherObject);
-		
 
 			bool GetBroadphaseAABB(Vector3&outsize) const;
 
