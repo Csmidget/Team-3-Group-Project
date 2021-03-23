@@ -133,8 +133,8 @@ bool NCL::CSC8508::NetworkManager::IsExitLobbyTime()
 bool NCL::CSC8508::NetworkManager::IsAllPlayersFinished()
 {
 	NetworkPlayerComponent* npc;
-	for (int i = 0; i < serverPlayers.size(); i++) {
-		npc = serverPlayers.at(i)->GetNetworkPlayerComponent();
+	for (auto i = serverPlayers.begin(); i != serverPlayers.end(); ++i) {
+		npc = i->second->GetNetworkPlayerComponent();
 		if (!npc->isFinished()) return false;
 
 	}
