@@ -212,13 +212,14 @@ void NCL::CSC8508::NetworkManager::UpdateLocalPlayer(float dt)
 
 		localPlayer->player->WritePacket(&newPacket, dt, stateID);
 		thisClient->SendPacket(*newPacket);
+		delete newPacket;
+
 	}
 	//else {	//Update Finish Status
 		//newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), localPlayer->score);
 	//	thisClient->SendPacket(*newPacket);
 	//}
 
-	delete newPacket;
 
 
 }

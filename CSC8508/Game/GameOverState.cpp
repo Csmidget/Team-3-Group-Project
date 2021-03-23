@@ -24,7 +24,6 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 	UpdateCameraControls(dt);
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) return PushdownResult::Top;
-
 	return PushdownResult::NoChange;
 }
 
