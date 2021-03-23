@@ -56,6 +56,13 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 
 void PlayState::OnAwake() {
 
+	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+
+	for (auto players : networkPlayers)
+		players->SetIsActive(true);
+
+
+
 	if (isNetworked)
 	{
 		if (!game->IsAllPlayersFinished()) return;
