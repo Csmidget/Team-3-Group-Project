@@ -212,9 +212,9 @@ void Game::InitNetworkPlayers()
 		int playerID = lobby->front();
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		player->AddComponent<NetworkPlayerComponent>();
+		player->AddComponent<NetworkPlayerComponent>(playerID);
 
-		networkManager->AddPlayerToGame(lobby->front(), player);
+		networkManager->AddPlayerToGame(playerID, player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;
 
 		lobby->pop();
