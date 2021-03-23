@@ -32,6 +32,14 @@ GameObject::~GameObject()	{
 
 }
 
+void GameObject::SetIsActive(bool val) {
+	isActive = val;
+
+	if (physicsObject && physicsObject->body)
+		physicsObject->body->setActive(val);
+
+}
+
 void GameObject::Start() {
 
 	for (int i{ 0 }; i < components.size(); ++i)
@@ -42,6 +50,9 @@ void GameObject::Start() {
 
 void GameObject::Update(float dt)
 {
+	if (!isActive)
+		return;
+
 	for (auto component : components) {
 		if (component->IsEnabled())
 			component->Update(dt);
@@ -55,6 +66,9 @@ void GameObject::Update(float dt)
 
 void GameObject::fixedUpdate(float dt)
 {
+	if (!isActive)
+		return;
+
 	for (auto component : components) {
 		if (component->IsEnabled())
 			component->fixedUpdate(dt);
@@ -63,6 +77,9 @@ void GameObject::fixedUpdate(float dt)
 
 void GameObject::OnCollisionBegin(GameObject* otherObject)
 {
+	if (!isActive)
+		return;
+
 	for (auto component : components) {
 		component->OnCollisionBegin(otherObject);
 	}
@@ -70,6 +87,9 @@ void GameObject::OnCollisionBegin(GameObject* otherObject)
 
 void GameObject::OnCollisionStay(GameObject* otherObject)
 {
+	if (!isActive)
+		return;
+
 	for (auto component : components) {
 		component->OnCollisionStay(otherObject);
 	}
@@ -77,6 +97,9 @@ void GameObject::OnCollisionStay(GameObject* otherObject)
 
 void GameObject::OnCollisionEnd(GameObject* otherObject)
 {
+	if (!isActive)
+		return;
+
 	for (auto component : components) {
 		component->OnCollisionEnd(otherObject);
 	}
@@ -98,6 +121,7 @@ bool GameObject::GetBroadphaseAABB(Vector3&outSize) const {
 }
 
 std::vector<std::string> GameObject::DebugInfo() const {
+
 	std::vector<std::string> info;
 
 	info.push_back("Name: " + name);
@@ -117,6 +141,9 @@ std::vector<std::string> GameObject::DebugInfo() const {
 }
 
 void GameObject::UpdateBroadphaseAABB() {
+	if (!isActive)
+		return;
+
 	if (!boundingVolume) {
 		return;
 	}
