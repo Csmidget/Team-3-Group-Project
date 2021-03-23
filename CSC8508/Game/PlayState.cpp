@@ -25,7 +25,7 @@ PlayState::PlayState(Game* game, bool isNetworked) {
 	GameObject* scoreObject = new GameObject();
 	game->GetWorld()->AddGameObject(scoreObject);
 	scoreObject->AddComponent<ScoreComponent>();
-	scoreObject->AddComponent<TimeScoreComponent>(game, 1);
+	//scoreObject->AddComponent<TimeScoreComponent>(game, 1);
 
 	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 }

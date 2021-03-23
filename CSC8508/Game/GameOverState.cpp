@@ -57,6 +57,10 @@ void GameOverState::OnAwake() {
 
 	auto playerComponents = game->GetWorld()->GetComponentsOfType<PlayerComponent>();
 	auto playerObject = game->GetWorld()->GetObjectsWithTag("Player");
+	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+	
+	for (auto players : networkPlayers)
+		players->SetIsActive(false);
 
 	for (int i = 0; i<=playerObject.size() - 1; i++)
 		playerObject[i]->SetIsActive(false);
