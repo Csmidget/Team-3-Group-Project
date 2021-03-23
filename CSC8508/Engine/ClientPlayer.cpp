@@ -36,7 +36,7 @@ bool NCL::CSC8508::ClientPlayer::ReadPlayerStatusPacket(PlayerStatusPacket& p)
 	if (p.playerID == this->playerID) {
 		NetworkPlayerComponent* player = GetNetworkPlayerComponent();
 		player->SetScore(p.score);
-		if (p.isFinished) player->Finish();
+		player->SetIsFinished(p.isFinished);
 	}
 	return true;
 }

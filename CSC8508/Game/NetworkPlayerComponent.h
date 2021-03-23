@@ -20,6 +20,7 @@ namespace NCL {
 				int GetScore() const { return score; }
 				void Finish();
 				bool isFinished() { return isLevelFinished; }
+				void SetIsFinished(bool isFinished) ;
 		
 
 			private:

@@ -19,6 +19,14 @@ void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 	
 }
 
+void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
+	if (isFinished) {
+		if(!isLevelFinished) std::cout << "Player " << std::to_string(playerID) << " has finished with score " << score << std::endl;
+	}
+	
+	isLevelFinished = isFinished; 
+}
+
 void NCL::CSC8508::NetworkPlayerComponent::Finish()
 {
 	if (isLevelFinished) return;
