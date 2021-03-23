@@ -5,10 +5,11 @@
 using namespace NCL;
 using namespace CSC8508;
 
-TimeScoreComponent::TimeScoreComponent(GameObject* object, Game* game, int strength)
+TimeScoreComponent::TimeScoreComponent(GameObject* object, Game* game, int strength, int startingPoints)
 	: Component("TimeScoreComponent", object)
 {
 	timer = 0.0f;
+	this->startingPoints = startingPoints;
 	this->strength = strength;
 }
 
@@ -20,6 +21,11 @@ void TimeScoreComponent::Update(float dt)
 		ScoreComponent::instance->AddScore(strength);
 		timer -= 1.0f;
 	}
+}
+
+void TimeScoreComponent::Start()
+{
+	ScoreComponent::instance->AddScore(startingPoints);
 }
 
 

@@ -123,6 +123,11 @@ void Game::DisableNetworking() {
 	}
 }
 
+bool NCL::CSC8508::Game::IsAllPlayersFinished()
+{
+	return !networkManager ? false : networkManager->IsAllPlayersFinished();
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -184,6 +189,7 @@ void Game::Clear(bool force) {
 		world->ClearAndErase();
 
 	physics->clear();
+	Audio::SoundManager::Update();
 }
 
 void Game::InitFromJSON(std::string fileName) {
@@ -206,10 +212,10 @@ void Game::InitNetworkPlayers()
 		int playerID = lobby->front();
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		player->AddComponent<NetworkPlayerComponent>(playerID);
-		player->SetPersistence(true);
-		networkManager->AddPlayerToGame(playerID, player);
-		std::cout << "Player " << std::to_string(playerID) << " Added" << std::endl;
+		player->AddComponent<NetworkPlayerComponent>();
+
+		networkManager->AddPlayerToGame(lobby->front(), player);
+		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;
 
 		lobby->pop();
 	}
