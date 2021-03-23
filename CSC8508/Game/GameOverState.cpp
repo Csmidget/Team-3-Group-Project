@@ -59,7 +59,7 @@ void GameOverState::OnAwake() {
 	spectatorCamera = CameraComponent::GetMain();
 	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 
-	auto playerObject = game->GetWorld()->GetObjectsWithTag("Player");
+	auto playerObject = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>();
 	
 	for (int i = 0; i<=playerObject.size() - 1; i++)
 		playerObject[i]->SetIsActive(false);
