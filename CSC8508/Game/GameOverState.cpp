@@ -59,21 +59,10 @@ void GameOverState::OnAwake() {
 	spectatorCamera = CameraComponent::GetMain();
 	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 
-	auto playerComponents = game->GetWorld()->GetComponentsOfType<PlayerComponent>();
 	auto playerObject = game->GetWorld()->GetObjectsWithTag("Player");
-	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
 	
-
-
-	//for (int i = 0; i<=playerObject.size() - 1; i++)
-	//	playerObject[i]->SetIsActive(false);
-	
-	for (int i = playerComponents.size() - 1; i >= 0; --i) {
-		if (!playerComponents[i]->IsEnabled())
-			playerComponents.erase(playerComponents.begin() + i);
-
-		playerComponents[i]->SetEnabled(false);
-	}
+	for (int i = 0; i<=playerObject.size() - 1; i++)
+		playerObject[i]->SetIsActive(false);
 }
 
 void GameOverState::PrintOutcome()
