@@ -15,7 +15,7 @@ using namespace CSC8508;
 PlayState::PlayState(Game* game) {
 	this->game = game;
 
-	game->InitWorld("AshmanTest.json");
+	game->InitWorld("Level3.json");
 	
 	GameObject* scoreObject = new GameObject();
 	game->GetWorld()->AddGameObject(scoreObject);
