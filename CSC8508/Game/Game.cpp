@@ -206,6 +206,7 @@ void Game::InitNetworkPlayers()
 
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
+		player->GetPhysicsObject()->body->makeKinematic();
 		player->AddComponent<NetworkPlayerComponent>();
 		player->SetPersistence(true);
 		networkManager->AddPlayerToGame(lobby->front(), player);

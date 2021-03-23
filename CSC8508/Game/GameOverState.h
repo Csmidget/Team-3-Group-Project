@@ -21,7 +21,8 @@ namespace NCL {
 		protected:
 			Game* game;
 			int gameScore = 0;
-			CameraComponent* spectatorCamera;			
+			CameraComponent* spectatorCamera;	
+			//vector<NetworkPlayerComponent*> networkPlayers;
 		};
 
 	}
