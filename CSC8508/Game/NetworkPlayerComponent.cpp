@@ -8,7 +8,7 @@ using namespace Maths;
 
 NCL::CSC8508::NetworkPlayerComponent::NetworkPlayerComponent(GameObject* object) : Component("NetworkPlayerComponent", object)
 {
-
+	object->SetPersistence(true);
 }
 
 void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
