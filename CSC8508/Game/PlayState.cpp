@@ -12,15 +12,20 @@
 using namespace NCL;
 using namespace CSC8508;
 
-PlayState::PlayState(Game* game) {
-	this->game = game;
+PlayState::PlayState(Game* game, bool isNetworked) {
 
-	game->InitWorld("Level3.json");
-	
+	this->isNetworked = isNetworked;
+	this->levelID = 0;
+	this->game = game;
+	levels = new std::string[LEVELCOUNT]{ "DesouzaTest.json" , "DesouzaTest.json", "DesouzaTest.json" };
+
+	game->InitWorld(levels[levelID]);
+	levelID++;
+
 	GameObject* scoreObject = new GameObject();
 	game->GetWorld()->AddGameObject(scoreObject);
 	scoreObject->AddComponent<ScoreComponent>();
-	scoreObject->AddComponent<TimeScoreComponent>(game, 1);
+	//scoreObject->AddComponent<TimeScoreComponent>(game, 1);
 
 	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 }
