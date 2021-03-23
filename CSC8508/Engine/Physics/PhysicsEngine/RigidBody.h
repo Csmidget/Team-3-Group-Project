@@ -30,6 +30,7 @@ namespace NCL
 								BulletWorld* physicsWorld);
 				void setUserPointer(void* object);
 
+				void setActive(bool val);
 
 				btRigidBody* returnBody() { return body; };
 

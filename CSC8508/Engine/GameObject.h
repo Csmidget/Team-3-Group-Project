@@ -55,9 +55,7 @@ namespace NCL {
 				return isActive;
 			}
 
-			void SetIsActive(bool val) {
-				isActive = val;
-			}
+			void SetIsActive(bool val);
 
 			bool IsPersistent() const {
 				return persistent;
