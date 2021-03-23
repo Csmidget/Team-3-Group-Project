@@ -123,6 +123,11 @@ void Game::DisableNetworking() {
 	}
 }
 
+bool NCL::CSC8508::Game::IsAllPlayersFinished()
+{
+	return !networkManager ? false : networkManager->IsAllPlayersFinished();
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -184,6 +189,7 @@ void Game::Clear(bool force) {
 		world->ClearAndErase();
 
 	physics->clear();
+	Audio::SoundManager::Update();
 }
 
 void Game::InitFromJSON(std::string fileName) {

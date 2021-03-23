@@ -12,10 +12,16 @@
 using namespace NCL;
 using namespace CSC8508;
 
-PlayState::PlayState(Game* game) {
-	this->game = game;
-	game->InitWorld("DesouzaTest.json");
-	
+PlayState::PlayState(Game* game, bool isNetworked) {
+
+	this->isNetworked = isNetworked;
+	this->levelID = 0;
+	this->game = game;	
+	levels = new std::string[LEVELCOUNT]{ "DesouzaTest.json" , "DesouzaTest.json", "DesouzaTest.json" };
+
+	game->InitWorld(levels[levelID]);
+	levelID++;
+
 	GameObject* scoreObject = new GameObject();
 	game->GetWorld()->AddGameObject(scoreObject);
 	scoreObject->AddComponent<ScoreComponent>();
@@ -41,13 +47,27 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 		return PushdownResult::Pop;
 	}
 	if (gameStateManager->IsGameFinished()) {
-		*newState = new GameOverState(game);
-		return PushdownResult::Over;
+		*newState = new GameOverState(game, levelID == LEVELCOUNT, isNetworked);
+		return PushdownResult::Push;
 	}
 
 	return PushdownResult::NoChange;
 };
 
 void PlayState::OnAwake() {
+
+	if (isNetworked)
+	{
+		if (!game->IsAllPlayersFinished()) return;
+		game->InitWorld(levels[levelID]);		
+	}
+	else
+	{
+		if (!gameStateManager->IsGameFinished()) return;
+		game->InitWorld(levels[levelID]);
+	}
+
+	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	levelID = std::min(++levelID, LEVELCOUNT);
 
 }
