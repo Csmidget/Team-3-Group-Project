@@ -208,13 +208,16 @@ void NCL::CSC8508::NetworkManager::UpdateLocalPlayer(float dt)
 {
 	GamePacket* newPacket;
 
-	if (!localPlayer->isFinished) {		//Update Positions and Orientations
+//	if (!localPlayer->isFinished) {		//Update Positions and Orientations
 
 		localPlayer->player->WritePacket(&newPacket, dt, stateID);
 		thisClient->SendPacket(*newPacket);
 		delete newPacket;
 
-	}
+	//}
+	newPacket = new PlayerStatusPacket(localPlayer->player->GetPlayerID(), localPlayer->score, localPlayer->isFinished);
+	thisClient->SendPacket(*newPacket);
+	delete newPacket;
 	//else {	//Update Finish Status
 		//newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), localPlayer->score);
 	//	thisClient->SendPacket(*newPacket);
