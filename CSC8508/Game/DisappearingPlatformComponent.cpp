@@ -29,5 +29,5 @@ void NCL::CSC8508::DisappearingPlatformComponent::Disappear()
 {
 	gameObject->GetRenderObject()->SetColour(Vector4(1.f, 1.f, 1.f, 1.f) * (timer / MAX_TIMER));
 	if (timer <= 0.f)
-		;
+		gameObject->SetIsActive(false);
 }
