@@ -1,5 +1,6 @@
 #pragma once
 #include "../Engine/PushdownState.h"
+#include "../../Common/Vector4.h"
 #include <vector>
 
 namespace NCL {
@@ -26,6 +27,7 @@ namespace NCL {
 			bool selectionMode;
 			GameObject* selectedObject;
 			int debugInfoScroll;
+			Maths::Vector4 selectedColour;
 
 			Game* game;
 			std::vector<PlayerComponent*> playerComponents;

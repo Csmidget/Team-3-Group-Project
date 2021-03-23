@@ -2,31 +2,32 @@
 #include "../Engine/Component.h"
 #include <vector>
 #include "../Engine/GameObject.h"
-#include "../Engine/GameWorld.h"
 #include "ScoreComponent.h";
 #include "TimeScoreComponent.h"
 namespace NCL {
 
 	namespace CSC8508 {
+
+		class Game;
+
 		class GameStateManagerComponent : public Component
 		{
+
 			public:
-				GameStateManagerComponent(GameObject* object, GameWorld* gameWorld);
+				static GameStateManagerComponent* instance;
+
+				GameStateManagerComponent(GameObject* object, Game* game);
+				~GameStateManagerComponent();
 				void Start();
 				void Update(float dt);
 
-				void SetIsGameFinished(bool* isGameFinished) { this->isGameFinished = isGameFinished; };
-				void SetClientScore(int* score) { clientScore = score; }
+				bool IsGameFinished() const { return isGameFinished; }
+				void SetFinished(bool val) { isGameFinished = val; }
 			private:
-				void RefreshPlayerList();
 				bool IsGameOver();
 
-				GameWorld* world;
-				std::vector<GameObject*> players;
-				int clientPlayerID = 0;
-
-				bool* isGameFinished;
-				int* clientScore;
+				Game* game;
+				bool isGameFinished;
 		};
 	}
 }

@@ -35,7 +35,6 @@ namespace NCL
 			typedef std::pair<const btCollisionObject*, const btCollisionObject*> collisionPair;
 
 			class RigidBody;
-			//class GameObject;
 
 			class BulletWorld
 			{
@@ -61,9 +60,6 @@ namespace NCL
 				static void tickCallBack(btDynamicsWorld* world, btScalar timeStep);
 				void updateObjects(float dt);
 
-				float physicsTimer;
-				float accumulator;
-
 				btDefaultCollisionConfiguration* collisionConfiguration;
 				btCollisionDispatcher* dispatcher;
 				btBroadphaseInterface* overlappingPairCache;
@@ -73,8 +69,7 @@ namespace NCL
 
 				std::vector<RigidBody*> rigidList;
 				std::vector<collisionPair> contactList;
-
-				std::vector<GameObject*> updateList;
+				std::vector<btTypedConstraint*> constraintList;
 			};
 		}
 	}

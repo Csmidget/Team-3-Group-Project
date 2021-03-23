@@ -6,7 +6,8 @@
 #include "../Engine/GameWorld.h"
 #include "../Engine/Debug.h"
 #include "GameStateManagerComponent.h"
-
+#include "ScoreComponent.h"
+#include "TimeScoreComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -16,17 +17,12 @@ PlayState::PlayState(Game* game) {
 
 	game->InitWorld("AshmanTest.json");
 	
-	GameStateManagerComponent* gameState = GetGameStateManager();
-	if (!gameState) return;
-	gameState->SetClientScore(&score);
-	gameState->SetIsGameFinished(&isGameFinished);
+	GameObject* scoreObject = new GameObject();
+	game->GetWorld()->AddGameObject(scoreObject);
+	scoreObject->AddComponent<ScoreComponent>();
+	scoreObject->AddComponent<TimeScoreComponent>(game, 1);
 
-}
-
-GameStateManagerComponent* NCL::CSC8508::PlayState::GetGameStateManager() const
-{
-	GameObject* object = game->GetWorld()->GetObjectWithTag("GameStateManager");
-	return object ? object->GetComponent<GameStateManagerComponent>() : nullptr;	
+	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 }
 
 PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newState) {
@@ -45,14 +41,11 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::F1)) {
 		return PushdownResult::Pop;
 	}
-	if (isGameFinished) {
-
-		*newState = new GameOverState(game, score);
+	if (gameStateManager->IsGameFinished()) {
+		*newState = new GameOverState(game);
 		return PushdownResult::Over;
 	}
 
-	
-		
 	return PushdownResult::NoChange;
 };
 

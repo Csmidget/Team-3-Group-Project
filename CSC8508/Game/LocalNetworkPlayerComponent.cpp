@@ -1,15 +1,28 @@
 #include "LocalNetworkPlayerComponent.h"
+#include "ScoreComponent.h"
+#include "Game.h"
+#include "../Engine/GameWorld.h"
+#include "GameStateManagerComponent.h"
+using namespace NCL;
+using namespace CSC8508;
 
-NCL::CSC8508::LocalNetworkPlayerComponent::LocalNetworkPlayerComponent(GameObject* object, LocalPlayer* localPlayer) : Component("LocalNetworkPlayerComponent",object)
+LocalNetworkPlayerComponent::LocalNetworkPlayerComponent(GameObject* object, LocalPlayer* localPlayer) : Component("LocalNetworkPlayerComponent",object)
 {
 	this->localPlayer = localPlayer;
-	score = object->GetComponent<ScoreComponent>();
 }
 
-void NCL::CSC8508::LocalNetworkPlayerComponent::Update(float dt)
+void LocalNetworkPlayerComponent::SetTransform(const Vector3& pos, const Quaternion& orientation)
 {
-	if (!localPlayer || !score) return;
+	transform->SetPosition(pos);
+	transform->SetOrientation(orientation);
+}
 
-	localPlayer->score = score->GetScore();
-	localPlayer->isFinished = score->IsFinished();
+void LocalNetworkPlayerComponent::Update(float dt)
+{
+//	if (!localPlayer || !score) return;
+
+	localPlayer->score = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
+
+	localPlayer->isFinished = GameStateManagerComponent::instance ? GameStateManagerComponent::instance->IsGameFinished() : false;
+	//localPlayer->isFinished = score->IsFinished();
 }

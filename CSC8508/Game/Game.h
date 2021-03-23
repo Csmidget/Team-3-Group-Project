@@ -54,6 +54,8 @@ namespace NCL {
 			GameWorld* GetWorld() const { return world; }
 			physics::BulletWorld* GetPhysics() const { return physics; }
 
+			GameTechRenderer* getRenderer() { return renderer; }
+
 			NCL::Rendering::ResourceManager* GetResourceManager() { return resourceManager; }
 
 		protected:

@@ -76,6 +76,8 @@ namespace NCL {
 			bool IsClient() const { return isClient;  }
 			void ActivateExitLobby() { exitLobby = true; }
 
+			bool IsAllPlayersFinished();
+
 		private:
 		
 

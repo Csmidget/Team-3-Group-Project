@@ -130,6 +130,18 @@ bool NCL::CSC8508::NetworkManager::IsExitLobbyTime()
 	return true;
 }
 
+bool NCL::CSC8508::NetworkManager::IsAllPlayersFinished()
+{
+	NetworkPlayerComponent* npc;
+	for (int i = 0; i < serverPlayers.size(); i++) {
+		npc = serverPlayers.at(i)->GetNetworkPlayerComponent();
+		if (!npc->isFinished()) return false;
+
+	}
+	std::cout << "All Players Finished " << std::endl;
+	return true;
+}
+
 void NCL::CSC8508::NetworkManager::StartAsServer()
 {
 	thisServer = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS,  this);

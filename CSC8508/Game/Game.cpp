@@ -192,10 +192,14 @@ void Game::InitFromJSON(std::string fileName) {
 
 void Game::InitNetworkPlayers()
 {
-	GameObject* player = world->GetObjectWithTag("Player");
+//	GameObject* player = world->GetObjectWithTag("Player");
+	//networkManager->SetLocalPlayer(player);
+
+	GameObject* player = new GameObject("clientPlayer");
+	world->AddGameObject(player);
 	networkManager->SetLocalPlayer(player);
 	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
-
+	player->SetPersistence(true);
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
@@ -203,7 +207,7 @@ void Game::InitNetworkPlayers()
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
 		player->AddComponent<NetworkPlayerComponent>();
-
+		player->SetPersistence(true);
 		networkManager->AddPlayerToGame(lobby->front(), player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;
 
