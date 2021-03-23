@@ -8,6 +8,7 @@
 #include "GameStateManagerComponent.h"
 #include "ScoreComponent.h"
 #include "TimeScoreComponent.h"
+#include "LocalNetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -71,6 +72,10 @@ void PlayState::OnAwake() {
 	
 	for (auto players : networkPlayers)
 		players->SetIsActive(true);
+
+	auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
+	if (localPlayer)
+		localPlayer->SetGameFinished(false);
 
 	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 	levelID = std::min(++levelID, LEVELCOUNT);
