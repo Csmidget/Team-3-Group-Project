@@ -83,7 +83,7 @@ void PlayState::OnAwake() {
 		if (localPlayer) {
 			int id = localPlayer->GetLocalPlayerID();
 			auto player = game->GetWorld()->GetObjectsWithComponent<LocalNetworkPlayerComponent>()[0];
-			player->GetTransform().SetPosition(player->GetTransform().GetPosition() + Vector3(3 * id, 0, 0));
+			player->GetTransform().SetPosition(player->GetTransform().GetPosition() + Vector3(10 * id, 0, 0));
 		
 		}
 			
