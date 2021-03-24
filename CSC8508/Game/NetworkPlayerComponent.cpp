@@ -41,4 +41,5 @@ void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
 void NCL::CSC8508::NetworkPlayerComponent::OnActive()
 {
 	isLevelFinished = false;
+	gameObject->GetPhysicsObject()->body->makeKinematic();
 }
