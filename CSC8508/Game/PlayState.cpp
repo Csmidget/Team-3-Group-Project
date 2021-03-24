@@ -19,7 +19,7 @@ PlayState::PlayState(Game* game, bool isNetworked) {
 	this->isNetworked = isNetworked;
 	this->levelID = 0;
 	this->game = game;	
-	levels = new std::string[LEVELCOUNT]{ "Level1.json" , "Level2.json", "Level3.json" };
+	levels = new std::string[LEVELCOUNT]{ "Level3.json" , "Level2.json", "Level3.json" };
 
 	game->InitWorld(levels[levelID]);
 	levelID++;
