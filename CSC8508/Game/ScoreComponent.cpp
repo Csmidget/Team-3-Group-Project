@@ -29,7 +29,7 @@ void ScoreComponent::DisplayScoreboard(Game* game, Vector4 colour) {
 		playerScores.push_back({ "Player " + std::to_string(i), networkPlayers[i]->GetScore() });
 	}
 
-	std::sort(playerScores.begin(), playerScores.end(), [](ScorePair a, ScorePair b) {return a.second < b.second; });
+	std::sort(playerScores.begin(), playerScores.end(), [](ScorePair a, ScorePair b) {return a.second > b.second; });
 
 	game->getRenderer()->DrawString("Scoreboard:", Vector2(1, 30), colour, 15.0f);
 
