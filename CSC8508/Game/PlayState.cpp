@@ -50,7 +50,7 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 		}
 	}
 
-	if (gameStateManager->IsPlayerFinished()) {
+	if (gameStateManager->IsPlayerFinished() || gameStateManager->IsGameFinished()) {
 		*newState = new GameOverState(game, levelID == LEVELCOUNT, isNetworked);
 		return PushdownResult::Push;
 	}
