@@ -26,6 +26,8 @@ namespace NCL {
 				Game* game;
 				bool isPlayerFinished;
 				bool isGameFinished;
+				bool majorityFinished;
+				float finishTimer;
 		};
 	}
 }

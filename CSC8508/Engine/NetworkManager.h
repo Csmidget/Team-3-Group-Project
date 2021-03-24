@@ -77,7 +77,7 @@ namespace NCL {
 			void ActivateExitLobby() { exitLobby = true; }
 
 			bool IsAllPlayersFinished();
-
+			bool IsMajorityPlayersFinished(float percentage = 0.6f) const;
 		private:
 		
 
@@ -93,7 +93,7 @@ namespace NCL {
 			void UpdateMinimumState();
 
 			void Restart();
-
+			int GetNoOfPlayersFinished() const;
 
 			bool const OFFLINE_MODE = false;
 			bool isClient = false;
