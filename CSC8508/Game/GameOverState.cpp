@@ -17,6 +17,7 @@ GameOverState::GameOverState(Game* game, bool isFinal, bool isNetworked) {
 	this->game = game;
 	this->isFinal = isFinal;
 	this->isNetworked = isNetworked;
+	this->allFinished = false;
 	this->timer = 5.0f;
 	gameScore = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
 	gameStateManager = nullptr;
@@ -37,7 +38,9 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 
 	if (isNetworked)
 	{
-		if (game->IsAllPlayersFinished())
+		allFinished = allFinished || game->IsAllPlayersFinished();
+
+		if (allFinished)
 		{
 			timer -= dt;
 			game->getRenderer()->DrawString("Next Level: " + std::to_string((int)timer), Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);

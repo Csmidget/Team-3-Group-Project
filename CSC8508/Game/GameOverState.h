@@ -25,6 +25,7 @@ namespace NCL {
 			CameraComponent* spectatorCamera;	
 			bool isFinal;
 			bool isNetworked;
+			bool allFinished;
 			GameStateManagerComponent* gameStateManager;
 		};
 
