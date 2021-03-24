@@ -20,6 +20,7 @@ GameStateManagerComponent::GameStateManagerComponent(GameObject* object, Game* g
 
 	this->game = game;
 	isGameFinished = false;
+	levelID = 0;
 }
 
 GameStateManagerComponent::~GameStateManagerComponent()
@@ -35,19 +36,21 @@ void GameStateManagerComponent::Start()
 
 void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 
-	if (!majorityFinished && game->IsMajorityPlayersFinished())
-	{
-		finishTimer = 15.0f;
-	}
+	if (levelID == 2) {
+		if (!majorityFinished && game->IsMajorityPlayersFinished())
+		{
+			finishTimer = 15.0f;
+		}
 
-	majorityFinished = game->IsMajorityPlayersFinished();
+		majorityFinished = game->IsMajorityPlayersFinished();
 
-	if (majorityFinished)
-	{
-		finishTimer = std::max(0.0f, finishTimer - dt);
-		if (!isGameFinished) game->getRenderer()->DrawString("Time remaining: " + std::to_string((int)finishTimer),Vector2(80,90),Vector4(1.0f,1.0f,1.0f,1.0f),12.0f);
-		if (finishTimer <= 0.0f)
-			isGameFinished = true;
+		if (majorityFinished)
+		{
+			finishTimer = std::max(0.0f, finishTimer - dt);
+			if (!isGameFinished) game->getRenderer()->DrawString("Time remaining: " + std::to_string((int)finishTimer), Vector2(80, 90), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 12.0f);
+			if (finishTimer <= 0.0f)
+				isGameFinished = true;
+		}
 	}
 
 	if (game->IsNetworkGame())

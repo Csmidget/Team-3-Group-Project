@@ -91,5 +91,5 @@ void PlayState::OnAwake() {
 
 	gameStateManager = GameStateManagerComponent::instance;
 	levelID = std::min(++levelID, LEVELCOUNT);
-
+	gameStateManager->SetLevelID(levelID);
 }
