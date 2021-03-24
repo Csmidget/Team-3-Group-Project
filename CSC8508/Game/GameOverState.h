@@ -12,7 +12,6 @@ namespace NCL {
 			PushdownResult OnUpdate(float dt, PushdownState** newState) override;
 
 			void OnAwake() override;
-			void PrintOutcome();
 			
 			void UpdateCameraControls(float dt);
 
@@ -26,6 +25,7 @@ namespace NCL {
 			CameraComponent* spectatorCamera;	
 			bool isFinal;
 			bool isNetworked;
+			bool allFinished;
 			GameStateManagerComponent* gameStateManager;
 		};
 

@@ -20,13 +20,14 @@ namespace NCL {
 				~GameStateManagerComponent();
 				void Start();
 				void Update(float dt);
-
+				void SetPlayerFinished(bool val) { isPlayerFinished = val; }
 				bool IsGameFinished() const { return isGameFinished; }
-				void SetFinished(bool val) { isGameFinished = val; }
+				bool IsPlayerFinished() const { return isPlayerFinished; }
 			private:
 				bool IsGameOver();
 
 				Game* game;
+				bool isPlayerFinished;
 				bool isGameFinished;
 		};
 	}

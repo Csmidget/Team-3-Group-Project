@@ -1,7 +1,11 @@
 #include "ScoreComponent.h"
-#include "../Engine/GameObject.h"
 #include "BonusComponent.h"
 #include "RingComponent.h"
+#include "NetworkPlayerComponent.h"
+#include "Game.h"
+#include "GameTechRenderer.h"
+#include "../Engine/GameObject.h"
+#include "../Engine/GameWorld.h"
 
 #include <algorithm>
 
@@ -10,9 +14,38 @@ using namespace CSC8508;
 
 ScoreComponent* ScoreComponent::instance = nullptr;
 
+void ScoreComponent::DisplayScoreboard(Game* game, Vector4 colour) {
+
+	typedef std::pair<std::string, int> ScorePair;
+
+	std::vector<ScorePair> playerScores;
+
+	playerScores.push_back({ "Your score", ScoreComponent::instance->GetScore() });
+
+	auto networkPlayers = game->GetWorld()->GetComponentsOfType<NetworkPlayerComponent>();
+
+	for (auto i = 0; i < networkPlayers.size(); i++)
+	{
+		playerScores.push_back({ "Player " + std::to_string(i), networkPlayers[i]->GetScore() });
+	}
+
+	std::sort(playerScores.begin(), playerScores.end(), [](ScorePair a, ScorePair b) {return a.second > b.second; });
+
+	game->getRenderer()->DrawString("Scoreboard:", Vector2(1, 30), colour, 15.0f);
+
+	for (int i = 0; i < playerScores.size(); ++i)
+	{
+		string name = playerScores[i].first;
+		int score = playerScores[i].second;
+
+		game->getRenderer()->DrawString(name + ": " + std::to_string(score), Vector2(1, 34 + (i * 4)), colour, 15.0f);
+	}
+
+
+}
+
 ScoreComponent::ScoreComponent(GameObject* object) : Component("ScoreComponent", object)
 {
-
 	if (instance)
 		gameObject->Destroy();
 	else

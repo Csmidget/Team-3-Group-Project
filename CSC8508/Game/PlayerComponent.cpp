@@ -110,7 +110,7 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 			return;
 		}
 
-		if (otherObject->HasTag("Goal")) game->GetWorld()->GetComponentOfType<GameStateManagerComponent>()->SetFinished(true);
+		if (otherObject->HasTag("Goal")) game->GetWorld()->GetComponentOfType<GameStateManagerComponent>()->SetPlayerFinished(true);
 
 	}
 }
