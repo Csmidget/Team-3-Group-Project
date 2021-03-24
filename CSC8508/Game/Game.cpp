@@ -128,6 +128,11 @@ bool NCL::CSC8508::Game::IsAllPlayersFinished()
 	return !networkManager ? false : networkManager->IsAllPlayersFinished();
 }
 
+bool NCL::CSC8508::Game::IsMajorityPlayersFinished()
+{
+	return !networkManager ? false : networkManager->IsMajorityPlayersFinished();
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());

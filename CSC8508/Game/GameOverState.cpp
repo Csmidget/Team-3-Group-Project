@@ -35,7 +35,7 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 	
 	if (isNetworked)
 	{
-		if (game->IsAllPlayersFinished())
+		if (game->IsMajorityPlayersFinished())
 		{
 			timer -= dt;
 			game->getRenderer()->DrawString("Next Level: " + std::to_string((int)timer), Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
