@@ -31,10 +31,13 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) return PushdownResult::Top;
 	
+	std::string completeString = isFinal ? "Game Completed!" : "Level Complete";
+
+	game->getRenderer()->DrawString(completeString, Vector2(35, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+	game->getRenderer()->DrawString("Press R to return to Menu", Vector2(34, 99), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);
+
 	if (isFinal)
 		return PushdownResult::NoChange;
-	
-	game->getRenderer()->DrawString("Level Complete!", Vector2(35, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
 
 	if (isNetworked)
 	{

@@ -128,6 +128,11 @@ bool NCL::CSC8508::Game::IsAllPlayersFinished()
 	return !networkManager ? false : networkManager->IsAllPlayersFinished();
 }
 
+bool NCL::CSC8508::Game::IsMajorityPlayersFinished()
+{
+	return !networkManager ? false : networkManager->IsMajorityPlayersFinished();
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -212,9 +217,6 @@ void Game::InitNetworkPlayers()
 		int playerID = lobby->front();
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		player->GetPhysicsObject()->body->makeKinematic();
-
-		networkManager->AddPlayerToGame(lobby->front(), player);
 		player->AddComponent<NetworkPlayerComponent>(playerID);
 
 		networkManager->AddPlayerToGame(playerID, player);
