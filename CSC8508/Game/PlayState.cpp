@@ -8,6 +8,7 @@
 #include "GameStateManagerComponent.h"
 #include "ScoreComponent.h"
 #include "LocalNetworkPlayerComponent.h"
+#include "NetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -78,8 +79,10 @@ void PlayState::OnAwake() {
 		game->InitWorld(levels[levelID]);
 	}
 	
-//	for (auto players : networkPlayers)
-//		players->SetIsActive(true);
+	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+
+	for (auto player : networkPlayers)
+		player->SetIsActive(true);
 
 	auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 	if (localPlayer)

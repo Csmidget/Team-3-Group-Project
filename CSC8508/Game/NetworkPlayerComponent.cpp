@@ -32,6 +32,7 @@ void NCL::CSC8508::NetworkPlayerComponent::SetTargetPosition(Vector3 target) {
 
 void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
 	if (isFinished) {
+		gameObject->SetIsActive(false);
 		if(!isLevelFinished) std::cout << "Player " << std::to_string(playerID) << " has finished with score " << score << std::endl;
 	}
 	
@@ -40,6 +41,5 @@ void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
 
 void NCL::CSC8508::NetworkPlayerComponent::OnActive()
 {
-	isLevelFinished = false;
 	gameObject->GetPhysicsObject()->body->makeKinematic();
 }

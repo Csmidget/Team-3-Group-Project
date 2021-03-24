@@ -57,8 +57,4 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 
 	int score = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
 	if(!isGameFinished) game->getRenderer()->DrawString("Score: " + std::to_string(score), Vector2(85, 95), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 12.0f);
-
-
-	//if (IsGameOver() && isGameFinished) isGameFinished = true;
-	//Go to next scene
 }
