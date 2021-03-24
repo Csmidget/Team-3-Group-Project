@@ -31,3 +31,8 @@ void LocalNetworkPlayerComponent::Update(float dt)
 	localPlayer->isFinished = GameStateManagerComponent::instance ? GameStateManagerComponent::instance->IsPlayerFinished() : false;
 	//localPlayer->isFinished = score->IsFinished();
 }
+
+int NCL::CSC8508::LocalNetworkPlayerComponent::GetLocalPlayerID() const
+{
+	return localPlayer->player->GetPlayerID();
+}

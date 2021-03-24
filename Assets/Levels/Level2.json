@@ -15,8 +15,8 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "radius": 0.5,
-            "height": 1.0,
+            "radius": 0.25,
+            "height": 3.0,
             "isTrigger": false
         },
         "transform": {
@@ -472,7 +472,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -947,8 +947,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -964,9 +964,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -2172,7 +2172,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -2967,7 +2967,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5247,7 +5247,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5655,7 +5655,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -5901,8 +5901,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -5918,9 +5918,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -6195,7 +6195,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -6520,12 +6520,27 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 1.0000000116860974e-7,
+            "mass": 5.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "HingeComponent",
+                "point": {
+                    "x": 0.0,
+                    "y": 5.0,
+                    "z": 0.0
+                },
+                "axis": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            }
+        ]
     },
     {
         "name": "Cube (40)",
@@ -6873,7 +6888,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7026,7 +7041,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7179,7 +7194,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7740,7 +7755,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -7913,7 +7928,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -8727,8 +8742,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -8744,9 +8759,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -8970,7 +8985,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -9876,7 +9891,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -10698,8 +10713,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -10715,9 +10730,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -11631,8 +11646,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -11648,9 +11663,9 @@
                 "w": 0.5
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -11733,8 +11748,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -11750,9 +11765,9 @@
                 "w": 0.5571631193161011
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -12294,8 +12309,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -12311,9 +12326,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -12471,7 +12486,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12624,7 +12639,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12675,7 +12690,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12726,7 +12741,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -12879,7 +12894,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -13000,12 +13015,27 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 1.0000000116860974e-7,
+            "mass": 5.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "HingeComponent",
+                "point": {
+                    "x": 0.0,
+                    "y": 5.0,
+                    "z": 0.0
+                },
+                "axis": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            }
+        ]
     },
     {
         "name": "door 4",
@@ -13168,12 +13198,27 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 1.0000000116860974e-7,
+            "mass": 5.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "HingeComponent",
+                "point": {
+                    "x": 0.0,
+                    "y": 5.0,
+                    "z": 0.0
+                },
+                "axis": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            }
+        ]
     },
     {
         "name": "Cube (167)",
@@ -13767,8 +13812,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -13784,9 +13829,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -13842,7 +13887,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -15108,7 +15153,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -15747,8 +15792,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -15764,9 +15809,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -15822,7 +15867,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -15877,12 +15922,27 @@
             "renderScale": 1
         },
         "physics": {
-            "mass": 1.0000000116860974e-7,
+            "mass": 5.0,
             "drag": 0.0,
             "angularDrag": 0.05000000074505806,
             "useGravity": true,
             "isKinematic": false
-        }
+        },
+        "components": [
+            {
+                "name": "HingeComponent",
+                "point": {
+                    "x": 0.0,
+                    "y": 5.0,
+                    "z": 0.0
+                },
+                "axis": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            }
+        ]
     },
     {
         "name": "Cube (176)",
@@ -16041,7 +16101,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -16374,8 +16434,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -16391,9 +16451,9 @@
                 "w": 0.5
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -16920,7 +16980,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -16998,8 +17058,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -17015,9 +17075,9 @@
                 "w": 0.5
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -17620,8 +17680,8 @@
                 "y": 0.0,
                 "z": -8.940696716308594e-8
             },
-            "radius": 0.25,
-            "height": 2.0,
+            "radius": 0.30000001192092898,
+            "height": 4.0,
             "isTrigger": false
         },
         "transform": {
@@ -17637,9 +17697,9 @@
                 "w": 0.7071068286895752
             },
             "scale": {
-                "x": 0.25,
+                "x": 0.5,
                 "y": 3.8345067501068117,
-                "z": 0.25
+                "z": 0.5
             }
         },
         "render": {
@@ -17797,7 +17857,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {
@@ -17848,7 +17908,7 @@
         },
         "render": {
             "mesh": "Cube.msh",
-            "material": "ground.mat",
+            "material": "Wall.mat",
             "renderScale": 1
         },
         "physics": {

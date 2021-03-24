@@ -4,11 +4,12 @@
 #include "GameOverState.h"
 #include "DebugState.h"
 #include "Game.h"
-#include "../Engine/GameWorld.h"
 #include "GameStateManagerComponent.h"
 #include "ScoreComponent.h"
 #include "LocalNetworkPlayerComponent.h"
 #include "NetworkPlayerComponent.h"
+#include "PlayerComponent.h"
+#include "../Engine/GameWorld.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -22,6 +23,9 @@ PlayState::PlayState(Game* game, bool isNetworked) {
 
 	game->InitWorld(levels[levelID]);
 	levelID++;
+
+	if (isNetworked)
+		InitSpawns();
 
 	GameObject* scoreObject = new GameObject();
 	game->GetWorld()->AddGameObject(scoreObject);
@@ -66,18 +70,36 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 	return PushdownResult::NoChange;
 };
 
+void PlayState::InitSpawns() {
+	const Vector3 spawnOffsets[8]{ {0,0,0},{2,0,0},{0,0,2},{2,0,2},{2,0,-2},{-2,0,0},{0,0,-2},{-2,0,2} };
+
+	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+	auto localPlayer = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>()[0];
+
+	for (auto player : networkPlayers) {
+		auto comp = player->GetComponent<NetworkPlayerComponent>();
+		auto pos = localPlayer->GetTransform().GetPosition() + spawnOffsets[comp->GetPlayerID()];
+		player->GetTransform().SetPosition(pos);
+		comp->SetTargetPosition(pos);
+		player->SetIsActive(true);
+	}
+
+	auto localPlayerComp = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
+	if (localPlayerComp) {
+		int id = localPlayerComp->GetLocalPlayerID();
+		localPlayer->GetTransform().SetPosition(localPlayer->GetTransform().GetPosition() + spawnOffsets[id]);
+	}
+
+}
+
 void PlayState::OnAwake() {
-
-
 	if (isNetworked)
 	{
-		auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
-
-		for (auto player : networkPlayers)
-			player->SetIsActive(true);
-
 		if (!gameStateManager->IsGameFinished()) return;
-			game->InitWorld(levels[levelID]);		
+
+		game->InitWorld(levels[levelID]);
+
+		InitSpawns();	
 	}
 	else
 	{
@@ -91,5 +113,5 @@ void PlayState::OnAwake() {
 
 	gameStateManager = GameStateManagerComponent::instance;
 	levelID = std::min(++levelID, LEVELCOUNT);
-
+	gameStateManager->SetLevelID(levelID);
 }

@@ -18,6 +18,7 @@ namespace NCL {
 				void Start();
 				void Update(float dt);
 				void SetPlayerFinished(bool val) { isPlayerFinished = val; }
+				void SetLevelID(int val) { levelID = val; }
 				bool IsGameFinished() const { return isGameFinished; }
 				bool IsPlayerFinished() const { return isPlayerFinished; }
 			private:
@@ -27,6 +28,7 @@ namespace NCL {
 				bool isGameFinished;
 				bool majorityFinished;
 				float finishTimer;
+				int levelID;
 		};
 	}
 }
