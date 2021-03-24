@@ -35,8 +35,6 @@ void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
 		if(!isLevelFinished) std::cout << "Player " << std::to_string(playerID) << " has finished with score " << score << std::endl;
 	}
 	
-	gameObject->SetIsActive(!isFinished);
-
 	isLevelFinished = isFinished; 
 }
 
