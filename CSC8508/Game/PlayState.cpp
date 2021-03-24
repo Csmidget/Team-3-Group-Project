@@ -70,12 +70,8 @@ void PlayState::OnAwake() {
 		game->InitWorld(levels[levelID]);
 	}
 
-
-
 	//	for (auto players : networkPlayers)
 	//		players->SetIsActive(true);
-
-
 
 	auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 	if (localPlayer)

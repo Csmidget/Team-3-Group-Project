@@ -273,11 +273,8 @@ void RigidBody::makeKinematic()
 {
 	if (body)
 	{
-		if (!isKinemtic)
-		{
-			isKinemtic = true;
-			body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
-		}
+		isKinemtic = true;
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	}
 
 }

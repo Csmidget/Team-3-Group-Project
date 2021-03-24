@@ -59,10 +59,22 @@ void GameOverState::OnAwake() {
 	spectatorCamera = CameraComponent::GetMain();
 	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
 
-	auto playerObject = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>();
+	auto playerComponents = game->GetWorld()->GetComponentsOfType<PlayerComponent>();
+	auto playerObject = game->GetWorld()->GetObjectsWithTag("Player");
+	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
 	
+	for (auto players : networkPlayers)
+		players->SetIsActive(false);
+
 	for (int i = 0; i<=playerObject.size() - 1; i++)
 		playerObject[i]->SetIsActive(false);
+	
+	for (int i = playerComponents.size() - 1; i >= 0; --i) {
+		if (!playerComponents[i]->IsEnabled())
+			playerComponents.erase(playerComponents.begin() + i);
+
+		playerComponents[i]->SetEnabled(false);
+	}
 }
 
 void GameOverState::PrintOutcome()
@@ -72,23 +84,18 @@ void GameOverState::PrintOutcome()
 									Vector2(35, 20), 
 									ScoreComponent::instance->GetScore() > 0 ? Vector4(0.0f, 1.0f, 0.0f, 0.0f) : Vector4(1.0f, 0.0f, 0.0f, 0.0f),
 									50.0f);
-	game->getRenderer()->DrawString("Your score:" + std::to_string(ScoreComponent::instance->GetScore()),
-									Vector2(20, 50),
+	game->getRenderer()->DrawString("Your score: " + std::to_string(ScoreComponent::instance->GetScore()),
+									Vector2(25, 50),
 									Vector4(1.0f, 1.0f, 0.0f, 0.0f),
-									50.0f);
+									35.0f);
 	game->getRenderer()->DrawString("Press R to return to Menu", Vector2(30, 100), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
 	
 	auto networkPlayers = game->GetWorld()->GetComponentsOfType<NetworkPlayerComponent>();
 	for (auto i = 0; i < networkPlayers.size(); i++)
 	{
-		game->getRenderer()->DrawString("Network Player " + std::to_string(i),
-										 Vector2(10, 55 + (i * 5)),
-										 Vector4(1.0f, 1.0f, 0.0f, 0.0f),
-										 30.0f);
-		game->getRenderer()->DrawString("score: " + std::to_string(networkPlayers[i]->GetScore()), 
-										 Vector2(60, 55 + (i * 5)), 
-										 Vector4(1.0f, 1.0f, 0.0f, 0.0f), 
-										 30.0f);
+		game->getRenderer()->DrawString("Player " + std::to_string(i) , Vector2(10, 55 + (i * 5)), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+		game->getRenderer()->DrawString("score: " + std::to_string(networkPlayers[i]->GetScore()), Vector2(15, 55 + (i * 5)), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 35.0f);
+		//player->GetScore();
 	}
 }
 
