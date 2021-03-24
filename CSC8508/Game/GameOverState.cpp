@@ -61,18 +61,6 @@ void GameOverState::PrintOutcome()
 									50.0f);
 	game->getRenderer()->DrawString("Press R to return to Menu", Vector2(30, 100), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
 	
-	//for (auto i = 0; i < 5; i++)
-	//{
-	//	game->getRenderer()->DrawString("Network Player " + std::to_string(i),
-	//		Vector2(10, 55 + (i * 5)),
-	//		Vector4(1.0f, 1.0f, 0.0f, 0.0f),
-	//		30.0f);
-	//	game->getRenderer()->DrawString("score: " + std::to_string(ScoreComponent::instance->GetScore()),
-	//		Vector2(60, 55 + (i * 5)),
-	//		Vector4(1.0f, 1.0f, 0.0f, 0.0f),
-	//		30.0f);
-	//}
-
 	auto networkPlayers = game->GetWorld()->GetComponentsOfType<NetworkPlayerComponent>();
 	for (auto i = 0; i < networkPlayers.size(); i++)
 	{

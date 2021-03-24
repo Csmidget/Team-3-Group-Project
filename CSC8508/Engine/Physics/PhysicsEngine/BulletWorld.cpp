@@ -35,7 +35,7 @@ BulletWorld::~BulletWorld()
 
 	contactList.clear();
 	rigidList.clear();
-	contactList.clear();
+	constraintList.clear();
 }
 
 //sets gravity
