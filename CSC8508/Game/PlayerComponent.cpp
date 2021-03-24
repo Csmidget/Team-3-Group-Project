@@ -8,7 +8,6 @@
 #include "CameraComponent.h"
 #include "PlayerAnimComponent.h"
 #include "ScoreComponent.h"
-#include "BonusComponent.h"
 #include "RingComponent.h"
 
 #include "../Engine/GameWorld.h"
@@ -93,12 +92,6 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 	ScoreComponent* score = ScoreComponent::instance;
 
 	if (score) {
-		if (otherObject->HasTag("Bonus")) {
-			score->AddScore(otherObject->GetComponent<BonusComponent>()->GetBonus());
-			otherObject->OnKill();
-			return;
-		}
-
 		if (otherObject->HasTag("Ring"))
 		{
 			score->AddScore(otherObject->GetComponent<RingComponent>()->GetBonus());
