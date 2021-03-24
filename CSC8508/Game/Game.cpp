@@ -4,6 +4,7 @@
 #include "IntroState.h"
 #include "CameraComponent.h"
 #include "LocalNetworkPlayerComponent.h"
+#include "PlayerRayFeetComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
@@ -200,6 +201,7 @@ void Game::InitNetworkPlayers()
 	world->AddGameObject(player);
 	networkManager->SetLocalPlayer(player);
 	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
+	player->AddComponent<PlayerRayFeetComponent>(this);
 	player->SetPersistence(true);
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
