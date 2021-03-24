@@ -19,6 +19,7 @@ namespace NCL {
 			virtual void OnCollisionBegin(GameObject* otherObject) {};
 			virtual void OnCollisionStay(GameObject* otherObject) {};
 			virtual void OnCollisionEnd(GameObject* otherObject) {};
+			virtual void OnActive() {};
 			virtual void OnKill() {};
 			std::vector<std::string> GetDebugInfo();
 

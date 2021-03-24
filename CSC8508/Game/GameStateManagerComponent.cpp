@@ -29,10 +29,10 @@ void GameStateManagerComponent::Start()
 void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 
 	int score = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
-	Debug::Print("Score: " + std::to_string(score), Vector2(75, 95));
+	if(!isGameFinished) Debug::Print("Score: " + std::to_string(score), Vector2(75, 95));
 
 
-	if (IsGameOver() && isGameFinished) isGameFinished = true;
+	//if (IsGameOver() && isGameFinished) isGameFinished = true;
 	//Go to next scene
 }
 

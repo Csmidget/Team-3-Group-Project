@@ -30,6 +30,7 @@ namespace NCL {
 
 			void EnableNetworking(bool client);
 			void DisableNetworking();
+			bool IsAllPlayersFinished(); 
 			
 			virtual bool UpdateGame(float dt);
 

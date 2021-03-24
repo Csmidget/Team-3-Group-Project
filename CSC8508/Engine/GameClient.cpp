@@ -65,6 +65,8 @@ void GameClient::UpdateClient() {
 
 			if (packet->type == Player_Finished) manager->UpdateServerPlayer(((PlayerFinishedPacket*)packet)->playerID, packet);
 			
+			if(packet->type == Player_State) manager->UpdateServerPlayer(((PlayerFinishedPacket*)packet)->playerID, packet);
+
 			if (packet->type == Exit_Lobby) manager->ActivateExitLobby();
 
 		}

@@ -6,7 +6,7 @@ using namespace NCL;
 using namespace CSC8508;
 using namespace Maths;
 
-NCL::CSC8508::NetworkPlayerComponent::NetworkPlayerComponent(GameObject* object) : Component("NetworkPlayerComponent", object)
+NCL::CSC8508::NetworkPlayerComponent::NetworkPlayerComponent(GameObject* object, int id) : Component("NetworkPlayerComponent", object)
 {
 	playerID = id;
 	object->SetPersistence(true);
@@ -35,6 +35,12 @@ void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
 		if(!isLevelFinished) std::cout << "Player " << std::to_string(playerID) << " has finished with score " << score << std::endl;
 	}
 	
+	gameObject->SetIsActive(!isFinished);
+
+	isLevelFinished = isFinished; 
 }
 
-
+void NCL::CSC8508::NetworkPlayerComponent::OnActive()
+{
+	isLevelFinished = false;
+}
