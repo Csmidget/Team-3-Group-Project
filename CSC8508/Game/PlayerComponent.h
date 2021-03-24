@@ -22,7 +22,6 @@ namespace NCL {
 			IDLE
 		};
 
-
 		class PlayerComponent : public Component {
 
 		public:

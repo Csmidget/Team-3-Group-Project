@@ -32,6 +32,7 @@ namespace NCL {
 			void DisableNetworking();
 			bool IsAllPlayersFinished(); 
 			bool IsMajorityPlayersFinished();
+			bool IsNetworkGame() { return networkManager != nullptr; }
 			
 			virtual bool UpdateGame(float dt);
 
