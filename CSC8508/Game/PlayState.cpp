@@ -77,7 +77,7 @@ void PlayState::OnAwake() {
 		for (auto player : networkPlayers)
 			player->SetIsActive(true);
 
-		const Vector3 spawnOffsets[8]{ {0,0,0},{3,0,0},{0,0,3},{3,0,3},{3,0,-3},{-3,0,0},{0,0,-3},{-3,0,3} };
+		const Vector3 spawnOffsets[8]{ {0,0,0},{2,0,0},{0,0,2},{2,0,2},{2,0,-2},{-2,0,0},{0,0,-2},{-2,0,2} };
 		auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 		if (localPlayer) {
 			int id = localPlayer->GetLocalPlayerID();

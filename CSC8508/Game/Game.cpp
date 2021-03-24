@@ -205,7 +205,7 @@ void Game::InitNetworkPlayers()
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
 	while (lobby->size() > 0) {
 		int playerID = lobby->front();
-		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
+		auto player = AddCapsuleToWorld(Vector3(5, 5, 10), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
 		player->AddComponent<NetworkPlayerComponent>(playerID);
 		player->GetPhysicsObject()->body->makeKinematic();
