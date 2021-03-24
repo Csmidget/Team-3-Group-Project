@@ -2,31 +2,19 @@
 #include "JSONLevelFactory.h"
 #include "GameTechRenderer.h"
 #include "IntroState.h"
-#include "PlayerComponent.h"
-#include "RespawnComponent.h"
 #include "CameraComponent.h"
-#include "TeleporterComponent.h"
-#include"SetListener.h"
-#include"PlaySound.h"
-#include "ScoreComponent.h"
-#include "RingComponent.h"
-#include "TimeScoreComponent.h"
+#include "LocalNetworkPlayerComponent.h"
 
 #include "../Engine/GameWorld.h"
-#include "../Engine/PhysicsSystem.h"
-#include "../Engine/PositionConstraint.h"
-#include "../Engine/OrientationConstraint.h"
-#include "../Engine/Physics/PhysicsEngine/BulletWorld.cpp"
-
-
-//JENKINS TEST 3
+#include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
+#include "../Engine/NetworkManager.h"
 #include "../Engine/PushdownMachine.h"
+
 #include"../Audio/SoundManager.h"
 #include"../Audio/SoundInstance.h"
-#include "../../Common/TextureLoader.h"
-#include "../../Common/ShaderBase.h"
+
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
-#include "LocalNetworkPlayerComponent.h"
+
 
 using namespace NCL;
 using namespace CSC8508;

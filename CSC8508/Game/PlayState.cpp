@@ -1,3 +1,4 @@
+#define NOMINMAX
 #include "PlayState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
@@ -9,6 +10,7 @@
 #include "ScoreComponent.h"
 #include "TimeScoreComponent.h"
 #include "LocalNetworkPlayerComponent.h"
+#include "NetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;

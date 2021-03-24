@@ -1,4 +1,5 @@
 #include "PointLight.h"
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
 
 
 PointLight::PointLight(std::vector<glm::vec3>& position) :

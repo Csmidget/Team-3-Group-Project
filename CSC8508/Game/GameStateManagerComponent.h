@@ -21,7 +21,6 @@ namespace NCL {
 				bool IsGameFinished() const { return isGameFinished; }
 				bool IsPlayerFinished() const { return isPlayerFinished; }
 			private:
-				bool IsGameOver();
 
 				Game* game;
 				bool isPlayerFinished;

@@ -1,13 +1,8 @@
 #pragma once
-#include "../Engine/GameWorld.h"
 
 #include "../../Plugins/OpenGLRendering/OGLRenderer.h"
-#include "../../Plugins/OpenGLRendering/OGLShader.h"
-#include "../../Plugins/OpenGLRendering/OGLTexture.h"
-#include "../../Plugins/OpenGLRendering/OGLMesh.h"
-
-#include "../../Common/ResourceManager.h"
-
+#include <glad/glad.h>
+#include <vector>
 
 class Shadow;
 class PointLight;
@@ -15,8 +10,17 @@ class SpotLight;
 namespace NCL {
 	class Maths::Vector3;
 	class Maths::Vector4;
+
+	namespace Rendering {
+		class ResourceManager;
+		class OGLShader;
+		class OGLTexture;
+		class OGLMesh;
+	}
+
 	namespace CSC8508 {
 		class RenderObject;
+		class GameWorld;
 
 		class GameTechRenderer : public OGLRenderer {
 		public:
@@ -47,7 +51,7 @@ namespace NCL {
 			//void LoadLight();
 			void LoadSkybox();
 			//NCL::Rendering::ResourceManager* resourceManager;
-			vector<const RenderObject*> activeObjects;
+			std::vector<const RenderObject*> activeObjects;
 
 			OGLShader*	skyboxShader;
 			OGLMesh*	skyboxMesh;

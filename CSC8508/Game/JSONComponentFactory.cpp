@@ -1,5 +1,6 @@
 #include "JsonComponentFactory.h"
 #include "JSONShared.h"
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
 
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"

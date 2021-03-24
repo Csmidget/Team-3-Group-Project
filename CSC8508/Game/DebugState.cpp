@@ -1,3 +1,4 @@
+#define NOMINMAX
 #include "DebugState.h"
 #include "Game.h"
 #include "PlayerComponent.h"

@@ -1,9 +1,9 @@
+#define NOMINMAX
 #include "GameStateManagerComponent.h"
 #include "Game.h"
 #include "ScoreComponent.h"
-#include "../Engine/Debug.h"
-#include "../Engine/GameWorld.h"
 #include "GameTechRenderer.h"
+#include "../Engine/GameObject.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -56,21 +56,9 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 		isGameFinished = isGameFinished || isPlayerFinished;
 
 	int score = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
-	if(!isGameFinished) Debug::Print("Score: " + std::to_string(score), Vector2(85, 95));
+	if(!isGameFinished) game->getRenderer()->DrawString("Score: " + std::to_string(score), Vector2(85, 95), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 12.0f);
 
 
 	//if (IsGameOver() && isGameFinished) isGameFinished = true;
 	//Go to next scene
-}
-
-bool GameStateManagerComponent::IsGameOver()
-{
-//	if (players.size() == 0) return false;
-//
-//	for (int i = 0; i < players.size(); i++)
-//		if (!players.at(i)->GetComponent<ScoreComponent>()->IsFinished())
-//			return false;
-
-//	return true;
-	return false;
 }

@@ -1,4 +1,5 @@
 #include "Shadow.h"
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
 
 
 

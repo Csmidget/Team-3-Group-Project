@@ -7,6 +7,7 @@
 #include "../Engine/CollisionDetection.h"
 #include "../../Plugins/json/json.hpp"
 #include "../../Common/Assets.h"
+#include "../../Common/ResourceManager.h"
 
 #include <fstream>
 

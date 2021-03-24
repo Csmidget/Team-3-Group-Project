@@ -3,6 +3,7 @@
 
 #include "../Engine/GameObject.h"
 #include "../../Common/MeshAnimation.h"
+#include "../../Common/ResourceManager.h"
 
 using namespace NCL;
 using namespace CSC8508;

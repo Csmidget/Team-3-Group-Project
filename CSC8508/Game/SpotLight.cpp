@@ -1,4 +1,5 @@
 #include "SpotLight.h"
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
 
 SpotLight::SpotLight(std::vector<glm::vec3>& position) :
 	position(position),

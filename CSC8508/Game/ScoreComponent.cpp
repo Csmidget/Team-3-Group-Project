@@ -5,7 +5,7 @@
 #include "GameTechRenderer.h"
 #include "Game.h"
 #include "../Engine/GameWorld.h"
-#include "../Engine/GameObject.h"
+#include "NetworkPlayerComponent.h"
 
 #include <algorithm>
 

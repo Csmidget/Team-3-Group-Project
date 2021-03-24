@@ -11,7 +11,6 @@
 #include "BonusComponent.h"
 #include "RingComponent.h"
 
-#include "../Engine/GameObject.h"
 #include "../Engine/GameWorld.h"
 #include "../Audio/SoundManager.h"
 #include "../Audio/SoundInstance.h"
