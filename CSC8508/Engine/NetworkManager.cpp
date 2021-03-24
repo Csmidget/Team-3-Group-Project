@@ -147,6 +147,14 @@ bool NCL::CSC8508::NetworkManager::IsAllPlayersFinished()
 	return true;
 }
 
+bool NCL::CSC8508::NetworkManager::IsMajorityPlayersFinished(float percentage) const
+{
+	int playersFinished = GetNoOfPlayersFinished();
+	int totalPlayers = serverPlayers.size() + isClient ? 1 : 0;
+
+	return playersFinished > (int)(totalPlayers * percentage);
+}
+
 void NCL::CSC8508::NetworkManager::StartAsServer()
 {
 	thisServer = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS,  this);
@@ -305,6 +313,22 @@ void NCL::CSC8508::NetworkManager::Restart()
 	delete thisClient;
 	NetworkBase::Initialise();
 	isClient ? StartAsClient() : StartAsServer();
+}
+
+int NCL::CSC8508::NetworkManager::GetNoOfPlayersFinished() const
+{
+	int noOfPlayers = 0;
+	NetworkPlayerComponent* npc;
+	for (auto i = serverPlayers.begin(); i != serverPlayers.end(); ++i) {
+		npc = i->second->GetNetworkPlayerComponent();
+		if (npc->isFinished()) noOfPlayers++;
+
+	}
+
+	if (isClient)
+		if (localPlayer->isFinished) noOfPlayers++;
+
+	return noOfPlayers;
 }
 
 
