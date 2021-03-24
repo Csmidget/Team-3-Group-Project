@@ -1,6 +1,10 @@
 #include "GameStateManagerComponent.h"
 #include "Game.h"
-#include "../Engine/GameWorld.h"
+#include "ScoreComponent.h"
+#include "../Engine/Debug.h"
+
+using namespace NCL;
+using namespace CSC8508;
 
 GameStateManagerComponent* GameStateManagerComponent::instance = nullptr;
 

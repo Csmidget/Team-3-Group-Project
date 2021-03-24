@@ -1,8 +1,9 @@
 #include "PlayerAnimComponent.h"
-#include "PlayerComponent.h"
+#include "Game.h"
+
 #include "../Engine/GameObject.h"
 #include "../../Common/MeshAnimation.h"
-#include "Game.h"
+
 using namespace NCL;
 using namespace CSC8508;
 
@@ -12,6 +13,8 @@ PlayerAnimComponent::PlayerAnimComponent(GameObject* object, Game* game) : Compo
 	idleAnim = rm->LoadAnimation("idle.anm");
 	runAnim = rm->LoadAnimation("run.anm");
 	jumpAnim = rm->LoadAnimation("midair.anm");
+	currentState = PlayerMovementState::IDLE;
+	playerComp = nullptr;
 }
 
 void PlayerAnimComponent::Start() {

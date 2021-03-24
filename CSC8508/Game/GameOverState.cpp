@@ -64,7 +64,7 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 void GameOverState::OnAwake() {
 
 	spectatorCamera = CameraComponent::GetMain();
-	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	gameStateManager = GameStateManagerComponent::instance;
 
 	auto playerObject = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>();
 	

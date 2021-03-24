@@ -1,13 +1,14 @@
+#define NOMINMAX
 #include "ScoreComponent.h"
 #include "BonusComponent.h"
 #include "RingComponent.h"
-#include "NetworkPlayerComponent.h"
-#include "Game.h"
 #include "GameTechRenderer.h"
-#include "../Engine/GameObject.h"
+#include "Game.h"
 #include "../Engine/GameWorld.h"
+#include "../Engine/GameObject.h"
 
 #include <algorithm>
+
 
 using namespace NCL;
 using namespace CSC8508;

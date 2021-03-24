@@ -28,7 +28,7 @@ PlayState::PlayState(Game* game, bool isNetworked) {
 	scoreObject->AddComponent<ScoreComponent>();
 	//scoreObject->AddComponent<TimeScoreComponent>(game, 1);
 
-	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	gameStateManager = GameStateManagerComponent::instance;
 }
 
 PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newState) {
@@ -88,7 +88,7 @@ void PlayState::OnAwake() {
 	if (localPlayer)
 		localPlayer->SetGameFinished(false);
 
-	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	gameStateManager = GameStateManagerComponent::instance;
 	levelID = std::min(++levelID, LEVELCOUNT);
 
 }
