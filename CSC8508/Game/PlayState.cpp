@@ -75,20 +75,20 @@ void PlayState::OnAwake() {
 		const Vector3 spawnOffsets[8]{ {0,0,0},{2,0,0},{0,0,2},{2,0,2},{2,0,-2},{-2,0,0},{0,0,-2},{-2,0,2} };
 
 		auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+		auto localPlayer = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>()[0];
 
 		for (auto player : networkPlayers) {
 			auto comp = player->GetComponent<NetworkPlayerComponent>();
-			auto pos = (player->GetTransform().GetPosition() + spawnOffsets[comp->GetPlayerID()]);
+			auto pos = localPlayer->GetTransform().GetPosition() + spawnOffsets[comp->GetPlayerID()];
 			player->GetTransform().SetPosition(pos);
 			comp->SetTargetPosition(pos);
 			player->SetIsActive(true);
 		}
 
-		auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
+		auto localPlayerComp = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 		if (localPlayer) {
-			int id = localPlayer->GetLocalPlayerID();
-			auto player = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>()[0];
-			player->GetTransform().SetPosition(player->GetTransform().GetPosition() + spawnOffsets[id]);
+			int id = localPlayerComp->GetLocalPlayerID();
+			localPlayer->GetTransform().SetPosition(localPlayer->GetTransform().GetPosition() + spawnOffsets[id]);
 		}
 
 
