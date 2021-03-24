@@ -9,8 +9,11 @@
 #include "ScoreComponent.h"
 #include"../Game/GameStateManagerComponent.h"
 
+#include "../../Common/Vector3.h"
+
 using namespace NCL;
 using namespace CSC8508;
+using namespace Maths;
 
 GameOverState::GameOverState(Game* game, bool isFinal, bool isNetworked) {
 
@@ -95,7 +98,7 @@ void GameOverState::UpdateCameraControls(float dt) {
 
 	float frameSpeed = 100 * dt;
 
-	Vector3 position = spectatorCamera->GetPosition();
+	Maths::Vector3 position = spectatorCamera->GetPosition();
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::W)) {
 		position += Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(0, 0, -1) * frameSpeed;
 	}

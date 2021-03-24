@@ -4,12 +4,13 @@
 #include <glad/glad.h>
 #include <vector>
 
-class Shadow;
-class PointLight;
-class SpotLight;
+
 namespace NCL {
-	class Maths::Vector3;
-	class Maths::Vector4;
+
+	namespace Maths {
+		class Vector3;
+		class Vector4;
+	}
 
 	namespace Rendering {
 		class ResourceManager;
@@ -21,6 +22,9 @@ namespace NCL {
 	namespace CSC8508 {
 		class RenderObject;
 		class GameWorld;
+		class PointLight;
+		class Shadow;
+		class SpotLight;
 
 		class GameTechRenderer : public OGLRenderer {
 		public:

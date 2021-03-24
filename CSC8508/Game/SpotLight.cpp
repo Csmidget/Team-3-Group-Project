@@ -1,5 +1,9 @@
 #include "SpotLight.h"
+#include "GameTechRenderer.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
+
+using namespace NCL;
+using namespace CSC8508;
 
 SpotLight::SpotLight(std::vector<glm::vec3>& position) :
 	position(position),
