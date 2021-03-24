@@ -77,7 +77,7 @@ namespace NCL {
 			void ActivateExitLobby() { exitLobby = true; }
 
 			bool IsAllPlayersFinished();
-			bool IsMajorityPlayersFinished(float percentage = 0.75f) const;
+			bool IsMajorityPlayersFinished(float percentage = 0.6f) const;
 		private:
 		
 
