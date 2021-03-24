@@ -12,7 +12,6 @@ namespace NCL {
 			PushdownResult OnUpdate(float dt, PushdownState** newState) override;
 
 			void OnAwake() override;
-			void PrintOutcome();
 			
 			void UpdateCameraControls(float dt);
 

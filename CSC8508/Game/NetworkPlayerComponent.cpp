@@ -17,11 +17,11 @@ void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 {
 	progress = std::min(1.0f, progress + (dt / timeFrame));
 
+	gameObject->GetTransform().SetOrientation(orientation);
 	transform->SetPosition(Vector3::Lerp(progress, previousPosition, targetPosition));
 
 	gameObject->GetPhysicsObject()->SetAngularVelocity(Vector3(0, 0, 0));
 	gameObject->GetPhysicsObject()->SetLinearVelocity(Vector3(0, 0, 0));
-	gameObject->GetTransform().SetOrientation(orientation);
 }
 
 void NCL::CSC8508::NetworkPlayerComponent::SetTargetPosition(Vector3 target) {

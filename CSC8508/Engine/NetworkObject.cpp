@@ -73,11 +73,13 @@ bool NetworkObject::ReadFullPacket(FullPacket &p) {
 //	}
 	lastFullState = p.fullState;
 
-	object.GetComponent<NetworkPlayerComponent>()->SetOrientation(lastFullState.orientation);
+	auto networkPlayer = object.GetComponent<NetworkPlayerComponent>();
+	networkPlayer->SetTargetPosition(lastFullState.position);
+	networkPlayer->SetOrientation(lastFullState.orientation);
 
-	object.GetTransform()
-		.SetPosition(lastFullState.position)
-		.SetOrientation(lastFullState.orientation);
+//	object.GetTransform()
+//		.SetPosition(lastFullState.position)
+//		.SetOrientation(lastFullState.orientation);
 	stateHistory.emplace_back(lastFullState);
 
 	return true;
