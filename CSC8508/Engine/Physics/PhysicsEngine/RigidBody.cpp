@@ -277,6 +277,7 @@ void RigidBody::makeKinematic()
 		{
 			isKinemtic = true;
 			body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+			body->setActivationState(DISABLE_DEACTIVATION);
 		}
 	}
 
