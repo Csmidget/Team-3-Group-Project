@@ -29,7 +29,7 @@ void GameStateManagerComponent::Start()
 void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 
 	if (game->IsNetworkGame())
-		isGameFinished = isGameFinished || game->IsAllPlayersFinished();
+		isGameFinished = isGameFinished || game->IsMajorityPlayersFinished();
 	else
 		isGameFinished = isGameFinished || isPlayerFinished;
 
