@@ -8717,8 +8717,8 @@
             }
         },
         "render": {
-            "mesh": "MaleFreeSimpleMovement1.msh",
-            "material": "MaleFreeSimpleMovement1.mat",
+            "mesh": "polysurface1.msh",
+            "material": "free_male_1_body_lowfree_male_1_head_low.mat",
             "renderScale": 1,
             "animation": "midair.anm"
         },
