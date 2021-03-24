@@ -183,12 +183,14 @@ void Game::InitIntroCamera() {
 }
 
 void Game::Clear(bool force) {
+	
+	physics->clear();
+	
 	if (force)
 		world->ForceClearAndErase();
 	else
 		world->ClearAndErase();
 
-	physics->clear();
 	Audio::SoundManager::Update();
 }
 
