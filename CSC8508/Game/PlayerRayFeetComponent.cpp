@@ -18,7 +18,6 @@ void NCL::CSC8508::PlayerRayFeetComponent::Update(float dt)
 
 	if (hit && hit->GetComponent<DisappearingPlatformComponent>())
 	{
-		std::cout << "what has been hit = " << hit->GetName() << std::endl;
 		hit->GetComponent<DisappearingPlatformComponent>()->collided = true;
 	}
 }

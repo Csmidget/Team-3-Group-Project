@@ -201,7 +201,6 @@ void Game::InitNetworkPlayers()
 	world->AddGameObject(player);
 	networkManager->SetLocalPlayer(player);
 	player->AddComponent<LocalNetworkPlayerComponent>(networkManager->GetLocalPlayer());
-	player->AddComponent<PlayerRayFeetComponent>(this);
 	player->SetPersistence(true);
 
 	std::queue<int>* lobby = networkManager->GetPlayerLobby();
@@ -210,6 +209,7 @@ void Game::InitNetworkPlayers()
 		auto player = AddCapsuleToWorld(Vector3(5, 10, 10), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
 		player->AddComponent<NetworkPlayerComponent>(playerID);
+		player->AddComponent<PlayerRayFeetComponent>(this);
 		player->SetIsActive(false);
 		player->GetPhysicsObject()->body->makeKinematic();
 
