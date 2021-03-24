@@ -1,0 +1,5989 @@
+[
+    {
+        "name": "AnimatedPlayer Variant",
+        "isStatic": false,
+        "tag": "Player",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.519999980926514,
+                "y": 1.0499999523162842,
+                "z": 10.539999961853028
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "MaleFreeSimpleMovement1.msh",
+            "material": "MaleFreeSimpleMovement1.mat",
+            "renderScale": 1,
+            "animation": "midair.anm"
+        },
+        "physics": {
+            "mass": 3.0,
+            "drag": 0.0,
+            "angularDrag": 5.0,
+            "useGravity": true,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Player"
+            },
+            {
+                "name": "SetListener",
+                "ID": 0
+            }
+        ]
+    },
+    {
+        "name": "Cylinder (14)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.619999885559082,
+                "y": 3.5999999046325685,
+                "z": 5.305970191955566
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (9)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.619999885559082,
+                "y": 3.5999999046325685,
+                "z": 11.765970230102539
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (7)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 3.90000057220459,
+                "y": 3.9700000286102297,
+                "z": 4.099999904632568
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "dirt.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (3)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 2.130000114440918
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (50)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -4.949158191680908,
+                "y": 1.0,
+                "z": 20.0703125
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -0.7072548866271973,
+                "z": 0.0,
+                "w": 0.7069587111473084
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (6)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.0600004196166993,
+                "y": 3.9700000286102297,
+                "z": 2.950000047683716
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "dirt.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (1)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 1.7799999713897706
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (33)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 15.329999923706055,
+                "y": 1.2599999904632569,
+                "z": 20.899999618530275
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (46)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -2.763427972793579,
+                "y": 0.75,
+                "z": -0.5441739559173584
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0,
+                "w": -0.00008707287634024397
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (47)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -4.835717678070068,
+                "y": 1.4600000381469727,
+                "z": 0.43423962593078616
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0,
+                "w": -0.00008707287634024397
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (54)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.1924633979797364,
+                "y": 1.4600000381469727,
+                "z": 21.147855758666993
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -0.7072548866271973,
+                "z": 0.0,
+                "w": 0.7069587111473084
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (3)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 11.960000038146973,
+                "y": 3.9700000286102297,
+                "z": 5.320000171661377
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (40)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 15.199755668640137,
+                "y": 0.75,
+                "z": 1.2900018692016602
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.7070242762565613,
+                "z": 0.0,
+                "w": 0.7071892619132996
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (23)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 12.039999961853028,
+                "y": 3.9700000286102297,
+                "z": 17.020000457763673
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (27)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 4.75,
+                "y": 3.259999990463257,
+                "z": 19.404029846191408
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (39)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 15.2002592086792,
+                "y": 1.2599999904632569,
+                "z": -0.7699980735778809
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.7070242762565613,
+                "z": 0.0,
+                "w": 0.7071892619132996
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (36)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 15.329999923706055,
+                "y": 1.4600000381469727,
+                "z": 17.1299991607666
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (45)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -4.823262691497803,
+                "y": 1.2599999904632569,
+                "z": -0.569711446762085
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0,
+                "w": -0.00008707287634024397
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 11.960000038146973,
+                "y": 3.9700000286102297,
+                "z": 2.950000047683716
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "StartPositionLvl1",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.070000171661377,
+                "y": 0.49000000953674319,
+                "z": 10.039999961853028
+            },
+            "orientation": {
+                "x": -0.5,
+                "y": -0.5,
+                "z": -0.5,
+                "w": 0.5
+            },
+            "scale": {
+                "x": 4.20419979095459,
+                "y": 4.2173848152160648,
+                "z": 0.20000000298023225
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Checkerboard.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (28)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.869999885559082,
+                "y": 3.259999990463257,
+                "z": 15.215970039367676
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (19)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.5600004196167,
+                "y": 3.9700000286102297,
+                "z": 14.649999618530274
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (26)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 4.7300004959106449,
+                "y": 3.259999990463257,
+                "z": 18.0
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (41)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.196228981018067,
+                "y": 1.4600000381469727,
+                "z": -0.7702432870864868
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.7070242762565613,
+                "z": 0.0,
+                "w": 0.7071892619132996
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (21)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 16.6200008392334
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Brickroad.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (10)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.059999942779541,
+                "y": 3.9700000286102297,
+                "z": 6.470000267028809
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (11)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.619999885559082,
+                "y": 3.5999999046325685,
+                "z": 14.010000228881836
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (16)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.05999999865889549,
+                "y": 3.259999990463257,
+                "z": 15.215970039367676
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (14)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600004196166992,
+                "y": 1.6399999856948853,
+                "z": 2.880000114440918
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "Wall.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (5)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.479999542236329,
+                "y": 3.259999990463257,
+                "z": 2.1500000953674318
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "blacktexture.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (11)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600000023841858,
+                "y": 1.6399999856948853,
+                "z": 14.789999961853028
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "Brickroad.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (15)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 6.678060054779053
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (7)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 14.789999961853028
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (15)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600000023841858,
+                "y": 1.6399999856948853,
+                "z": 4.190000534057617
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 0.7459699511528015
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (6)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 13.479999542236329
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "Wall.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (52)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -4.9361348152160648,
+                "y": 0.75,
+                "z": 19.04038429260254
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -0.7072548866271973,
+                "z": 0.0,
+                "w": 0.7069587111473084
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (9)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.06000041961669922,
+                "y": 3.259999990463257,
+                "z": 3.8940300941467287
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (6)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.479999542236329,
+                "y": 3.259999990463257,
+                "z": 3.5299999713897707
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (13)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.0600004196166993,
+                "y": 3.9700000286102297,
+                "z": 14.649999618530274
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (22)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.5600004196167,
+                "y": 3.9700000286102297,
+                "z": 17.020000457763673
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (10)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.06000041961669922,
+                "y": 3.259999990463257,
+                "z": 5.274029731750488
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (14)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 5.274029731750488
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (20)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 12.039999961853028,
+                "y": 3.9700000286102297,
+                "z": 14.649999618530274
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (15)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.0600004196166993,
+                "y": 3.9700000286102297,
+                "z": 15.869999885559082
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (7)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.479999542236329,
+                "y": 3.259999990463257,
+                "z": 4.934030055999756
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (12)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 2.490000009536743
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "dirt.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (2)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 12.34000015258789,
+                "y": 3.259999990463257,
+                "z": 3.5299999713897707
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (17)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.06000041961669922,
+                "y": 3.259999990463257,
+                "z": 16.6200008392334
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (2)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 10.4399995803833,
+                "y": 3.9700000286102297,
+                "z": 4.099999904632568
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (11)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 2.380000114440918,
+                "y": 3.9700000286102297,
+                "z": 6.470000267028809
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (22)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 18.0
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (43)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 8.790250778198243,
+                "y": 1.4600000381469727,
+                "z": -0.7715027332305908
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.7070242762565613,
+                "z": 0.0,
+                "w": 0.7071892619132996
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (136)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.190000057220459,
+                "y": 0.0,
+                "z": 9.960000038146973
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 25.0,
+                "y": 1.0,
+                "z": 25.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "whitemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (17)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -2.580000877380371,
+                "y": 3.9700000286102297,
+                "z": 17.020000457763673
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (5)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 11.765970230102539
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (2)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 2.990000009536743
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "blacktexture.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (4)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 16.15999984741211
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (5)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 17.469999313354493
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "Wall.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (4)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 10.731940269470215
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (18)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.5600004196167,
+                "y": 3.9700000286102297,
+                "z": 13.499999046325684
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 3.5
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (38)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 15.199999809265137,
+                "y": 1.0,
+                "z": 0.25999999046325686
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.7070242762565613,
+                "z": 0.0,
+                "w": 0.7071892619132996
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (1)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 4.809999942779541
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "blacktexture.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (10)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.619999885559082,
+                "y": 3.5999999046325685,
+                "z": 12.975970268249512
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (29)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.869999885559082,
+                "y": 3.259999990463257,
+                "z": 16.6200008392334
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (49)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -4.902723789215088,
+                "y": 1.4600000381469727,
+                "z": 5.839799880981445
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0,
+                "w": -0.00008707287634024397
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (9)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600004196166992,
+                "y": 1.6399999856948853,
+                "z": 17.469999313354493
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (30)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.869999885559082,
+                "y": 3.259999990463257,
+                "z": 18.0
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Directional Light",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "none",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 0.0,
+                "y": 3.0,
+                "z": 0.0
+            },
+            "orientation": {
+                "x": -0.4082178771495819,
+                "y": 0.23456968367099763,
+                "z": 0.10938163101673126,
+                "w": 0.8754261136054993
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "",
+            "material": "",
+            "renderScale": 0
+        },
+        "physics": {
+            "mass": -1.0,
+            "drag": 0.0,
+            "angularDrag": 0.0,
+            "useGravity": false,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (44)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -3.7933406829833986,
+                "y": 1.0,
+                "z": -0.5569350719451904
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0,
+                "w": -0.00008707287634024397
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (8)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.05999999865889549,
+                "y": 3.259999990463257,
+                "z": 2.490000009536743
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (24)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 4.730000972747803,
+                "y": 3.259999990463257,
+                "z": 15.215970039367676
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "Brickroad.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (16)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.059999942779541,
+                "y": 3.9700000286102297,
+                "z": 17.020000457763673
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (55)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.447322130203247,
+                "y": 1.4600000381469727,
+                "z": 21.181196212768556
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -0.7072548866271973,
+                "z": 0.0,
+                "w": 0.7069587111473084
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (15)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.619999885559082,
+                "y": 3.5999999046325685,
+                "z": 6.340000152587891
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (12)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600004196166992,
+                "y": 1.6399999856948853,
+                "z": 5.560000419616699
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (31)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 5.869999885559082,
+                "y": 3.259999990463257,
+                "z": 19.404029846191408
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (6)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 12.975970268249512
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (23)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 19.404029846191408
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (4)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.479999542236329,
+                "y": 3.259999990463257,
+                "z": 0.7459699511528015
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (1)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 12.34000015258789,
+                "y": 3.259999990463257,
+                "z": 2.1500000953674318
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "blacktexture.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (4)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 11.960000038146973,
+                "y": 3.9700000286102297,
+                "z": 6.470000267028809
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "KillFloor ",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 2.700000047683716,
+                "y": -14.0,
+                "z": 9.100000381469727
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -0.7071068286895752,
+                "z": 0.0,
+                "w": 0.7071068286895752
+            },
+            "scale": {
+                "x": 60.20195007324219,
+                "y": 1.0,
+                "z": 42.91920471191406
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "blacktexture.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        },
+        "components": [
+            {
+                "name": "Teleporter",
+                "target": {
+                    "x": 5.070000171661377,
+                    "y": 1.0,
+                    "z": 10.039999961853028
+                }
+            }
+        ]
+    },
+    {
+        "name": "Cylinder (13)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.619999885559082,
+                "y": 3.5999999046325685,
+                "z": 4.095970153808594
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (10)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600004196166992,
+                "y": 1.6399999856948853,
+                "z": 13.479999542236329
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (1)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 11.960000038146973,
+                "y": 3.9700000286102297,
+                "z": 4.099999904632568
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "blacktexture.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (14)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -2.580000877380371,
+                "y": 3.9700000286102297,
+                "z": 14.649999618530274
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "Brickroad.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (7)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 14.010000228881836
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 12.34000015258789,
+                "y": 3.259999990463257,
+                "z": 0.7459699511528015
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "blacktexture.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (20)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 15.215970039367676
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (35)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 15.329999923706055,
+                "y": 1.4600000381469727,
+                "z": 19.89596939086914
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (34)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.270000457763672,
+                "y": 0.75,
+                "z": 20.899999618530275
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (12)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.0600004196166993,
+                "y": 3.9700000286102297,
+                "z": 13.499999046325684
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "Brickroad.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (48)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -4.869999885559082,
+                "y": 1.4600000381469727,
+                "z": 3.200000047683716
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -1.0,
+                "z": 0.0,
+                "w": -0.00008707287634024397
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "wood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (42)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 11.430245399475098,
+                "y": 1.4600000381469727,
+                "z": -0.7708836793899536
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.7070242762565613,
+                "z": 0.0,
+                "w": 0.7071892619132996
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (12)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.6200000047683716,
+                "y": 3.5999999046325685,
+                "z": 3.0619401931762697
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "dirt.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (18)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.06000041961669922,
+                "y": 3.259999990463257,
+                "z": 18.0
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (19)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.06000041961669922,
+                "y": 3.259999990463257,
+                "z": 19.404029846191408
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (8)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -2.580000877380371,
+                "y": 3.9700000286102297,
+                "z": 4.099999904632568
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (51)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -4.962179660797119,
+                "y": 1.2599999904632569,
+                "z": 21.10022735595703
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -0.7072548866271973,
+                "z": 0.0,
+                "w": 0.7069587111473084
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (9)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.0600004196166993,
+                "y": 3.9700000286102297,
+                "z": 5.320000171661377
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (21)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 13.5600004196167,
+                "y": 3.9700000286102297,
+                "z": 15.869999885559082
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (8)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600004196166992,
+                "y": 1.6399999856948853,
+                "z": 16.15999984741211
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Capsule (5)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.25,
+            "height": 2.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 6.110000133514404,
+                "y": 3.9700000286102297,
+                "z": 6.470000267028809
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Capsule.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (13)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -0.5600004196166992,
+                "y": 1.6399999856948853,
+                "z": 6.869999885559082
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (53)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -3.958220958709717,
+                "y": 1.4600000381469727,
+                "z": 21.1129207611084
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": -0.7072548866271973,
+                "z": 0.0,
+                "w": 0.7069587111473084
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (11)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 4.90000057220459,
+                "y": 3.259999990463257,
+                "z": 6.678060054779053
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (3)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 12.34000015258789,
+                "y": 3.259999990463257,
+                "z": 4.934030055999756
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (8)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": -1.6200000047683716,
+                "y": 3.5999999046325685,
+                "z": 10.731940269470215
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "Brickroad.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (37)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 15.329999923706055,
+                "y": 1.4600000381469727,
+                "z": 14.489999771118164
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Sphere (2)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "sphere",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.5,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.270000457763672,
+                "y": 1.6399999856948853,
+                "z": 0.820000171661377
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Sphere.msh",
+            "material": "green.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (13)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 1.0799989700317383,
+                "y": 3.259999990463257,
+                "z": 3.8940300941467287
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "grass.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cylinder (3)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "capsule",
+            "size": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "center": {
+                "x": 5.960464477539063e-8,
+                "y": 0.0,
+                "z": -8.940696716308594e-8
+            },
+            "radius": 0.25,
+            "height": 1.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.210000038146973,
+                "y": 3.5999999046325685,
+                "z": 4.024029731750488
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cylinder.msh",
+            "material": "bluemarble.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (25)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 4.7300004959106449,
+                "y": 3.259999990463257,
+                "z": 16.6200008392334
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    },
+    {
+        "name": "Cube (32)",
+        "isStatic": false,
+        "tag": "Untagged",
+        "collider": {
+            "type": "box",
+            "size": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "center": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "radius": 0.0,
+            "height": 0.0,
+            "isTrigger": false
+        },
+        "transform": {
+            "position": {
+                "x": 14.300000190734864,
+                "y": 1.0,
+                "z": 20.899999618530275
+            },
+            "orientation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        "render": {
+            "mesh": "Cube.msh",
+            "material": "redwood.mat",
+            "renderScale": 1
+        },
+        "physics": {
+            "mass": 1.0000000116860974e-7,
+            "drag": 0.0,
+            "angularDrag": 0.05000000074505806,
+            "useGravity": true,
+            "isKinematic": false
+        }
+    }
+]
