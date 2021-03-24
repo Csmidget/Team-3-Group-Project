@@ -1,12 +1,13 @@
 #pragma once
 #include "../Engine/Component.h"
-#include<iostream>
-#include"../Audio/SoundInstance.h"
+#include <string>
 
 namespace NCL {
 	namespace CSC8508 {
 
-
+		namespace Audio {
+			class SoundInstance;
+		}
 
 		class PlaySound : public Component {
 		public:

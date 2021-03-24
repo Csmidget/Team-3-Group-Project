@@ -1,8 +1,8 @@
+#define NOMINMAX
 #include "DebugState.h"
 #include "Game.h"
 #include "PlayerComponent.h"
 #include "CameraComponent.h"
-#include "../Engine/GameObject.h"
 #include "../Engine/GameWorld.h"
 
 using namespace NCL;

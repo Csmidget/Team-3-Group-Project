@@ -1,13 +1,12 @@
+#define NOMINMAX
 #include "PlayState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "DebugState.h"
 #include "Game.h"
 #include "../Engine/GameWorld.h"
-#include "../Engine/Debug.h"
 #include "GameStateManagerComponent.h"
 #include "ScoreComponent.h"
-#include "TimeScoreComponent.h"
 #include "LocalNetworkPlayerComponent.h"
 
 using namespace NCL;
@@ -28,7 +27,7 @@ PlayState::PlayState(Game* game, bool isNetworked) {
 	scoreObject->AddComponent<ScoreComponent>();
 	//scoreObject->AddComponent<TimeScoreComponent>(game, 1);
 
-	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	gameStateManager = GameStateManagerComponent::instance;
 }
 
 PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newState) {
@@ -44,13 +43,13 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 		}
 	}
 	else {
-		Debug::Print("Press Tab to view scoreboad", Vector2(1, 10));
+		Debug::Print("Press Tab to view scoreboard", Vector2(1, 10));
 		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::TAB)) {
 			ScoreComponent::DisplayScoreboard(game, Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 	}
 
-	if (gameStateManager->IsPlayerFinished()) {
+	if (gameStateManager->IsPlayerFinished() || gameStateManager->IsGameFinished()) {
 		*newState = new GameOverState(game, levelID == LEVELCOUNT, isNetworked);
 		return PushdownResult::Push;
 	}
@@ -67,8 +66,6 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 };
 
 void PlayState::OnAwake() {
-
-	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
 
 	if (isNetworked)
 	{
@@ -88,7 +85,7 @@ void PlayState::OnAwake() {
 	if (localPlayer)
 		localPlayer->SetGameFinished(false);
 
-	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	gameStateManager = GameStateManagerComponent::instance;
 	levelID = std::min(++levelID, LEVELCOUNT);
 
 }

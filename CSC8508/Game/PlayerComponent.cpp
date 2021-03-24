@@ -1,22 +1,20 @@
 #define NOMINMAX
 
 #include "PlayerComponent.h"
+
 #include "LocalNetworkPlayerComponent.h"
 #include "GameStateManagerComponent.h"
 #include "Game.h"
-#include "../Engine/GameWorld.h"
-#include "../Engine/GameObject.h"
-#include "../Engine/GameWorld.h"
-#include "../../Common/Camera.h"
-#include "../../Common/Window.h"
-#include "../../Common/Maths.h"
 #include "CameraComponent.h"
 #include "PlayerAnimComponent.h"
 #include "ScoreComponent.h"
-#include"../Audio/SoundManager.h"
-#include <algorithm>
-#include "BonusComponent.h"
 #include "RingComponent.h"
+
+#include "../Engine/GameWorld.h"
+#include "../Audio/SoundManager.h"
+#include "../Audio/SoundInstance.h"
+
+#include <algorithm>
 
 using namespace NCL;
 using namespace CSC8508;
@@ -58,10 +56,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 }
 
 void PlayerComponent::Start() {
-	auto lnpcs = game->GetWorld()->GetComponentsOfType<LocalNetworkPlayerComponent>();
-
-	if (!lnpcs.empty())
-		lnpc = lnpcs[0];
+	lnpc = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 }
 
 void PlayerComponent::fixedUpdate(float dt) {
@@ -97,12 +92,6 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 	ScoreComponent* score = ScoreComponent::instance;
 
 	if (score) {
-		if (otherObject->HasTag("Bonus")) {
-			score->AddScore(otherObject->GetComponent<BonusComponent>()->GetBonus());
-			otherObject->OnKill();
-			return;
-		}
-
 		if (otherObject->HasTag("Ring"))
 		{
 			score->AddScore(otherObject->GetComponent<RingComponent>()->GetBonus());
@@ -110,7 +99,7 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 			return;
 		}
 
-		if (otherObject->HasTag("Goal")) game->GetWorld()->GetComponentOfType<GameStateManagerComponent>()->SetPlayerFinished(true);
+		if (otherObject->HasTag("Goal")) GameStateManagerComponent::instance->SetPlayerFinished(true);
 
 	}
 }
