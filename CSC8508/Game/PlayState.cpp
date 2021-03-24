@@ -85,7 +85,7 @@ void PlayState::InitSpawns() {
 	}
 
 	auto localPlayerComp = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
-	if (localPlayer) {
+	if (localPlayerComp) {
 		int id = localPlayerComp->GetLocalPlayerID();
 		localPlayer->GetTransform().SetPosition(localPlayer->GetTransform().GetPosition() + spawnOffsets[id]);
 	}
