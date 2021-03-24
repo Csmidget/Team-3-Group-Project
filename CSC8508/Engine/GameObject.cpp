@@ -1,8 +1,10 @@
 #include "GameObject.h"
+
 #include "GameWorld.h"
 #include "CollisionDetection.h"
 #include "Debug.h"
 #include "Component.h"
+
 #include <sstream>
 
 using namespace NCL::CSC8508;

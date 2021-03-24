@@ -1,35 +1,42 @@
 #pragma once
 
 #include "../../include/glm/glm.hpp"
-#include "../../include/glm/gtc/matrix_transform.hpp"
-#include "../../include/glm/gtc/type_ptr.hpp"
-#include "GameTechRenderer.h"
 
+#include <vector>
 
-class SpotLight
-{
-public:
-	SpotLight(std::vector<glm::vec3>& position);
-	void render(NCL::Rendering::OGLShader* lightshader);
+namespace NCL {
 
-	int getSpotNumber();
-	std::vector<glm::vec3> getPos();
-	float getFarPlane();
-	glm::vec3 getDirect() { return direct; }
+	namespace Rendering {
+		class OGLShader;
+	}
 
-	glm::mat4 getLightVPMatrix(int idx);
+	namespace CSC8508 {
+		class SpotLight
+		{
+		public:
+			SpotLight(std::vector<glm::vec3>& position);
+			void render(NCL::Rendering::OGLShader* lightshader);
 
-private:
-	std::vector<glm::vec3> position;
-	glm::vec3 direct;
-	glm::vec3 ambient;
-	glm::vec3 diffuse;
-	glm::vec3 specular;
+			int getSpotNumber();
+			std::vector<glm::vec3> getPos();
+			float getFarPlane();
+			glm::vec3 getDirect() { return direct; }
 
-	float constant;
-	float linear;
-	float quadratic;
-	float farPlane = 50.0f;
+			glm::mat4 getLightVPMatrix(int idx);
 
-};
+		private:
+			std::vector<glm::vec3> position;
+			glm::vec3 direct;
+			glm::vec3 ambient;
+			glm::vec3 diffuse;
+			glm::vec3 specular;
 
+			float constant;
+			float linear;
+			float quadratic;
+			float farPlane = 50.0f;
+
+		};
+
+	}
+}

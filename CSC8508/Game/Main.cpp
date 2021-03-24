@@ -1,12 +1,7 @@
 
 #include "../../Common/Window.h"
 
-#include "../Engine/PushdownMachine.h"
-#include "IntroState.h"
-
 #include "Game.h"
-#include "../Engine/Debug.cpp"
-#include "GameStateManagerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;

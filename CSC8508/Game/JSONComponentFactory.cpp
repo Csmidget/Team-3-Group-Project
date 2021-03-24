@@ -1,5 +1,6 @@
 #include "JsonComponentFactory.h"
 #include "JSONShared.h"
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
 
 #include "PlayerComponent.h"
 #include "RespawnComponent.h"
@@ -36,7 +37,7 @@ Component* JSONComponentFactory::AddComponentFromJson(json componentJson, GameOb
 	if (name == "Ring")			return gameObject->AddComponent<RingComponent>(10);
 	if (name == "SetListener")	return gameObject->AddComponent<SetListener>(componentJson["ID"]);
 	if (name == "Teleporter")	return gameObject->AddComponent<TeleporterComponent>(JsonToVector3(componentJson["target"]));
-	if (name == "TimeScoreComponent")			return gameObject->AddComponent<TimeScoreComponent>(game, componentJson["strength"], componentJson["startingPoints"]);
+	if (name == "TimeScoreComponent")			return gameObject->AddComponent<TimeScoreComponent>(componentJson["strength"], componentJson["startingPoints"]);
 
 	return nullptr;
 }

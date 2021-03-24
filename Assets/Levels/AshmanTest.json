@@ -8231,7 +8231,10 @@
                 "name": "Player"
             },
             {
-                "name": "ScoreComponent"
+                "name": "TimeScoreComponent",
+                "strength": 1,
+                "startingPoints": 0
+
             },
             {
                 "name": "SetListener",

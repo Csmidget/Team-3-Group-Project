@@ -9,8 +9,11 @@
 #include "ScoreComponent.h"
 #include"../Game/GameStateManagerComponent.h"
 
+#include "../../Common/Vector3.h"
+
 using namespace NCL;
 using namespace CSC8508;
+using namespace Maths;
 
 GameOverState::GameOverState(Game* game, bool isFinal, bool isNetworked) {
 
@@ -31,7 +34,9 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::R)) return PushdownResult::Top;
 	
-	game->getRenderer()->DrawString("Level Complete!", Vector2(35, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+	std::string completeString = isFinal ? "Game Completed!" : "Level Complete";
+
+	game->getRenderer()->DrawString(completeString, Vector2(35, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
 	game->getRenderer()->DrawString("Press R to return to Menu", Vector2(34, 99), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);
 
 	if (isFinal)
@@ -64,7 +69,7 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 void GameOverState::OnAwake() {
 
 	spectatorCamera = CameraComponent::GetMain();
-	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	gameStateManager = GameStateManagerComponent::instance;
 
 	auto playerObject = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>();
 	
@@ -93,7 +98,7 @@ void GameOverState::UpdateCameraControls(float dt) {
 
 	float frameSpeed = 100 * dt;
 
-	Vector3 position = spectatorCamera->GetPosition();
+	Maths::Vector3 position = spectatorCamera->GetPosition();
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::W)) {
 		position += Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(0, 0, -1) * frameSpeed;
 	}

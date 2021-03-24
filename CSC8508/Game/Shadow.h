@@ -1,27 +1,34 @@
 #pragma once
 
-#include "../../include/glm/glm.hpp"
-#include "../../include/glm/gtc/matrix_transform.hpp"
-#include "../../include/glm/gtc/type_ptr.hpp"
-#include "GameTechRenderer.h"
-#include "PointLight.h"
-#include "SpotLight.h"
+namespace NCL {
 
-class Shadow
-{
-public:
-	Shadow();
+	namespace Rendering {
+		class OGLShader;
+	}
 
-	unsigned int getCubemapTexture();
-	unsigned int get2DmapTexture();
-	void BindShadowFBOAsCubemap();
-	void BindShadowFBOAs2D();
+	namespace CSC8508 {
+		class PointLight;
+		class SpotLight;
 
-	void DrawPointLightShadowMap(NCL::Rendering::OGLShader* shadowshader, PointLight& pointlight, int index);
-	void DrawSpotLightShadowMap(NCL::Rendering::OGLShader* shadowshader, SpotLight& pointlight, int index);
-protected:
-	unsigned depthMapFBO;
-	unsigned depthCubemap;
-	unsigned depth2Dmap;
-};
+		class Shadow
+		{
+		public:
+			Shadow();
+
+			unsigned int getCubemapTexture();
+			unsigned int get2DmapTexture();
+			void BindShadowFBOAsCubemap();
+			void BindShadowFBOAs2D();
+
+			void DrawPointLightShadowMap(NCL::Rendering::OGLShader* shadowshader, PointLight& pointlight, int index);
+			void DrawSpotLightShadowMap(NCL::Rendering::OGLShader* shadowshader, SpotLight& pointlight, int index);
+		protected:
+			unsigned depthMapFBO;
+			unsigned depthCubemap;
+			unsigned depth2Dmap;
+		};
+	}
+}
+
+
 

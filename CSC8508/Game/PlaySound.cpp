@@ -1,5 +1,6 @@
 #pragma once
 #include"PlaySound.h"
+#include"../Audio/SoundInstance.h"
 #include"../Audio/SoundManager.h"
 #include"../Engine/GameObject.h"
 

@@ -1,5 +1,6 @@
 #include "GameTechRenderer.h"
 #include "CameraComponent.h"
+#include "../Engine/GameWorld.h"
 #include "../Engine/GameObject.h"
 #include "../../Common/Camera.h"
 #include "../../Common/Vector2.h"
@@ -7,7 +8,11 @@
 #include "../../Common/TextureLoader.h"
 #include "../../Common/Maths.h"
 #include "../../Common/MeshAnimation.h"
+#include "../../Common/ResourceManager.h"
 
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
+#include "../../Plugins/OpenGLRendering/OGLTexture.h"
+#include "../../Plugins/OpenGLRendering/OGLMesh.h"
 
 #include "../../include/glm/glm.hpp"
 #include "../../include/glm/gtc/matrix_transform.hpp"

@@ -1,8 +1,8 @@
 #include "LocalNetworkPlayerComponent.h"
-#include "ScoreComponent.h"
-#include "Game.h"
-#include "../Engine/GameWorld.h"
 #include "GameStateManagerComponent.h"
+#include "ScoreComponent.h"
+#include "../Engine/NetworkManager.h"
+
 using namespace NCL;
 using namespace CSC8508;
 

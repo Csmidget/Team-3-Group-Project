@@ -1,10 +1,10 @@
 #pragma once
-
-#include <vector>
 #include "Ray.h"
 #include "CollisionDetection.h"
 #include "QuadTree.h"
 #include "GameObject.h"
+
+#include <vector>
 
 namespace NCL {
 		class Camera;

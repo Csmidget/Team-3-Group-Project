@@ -2,31 +2,19 @@
 #include "JSONLevelFactory.h"
 #include "GameTechRenderer.h"
 #include "IntroState.h"
-#include "PlayerComponent.h"
-#include "RespawnComponent.h"
 #include "CameraComponent.h"
-#include "TeleporterComponent.h"
-#include"SetListener.h"
-#include"PlaySound.h"
-#include "ScoreComponent.h"
-#include "RingComponent.h"
-#include "TimeScoreComponent.h"
+#include "LocalNetworkPlayerComponent.h"
 
 #include "../Engine/GameWorld.h"
-#include "../Engine/PhysicsSystem.h"
-#include "../Engine/PositionConstraint.h"
-#include "../Engine/OrientationConstraint.h"
-#include "../Engine/Physics/PhysicsEngine/BulletWorld.cpp"
-
-
-//JENKINS TEST 3
+#include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
+#include "../Engine/NetworkManager.h"
 #include "../Engine/PushdownMachine.h"
+
 #include"../Audio/SoundManager.h"
 #include"../Audio/SoundInstance.h"
-#include "../../Common/TextureLoader.h"
-#include "../../Common/ShaderBase.h"
+
 #include "../../Plugins/OpenGLRendering/OGLResourceManager.h"
-#include "LocalNetworkPlayerComponent.h"
+
 
 using namespace NCL;
 using namespace CSC8508;
@@ -128,6 +116,11 @@ bool NCL::CSC8508::Game::IsAllPlayersFinished()
 	return !networkManager ? false : networkManager->IsAllPlayersFinished();
 }
 
+bool NCL::CSC8508::Game::IsMajorityPlayersFinished()
+{
+	return !networkManager ? false : networkManager->IsMajorityPlayersFinished();
+}
+
 
 GameObject* Game::Raycast(const Vector3& from, const Vector3& to) const {
 	return physics->rayIntersect(from, to, Vector3());
@@ -214,9 +207,6 @@ void Game::InitNetworkPlayers()
 		int playerID = lobby->front();
 		auto player = AddCapsuleToWorld(Vector3(0, 5, 0), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
-		player->GetPhysicsObject()->body->makeKinematic();
-
-		networkManager->AddPlayerToGame(lobby->front(), player);
 		player->AddComponent<NetworkPlayerComponent>(playerID);
 
 		networkManager->AddPlayerToGame(playerID, player);
