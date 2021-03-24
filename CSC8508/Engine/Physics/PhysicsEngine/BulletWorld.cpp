@@ -165,11 +165,13 @@ void BulletWorld::checkCollisions()
 //dispatcher etc may need to be reset manually here
 void BulletWorld::clear()
 {
+	for (auto i : constraintList)
+		dynamicsWorld->removeConstraint(i);
+
 	for (auto i : rigidList)
 		removeRigidBody(i);
 	
-	for (auto i : constraintList)
-		dynamicsWorld->removeConstraint(i);
+	//dynamicsWorld->constraint
 
 	rigidList.clear();
 	contactList.clear();
