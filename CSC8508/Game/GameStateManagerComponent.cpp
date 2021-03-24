@@ -36,7 +36,7 @@ void GameStateManagerComponent::Start()
 
 void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 
-	if (levelID == 2) {
+	if (levelID != 2) {
 		if (!majorityFinished && game->IsMajorityPlayersFinished())
 		{
 			finishTimer = 15.0f;
