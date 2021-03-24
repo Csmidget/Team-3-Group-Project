@@ -42,20 +42,17 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 			*newState = new PauseState(game);
 			return PushdownResult::Push;
 		}
-		if (gameStateManager->IsGameFinished()) {
-			*newState = new GameOverState(game, levelID == LEVELCOUNT, isNetworked);
-			return PushdownResult::Push;
-		}
 	}
 	else {
 		Debug::Print("Press Tab to view scoreboad", Vector2(1, 10));
 		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::TAB)) {
 			ScoreComponent::DisplayScoreboard(game, Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
-		if (gameStateManager->IsGameFinished()) {
-			*newState = new GameOverState(game, levelID == LEVELCOUNT, isNetworked);
-			return PushdownResult::Push;
-		}
+	}
+
+	if (gameStateManager->IsGameFinished()) {
+		*newState = new GameOverState(game, levelID == LEVELCOUNT, isNetworked);
+		return PushdownResult::Push;
 	}
 
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {

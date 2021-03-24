@@ -22,6 +22,7 @@ namespace NCL {
 				void Update(float dt);
 				void SetPlayerFinished(bool val) { isPlayerFinished = val; }
 				bool IsGameFinished() const { return isGameFinished; }
+				bool IsPlayerFinished() const { return isPlayerFinished; }
 			private:
 				bool IsGameOver();
 
