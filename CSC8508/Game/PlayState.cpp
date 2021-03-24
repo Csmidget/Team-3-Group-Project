@@ -77,10 +77,6 @@ void PlayState::OnAwake() {
 		for (auto player : networkPlayers)
 			player->SetIsActive(true);
 
-		if (!gameStateManager->IsGameFinished()) return;
-			game->InitWorld(levels[levelID]);
-		
-
 		const Vector3 spawnOffsets[8]{ {0,0,0},{3,0,0},{0,0,3},{3,0,3},{3,0,-3},{-3,0,0},{0,0,-3},{-3,0,3} };
 		auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 		if (localPlayer) {
@@ -88,8 +84,11 @@ void PlayState::OnAwake() {
 			auto player = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>()[0];
 			player->GetTransform().SetPosition(player->GetTransform().GetPosition() + spawnOffsets[id]);
 		}
-			
-			
+
+		if (!gameStateManager->IsGameFinished()) return;
+
+		game->InitWorld(levels[levelID]);
+		
 
 	}
 	else
