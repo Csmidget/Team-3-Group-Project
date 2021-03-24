@@ -152,7 +152,7 @@ bool NCL::CSC8508::NetworkManager::IsMajorityPlayersFinished(float percentage) c
 	int playersFinished = GetNoOfPlayersFinished();
 	int totalPlayers = serverPlayers.size() + isClient ? 1 : 0;
 
-	return playersFinished > std::round(totalPlayers * percentage);
+	return playersFinished > std::ceil(totalPlayers * percentage);
 }
 
 void NCL::CSC8508::NetworkManager::StartAsServer()
