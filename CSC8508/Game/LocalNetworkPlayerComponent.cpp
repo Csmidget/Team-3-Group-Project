@@ -28,6 +28,6 @@ void LocalNetworkPlayerComponent::Update(float dt)
 
 	localPlayer->score = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
 
-	localPlayer->isFinished = GameStateManagerComponent::instance ? GameStateManagerComponent::instance->IsGameFinished() : false;
+	localPlayer->isFinished = GameStateManagerComponent::instance ? GameStateManagerComponent::instance->IsPlayerFinished() : false;
 	//localPlayer->isFinished = score->IsFinished();
 }

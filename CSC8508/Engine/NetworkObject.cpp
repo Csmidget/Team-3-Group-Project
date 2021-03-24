@@ -49,7 +49,10 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 
 	Vector3		fullPos			= lastFullState.position;
 	Quaternion  fullOrientation = lastFullState.orientation;
-	object.GetComponent<NetworkPlayerComponent>()->SetOrientation(fullOrientation);
+
+	auto networkPlayer = object.GetComponent<NetworkPlayerComponent>();
+	networkPlayer->SetTargetPosition(fullPos);
+	networkPlayer->SetOrientation(fullOrientation);
 
 	fullPos.x += p.pos[0];
 	fullPos.y += p.pos[1];
@@ -60,8 +63,7 @@ bool NetworkObject::ReadDeltaPacket(DeltaPacket &p) {
 	fullOrientation.z += ((float)p.orientation[2]) / 127.0f;
 	fullOrientation.w += ((float)p.orientation[3]) / 127.0f;
 
-
-	object.GetTransform().SetPosition(fullPos).SetOrientation(fullOrientation);
+	//object.GetTransform().SetPosition(fullPos).SetOrientation(fullOrientation);
 	return true;
 }
 
@@ -71,11 +73,13 @@ bool NetworkObject::ReadFullPacket(FullPacket &p) {
 //	}
 	lastFullState = p.fullState;
 
-	object.GetComponent<NetworkPlayerComponent>()->SetOrientation(lastFullState.orientation);
+	auto networkPlayer = object.GetComponent<NetworkPlayerComponent>();
+	networkPlayer->SetTargetPosition(lastFullState.position);
+	networkPlayer->SetOrientation(lastFullState.orientation);
 
-	object.GetTransform()
-		.SetPosition(lastFullState.position)
-		.SetOrientation(lastFullState.orientation);
+//	object.GetTransform()
+//		.SetPosition(lastFullState.position)
+//		.SetOrientation(lastFullState.orientation);
 	stateHistory.emplace_back(lastFullState);
 
 	return true;

@@ -28,8 +28,8 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 	receiveInputs = true;
 
 	recquestedJump = false;
+
 	jump = 7.5f;
-	//jump = 110.f;
 
 	MAX_WALKING_SPEED = 6.0f;
 	MAX_AIR_SPEED = 10000.f;
@@ -110,7 +110,7 @@ void PlayerComponent::OnCollisionBegin(GameObject* otherObject)
 			return;
 		}
 
-		if (otherObject->HasTag("Goal")) game->GetWorld()->GetComponentOfType<GameStateManagerComponent>()->SetFinished(true);
+		if (otherObject->HasTag("Goal")) game->GetWorld()->GetComponentOfType<GameStateManagerComponent>()->SetPlayerFinished(true);
 
 	}
 }
