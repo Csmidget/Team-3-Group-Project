@@ -77,7 +77,18 @@ void PlayState::OnAwake() {
 			player->SetIsActive(true);
 
 		if (!gameStateManager->IsGameFinished()) return;
-			game->InitWorld(levels[levelID]);		
+			game->InitWorld(levels[levelID]);
+		
+		auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
+		if (localPlayer) {
+			int id = localPlayer->GetLocalPlayerID();
+			auto player = game->GetWorld()->GetObjectsWithComponent<LocalNetworkPlayerComponent>()[0];
+			player->GetTransform().SetPosition(player->GetTransform().GetPosition() + Vector3(3 * id, 0, 0));
+		
+		}
+			
+			
+
 	}
 	else
 	{

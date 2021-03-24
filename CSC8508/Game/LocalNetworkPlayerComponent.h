@@ -17,6 +17,7 @@ namespace NCL {
 				void SetTransform(const Maths::Vector3& pos, const Maths::Quaternion& orientation);
 				void SetGameFinished(bool val);
 				void Update(float dt);
+				int GetLocalPlayerID() const;
 			protected:
 				LocalPlayer* localPlayer;
 		};
