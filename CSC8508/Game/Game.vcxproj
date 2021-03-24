@@ -170,6 +170,7 @@
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayerAnimComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="PlayerRayFeetComponent.cpp" />
     <ClCompile Include="PlaySound.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="PointLight.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayerAnimComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="PlayerRayFeetComponent.h" />
     <ClInclude Include="PlaySound.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="PointLight.h" />

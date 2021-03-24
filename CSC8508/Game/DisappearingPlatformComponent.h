@@ -11,10 +11,12 @@ namespace NCL {
 
 			void Update(float dt) override;
 			void OnCollisionBegin(GameObject* otherObject) override;
+
+			bool collided;
+
 		private:
 			const float MAX_TIMER = 1.2f;
 			float timer;
-			bool collided;
 
 			void Disappear();
 		};

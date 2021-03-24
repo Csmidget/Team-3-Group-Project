@@ -117,6 +117,9 @@
     <ClCompile Include="HingeComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerRayFeetComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTechRenderer.h">
@@ -204,6 +207,9 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="HingeComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRayFeetComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
