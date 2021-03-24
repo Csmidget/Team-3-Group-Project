@@ -1,15 +1,15 @@
 #include "GameOverState.h"
-#include "../Engine/GameWorld.h"
 #include "Game.h"
 #include "CameraComponent.h"
-#include"PlayerComponent.h"
-#include <iostream>
-#include "../Engine/Debug.h"
+#include "PlayerComponent.h"
 #include "GameTechRenderer.h"
 #include "ScoreComponent.h"
-#include"../Game/GameStateManagerComponent.h"
+#include "GameStateManagerComponent.h"
 
+#include "../Engine/GameWorld.h"
 #include "../../Common/Vector3.h"
+
+#include <iostream>
 
 using namespace NCL;
 using namespace CSC8508;

@@ -1,7 +1,8 @@
 #include "LobbyState.h"
 #include "Game.h"
-#include "../../Common/Window.h"
 #include "PlayState.h"
+
+#include "../../Common/Window.h"
 using namespace NCL;
 using namespace CSC8508;
 

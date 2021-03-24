@@ -2,12 +2,12 @@
 #include "PlayState.h"
 #include "LobbyState.h"
 #include "Game.h"
+#include "CameraComponent.h"
+
 #include "../Engine/GameWorld.h"
 #include "../Engine/Debug.h"
 #include "../Engine/CollisionDetection.h"
 #include "../../Common/Window.h"
-#include "../../Common/Camera.h"
-#include "CameraComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;

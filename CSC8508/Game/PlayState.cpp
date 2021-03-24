@@ -5,12 +5,9 @@
 #include "DebugState.h"
 #include "Game.h"
 #include "../Engine/GameWorld.h"
-#include "../Engine/Debug.h"
 #include "GameStateManagerComponent.h"
 #include "ScoreComponent.h"
-#include "TimeScoreComponent.h"
 #include "LocalNetworkPlayerComponent.h"
-#include "NetworkPlayerComponent.h"
 
 using namespace NCL;
 using namespace CSC8508;
@@ -69,8 +66,6 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 };
 
 void PlayState::OnAwake() {
-
-	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
 
 	if (isNetworked)
 	{

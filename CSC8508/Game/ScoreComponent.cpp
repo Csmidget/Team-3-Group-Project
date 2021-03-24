@@ -1,6 +1,5 @@
 #define NOMINMAX
 #include "ScoreComponent.h"
-#include "BonusComponent.h"
 #include "RingComponent.h"
 #include "GameTechRenderer.h"
 #include "Game.h"
@@ -67,24 +66,4 @@ ScoreComponent::~ScoreComponent()
 void ScoreComponent::AddScore(int val)
 {
 	this->score = std::max(0, (score + val));
-}
-
-void ScoreComponent::OnCollisionBegin(GameObject* otherObject)
-{
-	if (!otherObject->IsActive()) return;
-
-	if (otherObject->HasTag("Bonus")) {
-		score += otherObject->GetComponent<BonusComponent>()->GetBonus();
-		otherObject->OnKill();
-		return;
-	}
-
-	if (otherObject->HasTag("Ring"))
-	{
-		score += otherObject->GetComponent<RingComponent>()->GetBonus();
-		otherObject->OnKill();
-		return;
-	}
-
-	if (otherObject->HasTag("Goal")) hasFinished = true;
 }
