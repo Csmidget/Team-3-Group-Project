@@ -1,6 +1,7 @@
 #include "SpotLight.h"
 #include "GameTechRenderer.h"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
+#include "../../include/glm/gtc/type_ptr.hpp"
 
 using namespace NCL;
 using namespace CSC8508;

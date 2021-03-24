@@ -1,6 +1,7 @@
 #include "Shadow.h"
 #include "PointLight.h"
 #include "SpotLight.h"
+#include "../../include/glm/gtc/type_ptr.hpp"
 #include "../../Plugins/OpenGLRendering/OGLShader.h"
 #include <iostream>
 
