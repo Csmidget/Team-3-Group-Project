@@ -33,13 +33,23 @@ PlayState::PlayState(Game* game, bool isNetworked) {
 
 PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newState) {
 
-	Debug::Print("Press P to pause", Vector2(1, 5));
-	Debug::Print("Press F1 to return to main menu", Vector2(1, 10));
+	Debug::Print("Press F1 to return to main menu", Vector2(1, 5));
 
-	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::P)) {
-		*newState = new PauseState(game);
-		return PushdownResult::Push;
+	if (!isNetworked) {
+		Debug::Print("Press P to pause", Vector2(1, 10));
+
+		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::P)) {
+			*newState = new PauseState(game);
+			return PushdownResult::Push;
+		}
 	}
+	else {
+		Debug::Print("Press Tab to view scoreboad", Vector2(1, 10));
+		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::TAB)) {
+			ScoreComponent::DisplayScoreboard(game, Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+		}
+	}
+
 	if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::T)) {
 		*newState = new DebugState(game);
 		return PushdownResult::Push;
