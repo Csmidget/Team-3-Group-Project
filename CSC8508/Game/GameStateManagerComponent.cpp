@@ -1,6 +1,7 @@
 #include "GameStateManagerComponent.h"
 #include "Game.h"
 #include "../Engine/GameWorld.h"
+#include "GameTechRenderer.h"
 
 GameStateManagerComponent* GameStateManagerComponent::instance = nullptr;
 
@@ -27,6 +28,21 @@ void GameStateManagerComponent::Start()
 }
 
 void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
+
+	if (!majorityFinished && game->IsMajorityPlayersFinished())
+	{
+		finishTimer = 15.0f;
+	}
+
+	majorityFinished = game->IsMajorityPlayersFinished();
+
+	if (majorityFinished)
+	{
+		finishTimer = std::max(0.0f, finishTimer - dt);
+		if (!isGameFinished) game->getRenderer()->DrawString("Time remaining: " + std::to_string((int)finishTimer),Vector2(80,90),Vector4(1.0f,1.0f,1.0f,1.0f),12.0f);
+		if (finishTimer <= 0.0f)
+			isGameFinished = true;
+	}
 
 	if (game->IsNetworkGame())
 		isGameFinished = isGameFinished || game->IsAllPlayersFinished();
