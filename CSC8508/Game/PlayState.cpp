@@ -4,11 +4,12 @@
 #include "GameOverState.h"
 #include "DebugState.h"
 #include "Game.h"
-#include "../Engine/GameWorld.h"
 #include "GameStateManagerComponent.h"
 #include "ScoreComponent.h"
 #include "LocalNetworkPlayerComponent.h"
 #include "NetworkPlayerComponent.h"
+#include "PlayerComponent.h"
+#include "../Engine/GameWorld.h"
 
 using namespace NCL;
 using namespace CSC8508;
