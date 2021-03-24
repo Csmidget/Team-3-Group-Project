@@ -68,8 +68,14 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 
 void PlayState::OnAwake() {
 
+
 	if (isNetworked)
 	{
+		auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+
+		for (auto player : networkPlayers)
+			player->SetIsActive(true);
+
 		if (!gameStateManager->IsGameFinished()) return;
 			game->InitWorld(levels[levelID]);		
 	}
@@ -78,11 +84,6 @@ void PlayState::OnAwake() {
 		if (!gameStateManager->IsGameFinished()) return;
 		game->InitWorld(levels[levelID]);
 	}
-	
-	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
-
-	for (auto player : networkPlayers)
-		player->SetIsActive(true);
 
 	auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 	if (localPlayer)
