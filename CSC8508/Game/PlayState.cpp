@@ -72,18 +72,25 @@ void PlayState::OnAwake() {
 
 	if (isNetworked)
 	{
+		const Vector3 spawnOffsets[8]{ {0,0,0},{2,0,0},{0,0,2},{2,0,2},{2,0,-2},{-2,0,0},{0,0,-2},{-2,0,2} };
+
 		auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
 
-		for (auto player : networkPlayers)
+		for (auto player : networkPlayers) {
+			auto comp = player->GetComponent<NetworkPlayerComponent>();
+			auto pos = (player->GetTransform().GetPosition() + spawnOffsets[comp->GetPlayerID()]);
+			player->GetTransform().SetPosition(pos);
+			comp->SetTargetPosition(pos);
 			player->SetIsActive(true);
+		}
 
-		const Vector3 spawnOffsets[8]{ {0,0,0},{2,0,0},{0,0,2},{2,0,2},{2,0,-2},{-2,0,0},{0,0,-2},{-2,0,2} };
 		auto localPlayer = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
 		if (localPlayer) {
 			int id = localPlayer->GetLocalPlayerID();
 			auto player = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>()[0];
 			player->GetTransform().SetPosition(player->GetTransform().GetPosition() + spawnOffsets[id]);
 		}
+
 
 		if (!gameStateManager->IsGameFinished()) return;
 

@@ -20,7 +20,7 @@ namespace NCL {
 				bool isFinished() { return isLevelFinished; }
 				void SetIsFinished(bool isFinished) ;
 				void OnActive() override;
-		
+				int GetPlayerID() const { return playerID; }
 
 			private:
 				Maths::Vector3 targetPosition;
