@@ -8,14 +8,32 @@ using namespace Maths;
 
 NCL::CSC8508::NetworkPlayerComponent::NetworkPlayerComponent(GameObject* object) : Component("NetworkPlayerComponent", object)
 {
-
+	playerID = id;
+	object->SetPersistence(true);
+	timeFrame = 0.1f;
 }
 
 void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 {
+	progress = std::min(1.0f, progress + (dt / timeFrame));
+
+	transform->SetPosition(Vector3::Lerp(progress, previousPosition, targetPosition));
+
 	gameObject->GetPhysicsObject()->SetAngularVelocity(Vector3(0, 0, 0));
 	gameObject->GetPhysicsObject()->SetLinearVelocity(Vector3(0, 0, 0));
 	gameObject->GetTransform().SetOrientation(orientation);
+}
+
+void NCL::CSC8508::NetworkPlayerComponent::SetTargetPosition(Vector3 target) {
+	targetPosition = target;
+	previousPosition = transform->GetPosition();
+	progress = 0;
+}
+
+void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
+	if (isFinished) {
+		if(!isLevelFinished) std::cout << "Player " << std::to_string(playerID) << " has finished with score " << score << std::endl;
+	}
 	
 }
 
