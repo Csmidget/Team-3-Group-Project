@@ -24,7 +24,7 @@ void NCL::CSC8508::NetworkPlayerComponent::Update(float dt)
 	gameObject->GetPhysicsObject()->SetAngularVelocity(Vector3(0, 0, 0));
 	gameObject->GetPhysicsObject()->SetLinearVelocity(Vector3(0, 0, 0));
 
-	if (GameStateManagerComponent::instance->IsGameFinished() && gameObject->IsActive())
+	if (GameStateManagerComponent::instance && GameStateManagerComponent::instance->IsGameFinished() && gameObject->IsActive())
 		gameObject->SetIsActive(false);
 
 }
@@ -37,7 +37,7 @@ void NCL::CSC8508::NetworkPlayerComponent::SetTargetPosition(Vector3 target) {
 
 void NCL::CSC8508::NetworkPlayerComponent::SetIsFinished(bool isFinished) {
 
-	if (!GameStateManagerComponent::instance->IsGameFinished()) {
+	if (GameStateManagerComponent::instance && !GameStateManagerComponent::instance->IsGameFinished()) {
 		if (isFinished) {
 			if (!isLevelFinished) std::cout << "Player " << std::to_string(playerID) << " has finished with score " << score << std::endl;
 		}
