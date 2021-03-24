@@ -72,12 +72,12 @@ void PlayState::OnAwake() {
 
 	if (isNetworked)
 	{
-		if (!gameStateManager->IsPlayerFinished()) return;
+		if (!gameStateManager->IsGameFinished()) return;
 			game->InitWorld(levels[levelID]);		
 	}
 	else
 	{
-		if (!gameStateManager->IsPlayerFinished()) return;
+		if (!gameStateManager->IsGameFinished()) return;
 		game->InitWorld(levels[levelID]);
 	}
 	
