@@ -17,6 +17,7 @@ namespace NCL {
 			public:
 				LocalNetworkPlayerComponent(GameObject* object, LocalPlayer* localPlayer);
 				void SetTransform(const Vector3& pos, const Quaternion& orientation);
+				void SetGameFinished(bool val);
 				void Update(float dt);
 			protected:
 				LocalPlayer* localPlayer;

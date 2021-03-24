@@ -133,13 +133,15 @@ bool NCL::CSC8508::NetworkManager::IsExitLobbyTime()
 bool NCL::CSC8508::NetworkManager::IsAllPlayersFinished()
 {
 	NetworkPlayerComponent* npc;
-	for (int i = 0; i < serverPlayers.size(); i++) {
-		npc = serverPlayers.at(i)->GetNetworkPlayerComponent();
+	for (auto i = serverPlayers.begin(); i != serverPlayers.end(); ++i) {
+		npc = i->second->GetNetworkPlayerComponent();
 		if (!npc->isFinished()) return false;
 
 	}
-	if (isClient)
+
+	if (isClient) 
 		if (!localPlayer->isFinished) return false;
+	
 
 	std::cout << "All Players Finished " << std::endl;
 	return true;
@@ -150,6 +152,7 @@ void NCL::CSC8508::NetworkManager::StartAsServer()
 	thisServer = new GameServer(NetworkBase::GetDefaultPort(), MAX_CLIENTS,  this);
 	thisServer->RegisterPacketHandler(Received_State, this);
 	thisServer->RegisterPacketHandler(Player_Finished, this);
+	thisServer->RegisterPacketHandler(Player_State, this);
 }
 
 void NCL::CSC8508::NetworkManager::StartAsClient()
@@ -164,6 +167,7 @@ void NCL::CSC8508::NetworkManager::StartAsClient()
 	thisClient->RegisterPacketHandler(Player_Count, this);
 	thisClient->RegisterPacketHandler(Player_Finished, this);
 	thisClient->RegisterPacketHandler(Exit_Lobby, this);
+	thisClient->RegisterPacketHandler(Player_State, this);
 
 }
 
@@ -204,17 +208,21 @@ void NCL::CSC8508::NetworkManager::UpdateLocalPlayer(float dt)
 {
 	GamePacket* newPacket;
 
-	if (!localPlayer->isFinished) {		//Update Positions and Orientations
+//	if (!localPlayer->isFinished) {		//Update Positions and Orientations
 
 		localPlayer->player->WritePacket(&newPacket, dt, stateID);
 		thisClient->SendPacket(*newPacket);
-	}
-	else {	//Update Finish Status
-		newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), localPlayer->score);
-		thisClient->SendPacket(*newPacket);
-	}
+		delete newPacket;
 
+	//}
+	newPacket = new PlayerStatusPacket(localPlayer->player->GetPlayerID(), localPlayer->score, localPlayer->isFinished);
+	thisClient->SendPacket(*newPacket);
 	delete newPacket;
+	//else {	//Update Finish Status
+		//newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), localPlayer->score);
+	//	thisClient->SendPacket(*newPacket);
+	//}
+
 
 
 }
@@ -228,12 +236,16 @@ void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)
 		delete newPacket;
 
 		NetworkPlayerComponent* player = serverPlayers.at(i)->GetNetworkPlayerComponent();
-		if (player && player->isFinished()) {
+		/*if (player && player->isFinished()) {
 			newPacket = new PlayerFinishedPacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore());
 			thisServer->SendGlobalPacket(*newPacket);
 			delete newPacket;
+		}*/
+		if (player) {
+			newPacket = new PlayerStatusPacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore(), player->isFinished());
+			thisServer->SendGlobalPacket(*newPacket);
+			delete newPacket;
 		}
-
 	}
 	//stateID++;
 	//std::vector<GameObject*>::const_iterator first;
