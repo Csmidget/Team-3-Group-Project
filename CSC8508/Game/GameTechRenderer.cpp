@@ -65,10 +65,13 @@ GameTechRenderer::GameTechRenderer(GameWorld& world, ResourceManager& resourceMa
 
 	//setup light data
 	std::vector<glm::vec3> pointLightPos;
+	pointLightPos.push_back(glm::vec3(-154.0f, 30.0f, -15.0f));
 	pointLightPos.push_back(glm::vec3(-80.0f, 30.0f, 0.0f));
 	pointLightPos.push_back(glm::vec3(0.0f, 30.0f, 0.0f));
-	//pointLightPos.push_back(glm::vec3(0.0f, 10.0f, 30.0f));
-	//pointLightPos.push_back(glm::vec3(30.0f, 10.0f, 0.0f));
+
+	//level 2 lights
+	pointLightPos.push_back(glm::vec3(85.0f, 30.0f, -50.0f));
+	pointLightPos.push_back(glm::vec3(169.0f, 30.0f, -27.0f));
 
 	std::vector<glm::vec3> spotLightPos;
 	spotLightPos.push_back(glm::vec3(10.0f, 30.0f, 30.0f));

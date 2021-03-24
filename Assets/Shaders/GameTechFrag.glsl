@@ -51,7 +51,7 @@ struct SpotLight {
     sampler2D shadowMap;
 };
 
-#define NR_POINT_LIGHTS 4
+#define NR_POINT_LIGHTS 5
 
 in vec3 FragPos;
 in vec3 Normal;
@@ -95,18 +95,26 @@ void main()
     }
     */
 
+
+    for (int i = 0; i < NR_POINT_LIGHTS; i++)
     {
-        float shadow=ShadowCalculation(FragPos,pointLights[0]);
+        float shadow=ShadowCalculation(FragPos,pointLights[i]);
         shadow=clamp(1.0-shadow,0.0,1.0);
         //float shadow=1.0;
-        result += CalcPointLight(pointLights[0],shadow, norm, FragPos, viewDir);  
+        result += CalcPointLight(pointLights[i],shadow, norm, FragPos, viewDir);  
     }
-    {
-        float shadow=ShadowCalculation(FragPos,pointLights[1]);
-        shadow=clamp(1.0-shadow,0.0,1.0);
-        //float shadow=1.0;
-        result += CalcPointLight(pointLights[1],shadow, norm, FragPos, viewDir);  
-    }
+  // {
+  //      float shadow=ShadowCalculation(FragPos,pointLights[1]);
+  //      shadow=clamp(1.0-shadow,0.0,1.0);
+  //      //float shadow=1.0;
+  //      result += CalcPointLight(pointLights[1],shadow, norm, FragPos, viewDir);  
+  //  }
+  //      {
+  //      float shadow=ShadowCalculation(FragPos,pointLights[3]);
+  //      shadow=clamp(1.0-shadow,0.0,1.0);
+  //      //float shadow=1.0;
+  //      result += CalcPointLight(pointLights[1],shadow, norm, FragPos, viewDir);  
+  //  }
 
     // ����۹��
     for(int i = 0; i < 1; i++)
