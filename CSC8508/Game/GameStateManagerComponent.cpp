@@ -31,14 +31,15 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 
 	if (!majorityFinished && game->IsMajorityPlayersFinished())
 	{
-		majorityFinished = true;
 		finishTimer = 15.0f;
 	}
 
+	majorityFinished = game->IsMajorityPlayersFinished();
+
 	if (majorityFinished)
 	{
-		game->getRenderer()->DrawString("Time remaining: " + std::to_string((int)finishTimer),Vector2(85,90),Vector4(1.0f,1.0f,1.0f,1.0f));
 		finishTimer -= dt;
+		game->getRenderer()->DrawString("Time remaining: " + std::to_string((int)finishTimer),Vector2(80,90),Vector4(1.0f,1.0f,1.0f,1.0f),12.0f);
 		if (finishTimer <= 0.0f)
 			isGameFinished = true;
 	}

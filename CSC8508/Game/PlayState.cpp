@@ -44,7 +44,7 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 		}
 	}
 	else {
-		Debug::Print("Press Tab to view scoreboad", Vector2(1, 10));
+		Debug::Print("Press Tab to view scoreboard", Vector2(1, 10));
 		if (Window::GetKeyboard()->KeyDown(KeyboardKeys::TAB)) {
 			ScoreComponent::DisplayScoreboard(game, Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
