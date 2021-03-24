@@ -2967,13 +2967,13 @@
                 "name": "Player"
             },
             {
-                "name": "SetListener",
-                "ID": 0
-            },
-            {
                 "name": "TimeScoreComponent",
                 "strength": 1,
                 "startingPoints": 0
+            },
+            {
+                "name": "SetListener",
+                "ID": 0
             }
         ]
     },
@@ -20835,56 +20835,5 @@
                 "name": "GameStateManager"
             }
         ]
-    },
-    {
-        "name": "Directional Light",
-        "isStatic": false,
-        "tag": "Untagged",
-        "collider": {
-            "type": "none",
-            "size": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "center": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "radius": 0.0,
-            "height": 0.0,
-            "isTrigger": false
-        },
-        "transform": {
-            "position": {
-                "x": 0.0,
-                "y": 3.0,
-                "z": -33.119998931884769
-            },
-            "orientation": {
-                "x": -0.4082178771495819,
-                "y": 0.23456968367099763,
-                "z": 0.10938163101673126,
-                "w": 0.8754261136054993
-            },
-            "scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            }
-        },
-        "render": {
-            "mesh": "",
-            "material": "",
-            "renderScale": 0
-        },
-        "physics": {
-            "mass": -1.0,
-            "drag": 0.0,
-            "angularDrag": 0.0,
-            "useGravity": false,
-            "isKinematic": false
-        }
     }
 ]

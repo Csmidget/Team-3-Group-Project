@@ -39,7 +39,7 @@ PushdownState::PushdownResult LobbyState::OnUpdate(float dt, PushdownState** new
 }
 
 void LobbyState::OnAwake() {
-	game->InitWorld("Lobby.json");
+	game->InitWorld("CharlesTest.json");
 
 	if (gameStarted)
 		game->DisableNetworking();
