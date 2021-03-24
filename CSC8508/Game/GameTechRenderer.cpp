@@ -360,8 +360,8 @@ void GameTechRenderer::RenderCamera() {
 		modelLocation = glGetUniformLocation(boundShader->GetProgramID(), "modelMatrix");
 
 		//	shadowLocation = glGetUniformLocation(lightshader->GetProgramID(), "shadowMatrix");
-			colourLocation = glGetUniformLocation(lightshader->GetProgramID(), "objectColour");
-			hasVColLocation = glGetUniformLocation(lightshader->GetProgramID(), "hasVertexColours");
+			colourLocation = glGetUniformLocation(boundShader->GetProgramID(), "objectColour");
+			hasVColLocation = glGetUniformLocation(boundShader->GetProgramID(), "hasVertexColours");
 		//	hasTexLocation = glGetUniformLocation(lightshader->GetProgramID(), "hasTexture");
 
 		/*	lightPosLocation = glGetUniformLocation(lightshader->GetProgramID(), "lightPos");

@@ -64,7 +64,8 @@ PushdownState::PushdownResult DebugState::OnUpdate(float dt, PushdownState** new
 		}
 
 		if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::K))
-			selectedObject->GetRenderObject()->SetAnimation(game->GetResourceManager()->LoadAnimation("role_T.anm"));
+			selectedObject->SetIsActive(!selectedObject->IsActive());
+
 		DisplayDebugInfo();
 	}
 
