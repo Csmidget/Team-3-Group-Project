@@ -1,6 +1,12 @@
 #include "Shadow.h"
+#include "PointLight.h"
+#include "SpotLight.h"
+#include "../../include/glm/gtc/type_ptr.hpp"
+#include "../../Plugins/OpenGLRendering/OGLShader.h"
+#include <iostream>
 
-
+using namespace NCL;
+using namespace CSC8508;
 
 // 阴影的分辨率
 #define SHADOWSIZE 2048

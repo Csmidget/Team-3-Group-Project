@@ -2,6 +2,8 @@
 #include"SetListener.h"
 #include"../Engine/GameObject.h"
 #include"../Engine/PhysicsObject.h"
+#include"../Audio/SoundManager.h"
+#include "../Audio/SoundListener.h"
 
 
 using namespace NCL;

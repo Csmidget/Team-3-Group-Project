@@ -1,16 +1,19 @@
 #include "GameOverState.h"
-#include "../Engine/GameWorld.h"
 #include "Game.h"
 #include "CameraComponent.h"
-#include"PlayerComponent.h"
-#include <iostream>
-#include "../Engine/Debug.h"
+#include "PlayerComponent.h"
 #include "GameTechRenderer.h"
 #include "ScoreComponent.h"
-#include"../Game/GameStateManagerComponent.h"
+#include "GameStateManagerComponent.h"
+
+#include "../Engine/GameWorld.h"
+#include "../../Common/Vector3.h"
+
+#include <iostream>
 
 using namespace NCL;
 using namespace CSC8508;
+using namespace Maths;
 
 GameOverState::GameOverState(Game* game, bool isFinal, bool isNetworked) {
 
@@ -66,7 +69,7 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 void GameOverState::OnAwake() {
 
 	spectatorCamera = CameraComponent::GetMain();
-	gameStateManager = game->GetWorld()->GetComponentOfType<GameStateManagerComponent>();
+	gameStateManager = GameStateManagerComponent::instance;
 
 	auto playerObject = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>();
 	
@@ -95,7 +98,7 @@ void GameOverState::UpdateCameraControls(float dt) {
 
 	float frameSpeed = 100 * dt;
 
-	Vector3 position = spectatorCamera->GetPosition();
+	Maths::Vector3 position = spectatorCamera->GetPosition();
 	if (Window::GetKeyboard()->KeyDown(KeyboardKeys::W)) {
 		position += Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(0, 0, -1) * frameSpeed;
 	}

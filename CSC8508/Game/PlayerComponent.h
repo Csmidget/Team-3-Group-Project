@@ -1,13 +1,16 @@
 #pragma once
 #include "../Engine/Component.h"
 #include "../../Common/Vector3.h"
-#include"../Audio/SoundInstance.h"
 
 namespace NCL {
 
 	class Camera;
 
 	namespace CSC8508 {
+
+		namespace Audio {
+			class SoundInstance;
+		}
 
 		class PhysicsObject;
 		class Game;

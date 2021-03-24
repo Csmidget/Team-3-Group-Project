@@ -10,7 +10,7 @@ namespace NCL {
 		class TimeScoreComponent : public Component
 		{
 			public:
-				TimeScoreComponent(GameObject* object, Game* game, int strength, int startingPoints);
+				TimeScoreComponent(GameObject* object, int strength, int startingPoints);
 
 				void Update(float dt) override;
 				void Start() override;

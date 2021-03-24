@@ -18,7 +18,6 @@ namespace NCL {
 
 				ScoreComponent(GameObject* object);
 				~ScoreComponent();
-				void OnCollisionBegin(GameObject* otherObject);
 				
 				int GetScore() const { return score; }
 

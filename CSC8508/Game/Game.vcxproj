@@ -151,7 +151,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BonusComponent.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="DebugState.cpp" />
     <ClCompile Include="DisappearingPlatformComponent.cpp" />
@@ -184,7 +183,6 @@
     <ClCompile Include="TeleporterComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BonusComponent.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="DebugState.h" />
     <ClInclude Include="DisappearingPlatformComponent.h" />

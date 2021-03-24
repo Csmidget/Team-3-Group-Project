@@ -1,7 +1,9 @@
 #include "GameWorld.h"
 #include "Constraint.h"
 #include "CollisionDetection.h"
+
 #include "../../Common/Camera.h"
+
 #include <algorithm>
 #include <vector>
 

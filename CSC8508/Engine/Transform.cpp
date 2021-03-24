@@ -1,9 +1,10 @@
 #include "Transform.h"
-#include <iomanip>
-#include <sstream>
 #include "Debug.h"
 #include "GameObject.h"
 #include "PhysicsObject.h"
+
+#include <iomanip>
+#include <sstream>
 
 using namespace NCL::CSC8508;
 

@@ -1,22 +1,31 @@
 #pragma once
-#include "../../Common/ResourceManager.h"
 #include "../../Common/Vector3.h"
-#include "../../Plugins/OpenGLRendering/OGLShader.h"
-#include <string>
-#include <queue>
+#include "../../Common/Vector4.h"
 
-#include "../Engine/Physics/PhysicsEngine/BulletWorld.h"
-#include "../Engine/NetworkManager.h"
-#include"../Audio/SoundInstance.h"
+#include <string>
 
 namespace NCL {
+
+	namespace Rendering {
+		class ResourceManager;
+	}
+
 	namespace CSC8508 {
+
+		namespace Audio {
+			class SoundInstance;
+		}
+
+		namespace physics {
+			class BulletWorld;
+		}
 
 		class GameTechRenderer;
 		class PhysicsSystem;
 		class GameWorld;
 		class GameObject;
 		class PushdownMachine;
+		class NetworkManager;
 
 		class Game		{
 		public:
@@ -49,10 +58,10 @@ namespace NCL {
 			GameObject* AddPlayerToWorld(const Maths::Vector3& position);
 			GameObject* AddEnemyToWorld(const Maths::Vector3& position);
 			GameObject* AddBonusToWorld(const Maths::Vector3& position);
-			GameObject* AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false);
-			GameObject* AddCameraToWorld(const Vector3& position);
+			GameObject* AddButtonToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false);
+			GameObject* AddCameraToWorld(const Maths::Vector3& position);
 
-			GameObject* Raycast(const Vector3& from, const Vector3& to) const;
+			GameObject* Raycast(const Maths::Vector3& from, const Maths::Vector3& to) const;
 
 			GameWorld* GetWorld() const { return world; }
 			physics::BulletWorld* GetPhysics() const { return physics; }
@@ -90,8 +99,8 @@ namespace NCL {
 
 			float	forceMagnitude;
 		
-			string name;
-			Vector4 saveColor = Vector4(1, 1, 1, 1);
+			std::string name;
+			Maths::Vector4 saveColor = Maths::Vector4(1, 1, 1, 1);
 		};
 	}
 }

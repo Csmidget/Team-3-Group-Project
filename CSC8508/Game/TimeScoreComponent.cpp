@@ -1,11 +1,9 @@
 #include"TimeScoreComponent.h"
 #include "ScoreComponent.h"
-#include "Game.h"
-#include "../Engine/GameWorld.h"
 using namespace NCL;
 using namespace CSC8508;
 
-TimeScoreComponent::TimeScoreComponent(GameObject* object, Game* game, int strength, int startingPoints)
+TimeScoreComponent::TimeScoreComponent(GameObject* object, int strength, int startingPoints)
 	: Component("TimeScoreComponent", object)
 {
 	timer = 0.0f;

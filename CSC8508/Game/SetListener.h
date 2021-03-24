@@ -1,10 +1,13 @@
 #pragma once
 #include "../Engine/Component.h"
-#include<iostream>
-#include"../Audio/SoundManager.h"
+
 namespace NCL {
 
 	namespace CSC8508 {
+
+		namespace Audio {
+			struct SoundListener;
+		}
 
 		class PhysicsObject;
 		class GameObject;
