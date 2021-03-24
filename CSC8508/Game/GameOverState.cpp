@@ -38,7 +38,7 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 
 	if (isNetworked)
 	{
-		allFinished = allFinished || game->IsAllPlayersFinished();
+		allFinished = allFinished || gameStateManager->IsGameFinished();
 
 		if (allFinished)
 		{
@@ -48,7 +48,8 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 		else
 			game->getRenderer()->DrawString("Waiting for other players!", Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);
 
-		if (timer <= 0.0f) return PushdownResult::Pop;
+		if (timer <= 0.0f) 
+				return PushdownResult::Pop;
 	}
 	else
 	{

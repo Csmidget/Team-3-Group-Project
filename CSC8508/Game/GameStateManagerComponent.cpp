@@ -28,6 +28,11 @@ void GameStateManagerComponent::Start()
 
 void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 
+	if (game->IsNetworkGame())
+		isGameFinished = isGameFinished || game->IsAllPlayersFinished();
+	else
+		isGameFinished = isGameFinished || isPlayerFinished;
+
 	int score = ScoreComponent::instance ? ScoreComponent::instance->GetScore() : 0;
 	if(!isGameFinished) Debug::Print("Score: " + std::to_string(score), Vector2(85, 95));
 
