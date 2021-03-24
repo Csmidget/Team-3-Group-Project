@@ -24,6 +24,9 @@ PlayState::PlayState(Game* game, bool isNetworked) {
 	game->InitWorld(levels[levelID]);
 	levelID++;
 
+	if (isNetworked)
+		InitSpawns();
+
 	GameObject* scoreObject = new GameObject();
 	game->GetWorld()->AddGameObject(scoreObject);
 	scoreObject->AddComponent<ScoreComponent>();
@@ -67,36 +70,36 @@ PushdownState::PushdownResult PlayState::OnUpdate(float dt, PushdownState** newS
 	return PushdownResult::NoChange;
 };
 
+void PlayState::InitSpawns() {
+	const Vector3 spawnOffsets[8]{ {0,0,0},{2,0,0},{0,0,2},{2,0,2},{2,0,-2},{-2,0,0},{0,0,-2},{-2,0,2} };
+
+	auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
+	auto localPlayer = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>()[0];
+
+	for (auto player : networkPlayers) {
+		auto comp = player->GetComponent<NetworkPlayerComponent>();
+		auto pos = localPlayer->GetTransform().GetPosition() + spawnOffsets[comp->GetPlayerID()];
+		player->GetTransform().SetPosition(pos);
+		comp->SetTargetPosition(pos);
+		player->SetIsActive(true);
+	}
+
+	auto localPlayerComp = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
+	if (localPlayer) {
+		int id = localPlayerComp->GetLocalPlayerID();
+		localPlayer->GetTransform().SetPosition(localPlayer->GetTransform().GetPosition() + spawnOffsets[id]);
+	}
+
+}
+
 void PlayState::OnAwake() {
-
-
 	if (isNetworked)
 	{
-		const Vector3 spawnOffsets[8]{ {0,0,0},{2,0,0},{0,0,2},{2,0,2},{2,0,-2},{-2,0,0},{0,0,-2},{-2,0,2} };
-
-		auto networkPlayers = game->GetWorld()->GetObjectsWithComponent<NetworkPlayerComponent>();
-		auto localPlayer = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>()[0];
-
-		for (auto player : networkPlayers) {
-			auto comp = player->GetComponent<NetworkPlayerComponent>();
-			auto pos = localPlayer->GetTransform().GetPosition() + spawnOffsets[comp->GetPlayerID()];
-			player->GetTransform().SetPosition(pos);
-			comp->SetTargetPosition(pos);
-			player->SetIsActive(true);
-		}
-
-		auto localPlayerComp = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
-		if (localPlayer) {
-			int id = localPlayerComp->GetLocalPlayerID();
-			localPlayer->GetTransform().SetPosition(localPlayer->GetTransform().GetPosition() + spawnOffsets[id]);
-		}
-
-
 		if (!gameStateManager->IsGameFinished()) return;
 
 		game->InitWorld(levels[levelID]);
-		
 
+		InitSpawns();	
 	}
 	else
 	{

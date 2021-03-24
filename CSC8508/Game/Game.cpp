@@ -208,8 +208,8 @@ void Game::InitNetworkPlayers()
 		auto player = AddCapsuleToWorld(Vector3(5, 10, 10), 0.5f, 0.25f, 0);
 		player->SetIsStatic(true);
 		player->AddComponent<NetworkPlayerComponent>(playerID);
-		player->SetIsActive(false);
-		//player->GetPhysicsObject()->body->makeKinematic();
+		//player->SetIsActive(false);
+		player->GetPhysicsObject()->body->makeKinematic();
 
 		networkManager->AddPlayerToGame(playerID, player);
 		std::cout << "Player " << std::to_string(lobby->front()) << " Added" << std::endl;

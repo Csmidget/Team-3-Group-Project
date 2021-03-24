@@ -18,6 +18,8 @@ namespace NCL {
 			PlayState(Game* game, bool isNetworked = false);
 
 		protected:
+			void InitSpawns();
+
 			Game* game;
 			bool isNetworked;
 			int levelID;
