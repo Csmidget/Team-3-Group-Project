@@ -99,7 +99,6 @@ void BulletWorld::Update(float dt)
 	for (auto i : rigidList)
 	{
 		i->returnBody()->applyDamping((btScalar)dt);
-		//i->returnBody()->integrateVelocities((btScalar)dt);
 		i->updateTransform();
 	}	
 }
@@ -170,8 +169,6 @@ void BulletWorld::clear()
 
 	for (auto i : rigidList)
 		removeRigidBody(i);
-	
-	//dynamicsWorld->constraint
 
 	rigidList.clear();
 	contactList.clear();
@@ -187,7 +184,6 @@ void BulletWorld::tickCallBack(btDynamicsWorld* world, btScalar timeStep)
 
 void BulletWorld::updateObjects(float dt)
 {
-	//dynamicsWorld->clearForces();
 	for (auto i : rigidList)
 		((GameObject*)i->returnBody()->getUserPointer())->fixedUpdate(dt);
 	
