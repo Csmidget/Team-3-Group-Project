@@ -14,7 +14,7 @@ using namespace CSC8508;
 
 ScoreComponent* ScoreComponent::instance = nullptr;
 
-void ScoreComponent::DisplayScoreboard(Game* game, Vector4 colour) {
+void ScoreComponent::DisplayScoreboard(Game* game) {
 
 	typedef std::pair<std::string, int> ScorePair;
 
@@ -31,14 +31,14 @@ void ScoreComponent::DisplayScoreboard(Game* game, Vector4 colour) {
 
 	std::sort(playerScores.begin(), playerScores.end(), [](ScorePair a, ScorePair b) {return a.second > b.second; });
 
-	game->getRenderer()->DrawString("Scoreboard:", Vector2(1, 30), colour, 15.0f);
+	game->getRenderer()->DrawString("Scoreboard:", Vector2(1, 30), Vector4(1.0f,1.0f,1.0f,1.0f), 15.0f);
 
 	for (int i = 0; i < playerScores.size(); ++i)
 	{
 		string name = playerScores[i].first;
 		int score = playerScores[i].second;
 
-		game->getRenderer()->DrawString(name + ": " + std::to_string(score), Vector2(1, 34 + (i * 4)), colour, 15.0f);
+		game->getRenderer()->DrawString(name + ": " + std::to_string(score), Vector2(1, 34 + (i * 4)), Vector4(1.0f,1.0f,1.0f,1.0f), 15.0f);
 	}
 
 

@@ -24,7 +24,8 @@ IntroState::IntroState(Game* game) {
 }
 
 PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** newState) {
-	Debug::Print("Game of Team 3!", Vector2(42, 20));
+	Debug::Print("Team 3 proudly presents:", Vector2(37, 10), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f);
+	Debug::Print("Fall Bros.", Vector2(35, 20),Vector4(1.0f,1.0f,1.0f,1.0f),3.0f);
 	Debug::Print("Single Mode", Vector2(43.5, 34.5));
 	Debug::Print("Multi - Client", Vector2(42, 50.5));
 	Debug::Print("Multi - Server", Vector2(42, 66.5));
@@ -61,10 +62,10 @@ PushdownState::PushdownResult IntroState::OnUpdate(float dt, PushdownState** new
 
 void IntroState::OnAwake() {
 	game->InitIntroWorld();
-	singleCube = game->AddButtonToWorld(Vector3(0, 8, 0), Vector3(8, 2, 0), 0.0f, false);
-	clientCube = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), 0.0f, false);
-	serverCube = game->AddButtonToWorld(Vector3(0, -8, 0), Vector3(8, 2, 0), 0.0f, false);
-	exitCube = game->AddButtonToWorld(Vector3(0, -16, 0), Vector3(8, 2, 0), 0.0f, false);
+	singleCube = game->AddButtonToWorld(Vector3(0, 8, 0), Vector3(8, 2, 0),Vector4(0.0f,0.5,0.0,1.0f), 0.0f, false);
+	clientCube = game->AddButtonToWorld(Vector3(0, 0, 0), Vector3(8, 2, 0), Vector4(0.1f, 0.1f, 0.5f, 1.0f), 0.0f, false);
+	serverCube = game->AddButtonToWorld(Vector3(0, -8, 0), Vector3(8, 2, 0), Vector4(0.1f, 0.1f, 0.5f, 1.0f), 0.0f, false);
+	exitCube = game->AddButtonToWorld(Vector3(0, -16, 0), Vector3(8, 2, 0), Vector4(0.1f, 0.1f, 0.1f, 1.0f), 0.0f, false);
 	Window::GetWindow()->ShowOSPointer(true);
 	Window::GetWindow()->LockMouseToWindow(false);
 }

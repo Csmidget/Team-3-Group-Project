@@ -14,7 +14,7 @@ namespace NCL {
 			public:
 
 				static ScoreComponent* instance; 
-				static void DisplayScoreboard(Game* game, Maths::Vector4 colour = { 1.0f, 1.0f, 0.0f, 0.0f });
+				static void DisplayScoreboard(Game* game);
 
 				ScoreComponent(GameObject* object);
 				~ScoreComponent();
