@@ -36,7 +36,7 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 	
 	std::string completeString = isFinal ? "Game Completed!" : "Level Complete";
 
-	game->getRenderer()->DrawString(completeString, Vector2(35, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
+	game->getRenderer()->DrawString(completeString, Vector2(43, 10), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 20.0f);
 	game->getRenderer()->DrawString("Press R to return to Menu", Vector2(34, 99), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);
 
 	if (isFinal)
@@ -52,7 +52,7 @@ PushdownState::PushdownResult GameOverState::OnUpdate(float dt, PushdownState** 
 			game->getRenderer()->DrawString("Next Level: " + std::to_string((int)timer), Vector2(43, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);
 		}
 		else
-			game->getRenderer()->DrawString("Waiting for other players!", Vector2(30, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);
+			game->getRenderer()->DrawString("Waiting for other players!", Vector2(35, 95), Vector4(1.0f, 1.0f, 0.0f, 0.0f), 15.0f);
 
 		if (timer <= 0.0f) 
 				return PushdownResult::Pop;
