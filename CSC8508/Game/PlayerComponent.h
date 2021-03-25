@@ -45,6 +45,9 @@ namespace NCL {
 				return movementState;
 			}
 		
+		protected:
+			std::vector<std::string> DebugInfo() override;
+
 		private:
 
 			PlayerMovementState movementState;

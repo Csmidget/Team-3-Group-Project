@@ -221,3 +221,32 @@ void PlayerComponent::UpdateControls(float dt)
 	PlayerInputs();
 }
 
+std::vector<std::string> PlayerComponent::DebugInfo() {
+
+	std::vector<std::string> returnVec;
+
+	std::string moveStateStr = "";
+
+	switch (movementState) {
+	case PlayerMovementState::IDLE:
+		moveStateStr = "Idle";
+		break;
+	case PlayerMovementState::JUMP_ONE:
+		moveStateStr = "Jump One";
+		break;
+	case PlayerMovementState::JUMP_TWO:
+		moveStateStr = "Jump Two";
+		break;
+	case PlayerMovementState::WALKING:
+		moveStateStr = "Walking";
+		break;
+	}
+
+
+	returnVec.push_back("  Movement State: " + moveStateStr);
+	returnVec.push_back("  Speed: " + std::to_string(speed));
+
+	return returnVec;
+}
+
+

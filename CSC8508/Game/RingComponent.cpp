@@ -12,3 +12,10 @@ RingComponent::RingComponent(GameObject* object, int bonus) : Component("RingCom
 	this->bonus = bonus;
 }
 
+std::vector<std::string> RingComponent::DebugInfo() {
+	std::vector<std::string> returnVec;
+
+	returnVec.push_back("  Bonus:" + std::to_string(bonus));
+
+	return returnVec;
+}

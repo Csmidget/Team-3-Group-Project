@@ -13,6 +13,8 @@ namespace NCL {
 			void OnCollisionStay(GameObject* other);
 
 		private:
+			std::vector<std::string> DebugInfo() override;
+
 			Maths::Vector3 targetPosition;
 		};
 

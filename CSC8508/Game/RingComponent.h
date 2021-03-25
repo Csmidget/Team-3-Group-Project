@@ -13,6 +13,9 @@ namespace NCL {
 		public:
 			RingComponent(GameObject* object , int bonus);
 			int GetBonus() { return bonus; }
+		protected:
+			std::vector<std::string> DebugInfo() override;
+
 		private:
 			PhysicsObject* physicsObject;
 			int bonus;

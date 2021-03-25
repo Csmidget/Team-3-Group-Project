@@ -15,3 +15,10 @@ void TeleporterComponent::OnCollisionStay(GameObject* other) {
 	}
 }
 
+std::vector<std::string> TeleporterComponent::DebugInfo() {
+	std::vector<std::string> returnVec;
+
+	returnVec.push_back("  Target: " + std::to_string(targetPosition.x) + "," + std::to_string(targetPosition.y) + "," + std::to_string(targetPosition.z));
+
+	return returnVec;
+}
