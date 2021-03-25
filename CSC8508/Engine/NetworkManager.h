@@ -55,7 +55,6 @@ namespace NCL {
 			void Update(float dt);
 
 			void ReceivePacket(int type, GamePacket* payload, int source) override;
-			//void OnPlayerCollision(NetworkPlayer* a, NetworkPlayer* b);
 	
 			void AddPlayerToLobby(int id);
 
@@ -67,7 +66,7 @@ namespace NCL {
 				serverPlayers.emplace(id, new ClientPlayer("Client", *object, id));
 			}
 			
-			void SetLocalPlayer(GameObject* object); //{ localPlayer = new ClientPlayer("Me",*object, thisClient ? thisClient->GetID() : 0); }
+			void SetLocalPlayer(GameObject* object);
 			LocalPlayer* GetLocalPlayer() { return localPlayer; }
 
 			void UpdateServerPlayer(int id, GamePacket* packet);
@@ -90,7 +89,6 @@ namespace NCL {
 			void UpdateLocalPlayer(float dt);
 
 			void BroadcastSnapshot(bool deltaFrame);
-			void UpdateMinimumState();
 
 			void Restart();
 			int GetNoOfPlayersFinished() const;
@@ -107,8 +105,6 @@ namespace NCL {
 
 			std::map<int, ClientPlayer*> serverPlayers;
 			
-//			ClientPlayer* localPlayer;
-//			GameStateManagerComponent* gameState;
 
 			LocalPlayer* localPlayer;
 

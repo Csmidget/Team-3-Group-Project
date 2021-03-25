@@ -50,10 +50,6 @@ void NetworkManager::Update(float dt)
 		isClient ? UpdateAsClient(dt) : UpdateAsServer(dt);	
 		timeToNextPacket += 1.0f / 20.0f; //20hz server/client update
 	}
-
-	
-
-	//if (Window::GetKeyboard()->KeyPressed(KeyboardKeys::R)) Restart();
 }
 
 void NCL::CSC8508::NetworkManager::ReceivePacket(int type, GamePacket* payload, int source)
@@ -216,22 +212,13 @@ void NCL::CSC8508::NetworkManager::UpdateLocalPlayer(float dt)
 {
 	GamePacket* newPacket;
 
-//	if (!localPlayer->isFinished) {		//Update Positions and Orientations
+	localPlayer->player->WritePacket(&newPacket, dt, stateID);
+	thisClient->SendPacket(*newPacket);
+	delete newPacket;
 
-		localPlayer->player->WritePacket(&newPacket, dt, stateID);
-		thisClient->SendPacket(*newPacket);
-		delete newPacket;
-
-	//}
 	newPacket = new PlayerStatusPacket(localPlayer->player->GetPlayerID(), localPlayer->score, localPlayer->isFinished);
 	thisClient->SendPacket(*newPacket);
 	delete newPacket;
-	//else {	//Update Finish Status
-		//newPacket = new PlayerFinishedPacket(localPlayer->player->GetPlayerID(), localPlayer->score);
-	//	thisClient->SendPacket(*newPacket);
-	//}
-
-
 
 }
 
@@ -244,67 +231,17 @@ void NCL::CSC8508::NetworkManager::BroadcastSnapshot(bool deltaFrame)
 		delete newPacket;
 
 		NetworkPlayerComponent* player = serverPlayers.at(i)->GetNetworkPlayerComponent();
-		/*if (player && player->isFinished()) {
-			newPacket = new PlayerFinishedPacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore());
-			thisServer->SendGlobalPacket(*newPacket);
-			delete newPacket;
-		}*/
+
 		if (player) {
 			newPacket = new PlayerStatusPacket(serverPlayers.at(i)->GetPlayerID(), player->GetScore(), player->isFinished());
 			thisServer->SendGlobalPacket(*newPacket);
 			delete newPacket;
 		}
 	}
-	//stateID++;
-	//std::vector<GameObject*>::const_iterator first;
-	//std::vector<GameObject*>::const_iterator last;
 
-	//world->GetObjectIterators(first, last);
-
-	//for (auto i = first; i != last; ++i) {
-		
-		//NetworkObject* o = (*i)->GetNetworkObject();
-		//if (!o) {
-		//	continue;
-		//}
-		////TODO - you'll need some way of determining
-		////when a player has sent the server an acknowledgement
-		////and store the lastID somewhere. A map between player
-		////and an int could work, or it could be part of a 
-		////NetworkPlayer struct. 
-		//int playerState = 0;
-		//GamePacket* newPacket = nullptr;
-		//if (o->WritePacket(&newPacket, deltaFrame, playerState)) {
-		//	thisServer->SendGlobalPacket(*newPacket);
-		//	delete newPacket;
-		//}
-	//}
 }
 
-void NCL::CSC8508::NetworkManager::UpdateMinimumState()
-{
-	////Periodically remove old data from the server
-	//int minID = INT_MAX;
-	//int maxID = 0; //we could use this to see if a player is lagging behind?
 
-	//for (auto i : stateIDs) {
-	//	minID = min(minID, i.second);
-	//	maxID = max(maxID, i.second);
-	//}
-	////every client has acknowledged reaching at least state minID
-	////so we can get rid of any old states!
-	//std::vector<GameObject*>::const_iterator first;
-	//std::vector<GameObject*>::const_iterator last;
-	//world->GetObjectIterators(first, last);
-
-	//for (auto i = first; i != last; ++i) {
-	//	NetworkObject* o = (*i)->GetNetworkObject();
-	//	if (!o) {
-	//		continue;
-	//	}
-	//	o->UpdateStateHistory(minID); //clear out old states so they arent taking up memory...
-	//}
-}
 
 void NCL::CSC8508::NetworkManager::Restart()
 {
