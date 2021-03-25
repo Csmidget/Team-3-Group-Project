@@ -47,7 +47,7 @@ void NCL::CSC8508::GameStateManagerComponent::Update(float dt) {
 		if (majorityFinished)
 		{
 			finishTimer = std::max(0.0f, finishTimer - dt);
-			if (!isGameFinished) game->getRenderer()->DrawString("Time remaining: " + std::to_string((int)finishTimer), Vector2(80, 90), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 12.0f);
+			if (!isGameFinished) game->getRenderer()->DrawString("Time remaining: " + std::to_string((int)finishTimer), Vector2(79, 90), Vector4(1.0f, 1.0f, 1.0f, 1.0f), 12.0f);
 			if (finishTimer <= 0.0f)
 				isGameFinished = true;
 		}

@@ -9,6 +9,7 @@
 #include "PlayerAnimComponent.h"
 #include "ScoreComponent.h"
 #include "RingComponent.h"
+#include "RespawnComponent.h"
 
 #include "../Engine/GameWorld.h"
 #include "../Audio/SoundManager.h"
@@ -52,6 +53,7 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 
 void PlayerComponent::Start() {
 	lnpc = game->GetWorld()->GetComponentOfType<LocalNetworkPlayerComponent>();
+	mySpawn = transform->GetPosition();
 }
 
 void PlayerComponent::fixedUpdate(float dt) {
@@ -64,6 +66,9 @@ void PlayerComponent::fixedUpdate(float dt) {
 }
 
 void PlayerComponent::Update(float dt) {
+
+	if (transform->GetPosition().y < -100)
+		transform->SetPosition(mySpawn);
 
 	Quaternion orientation = Quaternion::EulerAnglesToQuaternion(0, yaw, 0);
 	transform->SetOrientation(orientation);

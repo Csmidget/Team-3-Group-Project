@@ -20,13 +20,13 @@ void RespawnComponent::OnKill() {
 
 	transform->SetPosition(spawnPosition);
 
-	PhysicsObject* physicsObject = gameObject->GetPhysicsObject();
-	if (physicsObject != nullptr) {
-		physicsObject->SetLinearVelocity(Vector3());
-		physicsObject->SetAngularVelocity(Vector3());
-	}
+	//PhysicsObject* physicsObject = gameObject->GetPhysicsObject();
+	//if (physicsObject != nullptr) {
+	//	physicsObject->SetLinearVelocity(Vector3());
+	//	physicsObject->SetAngularVelocity(Vector3());
+	//}
 
-	transform->SetOrientation({});
+	//transform->SetOrientation({});
 
 	gameObject->SetIsActive(true);
 }

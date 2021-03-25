@@ -82,6 +82,7 @@ namespace NCL {
 			LocalNetworkPlayerComponent* lnpc;
 
 			PlayerMovementState IdleOrRunning();
+			Maths::Vector3 mySpawn;
 			void CameraMovement();
 			void PlayerInputs();
 			void Jump();
