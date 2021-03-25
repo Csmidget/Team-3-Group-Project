@@ -98,10 +98,13 @@ void main()
 
     for (int i = 0; i < NR_POINT_LIGHTS; i++)
     {
-        float shadow=ShadowCalculation(FragPos,pointLights[i]);
-        shadow=clamp(1.0-shadow,0.0,1.0);
-        //float shadow=1.0;
-        result += CalcPointLight(pointLights[i],shadow, norm, FragPos, viewDir, tex);  
+        if (distance(FragPos, pointLights[i].position) < 150) {
+
+            float shadow=ShadowCalculation(FragPos,pointLights[i]);
+            shadow=clamp(1.0-shadow,0.0,1.0);
+            //float shadow=1.0;
+            result += CalcPointLight(pointLights[i],shadow, norm, FragPos, viewDir, tex);  
+        }
     }
   // {
   //      float shadow=ShadowCalculation(FragPos,pointLights[1]);
@@ -119,10 +122,12 @@ void main()
     // ����۹��
     for(int i = 0; i < 1; i++)
     {
+          if (distance(FragPos, spotLight[i].position) < 150) {
         //float shadow=ShadowCalculation(FragPos,spotLight[i]);
         //shadow=clamp(1.0-shadow,0.0,1.0);
         float shadow=1.0;
         result += CalcSpotLight(spotLight[i],shadow, norm, FragPos, viewDir, tex);    
+          }
     }
 
     FragColor = vec4(result, 1.0);
