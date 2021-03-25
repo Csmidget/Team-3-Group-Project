@@ -27,11 +27,6 @@ PlayerComponent::PlayerComponent(GameObject* object, Game* game) : Component("Pl
 
 	recquestedJump = false;
 
-	jump = 7.5f;
-
-	MAX_WALKING_SPEED = 6.0f;
-	MAX_AIR_SPEED = 10000.f;
-
 	jumpCounter = 0;
 
 	pitch = 20.0f;
@@ -193,7 +188,7 @@ void NCL::CSC8508::PlayerComponent::Jump()
 		}
 		if (jumpCounter > 0)
 		{
-			physicsObject->body->addImpulse(transform->GetOrientation() * Vector3(0, 1, 0) * jump);
+			physicsObject->body->addImpulse(transform->GetOrientation() * Vector3(0, 1, 0) * JUMP);
 			jumpCounter--;
 		}
 

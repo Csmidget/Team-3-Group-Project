@@ -27,6 +27,8 @@ namespace NCL {
 
 		class PlayerComponent : public Component {
 
+
+
 		public:
 			PlayerComponent(GameObject* object, Game* game);
 		
@@ -48,7 +50,6 @@ namespace NCL {
 		private:
 
 			PlayerMovementState movementState;
-			//Maths::Vector3 dir;
 			Maths::Vector3 direction;
 			Maths::Vector3 currentVelocity;
 			PhysicsObject* physicsObject;
@@ -56,20 +57,18 @@ namespace NCL {
 
 			bool lockOrientation;
 
-			float speed;
 			float yaw;
 			float pitch;
 			float cameraDistance;
 			const float MAX_CAMERA_DISTANCE = 18.f;
 			const float MIN_CAMERA_DISTANCE = 13.f;
 
-			float MAX_WALKING_SPEED;
+			const float MAX_WALKING_SPEED = 6.0f;
 			const float MAX_ACCELERATION = 100.f;
 			const float MAX_DECELERATION = 80.f;
 
 			bool recquestedJump;
-			float jump;
-			float MAX_AIR_SPEED;
+			const float JUMP = 7.5f;
 			int jumpCounter;
 			float lastCollisionTimer;
 
