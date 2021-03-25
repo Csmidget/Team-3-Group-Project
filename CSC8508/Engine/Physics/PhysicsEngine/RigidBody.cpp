@@ -238,8 +238,12 @@ void RigidBody::setRestitution(float restitutuion)
 
 NCL::Maths::Vector3 RigidBody::getForce()
 {
+	NCL::Maths::Vector3 returnVector({ 0,0,0 });
+
 	if(body)
-		return convertbtVector3(body->getTotalForce());
+		returnVector = convertbtVector3(body->getTotalForce());
+
+	return returnVector;
 }
 
 void RigidBody::clearForces()
@@ -250,8 +254,12 @@ void RigidBody::clearForces()
 
 NCL::Maths::Vector3 RigidBody::getLinearVelocity()
 {
+	NCL::Maths::Vector3 returnVector({ 0,0,0 });
+
 	if (body)
-		return convertbtVector3(body->getLinearVelocity());
+		returnVector = convertbtVector3(body->getLinearVelocity());
+
+	return returnVector;
 }
 
 void RigidBody::makeTrigger()

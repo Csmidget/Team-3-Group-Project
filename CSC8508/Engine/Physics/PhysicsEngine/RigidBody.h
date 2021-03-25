@@ -66,7 +66,6 @@ namespace NCL
 
 				bool isKinemtic = false;
 
-				//PhysicsObject* parent;
 				Transform* transform;
 				btRigidBody* body;
 				btCollisionShape* colShape;
