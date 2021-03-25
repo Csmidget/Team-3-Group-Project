@@ -239,7 +239,6 @@ std::vector<std::string> PlayerComponent::DebugInfo() {
 
 
 	returnVec.push_back("  Movement State: " + moveStateStr);
-	returnVec.push_back("  Speed: " + std::to_string(speed));
 
 	return returnVec;
 }
