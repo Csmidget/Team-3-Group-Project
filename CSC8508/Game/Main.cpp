@@ -17,7 +17,7 @@ hide or show the
 */
 
 int main() {
-	Window* w = Window::CreateGameWindow("CSC8508 Game technology!", 1920, 1115);
+	Window* w = Window::CreateGameWindow("Fall Bros.", 1280, 720);
 
 	if (!w->HasInitialised()) {
 		return -1;
@@ -45,7 +45,7 @@ int main() {
 		if (!game->UpdateGame(dt))
 			break;
 
-		w->SetTitle("Gametech frame time:" + std::to_string(1000.0f * dt));
+		w->SetTitle("Fall Bros. | frame time:" + std::to_string(1000.0f * dt));
 	}
 
 	Window::DestroyGameWindow();
