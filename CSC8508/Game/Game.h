@@ -58,7 +58,7 @@ namespace NCL {
 			GameObject* AddPlayerToWorld(const Maths::Vector3& position);
 			GameObject* AddEnemyToWorld(const Maths::Vector3& position);
 			GameObject* AddBonusToWorld(const Maths::Vector3& position);
-			GameObject* AddButtonToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, float inverseMass = 10.0f, bool isStatic = false);
+			GameObject* AddButtonToWorld(const Maths::Vector3& position, Maths::Vector3 dimensions, Maths::Vector4 colour, float inverseMass = 10.0f, bool isStatic = false);
 			GameObject* AddCameraToWorld(const Maths::Vector3& position);
 
 			GameObject* Raycast(const Maths::Vector3& from, const Maths::Vector3& to) const;

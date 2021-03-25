@@ -332,13 +332,13 @@ GameObject* Game::AddCapsuleToWorld(const Vector3& position, float halfHeight, f
 	GameObject* capsule = new GameObject("capsule");
 
 	capsule->GetTransform()
-		.SetScale(Vector3(radius* 2, halfHeight, radius * 2))
+		.SetScale(Vector3(radius* 2, halfHeight + 0.05f, radius * 2))
 		.SetPosition(position);
 
 	capsule->SetRenderObject(new RenderObject(&capsule->GetTransform(), resourceManager->LoadMesh("capsule.msh"),nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
 	capsule->SetPhysicsObject(new PhysicsObject(&capsule->GetTransform(), capsule->GetBoundingVolume()));
 
-	capsule->GetPhysicsObject()->body->addCapsuleShape(radius / 2,halfHeight - 1.0f);
+	capsule->GetPhysicsObject()->body->addCapsuleShape(radius,halfHeight);
 
 	capsule->GetPhysicsObject()->body->createBody(	inverseMass,
 													0.4f,
@@ -375,7 +375,7 @@ GameObject* Game::AddCubeToWorld(const Vector3& position, Vector3 dimensions, fl
 	return cube;
 }
 
-GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions, float inverseMass, bool isStatic) {
+GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions,Vector4 colour, float inverseMass, bool isStatic) {
 	GameObject* cube = new GameObject("cube");
 
 	AABBVolume* volume = new AABBVolume(dimensions);
@@ -386,7 +386,8 @@ GameObject* Game::AddButtonToWorld(const Vector3& position, Vector3 dimensions, 
 		.SetPosition(position)
 		.SetScale(dimensions * 2);
 
-	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"), nullptr, resourceManager->LoadTexture("checkerboard.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	cube->SetRenderObject(new RenderObject(&cube->GetTransform(), resourceManager->LoadMesh("cube.msh"), nullptr, resourceManager->LoadTexture("level1/marble.png"),nullptr, resourceManager->LoadShader("GameTechVert.glsl", "GameTechFrag.glsl")));
+	cube->GetRenderObject()->SetColour(colour);
 	cube->SetPhysicsObject(new PhysicsObject(&cube->GetTransform(), cube->GetBoundingVolume()));
 
 	cube->GetPhysicsObject()->SetInverseMass(inverseMass);
