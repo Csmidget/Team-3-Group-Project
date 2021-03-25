@@ -150,9 +150,9 @@ bool NCL::CSC8508::NetworkManager::IsAllPlayersFinished()
 bool NCL::CSC8508::NetworkManager::IsMajorityPlayersFinished(float percentage) const
 {
 	int playersFinished = GetNoOfPlayersFinished();
-	int totalPlayers = serverPlayers.size() + isClient ? 1 : 0;
+	int totalPlayers = serverPlayers.size() + (isClient ? 1 : 0);
 
-	return playersFinished > std::ceil(totalPlayers * percentage);
+	return playersFinished > std::ceil((float)totalPlayers * percentage);
 }
 
 void NCL::CSC8508::NetworkManager::StartAsServer()
@@ -322,7 +322,6 @@ int NCL::CSC8508::NetworkManager::GetNoOfPlayersFinished() const
 	for (auto i = serverPlayers.begin(); i != serverPlayers.end(); ++i) {
 		npc = i->second->GetNetworkPlayerComponent();
 		if (npc->isFinished()) noOfPlayers++;
-
 	}
 
 	if (isClient)
