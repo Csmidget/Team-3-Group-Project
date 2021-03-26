@@ -71,6 +71,10 @@ void GameOverState::OnAwake() {
 	spectatorCamera = CameraComponent::GetMain();
 	gameStateManager = GameStateManagerComponent::instance;
 
+	//If the player didn't finish, subtract from their score.
+	if (!gameStateManager->IsPlayerFinished() && ScoreComponent::instance)
+		ScoreComponent::instance->AddScore(-50);
+
 	auto playerObject = game->GetWorld()->GetObjectsWithComponent<PlayerComponent>();
 	
 	for (int i = 0; i<=playerObject.size() - 1; i++)
