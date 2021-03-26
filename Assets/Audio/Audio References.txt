@@ -1,0 +1,8 @@
+collectPoint: https://freesound.org/people/LittleRobotSoundFactory/sounds/270304/
+jumpSound: https://freesound.org/people/LittleRobotSoundFactory/sounds/270323/
+teleportSound: https://www.youtube.com/watch?v=zG7SJ8rYS1w
+
+backgroundMusic: 
+https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-surf/568
+https://www.youtube.com/watch?v=GPWt_pGMFZQ
+https://www.youtube.com/watch?v=Uu8WP-Se90w
